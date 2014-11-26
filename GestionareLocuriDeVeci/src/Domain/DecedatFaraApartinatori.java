@@ -14,12 +14,22 @@ public class DecedatFaraApartinatori {
 	public DecedatFaraApartinatori() {
 
 	}
-
+	
 	public DecedatFaraApartinatori(int idDecedat, String cnpdecedat,
 			int nrAdeverintaDeInhumare, Date dataInmormantarii,
 			int idLocDeVeci, int nrAdeverintaAsistenta) {
 
 		this.idDecedat = idDecedat;
+		this.cnpDecedat = cnpdecedat;
+		this.nrAdeverintaDeInhumare = nrAdeverintaDeInhumare;
+		this.idLocDeVeci = idLocDeVeci;
+		this.nrAdeverintaAsistenta = nrAdeverintaAsistenta;
+	}
+	
+	public DecedatFaraApartinatori(String cnpdecedat,
+			int nrAdeverintaDeInhumare, Date dataInmormantarii,
+			int idLocDeVeci, int nrAdeverintaAsistenta) {
+
 		this.cnpDecedat = cnpdecedat;
 		this.nrAdeverintaDeInhumare = nrAdeverintaDeInhumare;
 		this.idLocDeVeci = idLocDeVeci;

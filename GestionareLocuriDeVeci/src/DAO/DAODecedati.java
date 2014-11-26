@@ -24,17 +24,16 @@ public class DAODecedati implements IDAODecedati {
     public void insert(Decedat decedat) throws SQLException{
     	
     	try{
-    	 String insertTable = "INSERT INTO decedati" + "(idDecedat, cnpDecedat, dataInmormantare, nrAdeverintaInhumare, idLocDeVeci, ePersonalitate) VALUES" + "(? , ? , ?, ?, ?, ?)";
+    	 String insertTable = "INSERT INTO decedati" + "(cnpDecedat, dataInmormantare, nrAdeverintaInhumare, idLocDeVeci, ePersonalitate) VALUES" + "(? , ?, ?, ?, ?)";
     	 PSInsert = connection.prepareStatement(insertTable);
-    	 PSInsert.setInt(1, decedat.getIdDecedat());
-    	 PSInsert.setString(2, decedat.getCnpDecedat());
-    	 PSInsert.setDate(3, new Date(decedat.getDataInmormantare().getTime()));
-    	 PSInsert.setInt(4, decedat.getNrAdeverintaInhumare());
-    	 PSInsert.setInt(5, decedat.getIdLocDeVeci());
+    	 PSInsert.setString(1, decedat.getCnpDecedat());
+    	 PSInsert.setDate(2, new Date(decedat.getDataInmormantare().getTime()));
+    	 PSInsert.setInt(3, decedat.getNrAdeverintaInhumare());
+    	 PSInsert.setInt(4, decedat.getIdLocDeVeci());
     	 if(decedat.isePersonalitate() == true) {
-    		 PSInsert.setInt(6, 1);
+    		 PSInsert.setInt(5, 1);
     	 }else {
-    		 PSInsert.setInt(6, 0);
+    		 PSInsert.setInt(5, 0);
     	 }
     	 PSInsert.executeUpdate();
     	}catch(SQLException ex){
@@ -92,21 +91,22 @@ public class DAODecedati implements IDAODecedati {
     	Decedat decedat = null;
     	
     	try{
-    	String selectTable = "SELECT * FROM decedati WHERE cnp = ?";
+    	String selectTable = "SELECT * FROM decedati WHERE cnpDecedat = ?";
     	PSSelect = connection.prepareStatement(selectTable);
     	PSSelect.setString(1, CNP);
-    	ResultSet result = PSSelect.executeQuery(selectTable);
+    	ResultSet result = PSSelect.executeQuery();
   
     	boolean ePersonalitate = false;
     	if(result.getInt(6) == 1) {
     		ePersonalitate = true;
     	}
-    	while(result.next()) {
+    	
+    	if(result.next()) {
     		decedat = new Decedat(result.getInt(1), CNP, result.getDate(3), result.getInt(4), result.getInt(5), ePersonalitate);
     	}
     	
     	}catch(SQLException ex) {
-    		throw new SQLException("Error when trying to retrieve the Decedat with CNP: " + decedat.getCnpDecedat() + ":" + ex.getMessage());
+    		throw new SQLException("Error when trying to retrieve the Decedat with CNP: " + CNP + ":" + ex.getMessage());
     	}finally{
     		if(PSSelect !=null){
                 PSSelect.close();

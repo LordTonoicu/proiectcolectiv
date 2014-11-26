@@ -14,8 +14,15 @@ public class InregistrareJurnal {
 
 	public InregistrareJurnal(int nrInregistrare, Timestamp dataOra,
 			String detaliiModificare) {
-
+		
 		this.nrInregistare = nrInregistrare;
+		this.dataOra = dataOra;
+		this.detaliiModificare = detaliiModificare;
+	}
+	
+	public InregistrareJurnal(Timestamp dataOra,
+			String detaliiModificare) {
+		
 		this.dataOra = dataOra;
 		this.detaliiModificare = detaliiModificare;
 	}

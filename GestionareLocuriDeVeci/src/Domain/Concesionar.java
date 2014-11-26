@@ -11,7 +11,16 @@ public class Concesionar {
 	public Concesionar() {
 
 	}
+	
+	public Concesionar(String domiciliu, int nrChitanta,
+			String cnpConcesionar, int idLocDeVeci) {
 
+		this.domiciliu = domiciliu;
+		this.nrChitanta = nrChitanta;
+		this.cnpConcesionar = cnpConcesionar;
+		this.idLocDeVeci = idLocDeVeci;
+	}
+	
 	public Concesionar(int idConcesionar, String domiciliu, int nrChitanta,
 			String cnpConcesionar, int idLocDeVeci) {
 

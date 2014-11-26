@@ -13,6 +13,14 @@ public class ContractConcesiune {
 
 	}
 
+	public ContractConcesiune(Date dataEliberare,
+			String cnpConcesionar1, String cnpConcesionar2) {
+
+		this.dataEliberare = dataEliberare;
+		this.cnpConcesionar1 = cnpConcesionar1;
+		this.cnpConcesionar2 = cnpConcesionar2;
+	}
+	
 	public ContractConcesiune(int nrContract, Date dataEliberare,
 			String cnpConcesionar1, String cnpConcesionar2) {
 

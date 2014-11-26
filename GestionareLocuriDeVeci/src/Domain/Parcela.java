@@ -12,6 +12,15 @@ public class Parcela {
 
 	}
 
+	public Parcela(String denumire, int nrLocuri, int idCimitir,
+			boolean hasMonument) {
+
+		this.denumire = denumire;
+		this.nrLocuri = nrLocuri;
+		this.idCimitir = idCimitir;
+		this.hasMonument = hasMonument;
+	}
+	
 	public Parcela(int idParcela, String denumire, int nrLocuri, int idCimitir,
 			boolean hasMonument) {
 

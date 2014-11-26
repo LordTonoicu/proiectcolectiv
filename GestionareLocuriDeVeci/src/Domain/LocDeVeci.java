@@ -16,6 +16,17 @@ public class LocDeVeci {
 
 	}
 
+	public LocDeVeci(int suprafata, int idParcela, int numar,
+			Blob poza, boolean isMonument, int idCimitir) {
+
+		this.suprafata = suprafata;
+		this.idParcela = idParcela;
+		this.numar = numar;
+		this.poza = poza;
+		this.isMonument = isMonument;
+		this.idCimitir = idCimitir;
+	}
+	
 	public LocDeVeci(int idLoc, int suprafata, int idParcela, int numar,
 			Blob poza, boolean isMonument, int idCimitir) {
 

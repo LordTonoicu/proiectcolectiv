@@ -25,11 +25,10 @@ public class DAOJurnal implements IDAOJurnal{
     public void insert(InregistrareJurnal inregistrareJurnal) throws SQLException{
     	
     	try{
-    	 String insertTable = "INSERT INTO InregistrariJurnal" + "(nrInregistrare,dataOra,detaliiModificare) VALUES" + "(? , ? , ?)";
+    	 String insertTable = "INSERT INTO InregistrariJurnal" + "(dataOra,detaliiModificare) VALUES" + "(? , ?)";
     	 PSInsert = connection.prepareStatement(insertTable);
-    	 PSInsert.setInt(1, inregistrareJurnal.getNrInregistare());
-    	 PSInsert.setTimestamp(2, inregistrareJurnal.getDataOra());
-    	 PSInsert.setString(3, inregistrareJurnal.getDetaliiModificare());
+    	 PSInsert.setTimestamp(1, inregistrareJurnal.getDataOra());
+    	 PSInsert.setString(2, inregistrareJurnal.getDetaliiModificare());
     	 PSInsert.executeUpdate();
     	}catch(SQLException ex){
     		throw new SQLException("Error when trying to insert the: " + inregistrareJurnal + ":" + ex.getMessage());

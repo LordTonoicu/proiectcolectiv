@@ -12,6 +12,7 @@ public class DAOCimitire implements IDAOCimitire{
 	PreparedStatement PSInsert = null;
     PreparedStatement PSUpdate = null;
     PreparedStatement PSDelete = null;
+    PreparedStatement PSSelect = null;
     
     public DAOCimitire() {
     	
@@ -21,13 +22,12 @@ public class DAOCimitire implements IDAOCimitire{
     public void insert(Cimitir cimitir) throws SQLException{
     	
     	try{
-    	 String insertTable = "INSERT INTO cimitire" + "(idCimitir, denumire, adresa, nrLocuri, nrParcele) VALUES" + "(? , ? , ?, ?, ?)";
+    	 String insertTable = "INSERT INTO cimitire" + "(denumire, adresa, nrLocuri, nrParcele) VALUES" + "(? , ?, ?, ?)";
     	 PSInsert = connection.prepareStatement(insertTable);
-    	 PSInsert.setInt(1, cimitir.getIdCimitir());
-    	 PSInsert.setString(2, cimitir.getDenumire());
-    	 PSInsert.setString(3, cimitir.getAdresa());
-    	 PSInsert.setInt(4, cimitir.getNrLocuri());
-    	 PSInsert.setInt(5, cimitir.getNrParcele());
+    	 PSInsert.setString(1, cimitir.getDenumire());
+    	 PSInsert.setString(2, cimitir.getAdresa());
+    	 PSInsert.setInt(3, cimitir.getNrLocuri());
+    	 PSInsert.setInt(4, cimitir.getNrParcele());
     	 PSInsert.executeUpdate();
     	}catch(SQLException ex){
     		throw new SQLException("Error when trying to insert the: " + cimitir + ":" + ex.getMessage());

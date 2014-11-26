@@ -13,6 +13,14 @@ public class CerereInhumare {
 
 	}
 
+	public CerereInhumare(Date dataInregistrare,
+			String stadiuSolutionare, String cnpConcesionar) {
+
+		this.dataInregistrare = dataInregistrare;
+		this.stadiuSolutionare = stadiuSolutionare;
+		this.cnpConcesionar = cnpConcesionar;
+	}
+
 	public CerereInhumare(int nrCerere, Date dataInregistrare,
 			String stadiuSolutionare, String cnpConcesionar) {
 

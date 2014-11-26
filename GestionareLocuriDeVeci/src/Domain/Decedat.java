@@ -25,6 +25,17 @@ public class Decedat {
 		this.idLocDeVeci = idLocDeVeci;
 		this.ePersonalitate = ePersonalitate;
 	}
+	
+	public Decedat(String cnpDecedat, Date dataInmormantare,
+			int nrAdeverintaInhumare, int idLocDeVeci, boolean ePersonalitate) {
+
+		this.cnpDecedat = cnpDecedat;
+		this.dataInmormantare = dataInmormantare;
+		this.nrAdeverintaInhumare = nrAdeverintaInhumare;
+		this.idLocDeVeci = idLocDeVeci;
+		this.ePersonalitate = ePersonalitate;
+	}
+
 
 	public int getIdDecedat() {
 		return idDecedat;

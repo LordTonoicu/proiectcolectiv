@@ -11,6 +11,7 @@ public class DAOLocuri implements IDAOLocuri {
 	private Connection connection = null;
 	PreparedStatement PSInsert = null;
     PreparedStatement PSUpdate = null;
+    PreparedStatement PSSelect = null;
     
     public DAOLocuri() {
     	
@@ -20,17 +21,16 @@ public class DAOLocuri implements IDAOLocuri {
     public void insert(LocDeVeci locDeVeci) throws SQLException{
     	
     	try{
-    	 String insertTable = "INSERT INTO locurideveci" + "(idLoc,suprafata,idParcela,numar,poza,isMonument,idCimitir) VALUES" + "(? , ? , ?, ?, ?, ?, ?)";
+    	 String insertTable = "INSERT INTO locurideveci" + "(suprafata,idParcela,numar,poza,isMonument,idCimitir) VALUES" + "(? , ?, ?, ?, ?, ?)";
     	 PSInsert = connection.prepareStatement(insertTable);
-    	 PSInsert.setInt(1, locDeVeci.getIdLoc());
-    	 PSInsert.setInt(2, locDeVeci.getSuprafata());
-    	 PSInsert.setInt(3, locDeVeci.getIdParcela());
-    	 PSInsert.setInt(4, locDeVeci.getNumar());
-    	 PSInsert.setBlob(5, locDeVeci.getPoza());
+    	 PSInsert.setInt(1, locDeVeci.getSuprafata());
+    	 PSInsert.setInt(2, locDeVeci.getIdParcela());
+    	 PSInsert.setInt(3, locDeVeci.getNumar());
+    	 PSInsert.setBlob(4, locDeVeci.getPoza());
     	 if(locDeVeci.isMonument() == true) {
-    	 PSInsert.setInt(6, 1);
+    	 PSInsert.setInt(5, 1);
     	}else{
-    		PSInsert.setInt(6, 0);
+    		PSInsert.setInt(5, 0);
     	}
     	 PSInsert.setInt(7, locDeVeci.getIdCimitir());
     	 PSInsert.executeUpdate();

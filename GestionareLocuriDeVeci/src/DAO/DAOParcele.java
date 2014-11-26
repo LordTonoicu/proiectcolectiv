@@ -12,6 +12,7 @@ public class DAOParcele implements IDAOParcele {
 	PreparedStatement PSInsert = null;
     PreparedStatement PSUpdate = null;
     PreparedStatement PSDelete = null;
+    PreparedStatement PSSelect = null;
     
     public DAOParcele() {
     	
@@ -21,16 +22,15 @@ public class DAOParcele implements IDAOParcele {
     public void insert(Parcela parcela) throws SQLException{
     	
     	try{
-    	 String insertTable = "INSERT INTO parcele" + "(idParcela, denumire, nrLocuri, idCimitir, hasMonument) VALUES" + "(? , ? , ?, ?, ?)";
+    	 String insertTable = "INSERT INTO parcele" + "(denumire, nrLocuri, idCimitir, hasMonument) VALUES" + "(? , ?, ?, ?)";
     	 PSInsert = connection.prepareStatement(insertTable);
-    	 PSInsert.setInt(1, parcela.getIdParcela());
-    	 PSInsert.setString(2, parcela.getDenumire());
-    	 PSInsert.setInt(3, parcela.getNrLocuri());
-    	 PSInsert.setInt(4, parcela.getIdCimitir());
+    	 PSInsert.setString(1, parcela.getDenumire());
+    	 PSInsert.setInt(2, parcela.getNrLocuri());
+    	 PSInsert.setInt(3, parcela.getIdCimitir());
     	 if(parcela.isHasMonument() == true) {
-    		 PSInsert.setInt(5, 1);
+    		 PSInsert.setInt(4, 1);
     	 }else {
-    		 PSInsert.setInt(5, 0); 
+    		 PSInsert.setInt(4, 0); 
     	 }
     	 PSInsert.executeUpdate();
     	}catch(SQLException ex){

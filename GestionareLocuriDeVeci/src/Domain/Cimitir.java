@@ -11,10 +11,19 @@ public class Cimitir {
 	public Cimitir() {
 
 	}
-
+	
+	public Cimitir(String denumire, String adresa, int nrLocuri,
+			int nrParcele) {
+		
+		this.denumire = denumire;
+		this.adresa = adresa;
+		this.nrLocuri = nrLocuri;
+		this.nrParcele = nrParcele;
+	}
+	
 	public Cimitir(int idCimitir, String denumire, String adresa, int nrLocuri,
 			int nrParcele) {
-
+		
 		this.idCimitir = idCimitir;
 		this.denumire = denumire;
 		this.adresa = adresa;
