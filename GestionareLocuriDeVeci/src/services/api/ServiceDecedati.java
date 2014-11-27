@@ -29,6 +29,15 @@ public interface ServiceDecedati {
 	/*OBSERVATIE: Datele decedatului vor fi actualizate (eventual) in tab. Date personale*/
 	public void actualizeazaDecedat (DecedatDTO decedat) throws BusinessException;
 	
+	/**
+	 * Elimina un decesat persistat in prealabil.
+	 * @param
+	 *     Decedatul de eliminat
+	 * @throws
+	 *     BusinessException    
+	 * */
+	public void stergeDecedat (DecedatDTO decedatDTO) throws BusinessException;
+	
 	
 	/**
 	 * Returneaza toti decedatii de un anumit tip inregistrati continand
