@@ -1,6 +1,7 @@
 package services.impl;
 
 import java.sql.SQLException;
+import java.util.List;
 
 import exceptions.BusinessException;
 import exceptions.ValidatorException;
@@ -16,6 +17,8 @@ public class ServiceCimitireImpl implements ServiceCimitire{
 
 	public ServiceCimitireImpl() {
 		super();
+		this.daoCimitire=new DAOCimitire();
+		this.cimitirValidator=new CimitirValidator();
 	}
 
 	public ServiceCimitireImpl(DAOCimitire daoCimitire,
@@ -67,6 +70,16 @@ public class ServiceCimitireImpl implements ServiceCimitire{
 			throw new BusinessException("Data access exception: " + sqlException.getMessage());
 		}
 		
+	}
+
+	@Override
+	public List<Cimitir> getCimitire() throws BusinessException {
+		try {
+			return daoCimitire.getAllCimitire();
+		} catch (SQLException sqlException) {
+			throw new BusinessException("Data access exception: " + sqlException.getMessage());
+		}
+	
 	}
 }
 

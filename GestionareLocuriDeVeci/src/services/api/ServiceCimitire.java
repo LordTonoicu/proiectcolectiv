@@ -1,5 +1,7 @@
 package services.api;
 
+import java.util.List;
+
 import exceptions.BusinessException;
 import Domain.Cimitir;
 
@@ -34,6 +36,8 @@ public interface ServiceCimitire {
 	 * 
 	 */
 	public void actualizeazaCimitir(Cimitir cimitir) throws BusinessException;
+	
+	public List<Cimitir> getCimitire() throws BusinessException;
 	
 
 }
