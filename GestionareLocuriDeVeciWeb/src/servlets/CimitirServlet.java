@@ -50,7 +50,7 @@ public class CimitirServlet extends HttpServlet {
 		try {
 			List<Cimitir> cimitire = cimitirServlet.getCimitire();
 			h.setAttribute("listCimitire", cimitire);
-			response.sendRedirect("Cimitir.jsp");
+			response.sendRedirect("jsp/Cimitir.jsp");
 		} catch (BusinessException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

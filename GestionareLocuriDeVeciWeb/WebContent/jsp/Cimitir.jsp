@@ -42,7 +42,8 @@ function newPopup(url) {
 
 <body>
 	<%@ page import="Domain.*" %>
-	<jsp:useBean id="listCimitire" class="java.util.ArrayList<Cimitir>" scope="session"/>
+	<%@ page import="java.util.ArrayList" %>
+	<jsp:useBean id="listCimitire" class="java.util.ArrayList" scope="session"/>
 	<jsp:setProperty name="listCimitire" property="*"/> 
 
     <div id="wrapper">
@@ -205,6 +206,7 @@ function newPopup(url) {
 									<%
 
   										for (Cimitir cimitir:listCimitire) {
+  											
        								 %>
                                         <tr class="odd gradeX">
                                          
