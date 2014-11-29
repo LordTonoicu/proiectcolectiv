@@ -35,8 +35,7 @@
 <body>
 
     <div id="wrapper">
-
-        <!-- Navigation -->
+  <!-- Navigation -->
         <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -45,7 +44,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">Gestionare locuri de veci</a>
+                <a class="navbar-brand" href="../StartServlet">Gestionare locuri de veci</a>
             </div>
 
 
@@ -68,22 +67,22 @@
                             <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Gestiune<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="locuriDeVeci.html">Locuri de veci</a>
+                                    <a href="../locuriDeVeciServlet">Locuri de veci</a>
                                 </li>
                                 <li>
-                                    <a href="Parcele.html">Parcele</a>
+                                    <a href="../ParcelaServlet">Parcele</a>
                                 </li>
                                 <li>
-                                    <a href="Cimitir.jsp">Cimitire</a>
+                                    <a href="../CimitirServlet">Cimitire</a>
                                 </li>
                                 <li>
-                                    <a href="Concesionar.html">Concesionar</a>
+                                    <a href="../ConcesionarServlet">Concesionari</a>
                                 </li>
                                 <li>
-                                    <a href="Decedat.html">Decedat</a>
+                                    <a href="../DecedatServlet">Decedati</a>
                                 </li>
                                 <li>
-                                    <a href="Cereri.html">Cereri</a>
+                                    <a href="../CereriServlet">Cereri</a>
                                 </li>
 
                             </ul>
@@ -93,10 +92,10 @@
                             <ul class="nav nav-second-level">
                                
                                 <li>
-                                    <a href="start.html">Istoric modificari</a>
+                                    <a href="../StartServlet">Istoric modificari</a>
                                 </li>
                                 <li>
-                                    <a href="expirate.html">Locuri de veci expirate</a>
+                                    <a href="../ExpirateServlet">Locuri de veci expirate</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
@@ -105,25 +104,25 @@
                             <a href="#"><i class="fa fa-sitemap fa-fw"></i> Registre<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="tables1.html">Registru anual de programare a inmormantarilor</a>
+                                    <a href="../Table1Servlet">Registru anual de programare a inmormantarilor</a>
                                 </li>
                                 <li>
-                                    <a href="tables2.html">Registru de morminte</a>
+                                    <a href="../Table2Servlet">Registru de morminte</a>
                                 </li>
                                 <li>
-                                    <a href="tables3.html">Registru de morminte-monumente funerare</a>
+                                    <a href="../Table3Servlet">Registru de morminte-monumente funerare</a>
                                 </li>
                                 <li>
-                                    <a href="tables4.html">Registrul index anual al decedatilor</a>
+                                    <a href="../Table4Servlet">Registrul index anual al decedatilor</a>
                                 </li>
                                 <li>
-                                    <a href="tables5.html">Registru anual de evidenta a decedatilor fara apartinatori</a>
+                                    <a href="../Table5Servlet">Registru anual de evidenta a decedatilor fara apartinatori</a>
                                 </li>
                                 <li>
-                                    <a href="tables6.html">Registrul cu evidenta cererilor de atribuire a locurilor de inhumare</a>
+                                    <a href="../Table6Servlet">Registrul cu evidenta cererilor de atribuire a locurilor de inhumare</a>
                                 </li>
                                  <li>
-                                    <a href="tables7.html">Registrul anual de evidenta a contractelor de concesiune</a>
+                                    <a href="../Table7Servlet">Registrul anual de evidenta a contractelor de concesiune</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
@@ -158,7 +157,7 @@
                                 <table class="table table-striped table-bordered table-hover" id="dataTables-example">
                                     <thead>
                                         <tr>
-                                            <th>Nume Utilizator</th>
+                                            <th>Nume utilizator</th>
                                             <th>Data</th>
                                             <th>Ora</th>
                                             <th>Nr document</th>

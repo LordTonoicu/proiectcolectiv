@@ -51,6 +51,9 @@ public class CimitirServlet extends HttpServlet {
 			if(request.getParameter("adaugaCimitir")!=null)	{
 				adaugaCimitir(request);
 			}
+			else if(request.getParameter("stergeCimitir")!=null){
+				stergeCimitir(request);
+			}
 		}
 		catch (BusinessException e){
 			// TODO redirect exception handler
@@ -75,5 +78,9 @@ public class CimitirServlet extends HttpServlet {
 		c.setNrLocuri(0);
 		cimitirService.adaugaCimitir(c);
 	}
-
+	private void stergeCimitir(HttpServletRequest request) throws BusinessException
+	{
+		String id = request.getParameter("idCimitir");
+		System.out.println(id);
+	}
 }

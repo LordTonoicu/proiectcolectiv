@@ -29,7 +29,13 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-
+    <script>
+	    window.onunload = refreshParent;
+	    function refreshParent() {
+	        window.opener.location.reload();
+	        this.close();
+	    }
+	</script>
 </head>
 
 <body>
@@ -56,7 +62,7 @@
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-lg-6">
-                                    <form role="form" action="../CimitirServl" method="POST">
+                                    <form role="form" action="../CimitirServlet" method="POST">
                                         <div  class="form-group">
                                             <label>Denumire</label>
                                             <input id="Denumire" name="Denumire" class="form-control">
