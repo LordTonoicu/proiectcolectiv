@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+<!DOCTYPE html>
+<html lang="en">
+
 <head>
 
     <meta charset="utf-8">
@@ -43,8 +44,8 @@ function newPopup(url) {
 <body>
 	<%@ page import="domain.*" %>
 	<%@ page import="java.util.ArrayList" %>
-	<jsp:useBean id="listCimitire" class="java.util.ArrayList" scope="session"/>
-	<jsp:setProperty name="listCimitire" property="*"/> 
+	<jsp:useBean id="listParcele" class="java.util.ArrayList" scope="session"/>
+	<jsp:setProperty name="listParcele" property="*"/> 
 
     <div id="wrapper">
 
@@ -114,6 +115,7 @@ function newPopup(url) {
                             <!-- /.nav-second-level -->
                         </li>
                             <!-- /.nav-second-level -->
+                        </li>
                         <li>
                             <a href="#"><i class="fa fa-sitemap fa-fw"></i> Registre<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
@@ -161,21 +163,21 @@ function newPopup(url) {
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                           Gestioneaza cimitire
-                           <a href="JavaScript:newPopup('addCimitir.jsp')"> 
+                           Gestioneaza parcele
+                           <a href="JavaScript:newPopup('addParcela.html')"> 
                             <button class="btn btn-primary" type="button" style="float:right;margin-top:-7px;margin-right:10px">
-                                     <img src="css/plus.png"> Adauga cimitir
+                                     <img src="css/plus.png"> Adauga parcela
 
                             </button>
-                             <a href="JavaScript:newPopup('updateCimitir.html')"> 
+                             <a href="JavaScript:newPopup('updateParcela.html')"> 
                             <button class="btn btn-primary" type="button" style="float:right;margin-top:-7px;margin-right:10px">
-                                     <img src="css/plus.png"> Actualizeaza cimitir
+                                     <img src="css/plus.png"> Actualizeaza parcela
 
                             </button>
                              </a>
                              
                             <button class="btn btn-primary" type="button" style="float:right;margin-top:-7px;margin-right:10px">
-                                     <img src="css/plus.png"> Sterge cimitir
+                                     <img src="css/plus.png"> Sterge parcela
 
                             </button>
                         
@@ -190,38 +192,30 @@ function newPopup(url) {
                                 <table class="table table-striped table-bordered table-hover" id="dataTables-example">
                                     <thead>
                                         <tr>
-                                            <th style="display:none;">Id Cimitir</th>
+                                         
+                                            
                                             <th>Denumire</th>
-                                             <th>Adresa</th>
                                             <th>Numar locuri</th>
-                                            <th>Numar parcele</th>
-											<th>Actiune</th>	
+                                            <th>Id Cimitir</th>
+                                           <th>Are Monument</th>
+                                        
+
                                         </tr>
                                     </thead>
-                                    <tbody>
+                                     <tbody>
 									<%
-										
-  										for (Object cimitirO: listCimitire) {
-  											Cimitir cimitir = (Cimitir) cimitirO;
+
+  										for (Object parce:listParcele) {
+  											Parcela parcela = (Parcela)parce;
        								 %>
-       								  <form role="form" action="../CimitirServl" action="POST">
                                         <tr class="odd gradeX">
-                                       
-                                            <td style="display:none;"><%=cimitir.getIdCimitir() %></td>
-                                            <td><%=cimitir.getDenumire() %></td>
-                                            <td><%=cimitir.getAdresa() %></td>
-                                            <td><%=String.valueOf(cimitir.getNrLocuri()) %></td>
-                                            <td><%=String.valueOf(cimitir.getNrParcele()) %></td>
-                                            <td>
-                                            	<button class="btn btn-primary" type="submit">
-                                            		<img src="css/edit.png"/>Actualizeaza
-                                            	</button> 
-                                            	<button name="delete" class="btn btn-primary" type="submit">
-                                            	<img src="css/delete.png"/>Sterge</button>
-                                            </td>
+                                         
                                            
+                                            <td><%=parcela.getDenumire() %></td>
+                                            <td><%=parcela.getNrLocuri() %></td>
+                                            <td><%=parcela.getIdCimitir() %></td>
+                                            <td><%=parcela.isHasMonument() %></td>
                                         </tr>
-                                        </form>
                                          
                                         <%
                                         }

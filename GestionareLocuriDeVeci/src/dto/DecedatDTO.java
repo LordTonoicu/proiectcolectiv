@@ -1,20 +1,17 @@
 package dto;
 
-import Domain.DatePersonale;
-import Domain.Decedat;
+import domain.DatePersonale;
+import domain.Decedat;
 
 public class DecedatDTO {
 	
 	private Decedat decedat;
 	private DatePersonale datePersonale;
-	private int idParcela;
 	
-	public DecedatDTO(Decedat decedat, DatePersonale datePersonale,
-			int idParcela) {
+	public DecedatDTO(Decedat decedat, DatePersonale datePersonale) {
 		super();
 		this.decedat = decedat;
 		this.datePersonale = datePersonale;
-		this.idParcela = idParcela;
 	}
 
 	public DecedatDTO() {
@@ -37,11 +34,5 @@ public class DecedatDTO {
 		this.datePersonale = datePersonale;
 	}
 
-	public int getIdParcela() {
-		return idParcela;
-	}
-
-	public void setIdParcela(int idParcela) {
-		this.idParcela = idParcela;
-	}
+	
 }

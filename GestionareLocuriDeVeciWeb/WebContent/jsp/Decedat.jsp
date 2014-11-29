@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+<!DOCTYPE html>
+<html lang="en">
+
 <head>
 
     <meta charset="utf-8">
@@ -41,10 +42,12 @@ function newPopup(url) {
 </head>
 
 <body>
-	<%@ page import="domain.*" %>
+<%@ page import="domain.*" %>
+<%@ page import="dto.*" %>
+
 	<%@ page import="java.util.ArrayList" %>
-	<jsp:useBean id="listCimitire" class="java.util.ArrayList" scope="session"/>
-	<jsp:setProperty name="listCimitire" property="*"/> 
+	<jsp:useBean id="listDecedati" class="java.util.ArrayList" scope="session"/>
+	<jsp:setProperty name="listDecedati" property="*"/> 
 
     <div id="wrapper">
 
@@ -114,6 +117,7 @@ function newPopup(url) {
                             <!-- /.nav-second-level -->
                         </li>
                             <!-- /.nav-second-level -->
+                        </li>
                         <li>
                             <a href="#"><i class="fa fa-sitemap fa-fw"></i> Registre<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
@@ -161,21 +165,21 @@ function newPopup(url) {
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                           Gestioneaza cimitire
-                           <a href="JavaScript:newPopup('addCimitir.jsp')"> 
+                           Gestioneaza decedati
+                           <a href="JavaScript:newPopup('addDecedat.html')"> 
                             <button class="btn btn-primary" type="button" style="float:right;margin-top:-7px;margin-right:10px">
-                                     <img src="css/plus.png"> Adauga cimitir
+                                     <img src="css/plus.png"> Adauga decedat
 
                             </button>
-                             <a href="JavaScript:newPopup('updateCimitir.html')"> 
+                             <a href="JavaScript:newPopup('updateDecedat.html')"> 
                             <button class="btn btn-primary" type="button" style="float:right;margin-top:-7px;margin-right:10px">
-                                     <img src="css/plus.png"> Actualizeaza cimitir
+                                     <img src="css/plus.png"> Actualizeaza decedat
 
                             </button>
                              </a>
                              
                             <button class="btn btn-primary" type="button" style="float:right;margin-top:-7px;margin-right:10px">
-                                     <img src="css/plus.png"> Sterge cimitir
+                                     <img src="css/plus.png"> Sterge decedat
 
                             </button>
                         
@@ -190,38 +194,36 @@ function newPopup(url) {
                                 <table class="table table-striped table-bordered table-hover" id="dataTables-example">
                                     <thead>
                                         <tr>
-                                            <th style="display:none;">Id Cimitir</th>
-                                            <th>Denumire</th>
-                                             <th>Adresa</th>
-                                            <th>Numar locuri</th>
-                                            <th>Numar parcele</th>
-											<th>Actiune</th>	
+                                            <th style="display:none"> Id Cimitir </th>
+                                            <th>Nume </th>
+                                            <th>Prenume </th>
+                                            <th>CNP Decedat</th>
+                                            <th>Date Inmormantare </th>
+                                            <th>Numar adeverinta inhumare</th>
+                                           <th>Id loc de veci </th>
+                                            <th>E personalitate</th>
+                                        
+
                                         </tr>
                                     </thead>
                                     <tbody>
-									<%
-										
-  										for (Object cimitirO: listCimitire) {
-  											Cimitir cimitir = (Cimitir) cimitirO;
+
+                                       <%
+
+  										for (Object dece:listDecedati) {
+  											DecedatDTO decedat = (DecedatDTO) dece;
        								 %>
-       								  <form role="form" action="../CimitirServl" action="POST">
                                         <tr class="odd gradeX">
-                                       
-                                            <td style="display:none;"><%=cimitir.getIdCimitir() %></td>
-                                            <td><%=cimitir.getDenumire() %></td>
-                                            <td><%=cimitir.getAdresa() %></td>
-                                            <td><%=String.valueOf(cimitir.getNrLocuri()) %></td>
-                                            <td><%=String.valueOf(cimitir.getNrParcele()) %></td>
-                                            <td>
-                                            	<button class="btn btn-primary" type="submit">
-                                            		<img src="css/edit.png"/>Actualizeaza
-                                            	</button> 
-                                            	<button name="delete" class="btn btn-primary" type="submit">
-                                            	<img src="css/delete.png"/>Sterge</button>
-                                            </td>
-                                           
+                                         
+                                            <td style="display:none"><%=decedat.getDecedat().getIdDecedat() %></td>
+                                            <td><%=decedat.getDatePersonale().getNume() %></td>
+                                            <td><%=decedat.getDatePersonale().getPrenume() %></td>
+                                            <td><%=decedat.getDecedat().getCnpDecedat() %></td>
+                                            <td><%=decedat.getDecedat().getDataInmormantare() %></td>
+                                            <td><%=decedat.getDecedat().getNrAdeverintaInhumare() %></td>
+                                            <td><%=decedat.getDecedat().getIdLocDeVeci() %></td>
+                                            <td><%=decedat.getDecedat().isePersonalitate() %></td>
                                         </tr>
-                                        </form>
                                          
                                         <%
                                         }
@@ -284,3 +286,4 @@ function newPopup(url) {
 </body>
 
 </html>
+    

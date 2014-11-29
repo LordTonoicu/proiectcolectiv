@@ -1,6 +1,6 @@
 package validators;
 
-import Domain.Cimitir;
+import domain.Cimitir;
 import exceptions.ValidatorException;
 
 public class CimitirValidator {

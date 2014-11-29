@@ -10,10 +10,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import domain.Cimitir;
 import exceptions.BusinessException;
-import Domain.Cimitir;
-import services.api.ServiceCimitire;
-import services.impl.ServiceCimitireImpl;
+import services.ServiceCimitire;
+import services.ServiceCimitireImpl;
 
 /**
  * Servlet implementation class CimitirServlet
@@ -22,7 +22,7 @@ import services.impl.ServiceCimitireImpl;
 public class CimitirServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	ServiceCimitire cimitirServlet = new ServiceCimitireImpl();
+	ServiceCimitire cimitirService = new ServiceCimitireImpl();
 
 	/**
 	 * @see HttpServlet#HttpServlet()
@@ -47,16 +47,33 @@ public class CimitirServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		HttpSession h = request.getSession();
+		try{
+			if(request.getParameter("adaugaCimitir")!=null)	{
+				adaugaCimitir(request);
+			}
+		}
+		catch (BusinessException e){
+			// TODO redirect exception handler
+			System.out.println(e.getMessage());
+		}
 		try {
-			List<Cimitir> cimitire = cimitirServlet.getCimitire();
+			List<Cimitir> cimitire = cimitirService.getCimitire();
 			h.setAttribute("listCimitire", cimitire);
 			response.sendRedirect("jsp/Cimitir.jsp");
 		} catch (BusinessException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			// TODO redirect exception handler
+			System.out.println(e.getMessage());
 		}
-		
 
+	}
+	private void adaugaCimitir(HttpServletRequest request) throws BusinessException
+	{
+		Cimitir c = new Cimitir();
+		c.setAdresa(request.getParameter("Adresa"));
+		c.setDenumire(request.getParameter("Denumire"));
+		c.setNrParcele(0);
+		c.setNrLocuri(0);
+		cimitirService.adaugaCimitir(c);
 	}
 
 }

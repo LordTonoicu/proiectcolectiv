@@ -1,7 +1,7 @@
 package validators;
 
 import exceptions.ValidatorException;
-import Domain.Parcela;
+import domain.Parcela;
 
 public class ParcelaValidator {
 	private String message;

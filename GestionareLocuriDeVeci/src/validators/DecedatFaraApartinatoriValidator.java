@@ -1,18 +1,22 @@
 package validators;
 
 import exceptions.ValidatorException;
-import Domain.DecedatFaraApartinatori;
+import domain.DecedatFaraApartinatori;
 
 public class DecedatFaraApartinatoriValidator {
 	private String message;
-	
+	private CNPValidator cnpv;
 	public DecedatFaraApartinatoriValidator() {
-		
+		this.cnpv = new CNPValidator();
 	}
 	
 	public void validate(DecedatFaraApartinatori dfa) throws ValidatorException {
 		message="";
-		//todo luat la puricat cnp-ul
+	
+		if(!cnpv.isValid(dfa.getCnpDecedat())){
+			message += "CNP-ul nu este valid!";
+		}
+		
 		if(dfa.getNrAdeverintaDeInhumare() < 0 ){
 			message += "Nr adeverintei de inhumare nu poate fi negativ!";
 		}

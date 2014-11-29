@@ -1,18 +1,22 @@
 package validators;
 
 import exceptions.ValidatorException;
-import Domain.DatePersonale;
+import domain.DatePersonale;
 
 public class DatePersonaleValidator {
 	private String message;
-	
+	private CNPValidator cnpv;
 	public DatePersonaleValidator(){
-		
+		this.cnpv = new CNPValidator();
 	}
 	
 	public void validate(DatePersonale dp) throws ValidatorException {
 		message="";
-		//todo cnp
+		
+		if(!cnpv.isValid(dp.getCnp())){
+			message += "CNP-ul nu este valid!";
+		}
+		
 		if(dp.getNume() == ""){
 			message += "Campul nume nu poate fi gol!";
 		}

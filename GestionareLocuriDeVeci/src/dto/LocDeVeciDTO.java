@@ -1,7 +1,7 @@
 package dto;
 
-import Domain.DatePersonale;
-import Domain.LocDeVeci;
+import domain.DatePersonale;
+import domain.LocDeVeci;
 
 public class LocDeVeciDTO {
 	

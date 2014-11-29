@@ -1,13 +1,13 @@
 package validators;
 
 import exceptions.ValidatorException;
-import Domain.CerereInhumare;
+import domain.CerereInhumare;
 
 public class CerereInhumareValidator {
 	private String message;
-	
+	private CNPValidator cnpv;
 	public CerereInhumareValidator() {
-		
+		this.cnpv = new CNPValidator();
 	}
 	
 	public void validate(CerereInhumare ci) throws ValidatorException{
@@ -18,7 +18,11 @@ public class CerereInhumareValidator {
 		if(ci.getStadiuSolutionare() == ""){
 			message += "Campul stadiu solutionare nu poate fi gol!";
 		}
-		//todo cnp
+		
+		if(!cnpv.isValid(ci.getCnpConcesionar())){
+			message += "CNP-ul nu este valid!";
+		}
+		
 		if(message!="")
 			throw new ValidatorException(message);
 	}

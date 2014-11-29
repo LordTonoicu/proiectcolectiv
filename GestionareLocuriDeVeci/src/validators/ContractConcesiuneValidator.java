@@ -1,13 +1,13 @@
 package validators;
 
 import exceptions.ValidatorException;
-import Domain.ContractConcesiune;
+import domain.ContractConcesiune;
 
 public class ContractConcesiuneValidator {
 	private String message;
-	
+	private CNPValidator cnpv;
 	public ContractConcesiuneValidator() {
-		
+		this.cnpv = new CNPValidator();
 	}
 	
 	public void validate(ContractConcesiune cc) throws ValidatorException {
@@ -15,7 +15,11 @@ public class ContractConcesiuneValidator {
 		if(cc.getNrContract() < 0){
 			message += "Nr contractului nu poate fi negativ";
 		}
-		//todo cnp-uri
+		
+		if(!cnpv.isValid(cc.getCnpConcesionar1()) || !cnpv.isValid(cc.getCnpConcesionar2())){
+			message += "CNP-ul nu este valid!";
+		}
+		
 		if(message!="")
 			throw new ValidatorException(message);
 	}

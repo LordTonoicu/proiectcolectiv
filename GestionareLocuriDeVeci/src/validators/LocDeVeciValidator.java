@@ -1,7 +1,7 @@
 package validators;
 
 import exceptions.ValidatorException;
-import Domain.LocDeVeci;
+import domain.LocDeVeci;
 
 public class LocDeVeciValidator {
 	private String message;

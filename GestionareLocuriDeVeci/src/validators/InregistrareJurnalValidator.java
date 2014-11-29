@@ -1,7 +1,7 @@
 package validators;
 
 import exceptions.ValidatorException;
-import Domain.InregistrareJurnal;
+import domain.InregistrareJurnal;
 
 public class InregistrareJurnalValidator {
 	private String message;
