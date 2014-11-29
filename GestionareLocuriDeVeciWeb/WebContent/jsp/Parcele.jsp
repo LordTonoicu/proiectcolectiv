@@ -163,7 +163,7 @@ function newPopup(url) {
                     <div class="panel panel-default">
                         <div class="panel-heading">
                            Gestioneaza parcele
-                           <a href="JavaScript:newPopup('addParcela.html')"> 
+                           <a href="JavaScript:newPopup('addParcela.jsp')"> 
                             <button class="btn btn-primary" type="button" style="float:right;margin-top:-7px;margin-right:10px">
                                      <img src="css/plus.png"> Adauga parcela
 
