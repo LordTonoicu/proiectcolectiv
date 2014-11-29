@@ -91,7 +91,7 @@
                                         <input type="checkbox" name="areMonument">Are Monument 
                                         </div>     
                                                                        
-                                        <button type="submit" id="adaugaParcela" name="adaugaParcela" class="btn btn-default" >Adauga Cimitir</button>
+                                        <button type="submit" id="adaugaParcela" name="adaugaParcela" class="btn btn-default" >Adauga Parcela</button>
                                         
                                     </form>
                                 </div>
