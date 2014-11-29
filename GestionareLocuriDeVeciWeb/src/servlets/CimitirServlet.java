@@ -81,6 +81,8 @@ public class CimitirServlet extends HttpServlet {
 	private void stergeCimitir(HttpServletRequest request) throws BusinessException
 	{
 		String id = request.getParameter("idCimitir");
-		System.out.println(id);
+		Cimitir c = new Cimitir();
+		c.setIdCimitir(Integer.parseInt(id));
+		cimitirService.stergeCimitir(c);
 	}
 }

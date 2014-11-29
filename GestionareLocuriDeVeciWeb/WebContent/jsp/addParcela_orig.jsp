@@ -1,9 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+<!DOCTYPE html>
+<html lang="en">
+
 <head>
- <meta charset="utf-8">
+
+    <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
@@ -27,21 +27,10 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-    <script>
-	    window.onunload = refreshParent;
-	    function refreshParent() {
-	        window.opener.location.reload();
-	        this.close();
-	    }
-	</script>
+
 </head>
 
 <body>
-
-	<%@ page import="domain.*" %>
-	<%@ page import="java.util.ArrayList" %>
-	<jsp:useBean id="listCimitire" class="java.util.ArrayList" scope="session"/>
-	<jsp:setProperty name="listCimitire" property="*"/> 
 
     <div id="wrapper">
 
@@ -65,33 +54,35 @@
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-lg-6">
-                                    <form role="form" action="../ParcelaServlet" method="POST">
-                                        <div  class="form-group">
+                                    <form role="form">
+                                        <div class="form-group">
                                             <label>Denumire</label>
-                                            <input id="denumire" name="denumire" class="form-control">
+                                            <input class="form-control">
                                         
                                         </div>
+                                       
+                                        <div class="form-group">
+                                            <label>Numar locuri </label>
+                                            <input class="form-control">
+                                       
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Id cimitir</label>
+                                            <input class="form-control">
+                                          
+                                        </div>
                                         
-                                        <div>
-                                        	<label>Cimitr</label>
-                                        	<select name="cimitire" id="cimitire">
-												<%
-										
-  												for (Object cimitirO: listCimitire) {
-  													Cimitir cimitir = (Cimitir) cimitirO;
-       								 			%>
-													<option value=<%=cimitir.getIdCimitir() %>><%=cimitir.getDenumire() %></option>
-												<%
-  													}
-												%>
-												
-											</select>
-                                        </div> 
-                                        <div>
-                                        <input type="checkbox" name="areMonument">Are Monument 
-                                        </div>     
-                                                                       
-                                        <button type="submit" id="adaugaParcela" name="adaugaParcela" class="btn btn-default" >Adauga Cimitir</button>
+                                      
+                                        <div class="form-group">
+                                            <label>Are monument?</label>
+                                            <select class="form-control">
+                                                <option>Da</option>
+                                                <option>Nu</option>
+                                        
+                                            </select>
+                                        </div>
+                                        
+                                        <button type="submit" class="btn btn-default">Salvare</button>
                                         
                                     </form>
                                 </div>
