@@ -201,6 +201,12 @@ function newPopup(url) {
                                          
                                            <form action="../ParcelaServlet" method="POST">
                                            <input type="hidden" id="idParcela" name="idParcela" value=<%=parcela.getIdParcela()%> />
+                                           <input type="hidden" id="DenumireParcela" name="DenumireParcela" value=<%=parcela.getDenumire() %> />
+                                           <input type="hidden" id="NrLocuriParcela" name="NrLocuriParcela" value=<%=parcela.getNrLocuri() %> />
+                                           <input type="hidden" id="idCimitirParcela" name="idCimitirParcela" value=<%=parcela.getIdCimitir() %> />
+                                           <input type="hidden" id="HasMonumentParcela" name="HasMonumentParcela" value=<%=parcela.getHasMonument() %> />
+                                           
+                                             
                                             <td><%=parcela.getDenumire() %></td>
                                             <td><%=parcela.getNrLocuri() %></td>
                                             <td><%=parcela.getIdCimitir() %></td>
@@ -210,9 +216,13 @@ function newPopup(url) {
                                             <td>nu</td>
                                             <% } %>
                                               <td>
-                                            	<button class="btn btn-primary" type="submit">
+                                               
+                                            	<button   name="getInfoParcela"  id="getInfoParcela" class="btn btn-primary" type="submit">
+                                            		 <a  href="JavaScript:newPopup('updateParcela.jsp')" > 
                                             		<img src="css/edit.png"/>Actualizeaza
+                                            		</a>
                                             	</button> 
+                                            	
                                             	<button name="stergeParcela" id="stergeParcela" class="btn btn-primary" type="submit">
                                             	<img src="css/delete.png"/>Sterge</button>
                                             </td>

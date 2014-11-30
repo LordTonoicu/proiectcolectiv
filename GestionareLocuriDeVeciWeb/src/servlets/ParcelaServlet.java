@@ -52,11 +52,18 @@ public class ParcelaServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		HttpSession h = request.getSession();
+		
 		try {
 			if (request.getParameter("adaugaParcela") != null)
 				adaugaParcela(request);
 			else if(request.getParameter("stergeParcela")!=null)
 				stergeParcela(request);
+			else if(request.getParameter("getInfoParcela")!=null){
+				Parcela parcela = null;
+				parcela = getInfoParcela(request);
+				h.setAttribute("parcela",parcela);
+				
+			}
 		} catch (BusinessException e1) {
 			// TODO redirect exception handler
 			e1.printStackTrace();
@@ -66,6 +73,8 @@ public class ParcelaServlet extends HttpServlet {
 			List<Cimitir> cimitire = cimitirService.getCimitire();
 			h.setAttribute("listCimitire", cimitire);
 			h.setAttribute("listParcele", parcele);
+			
+			
 			response.sendRedirect("jsp/Parcele.jsp");
 		} catch (BusinessException e) {
 			// TODO redirect to exception handler
@@ -94,4 +103,24 @@ public class ParcelaServlet extends HttpServlet {
 		p.setIdParcela(Integer.parseInt(id));
 		parcelaService.stergeParcela(p);
 	}
+	private Parcela getInfoParcela(HttpServletRequest request)
+			throws BusinessException {
+		String id = request.getParameter("idParcela");
+		String denumire = request.getParameter("DenumireParcela");
+		String cimitir = request.getParameter("idCimitirParcela");
+		String areMonument = request.getParameter("hasMonumentParcela");
+		String nrLocuri = request.getParameter("NrLocuriParcela");
+		
+		Parcela p = new Parcela();
+		p.setIdParcela(Integer.parseInt(id));
+		p.setDenumire(denumire);
+		p.setIdCimitir(Integer.parseInt(cimitir));
+		p.setHasMonument(Boolean.valueOf(areMonument));
+		p.setNrLocuri(Integer.valueOf(nrLocuri));
+		
+		return p;
+		
+	}
+		
+	
 }
