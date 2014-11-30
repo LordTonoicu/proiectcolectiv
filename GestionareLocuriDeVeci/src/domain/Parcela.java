@@ -63,7 +63,7 @@ public class Parcela {
 		this.idCimitir = idCimitir;
 	}
 
-	public boolean isHasMonument() {
+	public boolean getHasMonument() {
 		return hasMonument;
 	}
 

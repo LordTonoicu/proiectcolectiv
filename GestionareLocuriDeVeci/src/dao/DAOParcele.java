@@ -30,7 +30,7 @@ public class DAOParcele implements IDAOParcele {
     	 PSInsert.setString(1, parcela.getDenumire());
     	 PSInsert.setInt(2, parcela.getNrLocuri());
     	 PSInsert.setInt(3, parcela.getIdCimitir());
-    	 if(parcela.isHasMonument() == true) {
+    	 if(parcela.getHasMonument() == true) {
     		 PSInsert.setInt(4, 1);
     	 }else {
     		 PSInsert.setInt(4, 0); 
@@ -48,7 +48,7 @@ public class DAOParcele implements IDAOParcele {
     public void delete(Parcela parcela) throws SQLException {
     	
     	try{
-    	 String deleteTable = "DELETE FROM Parcele " + "WHERE idCimitir = ?";
+    	 String deleteTable = "DELETE FROM Parcele " + "WHERE idParcela = ?";
     	 PSDelete = connection.prepareStatement(deleteTable);
     	 PSDelete.setInt(1, parcela.getIdParcela());
     	 PSDelete.executeUpdate();
@@ -70,7 +70,7 @@ public class DAOParcele implements IDAOParcele {
        	 PSUpdate.setString(1, parcela.getDenumire());
        	 PSUpdate.setInt(2, parcela.getNrLocuri());
        	 PSUpdate.setInt(3, parcela.getIdCimitir());
-       	 if(parcela.isHasMonument() == true) {
+       	 if(parcela.getHasMonument() == true) {
        		PSUpdate.setInt(4, 1);
        	 }else {
        		PSUpdate.setInt(4, 0); 

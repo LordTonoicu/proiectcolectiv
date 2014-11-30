@@ -52,13 +52,15 @@ public class ParcelaServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		HttpSession h = request.getSession();
-		if (request.getParameter("adaugaParcela") != null)
-			try {
+		try {
+			if (request.getParameter("adaugaParcela") != null)
 				adaugaParcela(request);
-			} catch (BusinessException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
+			else if(request.getParameter("stergeParcela")!=null)
+				stergeParcela(request);
+		} catch (BusinessException e1) {
+			// TODO redirect exception handler
+			e1.printStackTrace();
+		}
 		try {
 			List<Parcela> parcele = parcelaService.getParcele();
 			List<Cimitir> cimitire = cimitirService.getCimitire();
@@ -66,7 +68,7 @@ public class ParcelaServlet extends HttpServlet {
 			h.setAttribute("listParcele", parcele);
 			response.sendRedirect("jsp/Parcele.jsp");
 		} catch (BusinessException e) {
-			// TODO Auto-generated catch block
+			// TODO redirect to exception handler
 			e.printStackTrace();
 		}
 
@@ -85,5 +87,11 @@ public class ParcelaServlet extends HttpServlet {
 		parcelaService.adaugaParcela(parcela);
 
 	}
-
+	private void stergeParcela(HttpServletRequest request)
+			throws BusinessException {
+		String id = request.getParameter("idParcela");
+		Parcela p = new Parcela();
+		p.setIdParcela(Integer.parseInt(id));
+		parcelaService.stergeParcela(p);
+	}
 }

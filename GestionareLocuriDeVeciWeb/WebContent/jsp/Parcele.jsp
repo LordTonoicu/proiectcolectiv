@@ -187,7 +187,7 @@ function newPopup(url) {
                                             <th>Numar locuri</th>
                                             <th>Id Cimitir</th>
                                            <th>Are Monument</th>
-                                        
+                                        	<th>Actiune</th>
 
                                         </tr>
                                     </thead>
@@ -199,18 +199,24 @@ function newPopup(url) {
        								 %>
                                         <tr class="odd gradeX">
                                          
-                                           
+                                           <form action="../ParcelaServlet" method="POST">
+                                           <input type="hidden" id="idParcela" name="idParcela" value=<%=parcela.getIdParcela()%> />
                                             <td><%=parcela.getDenumire() %></td>
                                             <td><%=parcela.getNrLocuri() %></td>
                                             <td><%=parcela.getIdCimitir() %></td>
-                                            <td><%=parcela.isHasMonument() %></td>
+                                            <%if(parcela.getHasMonument()){ %>
+                                            <td>da</td>
+                                            <% }else{ %>
+                                            <td>nu</td>
+                                            <% } %>
                                               <td>
                                             	<button class="btn btn-primary" type="submit">
                                             		<img src="css/edit.png"/>Actualizeaza
                                             	</button> 
-                                            	<button name="delete" class="btn btn-primary" type="submit">
+                                            	<button name="stergeParcela" id="stergeParcela" class="btn btn-primary" type="submit">
                                             	<img src="css/delete.png"/>Sterge</button>
                                             </td>
+                                            </form>
                                         </tr>
                                          
                                         <%
