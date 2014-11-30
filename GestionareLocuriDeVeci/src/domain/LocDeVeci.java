@@ -1,6 +1,5 @@
 package domain;
 
-import java.sql.Blob;
 
 public class LocDeVeci {
 
@@ -8,7 +7,7 @@ public class LocDeVeci {
 	private int suprafata;
 	private int idParcela;
 	private int numar;
-	private Blob poza;
+	private byte[] poza;
 	private boolean isMonument;
 	private int idCimitir;
 
@@ -17,7 +16,7 @@ public class LocDeVeci {
 	}
 
 	public LocDeVeci(int suprafata, int idParcela, int numar,
-			Blob poza, boolean isMonument, int idCimitir) {
+			byte[] poza, boolean isMonument, int idCimitir) {
 
 		this.suprafata = suprafata;
 		this.idParcela = idParcela;
@@ -28,7 +27,7 @@ public class LocDeVeci {
 	}
 	
 	public LocDeVeci(int idLoc, int suprafata, int idParcela, int numar,
-			Blob poza, boolean isMonument, int idCimitir) {
+			byte[] poza, boolean isMonument, int idCimitir) {
 
 		this.idLoc = idLoc;
 		this.suprafata = suprafata;
@@ -71,11 +70,11 @@ public class LocDeVeci {
 		this.numar = numar;
 	}
 
-	public Blob getPoza() {
+	public byte[] getPoza() {
 		return poza;
 	}
 
-	public void setPoza(Blob poza) {
+	public void setPoza(byte[] poza) {
 		this.poza = poza;
 	}
 

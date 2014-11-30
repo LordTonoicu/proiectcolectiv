@@ -14,12 +14,11 @@ import dto.LocDeVeciDTO;
 import exceptions.BusinessException;
 import exceptions.ValidatorException;
 
-
-public class ServiceLocuriDeVeciImpl implements ServiceLocuriDeVeci{
+public class ServiceLocuriDeVeciImpl implements ServiceLocuriDeVeci {
 
 	private IDAOLocuri daoLocuri;
 	private LocDeVeciValidator locDeVeciValidator;
-	
+
 	public void setDaoLocuri(DAOLocuri daoLocuri) {
 		this.daoLocuri = daoLocuri;
 	}
@@ -27,59 +26,63 @@ public class ServiceLocuriDeVeciImpl implements ServiceLocuriDeVeci{
 	public void setLocDeVeciValidator(LocDeVeciValidator locDeVeciValidator) {
 		this.locDeVeciValidator = locDeVeciValidator;
 	}
-	
+
 	public ServiceLocuriDeVeciImpl(DAOLocuri daoLocuri,
 			LocDeVeciValidator locDeVeciValidator) {
 		super();
 		this.daoLocuri = daoLocuri;
 		this.locDeVeciValidator = locDeVeciValidator;
 	}
-	
 
 	public ServiceLocuriDeVeciImpl() {
-	  daoLocuri = new DAOLocuri();
+		super();
+		this.daoLocuri = new DAOLocuri();
+		this.locDeVeciValidator = new LocDeVeciValidator();
 	}
-
-	
 
 	@Override
 	public void trimiteEmailConcesionar(int locDeVeciExpirat) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void adaugaLocDeVeci(LocDeVeci locDeVeci) throws BusinessException {
-		try{
+		try {
 			locDeVeciValidator.validate(locDeVeci);
 			daoLocuri.insert(locDeVeci);
-		} catch  (ValidatorException validatorException) {
-			throw new BusinessException("Validation exception: " + validatorException.getMessage());
-		} catch (SQLException sqlException){
-			throw new BusinessException("Data access exception: " + sqlException.getMessage());
+		} catch (ValidatorException validatorException) {
+			throw new BusinessException("Validation exception: "
+					+ validatorException.getMessage());
+		} catch (SQLException sqlException) {
+			throw new BusinessException("Data access exception: "
+					+ sqlException.getMessage());
 		}
 	}
 
 	@Override
 	public void actualizeazaLocDeVeci(LocDeVeci locDeVeci)
 			throws BusinessException {
-		try{
+		try {
 			locDeVeciValidator.validate(locDeVeci);
 			daoLocuri.update(locDeVeci);
-		} catch  (ValidatorException validatorException) {
-			throw new BusinessException("Validation exception: " + validatorException.getMessage());
-		} catch (SQLException sqlException){
-			throw new BusinessException("Data access exception: " + sqlException.getMessage());
+		} catch (ValidatorException validatorException) {
+			throw new BusinessException("Validation exception: "
+					+ validatorException.getMessage());
+		} catch (SQLException sqlException) {
+			throw new BusinessException("Data access exception: "
+					+ sqlException.getMessage());
 		}
-		
+
 	}
 
 	@Override
 	public void stergeLocDeVeci(LocDeVeci locDeVeci) throws BusinessException {
-		try{
+		try {
 			daoLocuri.delete(locDeVeci);
-		} catch (SQLException sqlException){
-			throw new BusinessException("Data access exception: " + sqlException.getMessage());
+		} catch (SQLException sqlException) {
+			throw new BusinessException("Data access exception: "
+					+ sqlException.getMessage());
 		}
 	}
 
@@ -110,9 +113,9 @@ public class ServiceLocuriDeVeciImpl implements ServiceLocuriDeVeci{
 	@Override
 	public List<LocDeVeci> getLocuriDeVeci() throws BusinessException {
 		List<LocDeVeci> raspuns = null;
-		try{
+		try {
 			raspuns = daoLocuri.getAll();
-		} catch (SQLException sqlException){
+		} catch (SQLException sqlException) {
 			throw new BusinessException(sqlException.getMessage());
 		}
 		return raspuns;

@@ -41,6 +41,12 @@ function newPopup(url) {
 
 <body>
 
+	<%@ page import="domain.*" %>
+	<%@ page import="java.util.ArrayList" %>
+	<jsp:useBean id="listLocuriDeVeci" class="java.util.ArrayList" scope="session"/>
+	<jsp:setProperty name="listLocuriDeVeci" property="*"/> 
+
+
     <div id="wrapper">
 
         <!-- Navigation -->
@@ -156,26 +162,12 @@ function newPopup(url) {
                     <div class="panel panel-default">
                         <div class="panel-heading">
                            Gestioneaza locuri de veci
-                           <a href="JavaScript:newPopup('addLocDeVeci.html')"> 
+                           <a href="JavaScript:newPopup('addLocDeVeci.jsp')"> 
                             <button class="btn btn-primary" type="button" style="float:right;margin-top:-7px;margin-right:10px">
                                      <img src="css/plus.png"> Adauga loc de veci
-
-                            </button>
-                             <a href="JavaScript:newPopup('updateLocDeVeci.html')"> 
-                            <button class="btn btn-primary" type="button" style="float:right;margin-top:-7px;margin-right:10px">
-                                     <img src="css/plus.png"> Actualizeaza loc de veci
-
-                            </button>
-                             </a>
-                             
-                            <button class="btn btn-primary" type="button" style="float:right;margin-top:-7px;margin-right:10px">
-                                     <img src="css/plus.png"> Sterge loc de veci
-
-                            </button>
-                        
-                         
-                       
-                            
+                              </button>
+                              </a>
+                                     
                         </div>
 
                         <!-- /.panel-heading -->
@@ -191,92 +183,44 @@ function newPopup(url) {
                                             <th>Numar</th>
                                             <th>Poza</th>
                                             <th>Id cimitir</th>
-                                             <th>Este monument</th>
+                                            <th>Este monument</th>
+                                            <th>Actiune</th>
                                         
 
                                         </tr>
                                     </thead>
                                     <tbody>
+                                    <%
 
+  										for (Object lvObject:listLocuriDeVeci) {
+  										LocDeVeci locDeVeci=(LocDeVeci)lvObject;
+       								 %>
+										 <form action="../locuriDeVeciServlet" method="POST">
                                         <tr class="odd gradeX">
                                          
+                                            <td><%=locDeVeci.getIdLoc() %></td>
+                                            <td><%=locDeVeci.getSuprafata() %></td>
+                                            <td><%=locDeVeci.getIdParcela() %></td>
+                                            <td><%=locDeVeci.getNumar() %></td>
                                             <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                             <td></td>
-                                            <td></td>
+                                             <td><%=locDeVeci.getIdCimitir() %></td>
+                                            <td><%=locDeVeci.isMonument() %></td>
+                                            <td>
+												<button class="btn btn-primary" type="submit">
+													<img src="css/edit.png" />Actualizeaza
+												</button>
+												<button id="stergeLocDeVeci" name="stergeLocDeVezi"
+													class="btn btn-primary" type="submit">
+													<img src="css/delete.png" />Sterge
+												</button>
+											</td>
+											</form>
                                            
                                         </tr>
-                                         <tr class="odd gradeX">
-                                             <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                             <td></td>
-                                            <td></td>
-                                       
-                                        </tr>
-                                         <tr class="odd gradeX">
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                             <td></td>
-                                            <td></td>
-                                        
-                                        </tr>
-                                         <tr class="odd gradeX">
-                                           <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                             <td></td>
-                                            <td></td>
-                                        </tr>
-                                         <tr class="odd gradeX">
-                                         <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                             <td></td>
-                                            <td></td>
-                                       
-                                        </tr>
-                                         <tr class="odd gradeX">
-                                             <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                             <td></td>
-                                            <td></td>
-                                          
-                                        </tr>
-                                         <tr class="odd gradeX">
-                                          <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                             <td></td>
-                                            <td></td>
-                                        </tr>
-                                         <tr class="odd gradeX">
-                                          <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                             <td></td>
-                                            <td></td>
-                                        </tr>
-                                       
+                          
+                          			 <%
+                                        }
+									%>
                                         
                                     </tbody>
 

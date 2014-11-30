@@ -27,10 +27,25 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+    
+    <script>
+	    window.onunload = refreshParent;
+	    function refreshParent() {
+	        window.opener.location.reload();
+	        this.close();
+	    }
+	</script>
 
 </head>
 
 <body>
+	<%@ page import="domain.*" %>
+	<%@ page import="java.util.ArrayList" %>
+	<jsp:useBean id="listParcele" class="java.util.ArrayList" scope="session"/>
+	<jsp:setProperty name="listParcele" property="*"/> 
+	<jsp:useBean id="listCimitire" class="java.util.ArrayList" scope="session"/>
+	<jsp:setProperty name="listCimitire" property="*"/> 
+
 
     <div id="wrapper">
 
@@ -54,43 +69,60 @@
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-lg-6">
-                                    <form role="form">
+                                    <form role="form" action="../locuriDeVeciServlet" method="POST" enctype="multipart/form-data">
                                         <div class="form-group">
                                             <label>Suprafata</label>
                                             <input class="form-control">
                                         
                                         </div>
                                         <div class="form-group">
-                                            <label>Id parcela</label>
-                                            <input class="form-control">
-                                          
-                                        </div>
+                                           	<label>Parcela</label>
+                                        	<select class="form-control" name="parcele" id="parcele">
+												<%
+										
+  												for (Object parcelaO: listParcele) {
+  													Parcela parcela=(Parcela) parcelaO;
+       								 			%>
+													<option value=<%=parcela.getIdParcela() %>><%=parcela.getDenumire() %></option>
+												<%
+  													}
+												%>
+												
+											</select>
+                                        </div> 
                                         <div class="form-group">
                                             <label>Numar</label>
-                                            <input class="form-control">
+                                            <input id="numar" name="numar" class="form-control">
                                        
                                         </div>
                                         <div class="form-group">
-                                            <label>Id cimitir</label>
-                                            <input class="form-control">
-                                          
-                                        </div>
+                                           	<label>Cimitir</label>
+                                        	<select class="form-control" name="cimitire" id="cimitire">
+												<%
+										
+  												for (Object cimitirO: listCimitire) {
+  													Cimitir cimitir = (Cimitir) cimitirO;
+       								 			%>
+													<option value=<%=cimitir.getIdCimitir() %>><%=cimitir.getDenumire() %></option>
+												<%
+  													}
+												%>
+												
+											</select>
+                                        </div> 
                                         
                                         <div class="form-group">
                                             <label>Poza</label>
-                                            <input type="file">
+                                            <input id="poza" name="poza" type="file">
                                         </div>
                                        
-                                        <div class="form-group">
-                                            <label>Este monument?</label>
-                                            <select class="form-control">
-                                                <option>Da</option>
-                                                <option>Nu</option>
+                                        <div class="checkbox">
+                                            <label>
+                                               <input type="checkbox" name="esteMonument">Este Monument
+                                            </label>
+                                         </div>
                                         
-                                            </select>
-                                        </div>
-                                        
-                                        <button type="submit" class="btn btn-default">Salvare</button>
+                                        <button type="submit" id="adaugaLocDeVeci"  name="adaugaLocDeVeci" class="btn btn-default">Salvare</button>
                                         
                                     </form>
                                 </div>
