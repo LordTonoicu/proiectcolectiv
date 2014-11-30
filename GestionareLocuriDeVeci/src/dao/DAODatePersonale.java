@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+
 import domain.DatePersonale;
 import domain.Decedat;
 
@@ -93,4 +94,10 @@ public class DAODatePersonale implements IDAODatePersonale{
     	}
     	return dataPersonala;
     }
+
+@Override
+public DatePersonale getDatePersonaleFromCNP(String CNP) throws SQLException {
+	// TODO Auto-generated method stub
+	return null;
+}
 }

@@ -3,6 +3,7 @@ package dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.List;
 
 import domain.Concesionar;
 
@@ -35,4 +36,22 @@ public class DAOConcesionari implements IDAOConcesionari {
             }
     	}
     }
+
+	@Override
+	public void update(Concesionar concesionar) throws SQLException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void delete(Concesionar concesionar) throws SQLException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public List<Concesionar> getAll() throws SQLException {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

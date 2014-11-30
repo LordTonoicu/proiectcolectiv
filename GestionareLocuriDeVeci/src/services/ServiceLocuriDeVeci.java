@@ -2,12 +2,11 @@ package services;
 
 import java.util.List;
 
+import domain.LocDeVeci;
 import dto.LocDeVeciDTO;
 import exceptions.BusinessException;
 
 public interface ServiceLocuriDeVeci {
-	
-	
 	
 
 	/**
@@ -20,7 +19,7 @@ public interface ServiceLocuriDeVeci {
 	 *     nale ale detinatorului, inmormantatului etc.
 	 * 
 	 */
-	public List<LocDeVeciDTO> getLocuriDeVeciExpirate(int anulExpirarii);
+	public List<LocDeVeci> getLocuriDeVeciExpirate(int anulExpirarii);
 	
 	/**
 	 * Returneaza locurile de veci  caror termen de concesionare a expirat
@@ -32,7 +31,7 @@ public interface ServiceLocuriDeVeci {
 	 *     nale ale detinatorului, inmormantatului etc.
 	 * 
 	 */
-	public List<LocDeVeciDTO> getLocuriDeVeciExpirate();
+	public List<LocDeVeci> getLocuriDeVeciExpirate();
 	
 	
 	/*OBSERVATIE: In eventualitatea in care se retine si adresa de mail pe baza ID-ului
@@ -51,7 +50,7 @@ public interface ServiceLocuriDeVeci {
 	 *     nale ale detinatorului, inmormantatului etc.
 	 * 
 	 */
-	public List<LocDeVeciDTO> getLocuriDeVeciExpirandInAnulCurent();
+	public List<LocDeVeci> getLocuriDeVeciExpirandInAnulCurent();
 	
 	/**
 	 * Returneaza locurile de veci platite in anul in curs
@@ -62,11 +61,15 @@ public interface ServiceLocuriDeVeci {
 	 *     inmormantatului etc.
 	 * 
 	 */
-	public List<LocDeVeciDTO> getLocuriDeVeciPlatiteInAnulInCurs();
+	public List<LocDeVeci> getLocuriDeVeciPlatiteInAnulInCurs();
 	
-	public void adaugaLocDeVeci(LocDeVeciDTO locDeVeci) throws BusinessException;
+	public List<LocDeVeci> getLocuriDeVeci() throws BusinessException;
 	
-	public void actualizeazaLocDeVeci(LocDeVeciDTO locDeVeci) throws BusinessException;
+	public void adaugaLocDeVeci(LocDeVeci locDeVeci) throws BusinessException;
+	
+	public void actualizeazaLocDeVeci(LocDeVeci locDeVeci) throws BusinessException;
+	
+	public void stergeLocDeVeci (LocDeVeci locDeVeci) throws BusinessException;
 	
 	//+ Export raspuns, de stabilit date membru ale unui obiect incapsulandu-l etc.
 }

@@ -3,6 +3,7 @@ package dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.List;
 
 import domain.LocDeVeci;
 
@@ -68,4 +69,15 @@ public class DAOLocuri implements IDAOLocuri {
                }
        	}
     }
+
+	public void delete(LocDeVeci locDeVeci) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public List<LocDeVeci> getAll() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

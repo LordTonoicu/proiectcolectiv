@@ -8,16 +8,18 @@ import validators.DatePersonaleValidator;
 import validators.DecedatValidator;
 import dao.DAODatePersonale;
 import dao.DAODecedati;
+import dao.IDAODatePersonale;
+import dao.IDAODecedati;
+import domain.DatePersonale;
 import domain.Decedat;
 import dto.DecedatDTO;
 import exceptions.BusinessException;
 import exceptions.ValidatorException;
-//import DAO.DAODecedati;
 
 public class ServiceDecedatiImpl implements ServiceDecedati{
 	
-	private DAODecedati daoDecedati;
-	private DAODatePersonale daoDatePersonale;
+	private IDAODecedati daoDecedati;
+	private IDAODatePersonale daoDatePersonale;
 	private DecedatValidator decedatValidator;
 	private DatePersonaleValidator datePersonaleValidator;
 	
@@ -72,18 +74,20 @@ public class ServiceDecedatiImpl implements ServiceDecedati{
 	
 	@Override
 	public List<DecedatDTO> getDecedati() throws BusinessException {
-		List<DecedatDTO> listDecedatiDTO = new ArrayList<DecedatDTO>();
+		List<DecedatDTO> rezultat = null;
 		try {
-			List<Decedat> listDecedati = daoDecedati.getAllDecedati();
-			
-			for(Decedat decedat: listDecedati){
-				DecedatDTO decedatDTO = new DecedatDTO(decedat,daoDatePersonale.getDatePersonaleFromDecedat(decedat));
-				listDecedatiDTO.add(decedatDTO);
+			List<Decedat> decedati = daoDecedati.getAllDecedati();
+		    rezultat = new ArrayList<DecedatDTO>();
+			for(Decedat decedat: decedati){
+				DecedatDTO decedatDTO = new DecedatDTO();
+				decedatDTO.setDecedat(decedat);
+				DatePersonale datePersonale = daoDatePersonale.getDatePersonaleFromCNP(decedat.getCnpDecedat());
+				decedatDTO.setDatePersonale(datePersonale);
+				rezultat.add(decedatDTO);
 			}
 		} catch (SQLException sqlException) {
 			throw new BusinessException("Data access exception: " + sqlException.getMessage());
 		}
-		return listDecedatiDTO;
-	
+		return rezultat;
 	}
 }

@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Vector;
 
 import dao.DAOCimitire;
+import dao.IDAOCimitire;
 import domain.Cimitir;
 import exceptions.BusinessException;
 import exceptions.ValidatorException;
@@ -13,7 +14,7 @@ import validators.CimitirValidator;
 
 public class ServiceCimitireImpl implements ServiceCimitire{
 	
-	private DAOCimitire daoCimitire;
+	private IDAOCimitire daoCimitire;
 	private CimitirValidator cimitirValidator;
 
 	public ServiceCimitireImpl() {
