@@ -14,8 +14,9 @@ public interface IDAODatePersonale {
 	
 	public void delete(DatePersonale datePersonale) throws SQLException;
 	
-	//Cred ca metoda imediat urm. e suficienta
-	public DatePersonale getDatePersonaleFromDecedat(Decedat decedat) throws SQLException;
 	
+
 	public DatePersonale getDatePersonaleFromCNP(String CNP) throws SQLException;
+	
+
 }

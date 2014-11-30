@@ -15,7 +15,8 @@ public class DecedatDTO {
 	}
 
 	public DecedatDTO() {
-		super();
+		decedat = new Decedat();
+		datePersonale = new DatePersonale();
 	}
 
 	public Decedat getDecedat() {

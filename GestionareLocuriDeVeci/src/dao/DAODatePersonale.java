@@ -72,32 +72,32 @@ public class DAODatePersonale implements IDAODatePersonale{
             }
        	}
     }
- public DatePersonale getDatePersonaleFromDecedat(Decedat decedat) throws SQLException{
-	 DatePersonale dataPersonala =null;
-    	try{
-       	 String selectTable = "select * from DatePersonale where DatePersonale.cnp = "+decedat.getCnpDecedat();
-       	PSSelect = connection.prepareStatement(selectTable);
-    	ResultSet result = PSSelect.executeQuery(selectTable);
-    	
-    	
-    	if(result.next()) {
-    		dataPersonala = new DatePersonale(result.getString(1),result.getString(2),result.getString(3));
-    	
-    	}
-    	
-    	}catch(SQLException ex) {
-    		throw new SQLException("Error when trying to retrieve the inregistrariJurnal:" + ex.getMessage());
-    	}finally{
-    		if(PSSelect !=null){
-                PSSelect.close();
-            }
-    	}
-    	return dataPersonala;
-    }
+
 
 @Override
 public DatePersonale getDatePersonaleFromCNP(String CNP) throws SQLException {
-	// TODO Auto-generated method stub
-	return null;
+	 DatePersonale dataPersonala =null;
+ 	try{
+    	 String selectTable = "select * from DatePersonale where DatePersonale.cnp like "+"'"+CNP+"'";
+    	PSSelect = connection.prepareStatement(selectTable);
+ 	ResultSet result = PSSelect.executeQuery(selectTable);
+ 	
+ 	
+ 	if(result.next()) {
+ 		dataPersonala = new DatePersonale(result.getString(1),result.getString(2),result.getString(3));
+ 	
+ 	}
+ 	
+ 	}catch(SQLException ex) {
+ 		throw new SQLException("Error when trying to retrieve the datePersonale:" + ex.getMessage());
+ 	}finally{
+ 		if(PSSelect !=null){
+             PSSelect.close();
+         }
+ 	}
+ 	return dataPersonala;
+ }
+
+
 }
-}
+

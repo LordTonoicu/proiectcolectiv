@@ -37,7 +37,7 @@ public class ServiceLocuriDeVeciImpl implements ServiceLocuriDeVeci{
 	
 
 	public ServiceLocuriDeVeciImpl() {
-		super();
+	  daoLocuri = new DAOLocuri();
 	}
 
 	

@@ -2,9 +2,12 @@ package dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
+import domain.Decedat;
 import domain.LocDeVeci;
 
 public class DAOLocuri implements IDAOLocuri {
@@ -77,7 +80,36 @@ public class DAOLocuri implements IDAOLocuri {
 
 	@Override
 	public List<LocDeVeci> getAll() {
-		// TODO Auto-generated method stub
-		return null;
+		List<LocDeVeci> locuri = new ArrayList<LocDeVeci>();
+    	
+    	try{
+    	String selectTable = "SELECT * FROM LocuriDeVeci";
+    	PSSelect = connection.prepareStatement(selectTable);
+    	ResultSet result = PSSelect.executeQuery(selectTable);
+    	LocDeVeci loc;
+    	
+    	while(result.next()) {
+    		loc = new LocDeVeci(result.getInt(1),result.getInt(2),result.getInt(3),result.getInt(4),result.getBlob(5),result.getBoolean(6),result.getInt(7));
+    		locuri.add(loc);
+    	}
+    	
+    	}catch(SQLException ex) {
+    		try {
+				throw new SQLException("Error when trying to retrieve the :" + ex.getMessage());
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+    	}finally{
+    		if(PSSelect !=null){
+                try {
+					PSSelect.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+            }
+    	}
+    	return locuri;
 	}
 }

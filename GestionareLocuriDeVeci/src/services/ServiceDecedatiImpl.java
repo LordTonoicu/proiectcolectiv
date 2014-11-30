@@ -33,12 +33,10 @@ public class ServiceDecedatiImpl implements ServiceDecedati{
 	@Override
 	public void inscrieDecedat(DecedatDTO decedatDTO) throws BusinessException {
 		try{
-			decedatValidator.validate(decedatDTO.getDecedat());
-			datePersonaleValidator.validate(decedatDTO.getDatePersonale());
+//			decedatValidator.validate(decedatDTO.getDecedat());
+//			datePersonaleValidator.validate(decedatDTO.getDatePersonale());
 			daoDatePersonale.insert(decedatDTO.getDatePersonale());
 			daoDecedati.insert(decedatDTO.getDecedat());
-		} catch  (ValidatorException validatorException) {
-			throw new BusinessException("Validation exception: " + validatorException.getMessage());
 		} catch (SQLException sqlException){
 			throw new BusinessException("Data access exception: " + sqlException.getMessage());
 		}
@@ -64,7 +62,8 @@ public class ServiceDecedatiImpl implements ServiceDecedati{
 
 	@Override
 	public void stergeDecedat(DecedatDTO decedatDTO) throws BusinessException {
-		try{
+		try{			
+			
 			daoDecedati.delete(decedatDTO.getDecedat());
 			daoDatePersonale.delete(decedatDTO.getDatePersonale());
 		} catch (SQLException sqlException){
