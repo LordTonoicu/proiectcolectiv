@@ -8,6 +8,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
+  	
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
+  <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+  <script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+  <link rel="stylesheet" href="/resources/demos/style.css">
+  <script>
+  $(function() {
+    $("#DataInmormantareDecedat").datepicker();
+  });
+  window.onunload = refreshParent;
+  function refreshParent() {
+      window.opener.location.reload();
+      this.close();
+  }
+</script>
+ 
+  
 
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -31,6 +48,10 @@
 </head>
 
 <body>
+    	<%@ page import="domain.*" %>
+	<%@ page import="java.util.ArrayList" %>
+	<jsp:useBean id="listLocuriDeVeci" class="java.util.ArrayList" scope="session"/>
+	<jsp:setProperty name="listLocuriDeVeci" property="*"/> 
 
     <div id="wrapper">
 
@@ -54,44 +75,60 @@
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-lg-6">
-                                    <form role="form">
+                                    <form role="form" action="../DecedatServlet" method="POST">
                                         <div class="form-group">
-                                            <label>Cnp Decedat</label>
-                                            <input class="form-control">
-                                        
+                                            <label>Nume</label>
+                                            <input class="form-control"  id="NumeDecedat" name="NumeDecedat">
+                                       
                                         </div>
-                                        <div class="form-group">
-                                            <label>Date inmormantare</label>
-                                            <input class="form-control">
-                                          
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Numar</label>
-                                            <input class="form-control">
+                                           <div class="form-group">
+                                            <label>Prenume</label>
+                                            <input class="form-control" id="PrenumeDecedat" name="PrenumeDecedat">
                                        
                                         </div>
                                         <div class="form-group">
+                                            <label>Cnp Decedat</label>
+                                            <input class="form-control"  id="CnpDecedat" name="CnpDecedat">
+                                        
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Data inmormantare</label>
+                                            <input type="text"   id="DateInmormantareDecedat" name="DateInmormantareDecedat" class="form-control">
+                                          
+                                        </div>
+                                       
+                                        <div class="form-group">
                                             <label>Nr adeverinta inhumare</label>
-                                            <input class="form-control">
+                                            <input class="form-control"  id="NrAdeverintaInhumareDecedat" name="NrAdeverintaInhumareDecedat">
                                           
                                         </div>
                                         
-                                         <div class="form-group">
-                                            <label>Id loc de veci</label>
-                                            <input class="form-control">
-                                          
-                                        </div>
+                                        <div>
+                                        	<label>LocDeVeci</label>
+                                        	<select name="idLocDeVeci" id="idLocDeVeci">
+												<%
+										
+  												for (Object locDeVeci1: listLocuriDeVeci) {
+  													LocDeVeci locDeVeci = (LocDeVeci) locDeVeci1;
+       								 			%>
+													<option value=<%=locDeVeci.getIdLoc() %>><%=locDeVeci.getNumar() %></option>
+												<%
+  													}
+												%>
+												
+											</select>
+                                        </div> 
                                        
                                         <div class="form-group">
                                             <label>E personalitate?</label>
-                                            <select class="form-control">
+                                            <select class="form-control"  id="EPersonalitateDecedat" name="EPersonalitateDecedat">
                                                 <option>Da</option>
                                                 <option>Nu</option>
                                         
                                             </select>
-                                        </div>
+                                        </div >
                                         
-                                        <button type="submit" class="btn btn-default">Salvare</button>
+                                        <button type="submit" class="btn btn-default" name="adaugaDecedat" id="adaugaDecedat">Salvare</button>
                                         
                                     </form>
                                 </div>

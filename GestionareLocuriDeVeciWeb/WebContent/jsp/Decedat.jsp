@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-    <script type="text/javascript">
+    <script>
 // Popup window code
 function newPopup(url) {
     popupWindow = window.open(
@@ -163,7 +163,7 @@ function newPopup(url) {
                     <div class="panel panel-default">
                         <div class="panel-heading">
                            Gestioneaza decedati
-                           <a href="JavaScript:newPopup('addDecedat.html')"> 
+                           <a href="JavaScript:newPopup('addDecedat.jsp')"> 
                             <button class="btn btn-primary" type="button" style="float:right;margin-top:-7px;margin-right:10px">
                                      <img src="css/plus.png"> Adauga decedat
 
@@ -202,8 +202,14 @@ function newPopup(url) {
 
   										for (Object dece:listDecedati) {
   											DecedatDTO decedat = (DecedatDTO) dece;
-       								 %>
+       								 %> 
+       								  
                                         <tr class="odd gradeX">
+                                       <form role="form" action="../DecedatServlet" action="POST">
+                                            <input type="hidden" id="idDecedat" name="idDecedat"
+													value=<%=decedat.getDecedat().getIdDecedat()%> />
+										    <input type="hidden" id="CnpDecedat" name="CnpDecedat"
+													value=<%=decedat.getDecedat().getCnpDecedat()%> />
                                          
                                             <td style="display:none"><%=decedat.getDecedat().getIdDecedat() %></td>
                                             <td><%=decedat.getDatePersonale().getNume() %></td>
@@ -214,13 +220,15 @@ function newPopup(url) {
                                             <td><%=decedat.getDecedat().getIdLocDeVeci() %></td>
                                             <td><%=decedat.getDecedat().isePersonalitate() %></td>
 											  <td>
-                                            	<button class="btn btn-primary" type="submit">
+                                            	<button class="btn btn-primary" type="submit" id="getInfoDecedat" name="getInfoDecedat">
                                             		<img src="css/edit.png"/>Actualizeaza
                                             	</button> 
-                                            	<button name="delete" class="btn btn-primary" type="submit">
+                                            	<button name="stergeDecedat" id="stergeDecedat" class="btn btn-primary" type="submit"  >
                                             	<img src="css/delete.png"/>Sterge</button>
-                                            </td>                                       
+                                            </td>   
+                                             </form>                                    
                                         </tr>
+                                       
                                          
                                         <%
                                         }
