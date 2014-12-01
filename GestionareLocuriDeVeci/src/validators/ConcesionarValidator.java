@@ -18,8 +18,20 @@ public class ConcesionarValidator {
 			message += "Nr chitantei nu poate fi negativ!";
 		}
 		
-		if(!cnpv.isValid(c.getCnpConcesionar())){
-			message += "CNP-ul nu este valid!";
+		if(cnpv.isValid(c.getCnpConcesionar()) == 1){
+			message += "CNP-ul trebuie sa aiba 13 caractere!";
+		}
+		if(cnpv.isValid(c.getCnpConcesionar()) == 2){
+			message += "CNP-ul trebuie sa fie format doar din cifre!!";
+		}
+		if(cnpv.isValid(c.getCnpConcesionar()) == 3){
+			message += "CNP-ul trebuie sa inceapa cu una din cifrele 1, 2, 3, 4, 5, 6 sau 9!";
+		}
+		if(cnpv.isValid(c.getCnpConcesionar()) == 4){
+			message += "Data calculata din CNP nu este valida!";
+		}
+		if(cnpv.isValid(c.getCnpConcesionar()) == 5){
+			message += "CNP-ul nu a trecut testul de control!";
 		}
 		
 		if(message!="")
