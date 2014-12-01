@@ -1,6 +1,7 @@
 package servlets;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -52,7 +53,7 @@ public class ParcelaServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		HttpSession h = request.getSession();
-		
+
 		try {
 			if (request.getParameter("adaugaParcela") != null)
 				adaugaParcela(request);
@@ -62,7 +63,8 @@ public class ParcelaServlet extends HttpServlet {
 				Parcela parcela = null;
 				parcela = getInfoParcela(request);
 				h.setAttribute("parcela",parcela);
-				
+				openNewWindow(request,response,"updateParcela.jsp");
+				return;
 			}
 		} catch (BusinessException e1) {
 			// TODO redirect exception handler
@@ -73,8 +75,6 @@ public class ParcelaServlet extends HttpServlet {
 			List<Cimitir> cimitire = cimitirService.getCimitire();
 			h.setAttribute("listCimitire", cimitire);
 			h.setAttribute("listParcele", parcele);
-			
-			
 			response.sendRedirect("jsp/Parcele.jsp");
 		} catch (BusinessException e) {
 			// TODO redirect to exception handler
@@ -110,17 +110,29 @@ public class ParcelaServlet extends HttpServlet {
 		String cimitir = request.getParameter("idCimitirParcela");
 		String areMonument = request.getParameter("hasMonumentParcela");
 		String nrLocuri = request.getParameter("NrLocuriParcela");
-		
+
 		Parcela p = new Parcela();
 		p.setIdParcela(Integer.parseInt(id));
 		p.setDenumire(denumire);
 		p.setIdCimitir(Integer.parseInt(cimitir));
 		p.setHasMonument(Boolean.valueOf(areMonument));
 		p.setNrLocuri(Integer.valueOf(nrLocuri));
-		
+
 		return p;
-		
+
 	}
-		
-	
+	void openNewWindow(HttpServletRequest request,HttpServletResponse response,String jsp){
+		try{
+			PrintWriter out = response.getWriter();  
+			response.setContentType("text/html");  
+			out.println("<script type=\"text/javascript\">");  
+			out.println("window.open(jsp/"+jsp+",'popUpWindow','height=700,width=400,left=10,top=10,resizable=yes,scrollbars=yes,toolbar=yes,menubar=no,location=no,directories=no,status=yes');");  
+			out.println("</script>"); 
+			response.sendRedirect("jsp/"+jsp);
+		}
+		catch (Exception e){
+			
+		}
+	}
+
 }

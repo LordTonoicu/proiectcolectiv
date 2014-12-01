@@ -13,8 +13,11 @@
     <script type="text/javascript">
 // Popup window code
 function newPopup(url) {
-    popupWindow = window.open(
-        url,'popUpWindow','height=700,width=400,left=10,top=10,resizable=yes,scrollbars=yes,toolbar=yes,menubar=no,location=no,directories=no,status=yes')
+	popupWindow = window
+	.open(
+			url,
+			'popUpWindow',
+			'height=700,width=400,left=10,top=10,resizable=yes,scrollbars=yes,toolbar=yes,menubar=no,location=no,directories=no,status=yes')
 }
 </script>
 
@@ -193,36 +196,29 @@ function newPopup(url) {
                                     </thead>
                                      <tbody>
 									<%
-
-  										for (Object parce:listParcele) {
-  											Parcela parcela = (Parcela)parce;
+										int i=0;
+  										for (Object parcelaO:listParcele) {
+  											Parcela parcela = (Parcela)parcelaO;
+  											i++;
        								 %>
                                         <tr class="odd gradeX">
                                          
                                            <form action="../ParcelaServlet" method="POST">
-                                           <input type="hidden" id="idParcela" name="idParcela" value=<%=parcela.getIdParcela()%> />
-                                           <input type="hidden" id="DenumireParcela" name="DenumireParcela" value=<%=parcela.getDenumire() %> />
-                                           <input type="hidden" id="NrLocuriParcela" name="NrLocuriParcela" value=<%=parcela.getNrLocuri() %> />
-                                           <input type="hidden" id="idCimitirParcela" name="idCimitirParcela" value=<%=parcela.getIdCimitir() %> />
-                                           <input type="hidden" id="HasMonumentParcela" name="HasMonumentParcela" value=<%=parcela.getHasMonument() %> />
-                                           
-                                             
-                                            <td><%=parcela.getDenumire() %></td>
-                                            <td><%=parcela.getNrLocuri() %></td>
-                                            <td><%=parcela.getIdCimitir() %></td>
+                                           <input type="hidden" id="idParcelaV<%=i%>" name="idParcela" value=<%=parcela.getIdParcela()%> />
+                                           <td><span id="denumireV<%=i%>"><%=parcela.getDenumire() %></span></td>
+                                           <td><%=parcela.getNrLocuri() %></td>
+                                           <td><span id="idCimitirV<%=i%>"><%=parcela.getIdCimitir() %></span></td>
                                             <%if(parcela.getHasMonument()){ %>
-                                            <td>da</td>
+                                            <td><span id="hasMonumentV<%=i%>">da</span></td>
                                             <% }else{ %>
-                                            <td>nu</td>
+                                            <td><span id="hasMonumentV<%=i%>">nu</span></td>
                                             <% } %>
                                               <td>
-                                               
-                                            	<button   name="getInfoParcela"  id="getInfoParcela" class="btn btn-primary" type="submit">
-                                            		 <a  href="JavaScript:newPopup('updateParcela.jsp')" > 
+                                              <a href="JavaScript:newPopup('updateParcela.jsp')">
+                                            	<button   name="getInfoParcela"  id="getInfoParcela" class="btn btn-primary" type="button"  onclick="setIdRow(<%=i%>)">
                                             		<img src="css/edit.png"/>Actualizeaza
-                                            		</a>
                                             	</button> 
-                                            	
+                                            	</a>
                                             	<button name="stergeParcela" id="stergeParcela" class="btn btn-primary" type="submit">
                                             	<img src="css/delete.png"/>Sterge</button>
                                             </td>
@@ -285,6 +281,14 @@ function newPopup(url) {
     $(document).ready(function() {
         $('#dataTables-example').dataTable();
     });
+    var idV;
+	function getId(){
+		return idV;
+	}
+	function setIdRow(id)
+	{
+		idV=id;
+	}
     </script>
 
 </body>

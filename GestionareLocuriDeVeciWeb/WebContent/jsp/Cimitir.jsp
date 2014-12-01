@@ -10,11 +10,14 @@
 <meta name="description" content="">
 <meta name="author" content="">
 <script type="text/javascript">
-// Popup window code
-function newPopup(url) {
-    popupWindow = window.open(
-        url,'popUpWindow','height=700,width=400,left=10,top=10,resizable=yes,scrollbars=yes,toolbar=yes,menubar=no,location=no,directories=no,status=yes')
-}
+	// Popup window code
+	function newPopup(url) {
+		popupWindow = window
+				.open(
+						url,
+						'popUpWindow',
+						'height=700,width=400,left=10,top=10,resizable=yes,scrollbars=yes,toolbar=yes,menubar=no,location=no,directories=no,status=yes')
+	}
 </script>
 
 <title>Gestionare locuri de veci</title>
@@ -166,35 +169,39 @@ function newPopup(url) {
 									<tbody>
 
 										<%
-										
-  										for (Object cimitirO: listCimitire) {
-  											Cimitir cimitir = (Cimitir) cimitirO;
-       								 %>
+											int i=0;
+										  	for (Object cimitirO: listCimitire) {
+										  	Cimitir cimitir = (Cimitir) cimitirO;
+										  	i++;
+										%>
 
 										<tr class="odd gradeX">
-											<form role="form" action="../CimitirServl" action="POST">
-												<input type="hidden" id="idCimitir" name="idCimitir"
-													value=<%=cimitir.getIdCimitir()%> />
-											<td><%=cimitir.getDenumire() %></td>
-											<td><%=cimitir.getAdresa() %></td>
-											<td><%=String.valueOf(cimitir.getNrLocuri()) %></td>
-											<td><%=String.valueOf(cimitir.getNrParcele()) %></td>
-											<td>
-												<button class="btn btn-primary" type="submit">
-													<img src="css/edit.png" />Actualizeaza
-												</button>
-												<button id="stergeCimtir" name="stergeCimitir"
-													class="btn btn-primary" type="submit">
-													<img src="css/delete.png" />Sterge
-												</button>
-											</td>
+											<form  role="form" action="../CimitirServl" action="POST">
+												
+												<input type="hidden" id="idCimitirV<%=i%>" name="idCimitir"  value=<%=cimitir.getIdCimitir()%> /> 
+												
+												<td><span id="denumireV<%=i%>"><%=cimitir.getDenumire()%> </span></td>
+												<td><span id="adresaV<%=i%>"><%=cimitir.getAdresa()%> </span></td>
+												<td><span id="nrLocuriV<%=i%>"><%=String.valueOf(cimitir.getNrLocuri())%> </span> </td>
+												<td><span id="nrParceleV<%=i%>"><%=String.valueOf(cimitir.getNrParcele())%> </span></td>
+												<td>
+													<a href="JavaScript:newPopup('updateCimitir.jsp')">
+														<button class="btn btn-primary" type="button" id="updateCimitir" name="updateCimitir" onclick="setIdRow(<%=i%>)">
+															<img src="css/edit.png" />Actualizeaza
+														</button>
+													</a>
+													<button id="stergeCimtir" name="stergeCimitir"
+														class="btn btn-primary" type="submit">
+														<img src="css/delete.png" />Sterge
+													</button>
+												</td>
 											</form>
 										</tr>
 
 
 										<%
-                                        }
-									%>
+											}
+										%>
 
 									</tbody>
 
@@ -245,10 +252,18 @@ function newPopup(url) {
 
 	<!-- Page-Level Demo Scripts - Tables - Use for reference -->
 	<script>
-    $(document).ready(function() {
-        $('#dataTables-example').dataTable();
-    });
-    </script>
+		$(document).ready(function() {
+			$('#dataTables-example').dataTable();
+		});
+		   var idV;
+	    	function getId(){
+	    		return idV;
+	    	}
+	    	function setIdRow(id)
+	    	{
+	    		idV=id;
+	    	}
+	</script>
 
 </body>
 

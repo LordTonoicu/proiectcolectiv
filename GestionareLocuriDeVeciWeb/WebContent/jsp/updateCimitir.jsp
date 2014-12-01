@@ -1,9 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+<!DOCTYPE html>
+<html lang="en">
+
 <head>
- <meta charset="utf-8">
+
+    <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
@@ -33,22 +35,22 @@
 	        window.opener.location.reload();
 	        this.close();
 	    }
+	  
 	    function getById(){
 	    	var parentDocument = window.opener.document;
 	    	var parentRowId = window.opener.getId();
-	    	document.getElementById("idParcela").value = parentDocument.getElementById("idParcelaV"+parentRowId).value;
-	    	document.getElementById("denumireParcela").value = parentDocument.getElementById("denumireV"+parentRowId).innerHTML;
-	    	document.getElementById("idCimitirParcela").value = parentDocument.getElementById("idCimitirV"+parentRowId).innerHTML;
-	    	document.getElementById("HasMonumentParcela").value = parentDocument.getElementById("hasMonumentV"+parentRowId).innerHTML;
+	    	document.getElementById("denumire").value = parentDocument.getElementById("denumireV"+parentRowId).innerHTML;
+	    	document.getElementById("idCimitir").value = parentDocument.getElementById("idCimitirV"+parentRowId).value;
+	    	document.getElementById("adresa").value = parentDocument.getElementById("adresaV"+parentRowId).innerHTML;
+	    	document.getElementById("nrLocuri").value = parentDocument.getElementById("nrLocuriV"+parentRowId).innerHTML;
+	    	document.getElementById("nrParcele").value = parentDocument.getElementById("nrParceleV"+parentRowId).innerHTML;
+	    	
 	    }	
+	    
 	</script>
 </head>
 
 <body onload="getById()">
-
-	<%@ page import="domain.Parcela" %>
-	<jsp:useBean id="parcela" class="domain.Parcela" scope="session"/>
-	<jsp:setProperty name="parcela" property="*"/> 
 
     <div id="wrapper">
 
@@ -58,7 +60,7 @@
         <div id="page-wrapper" style="position:fixed">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Adaugare parcela</h1>
+                    <h1 class="page-header">Update cimitir</h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -72,23 +74,31 @@
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-lg-6">
-                                    <form role="form" action="../ParcelaServlet" method="POST">
-                                     <input type="hidden" id="idParcela" name="idParcela" />
-                                        <div  class="form-group">
-                                            <label>Denumire</label>
-                                            <input id="denumireParcela" name="denumireParcela" />
-                                        </div>
-                                        
-                                        <div>
-                                        	<label>Cimitir</label>
-                                        	 <input id="idCimitirParcela" name="idCimitirParcela" />
-                                        </div> 
-                                        <div>
-                                        	<label>Are Monument?</label>
-                                       		<input id="HasMonumentParcela" name="HasMonumentParcela" />                                        
-                                       	</div>                              
-                                        <button type="submit" id="updateParcela" name="updateParcela" class="btn btn-default" >Salvare Modificari</button>
-                                        
+                                    <form role="form" action="../CimitirServlet" method="POST">
+	                                    <div  class="form-group">
+	     									<input type="hidden" id="idCimitir" name="idCimitir" class="form-control">
+	                                    </div>
+	                                    <div  class="form-group">
+	                                        <label>Denumire</label>
+	                                        <input id="denumire" name="denumire" class="form-control">
+	                                    
+	                                    </div>
+	                                    <div  class="form-group">
+	                                        <label>Adresa</label>
+	                                        <input id="adresa" name="adresa" class="form-control" value="">
+	                                      
+	                                    </div>         
+	                                    <div  class="form-group">
+	                                        <label>Nr Locuri</label>
+	                                        <input id="nrLocuri" name="nrLocuri" class="form-control">
+	                                      
+	                                    </div>   
+	                                    <div  class="form-group">
+	                                        <label>Nr Parcele</label>
+	                                        <input id="nrParcele" name="nrParcele" class="form-control">
+	                                      
+	                                    </div>                              
+	                                    <button type="submit" id="updateCimitir" name="updateCimitir" class="btn btn-default" >Salveaza Modificari</button>    
                                     </form>
                                 </div>
                                 <!-- /.col-lg-6 (nested) -->
