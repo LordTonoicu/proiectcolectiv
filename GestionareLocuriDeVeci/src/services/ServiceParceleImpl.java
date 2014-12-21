@@ -1,30 +1,38 @@
 package services;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import validators.ParcelaValidator;
+import dao.DAOCimitire;
 import dao.DAOParcele;
+import dao.IDAOCimitire;
+import dao.IDAOParcele;
 import domain.Parcela;
+import dto.ParcelaDTO;
 import exceptions.BusinessException;
 import exceptions.ValidatorException;
 
 public class ServiceParceleImpl implements ServiceParcele{
 
 	private ParcelaValidator parcelaValidator;
-	private DAOParcele daoParcele;
+	private IDAOParcele daoParcele;
+    private IDAOCimitire daoCimitire;
 	
 	public ServiceParceleImpl() {
 		super();
 		this.daoParcele=new DAOParcele();
 		this.parcelaValidator=new ParcelaValidator();
+		this.daoCimitire = new DAOCimitire();
 	}
 
 	public ServiceParceleImpl(ParcelaValidator parcelaValidator,
-			DAOParcele daoParcele) {
+			DAOParcele daoParcele, DAOCimitire daoCimitire) {
 		super();
 		this.parcelaValidator = parcelaValidator;
 		this.daoParcele = daoParcele;
+		this.daoCimitire = daoCimitire;
 	}
 
 	public void setParcelaValidator(ParcelaValidator parcelaValidator) {
@@ -33,6 +41,10 @@ public class ServiceParceleImpl implements ServiceParcele{
 
 	public void setDaoParcele(DAOParcele daoParcele) {
 		this.daoParcele = daoParcele;
+	}
+	
+	public void setDaoCimitire(DAOCimitire daoCimitire) {
+		this.daoCimitire = daoCimitire;
 	}
 
 	@Override
@@ -70,13 +82,42 @@ public class ServiceParceleImpl implements ServiceParcele{
 		}
 	}
 	@Override
-	public List<Parcela> getParcele() throws BusinessException {
+	public List<ParcelaDTO> getParcele() throws BusinessException {
+		List<ParcelaDTO> parceleDTOs = new ArrayList<ParcelaDTO>();
 		try {
-			return daoParcele.getAllParcele();
+			List<Parcela> parcele = daoParcele.getAllParcele();
+			for (Parcela parcela: parcele){
+				ParcelaDTO parcelaDTO = new ParcelaDTO();
+				
+				parcelaDTO.setParcela(parcela);
+		        parcelaDTO.setDenumireCimitir(daoCimitire.getById(parcela.getIdCimitir()).getDenumire());
+		        
+		        parceleDTOs.add(parcelaDTO);
+			}
 		} catch (SQLException sqlException) {
 			throw new BusinessException("Data access exception: " + sqlException.getMessage());
 		}
-	
+	    return parceleDTOs; 
 	}
-
+	
+	@Override
+	public List<ParcelaDTO> getParceleByIdCimitir(int idCimitir)
+			throws BusinessException {
+		List<ParcelaDTO> raspuns = new ArrayList<ParcelaDTO>();
+		try {
+			String denumireCimitir  = daoCimitire.getById(idCimitir).getDenumire();
+			List<Parcela> parcele = daoParcele.getAllParcele();
+			for (Parcela parcela: parcele){
+				if (parcela.getIdCimitir() == idCimitir){
+					ParcelaDTO parcelaDTO = new ParcelaDTO();
+					parcelaDTO.setParcela(parcela);
+					parcelaDTO.setDenumireCimitir(denumireCimitir);
+					raspuns.add(parcelaDTO);
+				}
+			}
+		} catch (SQLException sqlException) {
+			throw new BusinessException(sqlException.getMessage());
+		}
+		return raspuns;
+	}
 }

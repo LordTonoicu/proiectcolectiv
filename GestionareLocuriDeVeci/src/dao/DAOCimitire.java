@@ -103,4 +103,10 @@ public class DAOCimitire implements IDAOCimitire{
 		    	return cimitire;
 		    
 	}
+
+	@Override
+	public Cimitir getById(int id) throws SQLException {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

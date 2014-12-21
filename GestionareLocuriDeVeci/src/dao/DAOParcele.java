@@ -109,4 +109,10 @@ public class DAOParcele implements IDAOParcele {
 		    	return parcele;
 		    
 	}
+
+	@Override
+	public Parcela getById(int id) throws SQLException {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

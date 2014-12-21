@@ -34,6 +34,4 @@ public class DecedatDTO {
 	public void setDatePersonale(DatePersonale datePersonale) {
 		this.datePersonale = datePersonale;
 	}
-
-	
 }

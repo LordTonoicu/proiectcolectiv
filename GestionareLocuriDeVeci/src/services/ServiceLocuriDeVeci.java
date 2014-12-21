@@ -4,6 +4,7 @@ import java.util.List;
 
 import domain.LocDeVeci;
 import dto.LocDeVeciDTO;
+import dto.ParcelaDTO;
 import exceptions.BusinessException;
 
 public interface ServiceLocuriDeVeci {
@@ -70,6 +71,8 @@ public interface ServiceLocuriDeVeci {
 	public void actualizeazaLocDeVeci(LocDeVeci locDeVeci) throws BusinessException;
 	
 	public void stergeLocDeVeci (LocDeVeci locDeVeci) throws BusinessException;
+	
+	public List<LocDeVeciDTO> getLocuriDeVeciByIdParcela (int idParcela) throws BusinessException;
 	
 	//+ Export raspuns, de stabilit date membru ale unui obiect incapsulandu-l etc.
 }

@@ -33,12 +33,14 @@ public class ServiceDecedatiImpl implements ServiceDecedati{
 	@Override
 	public void inscrieDecedat(DecedatDTO decedatDTO) throws BusinessException {
 		try{
-//			decedatValidator.validate(decedatDTO.getDecedat());
-//			datePersonaleValidator.validate(decedatDTO.getDatePersonale());
+			decedatValidator.validate(decedatDTO.getDecedat());
+			datePersonaleValidator.validate(decedatDTO.getDatePersonale());
 			daoDatePersonale.insert(decedatDTO.getDatePersonale());
 			daoDecedati.insert(decedatDTO.getDecedat());
 		} catch (SQLException sqlException){
 			throw new BusinessException("Data access exception: " + sqlException.getMessage());
+		} catch (ValidatorException validatorException){
+			throw new BusinessException("Validation exception:: " + validatorException.getMessage());
 		}
 	}
 

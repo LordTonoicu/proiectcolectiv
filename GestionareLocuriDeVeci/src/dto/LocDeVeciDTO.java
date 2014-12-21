@@ -6,19 +6,25 @@ import domain.LocDeVeci;
 public class LocDeVeciDTO {
 	
 	private LocDeVeci locDeVeci;
+	private String denumireParcela;
 	private DatePersonale datePersonaleDetinator;
 	private DatePersonale datePersonaleInmormantant;
 	//Eventual alte date necesare
-	
+
 	
 	public LocDeVeci getLocDeVeci() {
 		return locDeVeci;
 	}
+	public LocDeVeciDTO() {
+		super();
+	}
 	public LocDeVeciDTO(LocDeVeci locDeVeci,
+			String denumireParcela,
 			DatePersonale datePersonaleDetinator,
 			DatePersonale datePersonaleInmormantant) {
 		super();
 		this.locDeVeci = locDeVeci;
+		this.denumireParcela = denumireParcela;
 		this.datePersonaleDetinator = datePersonaleDetinator;
 		this.datePersonaleInmormantant = datePersonaleInmormantant;
 	}
@@ -37,6 +43,13 @@ public class LocDeVeciDTO {
 	public void setDatePersonaleInmormantant(DatePersonale datePersonaleInmormantant) {
 		this.datePersonaleInmormantant = datePersonaleInmormantant;
 	}
+	public String getDenumireParcela() {
+		return denumireParcela;
+	}
+	public void setDenumireParcela(String denumireParcela) {
+		this.denumireParcela = denumireParcela;
+	}
+	
 	
 	//+Getters campuri obiecte continute; ex: nume detinator
 

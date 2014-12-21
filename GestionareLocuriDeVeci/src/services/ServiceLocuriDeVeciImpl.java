@@ -7,16 +7,21 @@ import java.util.List;
 import javax.smartcardio.ATR;
 
 import validators.LocDeVeciValidator;
+import dao.DAOCimitire;
 import dao.DAOLocuri;
+import dao.IDAOCimitire;
 import dao.IDAOLocuri;
+import dao.IDAOParcele;
 import domain.LocDeVeci;
 import dto.LocDeVeciDTO;
+import dto.ParcelaDTO;
 import exceptions.BusinessException;
 import exceptions.ValidatorException;
 
 public class ServiceLocuriDeVeciImpl implements ServiceLocuriDeVeci {
 
 	private IDAOLocuri daoLocuri;
+	private IDAOParcele daoParcele;
 	private LocDeVeciValidator locDeVeciValidator;
 
 	public void setDaoLocuri(DAOLocuri daoLocuri) {
@@ -25,6 +30,10 @@ public class ServiceLocuriDeVeciImpl implements ServiceLocuriDeVeci {
 
 	public void setLocDeVeciValidator(LocDeVeciValidator locDeVeciValidator) {
 		this.locDeVeciValidator = locDeVeciValidator;
+	}
+	
+	public void setDaoParcele(IDAOParcele daoParcele) {
+		this.daoParcele = daoParcele;
 	}
 
 	public ServiceLocuriDeVeciImpl(DAOLocuri daoLocuri,
@@ -121,4 +130,24 @@ public class ServiceLocuriDeVeciImpl implements ServiceLocuriDeVeci {
 		return raspuns;
 	}
 
+	@Override
+	public List<LocDeVeciDTO> getLocuriDeVeciByIdParcela(int idParcela)
+			throws BusinessException {
+		List<LocDeVeciDTO> raspuns  = new ArrayList<LocDeVeciDTO>();
+		try{
+			String denumireParcela = daoParcele.getById(idParcela).getDenumire();
+			List<LocDeVeci> locuriDeVeci = daoLocuri.getAll();
+			for (LocDeVeci locDeVeci: locuriDeVeci){
+				if (locDeVeci.getIdParcela() == idParcela){
+					LocDeVeciDTO locDeVeciDTO = new LocDeVeciDTO();
+					locDeVeciDTO.setLocDeVeci(locDeVeci);
+					locDeVeciDTO.setDenumireParcela(denumireParcela);
+					raspuns.add(locDeVeciDTO);
+				}
+			}
+		} catch (SQLException sqlException){
+			throw new BusinessException(sqlException.getMessage());
+		}
+		return raspuns;
+	}
 }

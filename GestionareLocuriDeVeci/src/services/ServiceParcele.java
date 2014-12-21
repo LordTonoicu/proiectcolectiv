@@ -3,6 +3,7 @@ package services;
 import java.util.List;
 
 import domain.Parcela;
+import dto.ParcelaDTO;
 import exceptions.BusinessException;
 
 public interface ServiceParcele {
@@ -36,6 +37,8 @@ public interface ServiceParcele {
 	 */
 	public void actualizeazaParcela(Parcela parcela) throws BusinessException;
 
-	public List<Parcela> getParcele() throws BusinessException;
+	public List<ParcelaDTO> getParcele() throws BusinessException;
+	
+	public List<ParcelaDTO> getParceleByIdCimitir (int idCimitir) throws BusinessException; 	
 	
 }

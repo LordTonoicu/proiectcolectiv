@@ -14,4 +14,6 @@ public interface IDAOCimitire {
 	public void delete(Cimitir cimitir) throws SQLException;
 	
 	public List<Cimitir> getAllCimitire() throws SQLException;
+	
+	public Cimitir getById (int id) throws SQLException;
 }
