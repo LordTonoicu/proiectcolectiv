@@ -10,13 +10,30 @@ public class LocDeVeci {
 	private byte[] poza;
 	private boolean isMonument;
 	private int idCimitir;
+	private int nrDecedati;
+	private int nrConcesionari;
+	public int getNrDecedati() {
+		return nrDecedati;
+	}
+
+	public void setNrDecedati(int nrDecedati) {
+		this.nrDecedati = nrDecedati;
+	}
+
+	public int getNrConcesionari() {
+		return nrConcesionari;
+	}
+
+	public void setNrConcesionari(int nrConcesionari) {
+		this.nrConcesionari = nrConcesionari;
+	}
 
 	public LocDeVeci() {
 
 	}
 
 	public LocDeVeci(int suprafata, int idParcela, int numar,
-			byte[] poza, boolean isMonument, int idCimitir) {
+			byte[] poza, boolean isMonument, int idCimitir, int nrDecedati, int nrConcesionari) {
 
 		this.suprafata = suprafata;
 		this.idParcela = idParcela;
@@ -24,10 +41,12 @@ public class LocDeVeci {
 		this.poza = poza;
 		this.isMonument = isMonument;
 		this.idCimitir = idCimitir;
+		this.nrDecedati = nrDecedati;
+		this.nrConcesionari = nrConcesionari;
 	}
 	
 	public LocDeVeci(int idLoc, int suprafata, int idParcela, int numar,
-			byte[] poza, boolean isMonument, int idCimitir) {
+			byte[] poza, boolean isMonument, int idCimitir, int nrDecedati, int nrConcesionari) {
 
 		this.idLoc = idLoc;
 		this.suprafata = suprafata;
@@ -36,6 +55,8 @@ public class LocDeVeci {
 		this.poza = poza;
 		this.isMonument = isMonument;
 		this.idCimitir = idCimitir;
+		this.nrDecedati = nrDecedati;
+		this.nrConcesionari = nrConcesionari;
 	}
 
 	public int getIdLoc() {
@@ -99,6 +120,7 @@ public class LocDeVeci {
 		return "LocDeVeci [idLoc=" + idLoc + ", suprafata=" + suprafata
 				+ ", idParcela=" + idParcela + ", numar=" + numar + ", poza="
 				+ poza + ", isMonument=" + isMonument + ", idCimitir="
-				+ idCimitir + "]";
+				+ idCimitir +", nrDecedati="+ nrDecedati 
+				+ ", nrConcesionari ="+nrConcesionari +"]";
 	}
 }

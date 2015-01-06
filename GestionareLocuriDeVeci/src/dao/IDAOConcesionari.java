@@ -6,7 +6,7 @@ import java.util.List;
 import domain.Concesionar;
 
 public interface IDAOConcesionari {
-
+	//TODO update deleted flag for all
 	public void insert(Concesionar concesionar) throws SQLException;
 	public void update(Concesionar concesionar) throws SQLException;
 	public void delete(Concesionar concesionar) throws SQLException;

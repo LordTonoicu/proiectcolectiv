@@ -10,7 +10,7 @@ public interface IDAOLocuri {
 	public void insert(LocDeVeci locDeVeci) throws SQLException;
 
 	public void update(LocDeVeci locDeVeci) throws SQLException;
-
+	//TODO implement this!
 	public void delete(LocDeVeci locDeVeci) throws SQLException;
 
 	public List<LocDeVeci> getAll() throws SQLException;

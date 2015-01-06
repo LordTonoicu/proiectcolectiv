@@ -28,13 +28,15 @@ public class DAOLocuri implements IDAOLocuri {
 	public void insert(LocDeVeci locDeVeci) throws SQLException {
 
 		try {
-			String insertTable = "INSERT INTO locurideveci"
-					+ "(suprafata,idParcela,numar,poza,isMonument,idCimitir) VALUES"
-					+ "(? , ?, ?, ?, ?, ?)";
+			String insertTable = "INSERT INTO LocuriDeVeci"
+					+ "(suprafata,idParcela,numar,poza,isMonument,idCimitir,nrDecedati,nrConcesionari,deleted) VALUES"
+					+ "(? , ?, ?, ?, ?, ?, ?, ?,false)";
 			PSInsert = connection.prepareStatement(insertTable);
 			PSInsert.setInt(1, locDeVeci.getSuprafata());
 			PSInsert.setInt(2, locDeVeci.getIdParcela());
 			PSInsert.setInt(3, locDeVeci.getNumar());
+			PSInsert.setInt(4, locDeVeci.getNrDecedati());
+			PSInsert.setInt(5, locDeVeci.getNrConcesionari());
 			Blob b1 = new SerialBlob(locDeVeci.getPoza());
 			PSInsert.setBlob(4, b1);
 			if (locDeVeci.isMonument() == true) {
@@ -57,9 +59,9 @@ public class DAOLocuri implements IDAOLocuri {
 	public void update(LocDeVeci locDeVeci) throws SQLException {
 
 		try {
-			String updateTable = "UPDATE locurideveci SET suprafata = ?, idParcela = ?,numar = ?, poza = ?, isMonument = ?, idCimitir = ?) WHERE idLoc = ?";
+			String updateTable = "UPDATE LocuriDeVeci SET suprafata = ?, idParcela = ?,numar = ?, poza = ?, isMonument = ?, idCimitir = ?, nrDecedati=?, nrConcesionari=? WHERE idLoc = ?";
 			PSUpdate = connection.prepareStatement(updateTable);
-			PSUpdate.setInt(7, locDeVeci.getIdLoc());
+			PSUpdate.setInt(9, locDeVeci.getIdLoc());
 			PSUpdate.setInt(1, locDeVeci.getSuprafata());
 			PSUpdate.setInt(2, locDeVeci.getIdParcela());
 			PSUpdate.setInt(3, locDeVeci.getNumar());
@@ -72,6 +74,8 @@ public class DAOLocuri implements IDAOLocuri {
 				PSUpdate.setInt(5, 0);
 			}
 			PSUpdate.setInt(6, locDeVeci.getIdCimitir());
+			PSUpdate.setInt(7, locDeVeci.getNrDecedati());
+			PSUpdate.setInt(8, locDeVeci.getNrConcesionari());
 			PSUpdate.executeUpdate();
 		} catch (SQLException ex) {
 			throw new SQLException("Error when trying to update the: "
@@ -84,8 +88,6 @@ public class DAOLocuri implements IDAOLocuri {
 	}
 
 	public void delete(LocDeVeci locDeVeci) {
-		// TODO Auto-generated method stub
-
 	}
 
 	@Override
@@ -93,7 +95,7 @@ public class DAOLocuri implements IDAOLocuri {
 		List<LocDeVeci> locuri = new ArrayList<LocDeVeci>();
 
 		try {
-			String selectTable = "SELECT * FROM LocuriDeVeci";
+			String selectTable = "SELECT idLoc,suprafata,idParcela,numar,poza,isMonument,idCimitir,nrDecedati,nrConcesionari FROM LocuriDeVeci where deleted=false";
 			PSSelect = connection.prepareStatement(selectTable);
 			ResultSet result = PSSelect.executeQuery(selectTable);
 			LocDeVeci loc;
@@ -101,7 +103,7 @@ public class DAOLocuri implements IDAOLocuri {
 			while (result.next()) {
 				loc = new LocDeVeci(result.getInt(1), result.getInt(2),
 						result.getInt(3), result.getInt(4), result.getBytes(5),
-						result.getBoolean(6), result.getInt(7));
+						result.getBoolean(6), result.getInt(7),result.getInt(8),result.getInt(9));
 				locuri.add(loc);
 			}
 

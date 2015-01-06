@@ -25,7 +25,7 @@ public class DAOParcele implements IDAOParcele {
     public void insert(Parcela parcela) throws SQLException{
     	
     	try{
-    	 String insertTable = "INSERT INTO Parcele" + "(denumire, nrLocuri, idCimitir, hasMonument) VALUES" + "(? , ?, ?, ?)";
+    	 String insertTable = "INSERT INTO Parcele" + "(denumire, nrLocuri, idCimitir, hasMonument, deleted) VALUES" + "(? , ?, ?, ?,false)";
     	 PSInsert = connection.prepareStatement(insertTable);
     	 PSInsert.setString(1, parcela.getDenumire());
     	 PSInsert.setInt(2, parcela.getNrLocuri());
@@ -48,7 +48,7 @@ public class DAOParcele implements IDAOParcele {
     public void delete(Parcela parcela) throws SQLException {
     	
     	try{
-    	 String deleteTable = "DELETE FROM Parcele " + "WHERE idParcela = ?";
+    	 String deleteTable = "UPDATE Parcele set deleted=true " + "WHERE idParcela = ?";
     	 PSDelete = connection.prepareStatement(deleteTable);
     	 PSDelete.setInt(1, parcela.getIdParcela());
     	 PSDelete.executeUpdate();
@@ -89,7 +89,7 @@ public class DAOParcele implements IDAOParcele {
 		    	List<Parcela> parcele = new ArrayList<Parcela>();
 		    	
 		    	try{
-		    	String selectTable = "SELECT * FROM Parcele";
+		    	String selectTable = "SELECT idParcela, denumire, nrLocuri, idCimitir, hasMonument FROM Parcele";
 		    	PSSelect = connection.prepareStatement(selectTable);
 		    	ResultSet result = PSSelect.executeQuery(selectTable);
 		    	Parcela parcela;
@@ -112,7 +112,6 @@ public class DAOParcele implements IDAOParcele {
 
 	@Override
 	public Parcela getById(int id) throws SQLException {
-		// TODO Auto-generated method stub
 		return null;
 	}
 }

@@ -9,6 +9,7 @@ import dao.DAOCimitire;
 import dao.DAOParcele;
 import dao.IDAOCimitire;
 import dao.IDAOParcele;
+import domain.Cimitir;
 import domain.Parcela;
 import dto.ParcelaDTO;
 import exceptions.BusinessException;
@@ -90,7 +91,9 @@ public class ServiceParceleImpl implements ServiceParcele{
 				ParcelaDTO parcelaDTO = new ParcelaDTO();
 				
 				parcelaDTO.setParcela(parcela);
-		        parcelaDTO.setDenumireCimitir(daoCimitire.getById(parcela.getIdCimitir()).getDenumire());
+				System.out.println(String.valueOf(parcela.getIdCimitir()));
+				Cimitir c = daoCimitire.getById(parcela.getIdCimitir());
+		        parcelaDTO.setDenumireCimitir(c.getDenumire());
 		        
 		        parceleDTOs.add(parcelaDTO);
 			}
