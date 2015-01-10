@@ -61,7 +61,7 @@ public class DAOLocuri implements IDAOLocuri {
 		try {
 			String updateTable = "UPDATE LocuriDeVeci SET suprafata = ?, idParcela = ?,numar = ?, poza = ?, isMonument = ?, idCimitir = ?, nrContractConcesiune=? WHERE idLoc = ?";
 			PSUpdate = connection.prepareStatement(updateTable);
-			PSUpdate.setInt(9, locDeVeci.getIdLoc());
+			PSUpdate.setInt(8, locDeVeci.getIdLoc());
 			PSUpdate.setInt(1, locDeVeci.getSuprafata());
 			PSUpdate.setInt(2, locDeVeci.getIdParcela());
 			PSUpdate.setInt(3, locDeVeci.getNumar());
