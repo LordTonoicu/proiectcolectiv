@@ -192,11 +192,11 @@
 														class="btn btn-primary" type="submit">
 														<img src="css/delete.png" />Sterge
 													</button>
-													<a href="../ParcelaServlet">
-														<button class="btn btn-primary" type="button" id="parcele" name="parcele" onclick="setIdRow(<%=i%>)">
+													
+														<button class="btn btn-primary" type="submit" id="parcele" name="parcele" onclick="setIdRow(<%=i%>)">
 															Parcele
 														</button>
-													</a>
+											
 												</td>
 											</form>
 										</tr>

@@ -54,6 +54,15 @@ public class CimitirServlet extends HttpServlet {
 			else if(request.getParameter("stergeCimitir")!=null){
 				stergeCimitir(request);
 			}
+			else if(request.getParameter("updateCimitir")!=null){
+				updateCimitir(request);
+			}
+			else if(request.getParameter("parcele")!=null){
+				int idCimitir=Integer.parseInt(request.getParameter("idCimitir"));
+				h.setAttribute("idCimitir", idCimitir);
+				response.sendRedirect("ParcelaServlet");
+				return;
+			}
 		}
 		catch (BusinessException e){
 			// TODO redirect exception handler
@@ -69,6 +78,15 @@ public class CimitirServlet extends HttpServlet {
 		}
 
 	}
+	private void updateCimitir(HttpServletRequest request) throws BusinessException {
+		Cimitir c = new Cimitir();
+		c.setIdCimitir(Integer.parseInt(request.getParameter("idCimitir")));
+		c.setAdresa(request.getParameter("adresa"));
+		c.setDenumire(request.getParameter("denumire"));
+		cimitirService.actualizeazaCimitir(c,request.getRemoteHost());
+		
+	}
+
 	private void adaugaCimitir(HttpServletRequest request) throws BusinessException
 	{
 		Cimitir c = new Cimitir();
@@ -76,13 +94,13 @@ public class CimitirServlet extends HttpServlet {
 		c.setDenumire(request.getParameter("Denumire"));
 		c.setNrParcele(0);
 		c.setNrLocuri(0);
-		cimitirService.adaugaCimitir(c);
+		cimitirService.adaugaCimitir(c,request.getRemoteHost());
 	}
 	private void stergeCimitir(HttpServletRequest request) throws BusinessException
 	{
 		String id = request.getParameter("idCimitir");
 		Cimitir c = new Cimitir();
 		c.setIdCimitir(Integer.parseInt(id));
-		cimitirService.stergeCimitir(c);
+		cimitirService.stergeCimitir(c,request.getRemoteHost());
 	}
 }

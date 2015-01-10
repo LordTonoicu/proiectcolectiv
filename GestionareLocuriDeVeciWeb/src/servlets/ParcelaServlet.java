@@ -60,6 +60,8 @@ public class ParcelaServlet extends HttpServlet {
 				adaugaParcela(request);
 			else if(request.getParameter("stergeParcela")!=null)
 				stergeParcela(request);
+			else if(request.getParameter("updateParcela")!=null)
+				updateParcela(request);
 			else if(request.getParameter("getInfoParcela")!=null){
 				Parcela parcela = null;
 				parcela = getInfoParcela(request);
@@ -72,7 +74,9 @@ public class ParcelaServlet extends HttpServlet {
 			e1.printStackTrace();
 		}
 		try {
-			List<ParcelaDTO> parcele = parcelaService.getParcele();
+			int idCimitir=(Integer) h.getAttribute("idCimitir");
+			System.out.println("Id cimitir:"+idCimitir);
+			List<ParcelaDTO> parcele = parcelaService.getParceleByIdCimitir(idCimitir);
 			List<Cimitir> cimitire = cimitirService.getCimitire();
 			h.setAttribute("listCimitire", cimitire);
 			h.setAttribute("listParcele", parcele);
@@ -82,6 +86,23 @@ public class ParcelaServlet extends HttpServlet {
 			e.printStackTrace();
 		}
 
+	}
+
+	private void updateParcela(HttpServletRequest request) throws BusinessException {
+		HttpSession session=request.getSession();
+		Parcela parcela = new Parcela();
+		int idParcela = Integer.parseInt(request.getParameter("idParcela"));
+		parcela.setIdParcela(idParcela);
+		parcela.setIdCimitir((Integer) session.getAttribute("idCimitir"));
+		parcela.setDenumire(request.getParameter("denumireParcela"));
+		if (request.getParameter("areMonument") != null)
+			parcela.setHasMonument(true);
+		else {
+			parcela.setHasMonument(false);
+		}
+		System.out.println(parcela);
+		parcelaService.actualizeazaParcela(parcela,request.getRemoteHost());
+	
 	}
 
 	private void adaugaParcela(HttpServletRequest request)
@@ -94,7 +115,7 @@ public class ParcelaServlet extends HttpServlet {
 		else {
 			parcela.setHasMonument(false);
 		}
-		parcelaService.adaugaParcela(parcela);
+		parcelaService.adaugaParcela(parcela,request.getRemoteHost());
 
 	}
 	private void stergeParcela(HttpServletRequest request)
@@ -102,7 +123,7 @@ public class ParcelaServlet extends HttpServlet {
 		String id = request.getParameter("idParcela");
 		Parcela p = new Parcela();
 		p.setIdParcela(Integer.parseInt(id));
-		parcelaService.stergeParcela(p);
+		parcelaService.stergeParcela(p,request.getRemoteHost());
 	}
 	private Parcela getInfoParcela(HttpServletRequest request)
 			throws BusinessException {

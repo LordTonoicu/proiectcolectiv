@@ -87,17 +87,7 @@
 	                                        <label>Adresa</label>
 	                                        <input id="adresa" name="adresa" class="form-control" value="">
 	                                      
-	                                    </div>         
-	                                    <div  class="form-group">
-	                                        <label>Nr Locuri</label>
-	                                        <input id="nrLocuri" name="nrLocuri" class="form-control">
-	                                      
-	                                    </div>   
-	                                    <div  class="form-group">
-	                                        <label>Nr Parcele</label>
-	                                        <input id="nrParcele" name="nrParcele" class="form-control">
-	                                      
-	                                    </div>                              
+	                                    </div>                            
 	                                    <button type="submit" id="updateCimitir" name="updateCimitir" class="btn btn-default" >Salveaza Modificari</button>    
                                     </form>
                                 </div>
