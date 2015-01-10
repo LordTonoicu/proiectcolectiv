@@ -73,19 +73,8 @@
                                         </div>
                                         
                                         <div>
-                                        	<label>Cimitr</label>
-                                        	<select name="cimitire" id="cimitire">
-												<%
-										
-  												for (Object cimitirO: listCimitire) {
-  													Cimitir cimitir = (Cimitir) cimitirO;
-       								 			%>
-													<option value=<%=cimitir.getIdCimitir() %>><%=cimitir.getDenumire() %></option>
-												<%
-  													}
-												%>
-												
-											</select>
+                                            
+											
                                         </div> 
                                         <div>
                                         <input type="checkbox" name="areMonument">Are Monument 
@@ -129,4 +118,3 @@
 </body>
 
 </html>
->>>>>>> refs/remotes/origin/master

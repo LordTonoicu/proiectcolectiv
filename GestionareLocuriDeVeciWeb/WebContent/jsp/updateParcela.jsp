@@ -79,13 +79,14 @@
                                             <input id="denumireParcela" name="denumireParcela" />
                                         </div>
                                         
-                                        <div>
+                                        <!--<div>
                                         	<label>Cimitir</label>
                                         	 <input id="idCimitirParcela" name="idCimitirParcela" />
-                                        </div> 
+                                        </div>
+                                        --> 
                                         <div>
                                         	<label>Are Monument?</label>
-                                       		<input id="HasMonumentParcela" name="HasMonumentParcela" />                                        
+                                       		 <input type="checkbox" name="HasMonumentParcela" id="HasMonumentParcela">Are Monument                                        
                                        	</div>                              
                                         <button type="submit" id="updateParcela" name="updateParcela" class="btn btn-default" >Salvare Modificari</button>
                                         
