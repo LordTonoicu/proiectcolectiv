@@ -157,20 +157,7 @@ function newPopup(url) {
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                           Gestioneaza decedati
-                           <a href="JavaScript:newPopup('addDecedat.jsp')"> 
-                            <button class="btn btn-primary" type="button" style="float:right;margin-top:-7px;margin-right:10px">
-                                     <img src="css/plus.png"> Adauga decedat
-
-                            </button>
-                           
-                             </a>
-                             
- 
-                        
-                         
-                       
-                            
+                           Gestioneaza decedati                
                         </div>
 
                         <!-- /.panel-heading -->

@@ -71,7 +71,6 @@ public class ParcelaServlet extends HttpServlet {
 			}
 			else if(request.getParameter("locuriDeVeci")!=null){
 				int idParcela=Integer.parseInt(request.getParameter("idParcela"));
-				System.out.println("idParcela:"+idParcela);
 				h.setAttribute("idParcela", idParcela);
 				response.sendRedirect("locuriDeVeciServlet");
 				return;
