@@ -22,6 +22,11 @@
       window.opener.location.reload();
       this.close();
   }
+  function getById(){
+  	var parentDocument = window.opener.document;
+  	var parentRowId = window.opener.getId();
+  	document.getElementById("idLocDeVeci").value = parentDocument.getElementById("idLocDeVeciV"+parentRowId).value;
+  	
 </script>
  
   
@@ -47,7 +52,7 @@
 
 </head>
 
-<body style="overflow: hidden">
+<body style="overflow: hidden" onload="getById()">
     	<%@ page import="domain.*" %>
 	<%@ page import="java.util.ArrayList" %>
 	<jsp:useBean id="listLocuriDeVeci" class="java.util.ArrayList" scope="session"/>
@@ -76,6 +81,11 @@
                             <div class="row">
                                 <div class="col-lg-6">
                                     <form role="form" action="../DecedatServlet" method="POST">
+                                        <div class="form-group">
+                                            <label>Id</label>
+                                            <input class="form-control"  id="idLocDeVeci" name="idLocDeVeci">
+                                       
+                                        </div>
                                         <div class="form-group">
                                             <label>Nume</label>
                                             <input class="form-control"  id="NumeDecedat" name="NumeDecedat">
