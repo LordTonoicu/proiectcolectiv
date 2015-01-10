@@ -1,25 +1,20 @@
 package services;
-
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
-
-import javax.smartcardio.ATR;
-
 import services.util.UtilInregistrareJurnal;
 import validators.LocDeVeciValidator;
-import dao.DAOCimitire;
-import dao.DAODecedati;
 import dao.DAOJurnal;
 import dao.DAOLocuri;
 import dao.DAOParcele;
-import dao.IDAOCimitire;
+import dao.IDAOContracteConcesiune;
 import dao.IDAOJurnal;
 import dao.IDAOLocuri;
 import dao.IDAOParcele;
 import domain.LocDeVeci;
 import dto.LocDeVeciDTO;
-import dto.ParcelaDTO;
 import exceptions.BusinessException;
 import exceptions.ValidatorException;
 
@@ -29,6 +24,7 @@ public class ServiceLocuriDeVeciImpl implements ServiceLocuriDeVeci {
 	private IDAOParcele daoParcele;
 	private LocDeVeciValidator locDeVeciValidator;
 	private IDAOJurnal daoJurnal;
+	private IDAOContracteConcesiune daoContracteConcesiune;
 
 	public void setDaoLocuri(DAOLocuri daoLocuri) {
 		this.daoLocuri = daoLocuri;
@@ -60,7 +56,6 @@ public class ServiceLocuriDeVeciImpl implements ServiceLocuriDeVeci {
 	@Override
 	public void trimiteEmailConcesionar(int locDeVeciExpirat) {
 		// TODO Auto-generated method stub
-
 	}
 
 	@Override
@@ -108,27 +103,88 @@ public class ServiceLocuriDeVeciImpl implements ServiceLocuriDeVeci {
 	}
 
 	@Override
-	public List<LocDeVeci> getLocuriDeVeciExpirate(int anulExpirarii) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<LocDeVeci> getLocuriDeVeciExpirate(int anulExpirarii) throws BusinessException {
+		List<LocDeVeci> rezultat = null;
+		try{
+			List<LocDeVeci> locuriDeVeci = daoLocuri.getAll();
+			rezultat = new ArrayList<LocDeVeci>();
+			for (LocDeVeci locDeVeci: locuriDeVeci){
+				Date dataConcesionare = daoContracteConcesiune.getByNumarContract(locDeVeci.getNrContractConcesionare()).getDataEliberare();
+			    Calendar dataExpirarii = Calendar.getInstance();
+			    dataExpirarii.setTime(dataConcesionare);
+				if (dataExpirarii.get(Calendar.YEAR) == anulExpirarii){
+					rezultat.add(locDeVeci);
+				}
+			}
+		} catch (SQLException sqlException){
+			throw new BusinessException(sqlException.getMessage());
+		}
+		return rezultat;
 	}
 
 	@Override
-	public List<LocDeVeci> getLocuriDeVeciExpirate() {
-		// TODO Auto-generated method stub
-		return null;
+	public List<LocDeVeci> getLocuriDeVeciExpirate() throws BusinessException{
+		List<LocDeVeci> rezultat = null;
+		try{
+			List<LocDeVeci> locuriDeVeci = daoLocuri.getAll();
+			rezultat = new ArrayList<LocDeVeci>();
+			for (LocDeVeci locDeVeci: locuriDeVeci){
+				Date dataConcesionare = daoContracteConcesiune.getByNumarContract(locDeVeci.getNrContractConcesionare()).getDataEliberare();
+			    Calendar dataExpirarii = Calendar.getInstance();
+			    dataExpirarii.setTime(dataConcesionare);
+			    dataExpirarii.add(Calendar.YEAR, 20);
+				Calendar dataCurenta = Calendar.getInstance();
+				if (dataExpirarii.before(dataCurenta)){
+					rezultat.add(locDeVeci);
+				}
+			}
+		} catch (SQLException sqlException){
+			throw new BusinessException(sqlException.getMessage());
+		}
+		return rezultat;
 	}
 
 	@Override
-	public List<LocDeVeci> getLocuriDeVeciExpirandInAnulCurent() {
-		// TODO Auto-generated method stub
-		return null;
+	public List<LocDeVeci> getLocuriDeVeciExpirandInAnulCurent() throws BusinessException{
+		List<LocDeVeci> rezultat = null;
+		try{
+			List<LocDeVeci> locuriDeVeci = daoLocuri.getAll();
+			rezultat = new ArrayList<LocDeVeci>();
+			for (LocDeVeci locDeVeci: locuriDeVeci){
+				Date dataConcesionare = daoContracteConcesiune.getByNumarContract(locDeVeci.getNrContractConcesionare()).getDataEliberare();
+			    Calendar dataExpirarii = Calendar.getInstance();
+			    dataExpirarii.setTime(dataConcesionare);
+			    dataExpirarii.add(Calendar.YEAR, 20);
+				Calendar dataCurenta = Calendar.getInstance();
+				if (dataExpirarii.get(Calendar.YEAR) == dataCurenta.get(Calendar.YEAR)){
+					rezultat.add(locDeVeci);
+				}
+			}
+		} catch (SQLException sqlException){
+			throw new BusinessException(sqlException.getMessage());
+		}
+		return rezultat;
 	}
 
 	@Override
-	public List<LocDeVeci> getLocuriDeVeciPlatiteInAnulInCurs() {
-		// TODO Auto-generated method stub
-		return null;
+	public List<LocDeVeci> getLocuriDeVeciPlatiteInAnulInCurs() throws BusinessException{
+		List<LocDeVeci> rezultat = null;
+		try{
+			List<LocDeVeci> locuriDeVeci = daoLocuri.getAll();
+			rezultat = new ArrayList<LocDeVeci>();
+			for (LocDeVeci locDeVeci: locuriDeVeci){
+				Date dataConcesionare = daoContracteConcesiune.getByNumarContract(locDeVeci.getNrContractConcesionare()).getDataEliberare();
+			    Calendar dataExpirarii = Calendar.getInstance();
+			    dataExpirarii.setTime(dataConcesionare);
+			    Calendar dataCurenta = Calendar.getInstance();
+				if (dataExpirarii.get(Calendar.YEAR) == dataCurenta.get(Calendar.YEAR)){
+					rezultat.add(locDeVeci);
+				}
+			}
+		} catch (SQLException sqlException){
+			throw new BusinessException(sqlException.getMessage());
+		}
+		return rezultat;
 	}
 
 	@Override
@@ -161,5 +217,16 @@ public class ServiceLocuriDeVeciImpl implements ServiceLocuriDeVeci {
 			throw new BusinessException(sqlException.getMessage());
 		}
 		return raspuns;
+	}
+
+	@Override
+	public LocDeVeci getById(int id) throws BusinessException {
+		LocDeVeci locDeVeci = null;
+		try{
+			locDeVeci = daoLocuri.getById(id);
+		} catch (SQLException sqlException){
+			throw new BusinessException(sqlException.getMessage());
+		}
+		return locDeVeci;
 	}
 }

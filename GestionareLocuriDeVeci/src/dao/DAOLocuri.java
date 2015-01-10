@@ -59,7 +59,7 @@ public class DAOLocuri implements IDAOLocuri {
 	public void update(LocDeVeci locDeVeci) throws SQLException {
 
 		try {
-			String updateTable = "UPDATE LocuriDeVeci SET suprafata = ?, idParcela = ?,numar = ?, poza = ?, isMonument = ?, idCimitir = ?, nrDecedati=?, nrConcesionari=? WHERE idLoc = ?";
+			String updateTable = "UPDATE LocuriDeVeci SET suprafata = ?, idParcela = ?,numar = ?, poza = ?, isMonument = ?, idCimitir = ?, nrContractConcesiune=? WHERE idLoc = ?";
 			PSUpdate = connection.prepareStatement(updateTable);
 			PSUpdate.setInt(9, locDeVeci.getIdLoc());
 			PSUpdate.setInt(1, locDeVeci.getSuprafata());
@@ -74,8 +74,7 @@ public class DAOLocuri implements IDAOLocuri {
 				PSUpdate.setInt(5, 0);
 			}
 			PSUpdate.setInt(6, locDeVeci.getIdCimitir());
-			PSUpdate.setInt(7, locDeVeci.getNrDecedati());
-			PSUpdate.setInt(8, locDeVeci.getNrConcesionari());
+			PSUpdate.setInt(7, locDeVeci.getNrContractConcesionare());
 			PSUpdate.executeUpdate();
 		} catch (SQLException ex) {
 			throw new SQLException("Error when trying to update the: "

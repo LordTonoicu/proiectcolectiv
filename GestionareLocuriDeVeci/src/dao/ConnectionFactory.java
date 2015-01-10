@@ -8,8 +8,8 @@ public class ConnectionFactory {
 
 	private static ConnectionFactory instance = new ConnectionFactory();
     public static final String URL = "jdbc:mysql://127.0.0.1:3306/mydb";
-    public static final String USER = "admin99mtUz8";
-    public static final String PASSWORD = "Xgsqqdy2UlJM";
+    public static final String USER = "root";
+    public static final String PASSWORD = "";
     public static final String DRIVER_CLASS = "com.mysql.jdbc.Driver"; 
      
     private ConnectionFactory() {

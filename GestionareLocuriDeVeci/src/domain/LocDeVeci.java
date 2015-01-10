@@ -11,7 +11,8 @@ public class LocDeVeci {
 	private boolean isMonument;
 	private int idCimitir;
 	private int nrDecedati;
-	private int nrConcesionari;
+	private int nrContractConcesionare;
+	
 	public int getNrDecedati() {
 		return nrDecedati;
 	}
@@ -20,12 +21,12 @@ public class LocDeVeci {
 		this.nrDecedati = nrDecedati;
 	}
 
-	public int getNrConcesionari() {
-		return nrConcesionari;
+	public int getNrContractConcesionare() {
+		return nrContractConcesionare;
 	}
 
-	public void setNrConcesionari(int nrConcesionari) {
-		this.nrConcesionari = nrConcesionari;
+	public void setNrContractConcesionare(int nrContractConcesionare) {
+		this.nrContractConcesionare = nrContractConcesionare;
 	}
 
 	public LocDeVeci() {
@@ -33,7 +34,7 @@ public class LocDeVeci {
 	}
 
 	public LocDeVeci(int suprafata, int idParcela, int numar,
-			byte[] poza, boolean isMonument, int idCimitir, int nrDecedati, int nrConcesionari) {
+			byte[] poza, boolean isMonument, int idCimitir, int nrDecedati, int nrContractConcesionare) {
 
 		this.suprafata = suprafata;
 		this.idParcela = idParcela;
@@ -42,11 +43,11 @@ public class LocDeVeci {
 		this.isMonument = isMonument;
 		this.idCimitir = idCimitir;
 		this.nrDecedati = nrDecedati;
-		this.nrConcesionari = nrConcesionari;
+		this.nrContractConcesionare = nrContractConcesionare;
 	}
 	
 	public LocDeVeci(int idLoc, int suprafata, int idParcela, int numar,
-			byte[] poza, boolean isMonument, int idCimitir, int nrDecedati, int nrConcesionari) {
+			byte[] poza, boolean isMonument, int idCimitir, int nrDecedati, int nrContractConcesionare) {
 
 		this.idLoc = idLoc;
 		this.suprafata = suprafata;
@@ -56,7 +57,7 @@ public class LocDeVeci {
 		this.isMonument = isMonument;
 		this.idCimitir = idCimitir;
 		this.nrDecedati = nrDecedati;
-		this.nrConcesionari = nrConcesionari;
+		this.nrContractConcesionare = nrContractConcesionare;
 	}
 
 	public int getIdLoc() {
@@ -121,6 +122,6 @@ public class LocDeVeci {
 				+ ", idParcela=" + idParcela + ", numar=" + numar + ", poza="
 				+ poza + ", isMonument=" + isMonument + ", idCimitir="
 				+ idCimitir +", nrDecedati="+ nrDecedati 
-				+ ", nrConcesionari ="+nrConcesionari +"]";
+				+ ", nrContractConcesionare =" + nrContractConcesionare + "]";
 	}
 }

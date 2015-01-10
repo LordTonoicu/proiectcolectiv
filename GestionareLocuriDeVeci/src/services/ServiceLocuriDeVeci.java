@@ -20,7 +20,7 @@ public interface ServiceLocuriDeVeci {
 	 *     nale ale detinatorului, inmormantatului etc.
 	 * 
 	 */
-	public List<LocDeVeci> getLocuriDeVeciExpirate(int anulExpirarii);
+	public List<LocDeVeci> getLocuriDeVeciExpirate(int anulExpirarii) throws BusinessException;
 	
 	/**
 	 * Returneaza locurile de veci  caror termen de concesionare a expirat
@@ -32,7 +32,7 @@ public interface ServiceLocuriDeVeci {
 	 *     nale ale detinatorului, inmormantatului etc.
 	 * 
 	 */
-	public List<LocDeVeci> getLocuriDeVeciExpirate();
+	public List<LocDeVeci> getLocuriDeVeciExpirate() throws BusinessException;
 	
 	
 	/*OBSERVATIE: In eventualitatea in care se retine si adresa de mail pe baza ID-ului
@@ -40,7 +40,7 @@ public interface ServiceLocuriDeVeci {
 	 *un email de informare concesionarului care sa echivaleze cerinta functionala "redac-
 	 *tarea unei scrisori catre concesionar prin care sa fie atentionat asupra situatiei 
 	 *platii locului de veci" */
-	public void trimiteEmailConcesionar (int locDeVeciExpirat);
+	public void trimiteEmailConcesionar (int locDeVeciExpirat) throws BusinessException;
 	
 	/**
 	 * Returneaza locurile de veci caror termen de expira in anul in curs
@@ -51,7 +51,7 @@ public interface ServiceLocuriDeVeci {
 	 *     nale ale detinatorului, inmormantatului etc.
 	 * 
 	 */
-	public List<LocDeVeci> getLocuriDeVeciExpirandInAnulCurent();
+	public List<LocDeVeci> getLocuriDeVeciExpirandInAnulCurent() throws BusinessException;
 	
 	/**
 	 * Returneaza locurile de veci platite in anul in curs
@@ -62,7 +62,7 @@ public interface ServiceLocuriDeVeci {
 	 *     inmormantatului etc.
 	 * 
 	 */
-	public List<LocDeVeci> getLocuriDeVeciPlatiteInAnulInCurs();
+	public List<LocDeVeci> getLocuriDeVeciPlatiteInAnulInCurs() throws BusinessException;
 	
 	public List<LocDeVeci> getLocuriDeVeci() throws BusinessException;
 	
@@ -73,6 +73,8 @@ public interface ServiceLocuriDeVeci {
 	public void stergeLocDeVeci (LocDeVeci locDeVeci, String user) throws BusinessException;
 	
 	public List<LocDeVeciDTO> getLocuriDeVeciByIdParcela (int idParcela) throws BusinessException;
+	
+	public LocDeVeci getById (int id) throws BusinessException;
 	
 	//+ Export raspuns, de stabilit date membru ale unui obiect incapsulandu-l etc.
 }
