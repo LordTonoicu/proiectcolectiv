@@ -84,7 +84,7 @@ public class DAOJurnal implements IDAOJurnal{
     	InregistrareJurnal inregistrareJurnal;
     	
     	while(result.next()) {
-    		inregistrareJurnal = new InregistrareJurnal(result.getInt(1), result.getTimestamp(2), result.getString(3));
+    		inregistrareJurnal = new InregistrareJurnal(result.getInt(1), result.getTimestamp(2), result.getString(3), result.getString(4));
     		inregistrareJurnalList.add(inregistrareJurnal);
     	}
     	

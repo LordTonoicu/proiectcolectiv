@@ -7,24 +7,34 @@ public class InregistrareJurnal {
 	private int nrInregistare;
 	private Timestamp dataOra;
 	private String detaliiModificare;
+	private String user;
 
 	public InregistrareJurnal() {
 
 	}
 
 	public InregistrareJurnal(int nrInregistrare, Timestamp dataOra,
-			String detaliiModificare) {
+			String detaliiModificare, String user) {
 		
 		this.nrInregistare = nrInregistrare;
 		this.dataOra = dataOra;
 		this.detaliiModificare = detaliiModificare;
+		this.user = user;
 	}
 	
 	public InregistrareJurnal(Timestamp dataOra,
-			String detaliiModificare) {
+			String detaliiModificare, String user) {
 		
 		this.dataOra = dataOra;
 		this.detaliiModificare = detaliiModificare;
+	}
+	
+	public String getUser() {
+		return user;
+	}
+
+	public void setUser(String user) {
+		this.user = user;
 	}
 
 	public int getNrInregistare() {
@@ -54,7 +64,7 @@ public class InregistrareJurnal {
 	@Override
 	public String toString() {
 		return "InregistrareJurnal [nrInregistare=" + nrInregistare
-				+ ", dataOra=" + dataOra + ", detaliiModificare="
+				+ ", dataOra=" + dataOra + ", user=" + user + ", detaliiModificare="
 				+ detaliiModificare + "]";
 	}
 }

@@ -6,20 +6,25 @@ import java.util.List;
 import java.util.Vector;
 
 import dao.DAOCimitire;
+import dao.DAOJurnal;
 import dao.IDAOCimitire;
+import dao.IDAOJurnal;
 import domain.Cimitir;
 import exceptions.BusinessException;
 import exceptions.ValidatorException;
+import services.util.UtilInregistrareJurnal;
 import validators.CimitirValidator;
 
 public class ServiceCimitireImpl implements ServiceCimitire{
 	
 	private IDAOCimitire daoCimitire;
 	private CimitirValidator cimitirValidator;
+	private IDAOJurnal daoJurnal;
 
 	public ServiceCimitireImpl() {
 		super();
 		this.daoCimitire=new DAOCimitire();
+		this.daoJurnal = new DAOJurnal();
 		this.cimitirValidator=new CimitirValidator();
 	}
 
@@ -43,6 +48,7 @@ public class ServiceCimitireImpl implements ServiceCimitire{
 		try{
 			cimitirValidator.validate(cimitir);
 			daoCimitire.insert(cimitir);
+			daoJurnal.insert(UtilInregistrareJurnal.creeazaInregistrareJurnal(user, "adaugare", cimitir.toString()));			
 		} catch (ValidatorException validatorException){
 			throw new BusinessException("Validation exception: " + validatorException.getMessage());
 		} catch (SQLException sqlException) {
@@ -55,6 +61,7 @@ public class ServiceCimitireImpl implements ServiceCimitire{
 	public void stergeCimitir(Cimitir cimitir, String user) throws BusinessException {
 		try{
 			daoCimitire.delete(cimitir);
+			daoJurnal.insert(UtilInregistrareJurnal.creeazaInregistrareJurnal(user, "stergere", cimitir.toString()));
 		} catch (SQLException sqlException) {
 			throw new BusinessException("Data access exception: " + sqlException.getMessage());
 		}
@@ -65,7 +72,9 @@ public class ServiceCimitireImpl implements ServiceCimitire{
 	public void actualizeazaCimitir(Cimitir cimitir, String user) throws BusinessException {
 		try{
 			cimitirValidator.validate(cimitir);
+			Cimitir cimitirAnterior = daoCimitire.getById(cimitir.getIdCimitir());
 			daoCimitire.update(cimitir);
+			daoJurnal.insert(UtilInregistrareJurnal.creeazaInregistrareJurnal(user, "actualizare", cimitirAnterior.toString(), cimitir.toString()));
 		} catch (ValidatorException validatorException){
 			throw new BusinessException("Validation exception: " + validatorException.getMessage());
 		} catch (SQLException sqlException) {
