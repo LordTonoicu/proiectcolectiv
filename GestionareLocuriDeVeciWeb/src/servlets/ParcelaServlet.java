@@ -75,7 +75,6 @@ public class ParcelaServlet extends HttpServlet {
 		}
 		try {
 			int idCimitir=(Integer) h.getAttribute("idCimitir");
-			System.out.println("Id cimitir:"+idCimitir);
 			List<ParcelaDTO> parcele = parcelaService.getParceleByIdCimitir(idCimitir);
 			List<Cimitir> cimitire = cimitirService.getCimitire();
 			h.setAttribute("listCimitire", cimitire);
@@ -100,7 +99,6 @@ public class ParcelaServlet extends HttpServlet {
 		else {
 			parcela.setHasMonument(false);
 		}
-		System.out.println(parcela);
 		parcelaService.actualizeazaParcela(parcela,request.getRemoteHost());
 	
 	}
@@ -108,8 +106,9 @@ public class ParcelaServlet extends HttpServlet {
 	private void adaugaParcela(HttpServletRequest request)
 			throws BusinessException {
 		Parcela parcela = new Parcela();
+		HttpSession session = request.getSession();
 		parcela.setDenumire(request.getParameter("denumire"));
-		parcela.setIdCimitir(Integer.parseInt(request.getParameter("cimitire")));
+		parcela.setIdCimitir((Integer)session.getAttribute("idCimitir"));
 		if (request.getParameter("areMonument") != null)
 			parcela.setHasMonument(true);
 		else {
