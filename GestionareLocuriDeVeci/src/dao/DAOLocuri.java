@@ -10,6 +10,7 @@ import java.util.List;
 
 import javax.sql.rowset.serial.SerialBlob;
 
+import domain.Cimitir;
 import domain.Decedat;
 import domain.LocDeVeci;
 
@@ -129,8 +130,30 @@ public class DAOLocuri implements IDAOLocuri {
 	}
 
 	@Override
-	public LocDeVeci getById(int idLoc) {
-		// TODO Auto-generated method stub
-		return null;
+	public LocDeVeci getById(int idLoc) throws SQLException {
+		LocDeVeci locDeVeci=null;
+		try{
+
+			String selectTable = "SELECT * FROM LocuriDeVeci WHERE idLoc = " + String.valueOf(idLoc);
+			PSSelect = connection.prepareStatement(selectTable);
+
+			ResultSet result = PSSelect.executeQuery(selectTable);
+
+
+			while(result.next()) {
+				locDeVeci = new LocDeVeci(result.getInt(1),result.getInt(2),result.getInt(3),result.getInt(4),
+						result.getBytes(5), result.getBoolean(6), result.getInt(7), result.getInt(8),
+						result.getInt(9));
+
+			}
+
+		}catch(SQLException ex) {
+			throw new SQLException("Error when trying to retrieve the LocDeVeci:" + ex.getMessage());
+		}finally{
+			if(PSSelect !=null){
+				PSSelect.close();
+			}
+		}
+		return locDeVeci;
 	}
 }
