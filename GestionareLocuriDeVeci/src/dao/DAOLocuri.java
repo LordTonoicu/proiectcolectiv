@@ -19,6 +19,7 @@ public class DAOLocuri implements IDAOLocuri {
 	PreparedStatement PSInsert = null;
 	PreparedStatement PSUpdate = null;
 	PreparedStatement PSSelect = null;
+	private PreparedStatement PSDelete = null;
 
 	public DAOLocuri() {
 
@@ -87,9 +88,20 @@ public class DAOLocuri implements IDAOLocuri {
 		}
 	}
 
-	public void delete(LocDeVeci locDeVeci) {
+	public void delete(LocDeVeci locDeVeci) throws SQLException{
+		try{
+		       String deleteTable = "UPDATE LocuriDeVeci set deleted=true " + "WHERE idLoc = ?";
+		       PSDelete = connection.prepareStatement(deleteTable);
+		       PSDelete.setInt(1, locDeVeci.getIdLoc());
+		       PSDelete.executeUpdate();
+		      }catch(SQLException ex) {
+		       throw new SQLException("Error when trying to delete the: " + locDeVeci + ":" + ex.getMessage());
+		      }finally{
+		       if(PSDelete !=null){
+		                 PSDelete.close();
+		             }
+		      }
 	}
-
 	@Override
 	public List<LocDeVeci> getAll() {
 		List<LocDeVeci> locuri = new ArrayList<LocDeVeci>();
