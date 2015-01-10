@@ -149,6 +149,11 @@ public class LocDeVeciServlet extends HttpServlet {
 		if (filePart.getSize() != 0) {
 			locDeVeci.setPoza(getBytes(inputStream));
 		}
+		else
+		{
+			byte [] poza={0};
+			locDeVeci.setPoza(poza);
+		}
 		locDeVeciService.adaugaLocDeVeci(locDeVeci,request.getRemoteHost());
 		
 

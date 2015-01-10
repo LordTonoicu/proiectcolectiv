@@ -86,7 +86,7 @@
                                         --> 
                                         <div>
                                         	<label>Are Monument?</label>
-                                       		 <input type="checkbox" name="HasMonumentParcela" id="HasMonumentParcela">Are Monument                                        
+                                       		 <input type="checkbox" name="areMonument" id="HasMonumentParcela">Are Monument                                        
                                        	</div>                              
                                         <button type="submit" id="updateParcela" name="updateParcela" class="btn btn-primary" >Salvare Modificari</button>
                                         
