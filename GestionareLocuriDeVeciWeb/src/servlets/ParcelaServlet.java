@@ -13,6 +13,7 @@ import javax.servlet.http.HttpSession;
 
 import domain.Cimitir;
 import domain.Parcela;
+import dto.ParcelaDTO;
 import exceptions.BusinessException;
 import services.ServiceCimitire;
 import services.ServiceCimitireImpl;
@@ -71,7 +72,7 @@ public class ParcelaServlet extends HttpServlet {
 			e1.printStackTrace();
 		}
 		try {
-			List<Parcela> parcele = parcelaService.getParcele();
+			List<ParcelaDTO> parcele = parcelaService.getParcele();
 			List<Cimitir> cimitire = cimitirService.getCimitire();
 			h.setAttribute("listCimitire", cimitire);
 			h.setAttribute("listParcele", parcele);

@@ -46,6 +46,7 @@ function newPopup(url) {
 
 <body>
 	<%@ page import="domain.*" %>
+	<%@ page import="dto.*" %>
 	<%@ page import="java.util.ArrayList" %>
 	<jsp:useBean id="listParcele" class="java.util.ArrayList" scope="session"/>
 	<jsp:setProperty name="listParcele" property="*"/> 
@@ -188,7 +189,7 @@ function newPopup(url) {
                                             
                                             <th>Denumire</th>
                                             <th>Numar locuri</th>
-                                            <th>Id Cimitir</th>
+                                            <th>Cimitir</th>
                                            <th>Are Monument</th>
                                         	<th>Actiune</th>
 
@@ -198,7 +199,8 @@ function newPopup(url) {
 									<%
 										int i=0;
   										for (Object parcelaO:listParcele) {
-  											Parcela parcela = (Parcela)parcelaO;
+  											ParcelaDTO parcelaDTO = (ParcelaDTO)parcelaO;
+  											Parcela parcela = parcelaDTO.getParcela();
   											i++;
        								 %>
                                         <tr class="odd gradeX">
@@ -207,7 +209,7 @@ function newPopup(url) {
                                            <input type="hidden" id="idParcelaV<%=i%>" name="idParcela" value=<%=parcela.getIdParcela()%> />
                                            <td><span id="denumireV<%=i%>"><%=parcela.getDenumire() %></span></td>
                                            <td><%=parcela.getNrLocuri() %></td>
-                                           <td><span id="idCimitirV<%=i%>"><%=parcela.getIdCimitir() %></span></td>
+                                           <td><span id="idCimitirV<%=i%>"><%=parcelaDTO.getDenumireCimitir() %></span></td>
                                             <%if(parcela.getHasMonument()){ %>
                                             <td><span id="hasMonumentV<%=i%>">da</span></td>
                                             <% }else{ %>

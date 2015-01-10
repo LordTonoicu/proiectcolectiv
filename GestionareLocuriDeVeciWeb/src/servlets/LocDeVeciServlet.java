@@ -17,6 +17,7 @@ import javax.servlet.http.Part;
 import domain.Cimitir;
 import domain.LocDeVeci;
 import domain.Parcela;
+import dto.ParcelaDTO;
 import exceptions.BusinessException;
 import services.ServiceCimitire;
 import services.ServiceCimitireImpl;
@@ -68,7 +69,7 @@ public class LocDeVeciServlet extends HttpServlet {
 		e.printStackTrace();
 	}
 	try {
-			List<Parcela> parcele=parcelaService.getParcele();
+			List<ParcelaDTO> parcele=parcelaService.getParcele();
 			List<Cimitir> cimitire=cimitirService.getCimitire();
 			List<LocDeVeci> locuriDeVeci=locDeVeciService.getLocuriDeVeci();
 			h.setAttribute("listLocuriDeVeci", locuriDeVeci);
