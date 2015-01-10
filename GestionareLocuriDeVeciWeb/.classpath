@@ -10,10 +10,5 @@
 	</classpathentry>
 	<classpathentry combineaccessrules="false" kind="src" path="/GestionareLocuriDeVeci"/>
 	<classpathentry kind="con" path="org.eclipse.jst.server.core.container/org.eclipse.jst.server.tomcat.runtimeTarget/Apache Tomcat v7.0"/>
-	<classpathentry kind="lib" path="WebContent/WEB-INF/10738639_10202134096474245_25395171_n.jar">
-		<attributes>
-			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
-		</attributes>
-	</classpathentry>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
