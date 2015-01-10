@@ -7,8 +7,10 @@ import java.util.Vector;
 
 import dao.DAOCimitire;
 import dao.DAOJurnal;
+import dao.DAOLocuri;
 import dao.IDAOCimitire;
 import dao.IDAOJurnal;
+import dao.IDAOLocuri;
 import domain.Cimitir;
 import exceptions.BusinessException;
 import exceptions.ValidatorException;
