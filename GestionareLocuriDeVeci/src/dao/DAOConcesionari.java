@@ -12,6 +12,7 @@ public class DAOConcesionari implements IDAOConcesionari {
 	private Connection connection = null;
 	PreparedStatement PSInsert = null;
 	PreparedStatement PSSelect = null;
+	PreparedStatement PSDelete = null;
     
     public DAOConcesionari() {
     	
@@ -45,7 +46,18 @@ public class DAOConcesionari implements IDAOConcesionari {
 
 	@Override
 	public void delete(Concesionar concesionar) throws SQLException {
-		// TODO Auto-generated method stub
+		try{
+			String deleteTable = "UPDATE Concesionari SET deleted=true " + "WHERE idConcesionat = ?";
+			PSDelete = connection.prepareStatement(deleteTable);
+			PSDelete.setInt(1, concesionar.getIdConcesionar());
+			PSDelete.executeUpdate();
+		}catch(SQLException ex) {
+			throw new SQLException("Error when trying to delete the: " + concesionar + ":" + ex.getMessage());
+		}finally{
+			if(PSDelete !=null){
+				PSDelete.close();
+			}
+		}
 		
 	}
 
