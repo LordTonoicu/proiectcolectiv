@@ -33,6 +33,11 @@
 </head>
 
 <body>
+	<%@ page import="domain.*"%>
+	<%@ page import="java.util.ArrayList"%>
+	<%@ page import="java.util.Calendar" %>
+	<jsp:useBean id="inregistrariJurnal" class="java.util.ArrayList" scope="session" />
+	<jsp:setProperty name="inregistrariJurnal" property="*" />
 
     <div id="wrapper">
   <!-- Navigation -->
@@ -154,67 +159,32 @@
                                             <th>Nume utilizator</th>
                                             <th>Data</th>
                                             <th>Ora</th>
-                                            <th>Nr document</th>
                                             <th>Detalii</th>
                                         </tr>
                                     </thead>
                                     <tbody>
+                                    	<%
+											int i=0;
+										  	for (Object inregistrareO: inregistrariJurnal) {
+										  	InregistrareJurnal inregJurnal = (InregistrareJurnal)inregistrareO;
+										  	 Calendar cal = Calendar.getInstance();
+	  										 cal.setTime(new java.sql.Date(inregJurnal.getDataOra().getTime()));
+	  										 int year = cal.get(Calendar.YEAR);
+	  										 int month = cal.get(Calendar.MONTH)+1;
+	  										 int day = cal.get(Calendar.DAY_OF_MONTH);
+
+										  	i++;
+										%>
                                         <tr class="odd gradeX">
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td class="center"></td>
-                                            <td class="center"></td>
+                                            <td><%=inregJurnal.getUser() %></td>
+                                            <td><%=day+"/"+month+"/"+year %></td>
+                                            <td><%=inregJurnal.getDataOra().getHours()+":"+inregJurnal.getDataOra().getMinutes() %></td>
+                                            <td class="center"><%=inregJurnal.getDetaliiModificare() %></td>
                                         </tr>
-                                         <tr class="odd gradeX">
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td class="center"></td>
-                                            <td class="center"></td>
-                                        </tr>
-                                         <tr class="odd gradeX">
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td class="center"></td>
-                                            <td class="center"></td>
-                                        </tr>
-                                         <tr class="odd gradeX">
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td class="center"></td>
-                                            <td class="center"></td>
-                                        </tr>
-                                         <tr class="odd gradeX">
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td class="center"></td>
-                                            <td class="center"></td>
-                                        </tr>
-                                         <tr class="odd gradeX">
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td class="center"></td>
-                                            <td class="center"></td>
-                                        </tr>
-                                         <tr class="odd gradeX">
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td class="center"></td>
-                                            <td class="center"></td>
-                                        </tr>
-                                         <tr class="odd gradeX">
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td class="center"></td>
-                                            <td class="center"></td>
-                                        </tr>
+                                        <%
+                                        	}
+										  %>
+                                        
                                         
                                     </tbody>
                                 </table>

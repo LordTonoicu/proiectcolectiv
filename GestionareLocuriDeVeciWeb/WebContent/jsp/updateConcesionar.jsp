@@ -8,23 +8,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-  	
-  <link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
-  <script src="//code.jquery.com/jquery-1.10.2.js"></script>
-  <script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
-  <link rel="stylesheet" href="/resources/demos/style.css">
-  <script>
-  $(function() {
-    $("#DataInmormantareDecedat").datepicker();
-  });
-  window.onunload = refreshParent;
-  function refreshParent() {
-      window.opener.location.reload();
-      this.close();
-  }
-</script>
- 
-  
 
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -47,11 +30,7 @@
 
 </head>
 
-<body style="overflow: hidden">
-    	<%@ page import="domain.*" %>
-	<%@ page import="java.util.ArrayList" %>
-	<jsp:useBean id="listLocuriDeVeci" class="java.util.ArrayList" scope="session"/>
-	<jsp:setProperty name="listLocuriDeVeci" property="*"/> 
+<body>
 
     <div id="wrapper">
 
@@ -61,7 +40,7 @@
         <div id="page-wrapper" style="position:fixed">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Adaugare decedat</h1>
+                    <h1 class="page-header">Actualizare concesionar</h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -75,41 +54,31 @@
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-lg-6">
-                                    <form role="form" action="../DecedatServlet" method="POST">
+                                    <form role="form">
                                         <div class="form-group">
-                                            <label>Nume</label>
-                                            <input class="form-control"  id="NumeDecedat" name="NumeDecedat">
-                                       
-                                        </div>
-                                           <div class="form-group">
-                                            <label>Prenume</label>
-                                            <input class="form-control" id="PrenumeDecedat" name="PrenumeDecedat">
-                                       
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Cnp Decedat</label>
-                                            <input class="form-control"  id="CnpDecedat" name="CnpDecedat">
+                                            <label>Domiciliu</label>
+                                            <input id="Domiciliu" name="Domiciliu" class="form-control">
                                         
                                         </div>
                                         <div class="form-group">
-                                            <label>Data inmormantare</label>
-                                            <input type="text"   id="DateInmormantareDecedat" name="DateInmormantareDecedat" class="form-control">
+                                            <label>Cnp concesionar</label>
+                                            <input id="Cnp" name="Cnp" class="form-control">
                                           
                                         </div>
-                                       
                                         <div class="form-group">
-                                            <label>Nr adeverinta inhumare</label>
-                                            <input class="form-control"  id="NrAdeverintaInhumareDecedat" name="NrAdeverintaInhumareDecedat">
+                                            <label>Numar chitanta</label>
+                                            <input id="NumarChitanta" name="NumarChitanta" class="form-control">
+                                       
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Id loc de veci</label>
+                                            <input id="IdLocDeVeci" name="IdLocDeVeci" class="form-control">
                                           
                                         </div>
                                         
-                                        <div class="checkbox">
-                                            <label>
-                                               <input type="checkbox" name="ePersonalitate">E personalitate
-                                            </label>
-                                         </div>
                                         
-                                        <button type="submit" class="btn btn-primary" name="adaugaDecedat" id="adaugaDecedat">Salvare</button>
+                                        
+                                        <button id="updateConcesionar" name="updateConcesionar" type="submit" class="btn btn-primary">Salvare</button>
                                         
                                     </form>
                                 </div>
@@ -144,8 +113,8 @@
     <!-- Custom Theme JavaScript -->
     <script src="js/sb-admin-2.js"></script>
     
-   	<!-- addDecadat validator -->
-	<script type="text/javascript" src="js/validations/addDecedatValidator.js"></script>
+    <!-- addConcesionar validator -->
+	<script type="text/javascript" src="js/validations/addConcesionarValidator.js"></script>
 
 </body>
 
