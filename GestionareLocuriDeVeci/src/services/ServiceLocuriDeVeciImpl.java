@@ -9,6 +9,7 @@ import javax.smartcardio.ATR;
 import validators.LocDeVeciValidator;
 import dao.DAOCimitire;
 import dao.DAOLocuri;
+import dao.DAOParcele;
 import dao.IDAOCimitire;
 import dao.IDAOLocuri;
 import dao.IDAOParcele;
@@ -47,6 +48,7 @@ public class ServiceLocuriDeVeciImpl implements ServiceLocuriDeVeci {
 		super();
 		this.daoLocuri = new DAOLocuri();
 		this.locDeVeciValidator = new LocDeVeciValidator();
+		this.daoParcele = new DAOParcele();
 	}
 
 	@Override

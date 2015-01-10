@@ -4,10 +4,12 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import services.util.UtilInregistrareJurnal;
 import validators.DatePersonaleValidator;
 import validators.DecedatValidator;
 import dao.DAODatePersonale;
 import dao.DAODecedati;
+import dao.DAOJurnal;
 import dao.IDAODatePersonale;
 import dao.IDAODecedati;
 import domain.DatePersonale;
@@ -22,12 +24,19 @@ public class ServiceDecedatiImpl implements ServiceDecedati{
 	private IDAODatePersonale daoDatePersonale;
 	private DecedatValidator decedatValidator;
 	private DatePersonaleValidator datePersonaleValidator;
+	private DAOJurnal daoJurnal;
 	
 	public ServiceDecedatiImpl() {
 		super();
 		this.daoDecedati=new DAODecedati();
 		this.decedatValidator=new DecedatValidator();
 		this.daoDatePersonale = new DAODatePersonale();
+		this.datePersonaleValidator = new DatePersonaleValidator();
+		this.daoJurnal = new DAOJurnal();
+	}
+	
+	public void setDaoJurnal(DAOJurnal daoJurnal) {
+		this.daoJurnal = daoJurnal;
 	}
 
 	@Override
@@ -37,6 +46,7 @@ public class ServiceDecedatiImpl implements ServiceDecedati{
 			datePersonaleValidator.validate(decedatDTO.getDatePersonale());
 			daoDatePersonale.insert(decedatDTO.getDatePersonale());
 			daoDecedati.insert(decedatDTO.getDecedat());
+			daoJurnal.insert(UtilInregistrareJurnal.creeazaInregistrareJurnal(user, "adaugare", decedatDTO.getDecedat().toString()));
 		} catch (SQLException sqlException){
 			throw new BusinessException("Data access exception: " + sqlException.getMessage());
 		} catch (ValidatorException validatorException){

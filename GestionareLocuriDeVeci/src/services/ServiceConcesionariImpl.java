@@ -109,6 +109,7 @@ public class ServiceConcesionariImpl implements ServiceConcesionari{
 		try{
 			daoConcesionari.delete(concesionarDTO.getConcesionar());
 			daoDatePersonale.delete(concesionarDTO.getDatePersonale());
+			daoJurnal.insert(UtilInregistrareJurnal.creeazaInregistrareJurnal(user, "stergere", concesionarDTO.toString()));
 		} catch (SQLException sqlException){
 			throw new BusinessException("Data access exception: " + sqlException.getMessage());
 		}
