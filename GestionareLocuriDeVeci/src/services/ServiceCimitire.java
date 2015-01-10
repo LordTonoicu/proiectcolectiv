@@ -17,7 +17,7 @@ public interface ServiceCimitire {
 	 *     BusinessException     
 	 * 
 	 */
-	public void adaugaCimitir (Cimitir cimitir) throws BusinessException;
+	public void adaugaCimitir (Cimitir cimitir, String user) throws BusinessException;
 	
 	/**
 	 * Sterge un cimitir
@@ -27,7 +27,7 @@ public interface ServiceCimitire {
 	 *     BusinessException     
 	 * 
 	 */
-	public void stergeCimitir (Cimitir cimitir) throws BusinessException;
+	public void stergeCimitir (Cimitir cimitir, String user) throws BusinessException;
 	
 	/**
 	 * Actualizeaza un cimitir
@@ -37,7 +37,7 @@ public interface ServiceCimitire {
 	 *     BusinessException     
 	 * 
 	 */
-	public void actualizeazaCimitir(Cimitir cimitir) throws BusinessException;
+	public void actualizeazaCimitir(Cimitir cimitir, String user) throws BusinessException;
 	
 	public List<Cimitir> getCimitire() throws BusinessException;
 	

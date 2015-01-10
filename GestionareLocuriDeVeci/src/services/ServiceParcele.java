@@ -15,7 +15,7 @@ public interface ServiceParcele {
 	 *     BusinessException     
 	 * 
 	 */
-	public void adaugaParcela (Parcela parcela) throws BusinessException;
+	public void adaugaParcela (Parcela parcela, String user) throws BusinessException;
 	
 	/**
 	 * Sterge o parcela
@@ -25,7 +25,7 @@ public interface ServiceParcele {
 	 *     BusinessException     
 	 * 
 	 */
-	public void stergeParcela (Parcela parcela) throws BusinessException;
+	public void stergeParcela (Parcela parcela, String user) throws BusinessException;
 	
 	/**
 	 * Actualizeaza o parcela
@@ -35,7 +35,7 @@ public interface ServiceParcele {
 	 *     BusinessException     
 	 * 
 	 */
-	public void actualizeazaParcela(Parcela parcela) throws BusinessException;
+	public void actualizeazaParcela(Parcela parcela, String user) throws BusinessException;
 
 	public List<ParcelaDTO> getParcele() throws BusinessException;
 	

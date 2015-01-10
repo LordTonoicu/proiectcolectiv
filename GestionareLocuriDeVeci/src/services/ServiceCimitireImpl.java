@@ -39,7 +39,7 @@ public class ServiceCimitireImpl implements ServiceCimitire{
 	}
 
 	@Override
-	public void adaugaCimitir(Cimitir cimitir) throws BusinessException {
+	public void adaugaCimitir(Cimitir cimitir, String user) throws BusinessException {
 		try{
 			cimitirValidator.validate(cimitir);
 			daoCimitire.insert(cimitir);
@@ -52,7 +52,7 @@ public class ServiceCimitireImpl implements ServiceCimitire{
 	}
 
 	@Override
-	public void stergeCimitir(Cimitir cimitir) throws BusinessException {
+	public void stergeCimitir(Cimitir cimitir, String user) throws BusinessException {
 		try{
 			daoCimitire.delete(cimitir);
 		} catch (SQLException sqlException) {
@@ -62,7 +62,7 @@ public class ServiceCimitireImpl implements ServiceCimitire{
 	}
 
 	@Override
-	public void actualizeazaCimitir(Cimitir cimitir) throws BusinessException {
+	public void actualizeazaCimitir(Cimitir cimitir, String user) throws BusinessException {
 		try{
 			cimitirValidator.validate(cimitir);
 			daoCimitire.update(cimitir);

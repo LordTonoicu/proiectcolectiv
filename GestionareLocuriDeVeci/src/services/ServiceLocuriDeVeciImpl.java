@@ -56,7 +56,7 @@ public class ServiceLocuriDeVeciImpl implements ServiceLocuriDeVeci {
 	}
 
 	@Override
-	public void adaugaLocDeVeci(LocDeVeci locDeVeci) throws BusinessException {
+	public void adaugaLocDeVeci(LocDeVeci locDeVeci, String user) throws BusinessException {
 		try {
 			locDeVeciValidator.validate(locDeVeci);
 			daoLocuri.insert(locDeVeci);
@@ -70,7 +70,7 @@ public class ServiceLocuriDeVeciImpl implements ServiceLocuriDeVeci {
 	}
 
 	@Override
-	public void actualizeazaLocDeVeci(LocDeVeci locDeVeci)
+	public void actualizeazaLocDeVeci(LocDeVeci locDeVeci, String user)
 			throws BusinessException {
 		try {
 			locDeVeciValidator.validate(locDeVeci);
@@ -86,7 +86,7 @@ public class ServiceLocuriDeVeciImpl implements ServiceLocuriDeVeci {
 	}
 
 	@Override
-	public void stergeLocDeVeci(LocDeVeci locDeVeci) throws BusinessException {
+	public void stergeLocDeVeci(LocDeVeci locDeVeci, String user) throws BusinessException {
 		try {
 			daoLocuri.delete(locDeVeci);
 		} catch (SQLException sqlException) {

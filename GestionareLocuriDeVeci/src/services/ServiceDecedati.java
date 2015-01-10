@@ -17,7 +17,7 @@ public interface ServiceDecedati {
 	 *        Obiectul ingloband datele decedatului, respectiv parcela 
 	 */
 	/*OBSERVATIE: Datele decedatului vor fi persistate in prealabil in tab. Date personale*/
-	public void inscrieDecedat (DecedatDTO decedat) throws BusinessException;
+	public void inscrieDecedat (DecedatDTO decedat, String user) throws BusinessException;
 
 	/**
 	 * 
@@ -27,7 +27,7 @@ public interface ServiceDecedati {
 	 *        respectiv (noua) parcela 
 	 */
 	/*OBSERVATIE: Datele decedatului vor fi actualizate (eventual) in tab. Date personale*/
-	public void actualizeazaDecedat (DecedatDTO decedat) throws BusinessException;
+	public void actualizeazaDecedat (DecedatDTO decedat, String user) throws BusinessException;
 	
 	/**
 	 * Elimina un decesat persistat in prealabil.
@@ -36,7 +36,7 @@ public interface ServiceDecedati {
 	 * @throws
 	 *     BusinessException    
 	 * */
-	public void stergeDecedat (DecedatDTO decedatDTO) throws BusinessException;
+	public void stergeDecedat (DecedatDTO decedatDTO, String user) throws BusinessException;
 	
 	
 	/**

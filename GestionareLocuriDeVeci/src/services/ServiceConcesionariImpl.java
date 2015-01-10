@@ -61,7 +61,7 @@ public class ServiceConcesionariImpl implements ServiceConcesionari{
 	}
 
 	@Override
-	public void adaugaConcesionar(ConcesionarDTO concesionarDTO) throws BusinessException {
+	public void adaugaConcesionar(ConcesionarDTO concesionarDTO, String user) throws BusinessException {
 		try{
 			concesionarValidator.validate(concesionarDTO.getConcesionar());
 			datePersonaleValidator.validate(concesionarDTO.getDatePersonale());
@@ -75,7 +75,7 @@ public class ServiceConcesionariImpl implements ServiceConcesionari{
 	}
 
 	@Override
-	public void actualizeazaConcesionar(ConcesionarDTO concesionarDTO)
+	public void actualizeazaConcesionar(ConcesionarDTO concesionarDTO, String user)
 			throws BusinessException {
 		try{
 			concesionarValidator.validate(concesionarDTO.getConcesionar());
@@ -91,7 +91,7 @@ public class ServiceConcesionariImpl implements ServiceConcesionari{
 	}
 
 	@Override
-	public void stergeConcesionar(ConcesionarDTO concesionarDTO)
+	public void stergeConcesionar(ConcesionarDTO concesionarDTO, String user)
 			throws BusinessException {
 		try{
 			daoConcesionari.delete(concesionarDTO.getConcesionar());

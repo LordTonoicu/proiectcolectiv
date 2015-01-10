@@ -66,11 +66,11 @@ public interface ServiceLocuriDeVeci {
 	
 	public List<LocDeVeci> getLocuriDeVeci() throws BusinessException;
 	
-	public void adaugaLocDeVeci(LocDeVeci locDeVeci) throws BusinessException;
+	public void adaugaLocDeVeci(LocDeVeci locDeVeci, String user) throws BusinessException;
 	
-	public void actualizeazaLocDeVeci(LocDeVeci locDeVeci) throws BusinessException;
+	public void actualizeazaLocDeVeci(LocDeVeci locDeVeci, String user) throws BusinessException;
 	
-	public void stergeLocDeVeci (LocDeVeci locDeVeci) throws BusinessException;
+	public void stergeLocDeVeci (LocDeVeci locDeVeci, String user) throws BusinessException;
 	
 	public List<LocDeVeciDTO> getLocuriDeVeciByIdParcela (int idParcela) throws BusinessException;
 	

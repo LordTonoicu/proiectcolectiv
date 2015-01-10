@@ -31,7 +31,7 @@ public class ServiceDecedatiImpl implements ServiceDecedati{
 	}
 
 	@Override
-	public void inscrieDecedat(DecedatDTO decedatDTO) throws BusinessException {
+	public void inscrieDecedat(DecedatDTO decedatDTO, String user) throws BusinessException {
 		try{
 			decedatValidator.validate(decedatDTO.getDecedat());
 			datePersonaleValidator.validate(decedatDTO.getDatePersonale());
@@ -45,7 +45,7 @@ public class ServiceDecedatiImpl implements ServiceDecedati{
 	}
 
 	@Override
-	public void actualizeazaDecedat(DecedatDTO decedatDTO)
+	public void actualizeazaDecedat(DecedatDTO decedatDTO, String user)
 			throws BusinessException {
 		try{
 			decedatValidator.validate(decedatDTO.getDecedat());
@@ -63,7 +63,7 @@ public class ServiceDecedatiImpl implements ServiceDecedati{
 
 
 	@Override
-	public void stergeDecedat(DecedatDTO decedatDTO) throws BusinessException {
+	public void stergeDecedat(DecedatDTO decedatDTO, String user) throws BusinessException {
 		try{			
 			
 			daoDecedati.delete(decedatDTO.getDecedat());

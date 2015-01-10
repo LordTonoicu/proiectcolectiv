@@ -49,7 +49,7 @@ public class ServiceParceleImpl implements ServiceParcele{
 	}
 
 	@Override
-	public void adaugaParcela(Parcela parcela) throws BusinessException {
+	public void adaugaParcela(Parcela parcela, String user) throws BusinessException {
 		try {
 			parcelaValidator.validate(parcela);
 			daoParcele.insert(parcela);
@@ -63,7 +63,7 @@ public class ServiceParceleImpl implements ServiceParcele{
 	}
 
 	@Override
-	public void stergeParcela(Parcela parcela) throws BusinessException {
+	public void stergeParcela(Parcela parcela, String user) throws BusinessException {
 		try {
 			daoParcele.delete(parcela);
 		} catch (SQLException sqlException){
@@ -72,7 +72,7 @@ public class ServiceParceleImpl implements ServiceParcele{
 	}
 
 	@Override
-	public void actualizeazaParcela(Parcela parcela) throws BusinessException {
+	public void actualizeazaParcela(Parcela parcela, String user) throws BusinessException {
 		try {
 			parcelaValidator.validate(parcela);
 			daoParcele.update(parcela);
