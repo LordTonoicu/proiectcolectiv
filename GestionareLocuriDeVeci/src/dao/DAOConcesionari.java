@@ -25,7 +25,7 @@ public class DAOConcesionari implements IDAOConcesionari {
     public void insert(Concesionar concesionar) throws SQLException{
     	
     	try{
-    	 String insertTable = "INSERT INTO concesionari" + "(domiciliu, nrChitanta, cnpConcesionar, idLocDeVeci) VALUES" + "(? , ?, ?, ?)";
+    	 String insertTable = "INSERT INTO Concesionari" + "(domiciliu, nrChitanta, cnpConcesionar, idLocDeVeci,deleted) VALUES" + "(? , ?, ?, ?,false)";
     	 PSInsert = connection.prepareStatement(insertTable);
     	 PSInsert.setString(1, concesionar.getDomiciliu());
     	 PSInsert.setInt(2, concesionar.getNrChitanta());
