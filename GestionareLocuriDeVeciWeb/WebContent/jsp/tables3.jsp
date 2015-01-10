@@ -83,7 +83,7 @@
                             </ul>
                         </li>
                         <li>
-                            <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Rapoarte<span class="fa arrow"></span></a>
+                            <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Rapoarte <span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                
                                 <li>

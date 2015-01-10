@@ -111,7 +111,7 @@
                                     <a href="../Table4Servlet">Registrul index anual al decedatilor</a>
                                 </li>
                                 <li>
-                                    <a href="../Table5Servlet">Registru anual de evidenta a decedatilor fara apartinatori</a>
+                                    <a href="../Table5Servlet">Registrul anual de evidenta a decedatilor fara apartinatori</a>
                                 </li>
                                 <li>
                                     <a href="../Table6Servlet">Registrul cu evidenta cererilor de atribuire a locurilor de inhumare</a>
