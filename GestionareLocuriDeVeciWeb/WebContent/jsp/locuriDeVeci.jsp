@@ -81,12 +81,6 @@ function newPopup(url) {
                             <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Gestiune<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="../locuriDeVeciServlet">Locuri de veci</a>
-                                </li>
-                                <li>
-                                    <a href="../ParcelaServlet">Parcele</a>
-                                </li>
-                                <li>
                                     <a href="../CimitirServlet">Cimitire</a>
                                 </li>
                                 <li>
@@ -102,7 +96,7 @@ function newPopup(url) {
                             </ul>
                         </li>
                         <li>
-                            <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Vizualizare<span class="fa arrow"></span></a>
+                            <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Rapoarte<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                
                                 <li>

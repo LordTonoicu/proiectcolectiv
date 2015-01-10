@@ -86,8 +86,6 @@
 					<li><a href="#"><i class="fa fa-bar-chart-o fa-fw"></i>
 							Gestiune<span class="fa arrow"></span></a>
 						<ul class="nav nav-second-level">
-							<li><a href="../locuriDeVeciServlet">Locuri de veci</a></li>
-							<li><a href="../ParcelaServlet">Parcele</a></li>
 							<li><a href="../CimitirServlet">Cimitire</a></li>
 							<li><a href="../ConcesionarServlet">Concesionari</a></li>
 							<li><a href="../DecedatServlet">Decedati</a></li>
@@ -95,7 +93,7 @@
 
 						</ul></li>
 					<li><a href="#"><i class="fa fa-bar-chart-o fa-fw"></i>
-							Vizualizare<span class="fa arrow"></span></a>
+							Rapoarte<span class="fa arrow"></span></a>
 						<ul class="nav nav-second-level">
 
 							<li><a href="../StartServlet">Istoric modificari</a></li>
@@ -194,6 +192,11 @@
 														class="btn btn-primary" type="submit">
 														<img src="css/delete.png" />Sterge
 													</button>
+													<a href="../ParcelaServlet">
+														<button class="btn btn-primary" type="button" id="parcele" name="parcele" onclick="setIdRow(<%=i%>)">
+															Parcele
+														</button>
+													</a>
 												</td>
 											</form>
 										</tr>
