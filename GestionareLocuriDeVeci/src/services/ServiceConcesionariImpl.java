@@ -4,12 +4,15 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import services.util.UtilInregistrareJurnal;
 import validators.ConcesionarValidator;
 import validators.DatePersonaleValidator;
 import dao.DAOConcesionari;
 import dao.DAODatePersonale;
+import dao.DAOJurnal;
 import dao.IDAOConcesionari;
 import dao.IDAODatePersonale;
+import dao.IDAOJurnal;
 import domain.Concesionar;
 import domain.DatePersonale;
 import dto.ConcesionarDTO;
@@ -23,6 +26,7 @@ public class ServiceConcesionariImpl implements ServiceConcesionari{
 	private DatePersonaleValidator datePersonaleValidator;
 	private IDAOConcesionari daoConcesionari;
 	private ConcesionarValidator concesionarValidator;
+	private IDAOJurnal daoJurnal;
 	
 	public void setDaoDatePersonale(IDAODatePersonale daoDatePersonale) {
 		this.daoDatePersonale = daoDatePersonale;
@@ -41,12 +45,18 @@ public class ServiceConcesionariImpl implements ServiceConcesionari{
 		this.concesionarValidator = concesionarValidator;
 	}
 
+
+	public void setDaoJurnal(IDAOJurnal daoJurnal) {
+		this.daoJurnal = daoJurnal;
+	}
+
 	public ServiceConcesionariImpl() {
 		super();
 		this.daoDatePersonale = new DAODatePersonale();
 		this.datePersonaleValidator = new DatePersonaleValidator();
 		this.daoConcesionari = new DAOConcesionari();
 		this.concesionarValidator = new ConcesionarValidator();
+		this.daoJurnal = new DAOJurnal();
 	}
 
 	public ServiceConcesionariImpl(IDAODatePersonale daoDatePersonale,
@@ -67,6 +77,7 @@ public class ServiceConcesionariImpl implements ServiceConcesionari{
 			datePersonaleValidator.validate(concesionarDTO.getDatePersonale());
 			daoDatePersonale.insert(concesionarDTO.getDatePersonale());
 			daoConcesionari.insert(concesionarDTO.getConcesionar());
+			daoJurnal.insert(UtilInregistrareJurnal.creeazaInregistrareJurnal(user, "adaugare", concesionarDTO.getConcesionar().toString()));
 		} catch  (ValidatorException validatorException) {
 			throw new BusinessException("Validation exception: " + validatorException.getMessage());
 		} catch (SQLException sqlException){
@@ -80,8 +91,10 @@ public class ServiceConcesionariImpl implements ServiceConcesionari{
 		try{
 			concesionarValidator.validate(concesionarDTO.getConcesionar());
 			datePersonaleValidator.validate(concesionarDTO.getDatePersonale());
+			Concesionar anterior = daoConcesionari.getConcesionarById(concesionarDTO.getConcesionar().getIdConcesionar());
 			daoDatePersonale.update(concesionarDTO.getDatePersonale());
 			daoConcesionari.update(concesionarDTO.getConcesionar());
+			daoJurnal.insert(UtilInregistrareJurnal.creeazaInregistrareJurnal(user, "actualizare", anterior.toString(), concesionarDTO.getConcesionar().toString()));
 		} catch  (ValidatorException validatorException) {
 			throw new BusinessException("Validation exception: " + validatorException.getMessage());
 		} catch (SQLException sqlException){

@@ -11,4 +11,5 @@ public interface IDAOConcesionari {
 	public void update(Concesionar concesionar) throws SQLException;
 	public void delete(Concesionar concesionar) throws SQLException;
 	public List<Concesionar> getAll () throws SQLException;
+	public Concesionar getConcesionarById(int idConcesionar);
 }

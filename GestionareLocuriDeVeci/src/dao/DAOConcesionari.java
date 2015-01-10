@@ -54,4 +54,10 @@ public class DAOConcesionari implements IDAOConcesionari {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	@Override
+	public Concesionar getConcesionarById(int idConcesionar) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

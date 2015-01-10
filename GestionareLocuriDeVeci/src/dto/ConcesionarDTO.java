@@ -28,4 +28,9 @@ public class ConcesionarDTO {
 	public void setDatePersonale(DatePersonale datePersonale) {
 		this.datePersonale = datePersonale;
 	}
+	
+	@Override
+	public String toString(){
+		return concesionar.toString() + " " + datePersonale.toString();
+	}
 }
