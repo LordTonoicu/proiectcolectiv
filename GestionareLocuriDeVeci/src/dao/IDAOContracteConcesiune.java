@@ -11,4 +11,5 @@ public interface IDAOContracteConcesiune {
 	public void delete(ContractConcesiune cc) throws SQLException;
 	public void update(ContractConcesiune cc) throws SQLException;
 	public List<ContractConcesiune> getAll() throws SQLException; 
+	public ContractConcesiune getByNumarContract(int id) throws SQLException;
 }
