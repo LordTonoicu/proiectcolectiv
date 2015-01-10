@@ -17,6 +17,7 @@ import javax.servlet.http.Part;
 import domain.Cimitir;
 import domain.LocDeVeci;
 import domain.Parcela;
+import dto.LocDeVeciDTO;
 import dto.ParcelaDTO;
 import exceptions.BusinessException;
 import services.ServiceCimitire;
@@ -63,20 +64,32 @@ public class LocDeVeciServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession h = request.getSession();
 	try {
+		System.out.println("servlet");
 		if (request.getParameter("adaugaLocDeVeci") != null)
 				adaugaLocDeVeci(request);
-		if (request.getParameter("deleteLocDeVeci")!=null)
+		if (request.getParameter("stergeLocDeVeci")!=null){
+			System.out.println("del");
 			    deleteLocDeVeci(request);
+		}
+		if (request.getParameter("updateLocDeVeci")!=null){
+			System.out.println("del");
+			    deleteLocDeVeci(request);
+		}
+		
+		
+			
 	}catch(BusinessException e){
 		e.printStackTrace();
 	}
 	try {
-			List<ParcelaDTO> parcele=parcelaService.getParcele();
-			List<Cimitir> cimitire=cimitirService.getCimitire();
-			List<LocDeVeci> locuriDeVeci=locDeVeciService.getLocuriDeVeci();
+		    int idParcela = (Integer)h.getAttribute("idParcela");
+		    System.out.println(idParcela);
+		    int idCimitir = (Integer)h.getAttribute("idCimitir");
+			//List<ParcelaDTO> parcele=parcelaService.getParceleByIdCimitir(idCimitir);
+			List<LocDeVeciDTO> locuriDeVeci=locDeVeciService.getLocuriDeVeciByIdParcela(idParcela);
 			h.setAttribute("listLocuriDeVeci", locuriDeVeci);
-			h.setAttribute("listParcele", parcele);
-			h.setAttribute("listCimitire", cimitire);
+//			h.setAttribute("listParcele", parcele);
+//			h.setAttribute("listCimitire", cimitire);
 			response.sendRedirect("jsp/locuriDeVeci.jsp");
 		} catch (BusinessException e) {
 			// TODO Auto-generated catch block
@@ -85,8 +98,9 @@ public class LocDeVeciServlet extends HttpServlet {
 
 }
    private void deleteLocDeVeci(HttpServletRequest request ) throws BusinessException, IllegalStateException, IOException, ServletException {
-   
+       
 	   String id = request.getParameter("idLocDeVeci");
+	   System.out.println("myId"+id);
 		LocDeVeci loc = new LocDeVeci();
 		loc.setIdLoc(Integer.parseInt(id));
 		locDeVeciService.stergeLocDeVeci(loc,request.getRemoteHost());
@@ -95,8 +109,10 @@ public class LocDeVeciServlet extends HttpServlet {
 	private void adaugaLocDeVeci(HttpServletRequest request) throws BusinessException, IllegalStateException, IOException, ServletException {
 		
 		LocDeVeci locDeVeci=new LocDeVeci();
-		locDeVeci.setIdCimitir(Integer.parseInt(request.getParameter("cimitire")));
-		locDeVeci.setIdParcela(Integer.parseInt(request.getParameter("parcele")));
+		HttpSession sesiune = request.getSession();
+		locDeVeci.setSuprafata(Integer.parseInt(request.getParameter("suprafata")));
+		locDeVeci.setIdCimitir((Integer)sesiune.getAttribute("idCimitir"));
+		locDeVeci.setIdParcela((Integer)sesiune.getAttribute("idParcela"));
 		locDeVeci.setNumar(Integer.parseInt(request.getParameter("numar")));
 		if (request.getParameter("esteMonument") != null) 
 			locDeVeci.setMonument(true);

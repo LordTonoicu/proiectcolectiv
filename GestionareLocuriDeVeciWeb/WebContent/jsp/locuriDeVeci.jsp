@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<%@page import="dto.LocDeVeciDTO"%>
 <html lang="en">
 
 <head>
@@ -171,12 +172,12 @@ function newPopup(url) {
                                     <thead>
                                         <tr>
                                          
-                                            <th>ID Loc</th>
+                                           
                                             <th>Suprafata</th>
-                                            <th>Id Parcela</th>
+                                            <th>Denumire Parcela</th>
                                             <th>Numar</th>
                                             <th>Poza</th>
-                                            <th>Id cimitir</th>
+                                            
                                             <th>Este monument</th>
                                             <th>Actiune</th>
                                         
@@ -185,37 +186,43 @@ function newPopup(url) {
                                     </thead>
                                     <tbody>
                                     <%
-
+                                        int i=0;
   										for (Object lvObject:listLocuriDeVeci) {
-  										LocDeVeci locDeVeci=(LocDeVeci)lvObject;
+  										LocDeVeciDTO locDeVeciDTO=(LocDeVeciDTO)lvObject;
+  										LocDeVeci locDeVeci=locDeVeciDTO.getLocDeVeci();
+  										i++;
        								 %>
-										 <form action="../locuriDeVeciServlet" method="POST">
-                                        <tr class="odd gradeX">
-                                         
-                                            <td><%=locDeVeci.getIdLoc() %></td>
-                                            <td><%=locDeVeci.getSuprafata() %></td>
-                                            <td><%=locDeVeci.getIdParcela() %></td>
-                                            <td><%=locDeVeci.getNumar() %></td>
+										
+                                        	<tr class="odd gradeX">
+                                            
+                                        <form action="../locuriDeVeciServlet" method="POST">    
+                                            <input type="hidden" id="idLocDeVeciV<%=i%>" name="idLocDeVeci" value="<%=locDeVeci.getIdLoc()%>"/>
+                                            <td><span id="suprafataV<%=i%>"><%=String.valueOf(locDeVeci.getSuprafata())%></span></td>
+                                            <td><span id="denumireParcelaV<%=i%>"><%=locDeVeciDTO.getDenumireParcela() %></span></td>
+                                            <td><span id="numarV<%=i%>"><%=locDeVeci.getNumar()%></span></td>
                                             <td></td>
-                                             <td><%=locDeVeci.getIdCimitir() %></td>
-                                            <td><%=locDeVeci.isMonument() %></td>
+                                            <td><span id="EsteMonumentV<%=i%>"><%=locDeVeci.isMonument()%></span></td>
                                             <td>
-												<button class="btn btn-primary" type="submit">
-													<img src="css/edit.png" />Actualizeaza
-												</button>
-												<button id="stergeLocDeVeci" name="stergeLocDeVezi"
+                                                
+									 				 <a href="JavaScript:newPopup('updateLocDeVeci.jsp')">
+														<button class="btn btn-primary" type="button" id="updateLocDeVeci" name="updateLocDeVeci" onclick="setIdRow(<%=i%>)">
+															<img src="css/edit.png" />Actualizeaza
+														</button>
+													 </a>
+												<button id="stergeLocDeVeci" name="stergeLocDeVeci"
 													class="btn btn-primary" type="submit">
 													<img src="css/delete.png" />Sterge
 												</button>
 												 <a href="JavaScript:newPopup('addDecedat.jsp')"> 
-                            						<button class="btn btn-primary" type="button" style="float:right;margin-top:-7px;margin-right:10px">
+                            						<button class="btn btn-primary" type="button" >
                                     					 <img src="css/plus.png"> Adauga decedat
 													</button>                         
                             					 </a> 
 											</td>
-											</form>
-                                           
+											
+                                        	</form>   
                                         </tr>
+                                        
                           
                           			 <%
                                         }
@@ -272,7 +279,21 @@ function newPopup(url) {
     <script>
     $(document).ready(function() {
         $('#dataTables-example').dataTable();
+        
     });
+    
+	$(document).ready(function() {
+		$('#dataTables-example').dataTable();
+	});
+	   var idV;
+    	function getId(){
+    		return idV;
+    	}
+    	function setIdRow(id)
+    	{
+    		idV=id;
+    	}
+
     </script>
 
 </body>

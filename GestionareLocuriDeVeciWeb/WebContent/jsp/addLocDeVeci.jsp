@@ -41,10 +41,6 @@
 <body>
 	<%@ page import="domain.*" %>
 	<%@ page import="java.util.ArrayList" %>
-	<jsp:useBean id="listParcele" class="java.util.ArrayList" scope="session"/>
-	<jsp:setProperty name="listParcele" property="*"/> 
-	<jsp:useBean id="listCimitire" class="java.util.ArrayList" scope="session"/>
-	<jsp:setProperty name="listCimitire" property="*"/> 
 
 
     <div id="wrapper">
@@ -72,23 +68,11 @@
                                     <form role="form" action="../locuriDeVeciServlet" method="POST" enctype="multipart/form-data">
                                         <div class="form-group">
                                             <label>Suprafata</label>
-                                            <input class="form-control">
+                                            <input class="form-control" id="suprafata" name="suprafata">
                                         
                                         </div>
                                         <div class="form-group">
-                                           	<label>Parcela</label>
-                                        	<select class="form-control" name="parcele" id="parcele">
-												<%
-										
-  												for (Object parcelaO: listParcele) {
-  													Parcela parcela=(Parcela) parcelaO;
-       								 			%>
-													<option value=<%=parcela.getIdParcela() %>><%=parcela.getDenumire() %></option>
-												<%
-  													}
-												%>
-												
-											</select>
+                                           	
                                         </div> 
                                         <div class="form-group">
                                             <label>Numar</label>
@@ -96,19 +80,7 @@
                                        
                                         </div>
                                         <div class="form-group">
-                                           	<label>Cimitir</label>
-                                        	<select class="form-control" name="cimitire" id="cimitire">
-												<%
-										
-  												for (Object cimitirO: listCimitire) {
-  													Cimitir cimitir = (Cimitir) cimitirO;
-       								 			%>
-													<option value=<%=cimitir.getIdCimitir() %>><%=cimitir.getDenumire() %></option>
-												<%
-  													}
-												%>
-												
-											</select>
+                                           	
                                         </div> 
                                         
                                         <div class="form-group">
