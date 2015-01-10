@@ -218,11 +218,12 @@ function newPopup(url) {
                                             	<button name="stergeParcela" id="stergeParcela" class="btn btn-primary" type="submit">
                                             		<img src="css/delete.png"/>Sterge
                                             	</button>
-                                            	<a href="../locuriDeVeciServlet">
-														<button class="btn btn-primary" type="button" id="parcele" name="parcele" onclick="setIdRow(<%=i%>)">
-															Locuri de Veci
-														</button>
-													</a>                                            </td>
+                                            	
+												<button class="btn btn-primary" type="submit" id="locuriDeVeci" name="locuriDeVeci" onclick="setIdRow(<%=i%>)">
+													Locuri de Veci
+												</button>
+													                                           
+											 </td>
                                             </form>
                                         </tr>
                                          

@@ -69,6 +69,13 @@ public class ParcelaServlet extends HttpServlet {
 				openNewWindow(request,response,"updateParcela.jsp");
 				return;
 			}
+			else if(request.getParameter("locuriDeVeci")!=null){
+				int idParcela=Integer.parseInt(request.getParameter("idParcela"));
+				System.out.println("idParcela:"+idParcela);
+				h.setAttribute("idParcela", idParcela);
+				response.sendRedirect("locuriDeVeciServlet");
+				return;
+			}
 		} catch (BusinessException e1) {
 			// TODO redirect exception handler
 			e1.printStackTrace();
