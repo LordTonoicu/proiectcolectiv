@@ -72,8 +72,8 @@ public class LocDeVeciServlet extends HttpServlet {
 			    deleteLocDeVeci(request);
 		}
 		if (request.getParameter("updateLocDeVeci")!=null){
-			System.out.println("del");
-			    deleteLocDeVeci(request);
+			    System.out.println("update");
+			    updateLocDeVeci(request);
 		}
 		
 		
@@ -105,6 +105,25 @@ public class LocDeVeciServlet extends HttpServlet {
 		loc.setIdLoc(Integer.parseInt(id));
 		locDeVeciService.stergeLocDeVeci(loc,request.getRemoteHost());
    }
+   
+ private void updateLocDeVeci(HttpServletRequest request ) throws BusinessException, IllegalStateException, IOException, ServletException {
+       
+	 	LocDeVeci loc = new LocDeVeci();
+	 	System.out.println("functie actualizare"+Integer.parseInt(request.getParameter("idLocDeVeci")));
+		loc.setIdLoc(Integer.parseInt(request.getParameter("idLocDeVeci")));
+		if(request.getParameter("esteMonument")!=null){
+			loc.setMonument(true);
+		}
+		else
+			loc.setMonument(false);
+		loc.setSuprafata(Integer.parseInt(request.getParameter("suprafata")));
+		loc.setNumar(Integer.parseInt(request.getParameter("numar")));
+		loc.setIdCimitir((Integer)request.getSession().getAttribute("idCimitir"));
+		loc.setIdParcela((Integer)request.getSession().getAttribute("idParcela"));
+		locDeVeciService.actualizeazaLocDeVeci(loc,request.getRemoteHost());
+		
+   }
+   
    
 	private void adaugaLocDeVeci(HttpServletRequest request) throws BusinessException, IllegalStateException, IOException, ServletException {
 		
