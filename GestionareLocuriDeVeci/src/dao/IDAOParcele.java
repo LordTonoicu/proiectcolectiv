@@ -14,6 +14,6 @@ public interface IDAOParcele {
 	public void delete(Parcela parcela) throws SQLException;
 	
 	public List<Parcela> getAllParcele() throws SQLException;
-	//TODO implement this!?
+	
 	public Parcela getById (int id) throws SQLException;;
 }

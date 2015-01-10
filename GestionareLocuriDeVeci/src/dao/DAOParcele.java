@@ -112,6 +112,26 @@ public class DAOParcele implements IDAOParcele {
 
 	@Override
 	public Parcela getById(int id) throws SQLException {
-		return null;
+		Parcela parcela = null;
+		try{
+	    	String selectTable = "SELECT idParcela, denumire, nrLocuri, idCimitir, hasMonument FROM Parcele where idParcela = ?";
+	    	PSSelect = connection.prepareStatement(selectTable);
+	    	PSSelect.setInt(1,id);
+	    	ResultSet result = PSSelect.executeQuery();
+	    	
+	    	
+	    	while(result.next()) {
+	    		parcela = new Parcela(result.getInt(1),result.getString(2),result.getInt(3),result.getInt(4),result.getBoolean(5));
+	    		
+	    	}
+	    	
+	    	}catch(SQLException ex) {
+	    		throw new SQLException("Error when trying to retrieve the inregistrariJurnal:" + ex.getMessage());
+	    	}finally{
+	    		if(PSSelect !=null){
+	                PSSelect.close();
+	            }
+	    	}
+	    	return parcela;
 	}
 }

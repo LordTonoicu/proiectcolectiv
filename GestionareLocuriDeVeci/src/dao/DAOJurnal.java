@@ -25,10 +25,11 @@ public class DAOJurnal implements IDAOJurnal{
     public void insert(InregistrareJurnal inregistrareJurnal) throws SQLException{
     	
     	try{
-    	 String insertTable = "INSERT INTO InregistrariJurnal" + "(dataOra,detaliiModificare) VALUES" + "(? , ?)";
+    	 String insertTable = "INSERT INTO InregistrariJurnal" + "(dataOra,detaliiModificare, user) VALUES" + "(? , ? , ?)";
     	 PSInsert = connection.prepareStatement(insertTable);
     	 PSInsert.setTimestamp(1, inregistrareJurnal.getDataOra());
     	 PSInsert.setString(2, inregistrareJurnal.getDetaliiModificare());
+    	 PSInsert.setString(3, inregistrareJurnal.getUser());
     	 PSInsert.executeUpdate();
     	}catch(SQLException ex){
     		throw new SQLException("Error when trying to insert the: " + inregistrareJurnal + ":" + ex.getMessage());
@@ -58,11 +59,12 @@ public class DAOJurnal implements IDAOJurnal{
     public void update(InregistrareJurnal inregistrareJurnal) throws SQLException{
     	
     	try{
-    	String updateTable = "UPDATE inregistrarijurnal SET dataOra = ?, detaliiModificare = ?" + "WHERE nrInregistrare = ?";
+    	String updateTable = "UPDATE inregistrarijurnal SET dataOra = ?, detaliiModificare = ? user = ?" + "WHERE nrInregistrare = ?";
     	PSUpdate = connection.prepareStatement(updateTable);
     	PSUpdate.setTimestamp(1, inregistrareJurnal.getDataOra());
     	PSUpdate.setString(2, inregistrareJurnal.getDetaliiModificare());
-    	PSUpdate.setInt(3, inregistrareJurnal.getNrInregistare());
+    	PSUpdate.setString(3, inregistrareJurnal.getUser());
+    	PSUpdate.setInt(4, inregistrareJurnal.getNrInregistare());
     	PSUpdate.executeUpdate();
     	}catch(SQLException ex) {
     		throw new SQLException("Error when trying to update the: " + inregistrareJurnal + ":" + ex.getMessage());
