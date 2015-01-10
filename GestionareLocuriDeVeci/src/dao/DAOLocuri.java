@@ -30,14 +30,12 @@ public class DAOLocuri implements IDAOLocuri {
 
 		try {
 			String insertTable = "INSERT INTO LocuriDeVeci"
-					+ "(suprafata,idParcela,numar,poza,isMonument,idCimitir,nrDecedati,nrConcesionari,deleted) VALUES"
-					+ "(? , ?, ?, ?, ?, ?, ?, ?,false)";
+					+ "(suprafata,idParcela,numar,poza,isMonument,idCimitir,deleted) VALUES"
+					+ "(? , ?, ?, ?, ?, ?,false)";
 			PSInsert = connection.prepareStatement(insertTable);
 			PSInsert.setInt(1, locDeVeci.getSuprafata());
 			PSInsert.setInt(2, locDeVeci.getIdParcela());
 			PSInsert.setInt(3, locDeVeci.getNumar());
-			PSInsert.setInt(4, locDeVeci.getNrDecedati());
-			PSInsert.setInt(5, locDeVeci.getNrConcesionari());
 			Blob b1 = new SerialBlob(locDeVeci.getPoza());
 			PSInsert.setBlob(4, b1);
 			if (locDeVeci.isMonument() == true) {
@@ -103,7 +101,7 @@ public class DAOLocuri implements IDAOLocuri {
 		      }
 	}
 	@Override
-	public List<LocDeVeci> getAll() {
+	public List<LocDeVeci> getAll() throws SQLException {
 		List<LocDeVeci> locuri = new ArrayList<LocDeVeci>();
 
 		try {
@@ -120,22 +118,12 @@ public class DAOLocuri implements IDAOLocuri {
 			}
 
 		} catch (SQLException ex) {
-			try {
-				throw new SQLException("Error when trying to retrieve the :"
+			throw new SQLException("Error when trying to retrieve the :"
 						+ ex.getMessage());
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			
 		} finally {
-			if (PSSelect != null) {
-				try {
+			if (PSSelect != null) 
 					PSSelect.close();
-				} catch (SQLException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			}
 		}
 		return locuri;
 	}
