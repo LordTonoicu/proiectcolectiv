@@ -26,7 +26,7 @@
   	var parentDocument = window.opener.document;
   	var parentRowId = window.opener.getId();
   	document.getElementById("idLocDeVeci").value = parentDocument.getElementById("idLocDeVeciV"+parentRowId).value;
-  	
+  }
 </script>
  
   
@@ -82,7 +82,6 @@
                                 <div class="col-lg-6">
                                     <form role="form" action="../DecedatServlet" method="POST">
                                         <div class="form-group">
-                                            <label>Id</label>
                                             <input class="form-control"  id="idLocDeVeci" name="idLocDeVeci">
                                        
                                         </div>

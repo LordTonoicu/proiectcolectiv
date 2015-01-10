@@ -177,7 +177,6 @@ function newPopup(url) {
                                             <th>Denumire Parcela</th>
                                             <th>Numar</th>
                                             <th>Poza</th>
-                                            
                                             <th>Este monument</th>
                                             <th>Actiune</th>
                                         
@@ -200,7 +199,11 @@ function newPopup(url) {
                                             <td><span id="suprafataV<%=i%>"><%=String.valueOf(locDeVeci.getSuprafata())%></span></td>
                                             <td><span id="denumireParcelaV<%=i%>"><%=locDeVeciDTO.getDenumireParcela() %></span></td>
                                             <td><span id="numarV<%=i%>"><%=locDeVeci.getNumar()%></span></td>
-                                            <td></td>
+                                            <td>
+                                            <button id="download" name="download"
+													class="btn btn-primary" type="submit">
+												Download
+											</button></td>
                                             <td><span id="EsteMonumentV<%=i%>"><%=locDeVeci.isMonument()%></span></td>
                                             <td>
                                                 
@@ -213,7 +216,7 @@ function newPopup(url) {
 													class="btn btn-primary" type="submit">
 													<img src="css/delete.png" />Sterge
 												</button>
-												 <a href="JavaScript:newPopup('addDecedat.jsp')"> 
+												 <a href="JavaScript:newPopup('addDecedat.jsp')" onclick="setIdRow(<%=i%>)"> 
                             						<button class="btn btn-primary" type="button" >
                                     					 <img src="css/plus.png"> Adauga decedat
 													</button>                         

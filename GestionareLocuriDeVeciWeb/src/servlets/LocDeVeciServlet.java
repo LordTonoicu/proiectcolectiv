@@ -99,8 +99,7 @@ public class LocDeVeciServlet extends HttpServlet {
 }
    private void deleteLocDeVeci(HttpServletRequest request ) throws BusinessException, IllegalStateException, IOException, ServletException {
        
-	   String id = request.getParameter("idLocDeVeci");
-	   System.out.println("myId"+id);
+	    String id = request.getParameter("idLocDeVeci");
 		LocDeVeci loc = new LocDeVeci();
 		loc.setIdLoc(Integer.parseInt(id));
 		locDeVeciService.stergeLocDeVeci(loc,request.getRemoteHost());
@@ -109,7 +108,7 @@ public class LocDeVeciServlet extends HttpServlet {
  private void updateLocDeVeci(HttpServletRequest request ) throws BusinessException, IllegalStateException, IOException, ServletException {
        
 	 	LocDeVeci loc = new LocDeVeci();
-	 	System.out.println("functie actualizare"+Integer.parseInt(request.getParameter("idLocDeVeci")));
+
 		loc.setIdLoc(Integer.parseInt(request.getParameter("idLocDeVeci")));
 		if(request.getParameter("esteMonument")!=null){
 			loc.setMonument(true);
@@ -120,6 +119,12 @@ public class LocDeVeciServlet extends HttpServlet {
 		loc.setNumar(Integer.parseInt(request.getParameter("numar")));
 		loc.setIdCimitir((Integer)request.getSession().getAttribute("idCimitir"));
 		loc.setIdParcela((Integer)request.getSession().getAttribute("idParcela"));
+		Part filePart = request.getPart("poza");
+		inputStream = filePart.getInputStream();
+		if (filePart.getSize() != 0) {
+			loc.setPoza(getBytes(inputStream));
+		}
+	
 		locDeVeciService.actualizeazaLocDeVeci(loc,request.getRemoteHost());
 		
    }
