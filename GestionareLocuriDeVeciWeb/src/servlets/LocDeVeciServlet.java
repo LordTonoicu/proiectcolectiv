@@ -98,7 +98,7 @@ public class LocDeVeciServlet extends HttpServlet {
 		locDeVeci.setIdCimitir(Integer.parseInt(request.getParameter("cimitire")));
 		locDeVeci.setIdParcela(Integer.parseInt(request.getParameter("parcele")));
 		locDeVeci.setNumar(Integer.parseInt(request.getParameter("numar")));
-		if (request.getParameter("esteMonument") != null)
+		if (request.getParameter("esteMonument") != null) 
 			locDeVeci.setMonument(true);
 		else {
 			locDeVeci.setMonument(false);

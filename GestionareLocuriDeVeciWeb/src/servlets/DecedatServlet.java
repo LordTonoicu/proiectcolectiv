@@ -69,7 +69,7 @@ public class DecedatServlet extends HttpServlet {
 				response.sendRedirect("jsp/Decedat.jsp");
 			} catch (BusinessException e) {
 				// TODO redirect exception handler
-				System.out.println(e.getMessage());
+				System.out.println(e.getMessage()); 
 			}
 
 		}
