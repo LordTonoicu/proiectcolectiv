@@ -57,28 +57,28 @@
                                     <form role="form">
                                         <div class="form-group">
                                             <label>Domiciliu</label>
-                                            <input class="form-control">
+                                            <input id="Domiciliu" name="Domiciliu" class="form-control">
                                         
                                         </div>
                                         <div class="form-group">
                                             <label>Cnp concesionar</label>
-                                            <input class="form-control">
+                                            <input id="Cnp" name="Cnp" class="form-control">
                                           
                                         </div>
                                         <div class="form-group">
                                             <label>Numar chitanta</label>
-                                            <input class="form-control">
+                                            <input id="NumarChitanta" name="NumarChitanta" class="form-control">
                                        
                                         </div>
                                         <div class="form-group">
                                             <label>Id loc de veci</label>
-                                            <input class="form-control">
+                                            <input id="IdLocDeVeci" name="IdLocDeVeci" class="form-control">
                                           
                                         </div>
                                         
                                         
                                         
-                                        <button type="submit" class="btn btn-default">Salvare</button>
+                                        <button id="adaugaConcesionar" name="adaugaConcesionar" type="submit" class="btn btn-primary">Salvare</button>
                                         
                                     </form>
                                 </div>
@@ -112,6 +112,9 @@
 
     <!-- Custom Theme JavaScript -->
     <script src="js/sb-admin-2.js"></script>
+    
+    <!-- addConcesionar validator -->
+	<script type="text/javascript" src="js/validations/addConcesionarValidator.js"></script>
 
 </body>
 

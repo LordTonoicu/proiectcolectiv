@@ -50,6 +50,9 @@
 	<jsp:useBean id="listCimitire" class="java.util.ArrayList"
 		scope="session" />
 	<jsp:setProperty name="listCimitire" property="*" />
+	<%if(!session.getAttribute("exceptie").equals("")) {
+		response.sendRedirect("exceptionPage.jsp");
+	} %>
 
 	<div id="wrapper">
 

@@ -31,7 +31,7 @@
     <![endif]-->
     <script>
 	    window.onunload = refreshParent;
-	    function refreshParent() {
+	  	function refreshParent() {
 	        window.opener.location.reload();
 	        this.close();
 	    }
@@ -88,7 +88,7 @@
 	                                        <input id="adresa" name="adresa" class="form-control" value="">
 	                                      
 	                                    </div>                            
-	                                    <button type="submit" id="updateCimitir" name="updateCimitir" class="btn btn-default" >Salveaza Modificari</button>    
+	                                    <button type="submit" id="updateCimitir" name="updateCimitir" class="btn btn-primary" >Salveaza Modificari</button>    
                                     </form>
                                 </div>
                                 <!-- /.col-lg-6 (nested) -->
@@ -121,6 +121,9 @@
 
     <!-- Custom Theme JavaScript -->
     <script src="js/sb-admin-2.js"></script>
+    
+   	<!-- updateCimitir validator -->
+	<script type="text/javascript" src="js/validations/updateCimitirValidator.js"></script>
 
 </body>
 

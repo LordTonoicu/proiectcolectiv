@@ -73,7 +73,7 @@
                                             <input id="Adresa" name="Adresa" class="form-control">
                                           
                                         </div>                                      
-                                        <button type="submit" id="adaugaCimitir" name="adaugaCimitir" class="btn btn-default" >Adauga Cimitir</button>
+                                        <button type="submit" id="adaugaCimitir" name="adaugaCimitir" class="btn btn-primary" >Adauga Cimitir</button>
                                         
                                     </form>
                                 </div>
@@ -107,6 +107,9 @@
 
     <!-- Custom Theme JavaScript -->
     <script src="js/sb-admin-2.js"></script>
+
+	<!-- addCimitir validator -->
+	<script type="text/javascript" src="js/validations/addCimitirValidator.js"></script>
 
 </body>
 

@@ -80,7 +80,7 @@
                                         <input type="checkbox" name="areMonument">Are Monument 
                                         </div>     
                                                                        
-                                        <button type="submit" id="adaugaParcela" name="adaugaParcela" class="btn btn-default" >Adauga Parcela</button>
+                                        <button type="submit" id="adaugaParcela" name="adaugaParcela" class="btn btn-primary" >Adauga Parcela</button>
                                         
                                     </form>
                                 </div>
@@ -114,6 +114,9 @@
 
     <!-- Custom Theme JavaScript -->
     <script src="js/sb-admin-2.js"></script>
+    
+    <!-- addParcela validator -->
+	<script type="text/javascript" src="js/validations/addParcelaValidator.js"></script>
 
 </body>
 

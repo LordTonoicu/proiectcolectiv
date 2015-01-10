@@ -47,7 +47,7 @@
 
 </head>
 
-<body>
+<body style="overflow: hidden">
     	<%@ page import="domain.*" %>
 	<%@ page import="java.util.ArrayList" %>
 	<jsp:useBean id="listLocuriDeVeci" class="java.util.ArrayList" scope="session"/>
@@ -128,7 +128,7 @@
                                             </select>
                                         </div >
                                         
-                                        <button type="submit" class="btn btn-default" name="adaugaDecedat" id="adaugaDecedat">Salvare</button>
+                                        <button type="submit" class="btn btn-primary" name="adaugaDecedat" id="adaugaDecedat">Salvare</button>
                                         
                                     </form>
                                 </div>
@@ -162,6 +162,9 @@
 
     <!-- Custom Theme JavaScript -->
     <script src="js/sb-admin-2.js"></script>
+    
+   	<!-- addDecadat validator -->
+	<script type="text/javascript" src="js/validations/addDecedatValidator.js"></script>
 
 </body>
 

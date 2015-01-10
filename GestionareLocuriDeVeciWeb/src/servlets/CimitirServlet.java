@@ -63,20 +63,20 @@ public class CimitirServlet extends HttpServlet {
 				response.sendRedirect("ParcelaServlet");
 				return;
 			}
-		}
-		catch (BusinessException e){
-			// TODO redirect exception handler
-			System.out.println(e.getMessage());
-		}
-		try {
+			System.out.println("pe aici");
 			List<Cimitir> cimitire = cimitirService.getCimitire();
 			h.setAttribute("listCimitire", cimitire);
 			response.sendRedirect("jsp/Cimitir.jsp");
-		} catch (BusinessException e) {
-			// TODO redirect exception handler
+			
+			h.setAttribute("exceptie", "");
+			
+		}catch (BusinessException e){
+			h.setAttribute("exceptie", e.getMessage());
 			System.out.println(e.getMessage());
+			System.out.println("aci");
+			response.sendRedirect("jsp/exceptionPage.jsp");
+			System.out.println("aciiiii");
 		}
-
 	}
 	private void updateCimitir(HttpServletRequest request) throws BusinessException {
 		Cimitir c = new Cimitir();

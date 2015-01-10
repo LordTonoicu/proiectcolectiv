@@ -58,7 +58,7 @@
         <div id="page-wrapper" style="position:fixed">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Adaugare parcela</h1>
+                    <h1 class="page-header">Actualizeaza parcela</h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -88,7 +88,7 @@
                                         	<label>Are Monument?</label>
                                        		 <input type="checkbox" name="HasMonumentParcela" id="HasMonumentParcela">Are Monument                                        
                                        	</div>                              
-                                        <button type="submit" id="updateParcela" name="updateParcela" class="btn btn-default" >Salvare Modificari</button>
+                                        <button type="submit" id="updateParcela" name="updateParcela" class="btn btn-primary" >Salvare Modificari</button>
                                         
                                     </form>
                                 </div>
@@ -122,6 +122,9 @@
 
     <!-- Custom Theme JavaScript -->
     <script src="js/sb-admin-2.js"></script>
+    
+    <!-- updateCimitir validator -->
+	<script type="text/javascript" src="js/validations/updateParcelaValidator.js"></script>
 
 </body>
 
