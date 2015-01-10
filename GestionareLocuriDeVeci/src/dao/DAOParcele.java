@@ -89,7 +89,7 @@ public class DAOParcele implements IDAOParcele {
 		    	List<Parcela> parcele = new ArrayList<Parcela>();
 		    	
 		    	try{
-		    	String selectTable = "SELECT idParcela, denumire, nrLocuri, idCimitir, hasMonument FROM Parcele";
+		    	String selectTable = "SELECT idParcela, denumire, nrLocuri, idCimitir, hasMonument FROM Parcele where deleted=false";
 		    	PSSelect = connection.prepareStatement(selectTable);
 		    	ResultSet result = PSSelect.executeQuery(selectTable);
 		    	Parcela parcela;
