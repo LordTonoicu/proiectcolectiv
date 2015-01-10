@@ -15,4 +15,6 @@ public interface IDAOLocuri {
 
 	public List<LocDeVeci> getAll() throws SQLException;
 
+	public LocDeVeci getById(int idLoc);
+
 }

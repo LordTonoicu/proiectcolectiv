@@ -60,8 +60,10 @@ public class ServiceDecedatiImpl implements ServiceDecedati{
 		try{
 			decedatValidator.validate(decedatDTO.getDecedat());
 			datePersonaleValidator.validate(decedatDTO.getDatePersonale());
+			Decedat anterior = daoDecedati.getByCNP(decedatDTO.getDecedat().getCnpDecedat());
 			daoDatePersonale.update(decedatDTO.getDatePersonale());
 			daoDecedati.update(decedatDTO.getDecedat());
+			daoJurnal.insert(UtilInregistrareJurnal.creeazaInregistrareJurnal(user, "actualizare", anterior.toString(), decedatDTO.getDecedat().toString()));
 		} catch  (ValidatorException validatorException) {
 			throw new BusinessException("Validation exception: " + validatorException.getMessage());
 		} catch (SQLException sqlException){
@@ -78,6 +80,7 @@ public class ServiceDecedatiImpl implements ServiceDecedati{
 			
 			daoDecedati.delete(decedatDTO.getDecedat());
 			daoDatePersonale.delete(decedatDTO.getDatePersonale());
+			daoJurnal.insert(UtilInregistrareJurnal.creeazaInregistrareJurnal(user, "stergere", decedatDTO.getDecedat().toString()));
 		} catch (SQLException sqlException){
 			throw new BusinessException("Data access exception: " + sqlException.getMessage());
 		}

@@ -139,4 +139,10 @@ public class DAOLocuri implements IDAOLocuri {
 		}
 		return locuri;
 	}
+
+	@Override
+	public LocDeVeci getById(int idLoc) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }
