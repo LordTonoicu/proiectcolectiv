@@ -98,7 +98,7 @@
                                                <input type="checkbox" name="esteMonument">Este Monument
                                             </label>
                                          </div>                     
-	                                    <button type="submit" id="updateLocDeVeci" name="updateLocDeVeci" class="btn btn-default" >Salveaza Modificari</button>    
+	                                    <button type="submit" id="updateLocDeVeci" name="updateLocDeVeci" class="btn btn-primary" >Salveaza Modificari</button>    
                                     </form>
                                 </div>
                                 <!-- /.col-lg-6 (nested) -->
@@ -131,6 +131,9 @@
 
     <!-- Custom Theme JavaScript -->
     <script src="js/sb-admin-2.js"></script>
+    
+    <!-- updateLocDeVeci validator -->
+	<script type="text/javascript" src="js/validations/updateLocDeVeciValidator.js"></script>
 
 </body>
 
