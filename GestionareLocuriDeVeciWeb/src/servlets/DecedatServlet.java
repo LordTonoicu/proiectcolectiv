@@ -83,7 +83,7 @@ public class DecedatServlet extends HttpServlet {
 			dec.getDatePersonale().setNume(request.getParameter("NumeDecedat"));
 			dec.getDatePersonale().setPrenume(request.getParameter("PrenumeDecedat"));
 			dec.getDatePersonale().setCnp(request.getParameter("CnpDecedat"));
-			decedatService.inscrieDecedat(dec);
+			decedatService.inscrieDecedat(dec,request.getRemoteHost());
 		}
 		private void stergeDecedat(HttpServletRequest request) throws BusinessException
 		{
@@ -92,7 +92,8 @@ public class DecedatServlet extends HttpServlet {
 			DecedatDTO dec = new DecedatDTO();
 			dec.getDecedat().setIdDecedat(Integer.parseInt(id));
 			dec.getDatePersonale().setCnp(cnp);
-			decedatService.stergeDecedat(dec);
+			decedatService.stergeDecedat(dec,request.getRemoteHost());
+			
 		}
 
 }

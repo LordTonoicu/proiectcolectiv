@@ -65,6 +65,8 @@ public class LocDeVeciServlet extends HttpServlet {
 	try {
 		if (request.getParameter("adaugaLocDeVeci") != null)
 				adaugaLocDeVeci(request);
+		if (request.getParameter("deleteLocDeVeci")!=null)
+			    deleteLocDeVeci(request);
 	}catch(BusinessException e){
 		e.printStackTrace();
 	}
@@ -82,8 +84,16 @@ public class LocDeVeciServlet extends HttpServlet {
 		}
 
 }
-
+   private void deleteLocDeVeci(HttpServletRequest request ) throws BusinessException, IllegalStateException, IOException, ServletException {
+   
+	   String id = request.getParameter("idLocDeVeci");
+		LocDeVeci loc = new LocDeVeci();
+		loc.setIdLoc(Integer.parseInt(id));
+		locDeVeciService.stergeLocDeVeci(loc,request.getRemoteHost());
+   }
+   
 	private void adaugaLocDeVeci(HttpServletRequest request) throws BusinessException, IllegalStateException, IOException, ServletException {
+		
 		LocDeVeci locDeVeci=new LocDeVeci();
 		locDeVeci.setIdCimitir(Integer.parseInt(request.getParameter("cimitire")));
 		locDeVeci.setIdParcela(Integer.parseInt(request.getParameter("parcele")));
@@ -99,7 +109,8 @@ public class LocDeVeciServlet extends HttpServlet {
 		if (filePart.getSize() != 0) {
 			locDeVeci.setPoza(getBytes(inputStream));
 		}
-		locDeVeciService.adaugaLocDeVeci(locDeVeci);
+		locDeVeciService.adaugaLocDeVeci(locDeVeci,request.getRemoteHost());
+		
 
 	}
 
