@@ -6,8 +6,11 @@ import java.util.List;
 
 import javax.smartcardio.ATR;
 
+import services.util.UtilInregistrareJurnal;
 import validators.LocDeVeciValidator;
 import dao.DAOCimitire;
+import dao.DAODecedati;
+import dao.DAOJurnal;
 import dao.DAOLocuri;
 import dao.DAOParcele;
 import dao.IDAOCimitire;
@@ -24,6 +27,7 @@ public class ServiceLocuriDeVeciImpl implements ServiceLocuriDeVeci {
 	private IDAOLocuri daoLocuri;
 	private IDAOParcele daoParcele;
 	private LocDeVeciValidator locDeVeciValidator;
+	private DAOJurnal daoJurnal;
 
 	public void setDaoLocuri(DAOLocuri daoLocuri) {
 		this.daoLocuri = daoLocuri;
@@ -49,6 +53,7 @@ public class ServiceLocuriDeVeciImpl implements ServiceLocuriDeVeci {
 		this.daoLocuri = new DAOLocuri();
 		this.locDeVeciValidator = new LocDeVeciValidator();
 		this.daoParcele = new DAOParcele();
+		this.daoJurnal = new DAOJurnal();
 	}
 
 	@Override
@@ -62,6 +67,7 @@ public class ServiceLocuriDeVeciImpl implements ServiceLocuriDeVeci {
 		try {
 			locDeVeciValidator.validate(locDeVeci);
 			daoLocuri.insert(locDeVeci);
+			daoJurnal.insert(UtilInregistrareJurnal.creeazaInregistrareJurnal(user, "adaugare", locDeVeci.toString()));
 		} catch (ValidatorException validatorException) {
 			throw new BusinessException("Validation exception: "
 					+ validatorException.getMessage());
@@ -76,7 +82,9 @@ public class ServiceLocuriDeVeciImpl implements ServiceLocuriDeVeci {
 			throws BusinessException {
 		try {
 			locDeVeciValidator.validate(locDeVeci);
+			LocDeVeci anterior = daoLocuri.getById(locDeVeci.getIdLoc());
 			daoLocuri.update(locDeVeci);
+			daoJurnal.insert(UtilInregistrareJurnal.creeazaInregistrareJurnal(user, "actualizare", anterior.toString(), locDeVeci.toString()));
 		} catch (ValidatorException validatorException) {
 			throw new BusinessException("Validation exception: "
 					+ validatorException.getMessage());
@@ -91,6 +99,7 @@ public class ServiceLocuriDeVeciImpl implements ServiceLocuriDeVeci {
 	public void stergeLocDeVeci(LocDeVeci locDeVeci, String user) throws BusinessException {
 		try {
 			daoLocuri.delete(locDeVeci);
+			daoJurnal.insert(UtilInregistrareJurnal.creeazaInregistrareJurnal(user, "stergere", locDeVeci.toString()));
 		} catch (SQLException sqlException) {
 			throw new BusinessException("Data access exception: "
 					+ sqlException.getMessage());

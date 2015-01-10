@@ -4,10 +4,13 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import services.util.UtilInregistrareJurnal;
 import validators.ParcelaValidator;
 import dao.DAOCimitire;
+import dao.DAOJurnal;
 import dao.DAOParcele;
 import dao.IDAOCimitire;
+import dao.IDAOJurnal;
 import dao.IDAOParcele;
 import domain.Cimitir;
 import domain.Parcela;
@@ -20,12 +23,14 @@ public class ServiceParceleImpl implements ServiceParcele{
 	private ParcelaValidator parcelaValidator;
 	private IDAOParcele daoParcele;
     private IDAOCimitire daoCimitire;
+    private IDAOJurnal daoJurnal;
 	
 	public ServiceParceleImpl() {
 		super();
 		this.daoParcele=new DAOParcele();
 		this.parcelaValidator=new ParcelaValidator();
 		this.daoCimitire = new DAOCimitire();
+		this.daoJurnal = new DAOJurnal();
 	}
 
 	public ServiceParceleImpl(ParcelaValidator parcelaValidator,
@@ -53,6 +58,7 @@ public class ServiceParceleImpl implements ServiceParcele{
 		try {
 			parcelaValidator.validate(parcela);
 			daoParcele.insert(parcela);
+			daoJurnal.insert(UtilInregistrareJurnal.creeazaInregistrareJurnal(user, "adaugare", parcela.toString()));
 		} catch (ValidatorException validatorException){
 			throw new BusinessException(validatorException.getMessage());
 		} catch (SQLException sqlException){
@@ -66,6 +72,7 @@ public class ServiceParceleImpl implements ServiceParcele{
 	public void stergeParcela(Parcela parcela, String user) throws BusinessException {
 		try {
 			daoParcele.delete(parcela);
+			daoJurnal.insert(UtilInregistrareJurnal.creeazaInregistrareJurnal(user, "stergere", parcela.toString()));
 		} catch (SQLException sqlException){
 			 throw new BusinessException(sqlException.getMessage());
 		}
@@ -75,7 +82,9 @@ public class ServiceParceleImpl implements ServiceParcele{
 	public void actualizeazaParcela(Parcela parcela, String user) throws BusinessException {
 		try {
 			parcelaValidator.validate(parcela);
+			Parcela anterior = daoParcele.getById(parcela.getIdParcela());
 			daoParcele.update(parcela);
+			daoJurnal.insert(UtilInregistrareJurnal.creeazaInregistrareJurnal(user, "actualizare", anterior.toString(), parcela.toString()));
 		} catch (ValidatorException validatorException){
 			throw new BusinessException(validatorException.getMessage());
 		} catch (SQLException sqlException){
