@@ -31,8 +31,8 @@ public class DAOLocuri implements IDAOLocuri {
 
 		try {
 			String insertTable = "INSERT INTO LocuriDeVeci"
-					+ "(suprafata,idParcela,numar,poza,isMonument,idCimitir,deleted) VALUES"
-					+ "(? , ?, ?, ?, ?, ?,false)";
+					+ "(suprafata,idParcela,numar,poza,isMonument,idCimitir,nrContractConcesiune,deleted) VALUES"
+					+ "(? , ?, ?, ?, ?, ?,0,false)";
 			PSInsert = connection.prepareStatement(insertTable);
 			PSInsert.setInt(1, locDeVeci.getSuprafata());
 			PSInsert.setInt(2, locDeVeci.getIdParcela());
@@ -105,7 +105,7 @@ public class DAOLocuri implements IDAOLocuri {
 		List<LocDeVeci> locuri = new ArrayList<LocDeVeci>();
 
 		try {
-			String selectTable = "SELECT idLoc,suprafata,idParcela,numar,poza,isMonument,idCimitir,nrDecedati,nrConcesionari FROM LocuriDeVeci where deleted=false";
+			String selectTable = "SELECT idLoc,suprafata,idParcela,numar,poza,isMonument,idCimitir,nrContractConcesiune FROM LocuriDeVeci where deleted=false";
 			PSSelect = connection.prepareStatement(selectTable);
 			ResultSet result = PSSelect.executeQuery(selectTable);
 			LocDeVeci loc;
@@ -113,7 +113,7 @@ public class DAOLocuri implements IDAOLocuri {
 			while (result.next()) {
 				loc = new LocDeVeci(result.getInt(1), result.getInt(2),
 						result.getInt(3), result.getInt(4), result.getBytes(5),
-						result.getBoolean(6), result.getInt(7),result.getInt(8),result.getInt(9));
+						result.getBoolean(6), result.getInt(7), result.getInt(8));
 				locuri.add(loc);
 			}
 
@@ -141,8 +141,7 @@ public class DAOLocuri implements IDAOLocuri {
 
 			while(result.next()) {
 				locDeVeci = new LocDeVeci(result.getInt(1),result.getInt(2),result.getInt(3),result.getInt(4),
-						result.getBytes(5), result.getBoolean(6), result.getInt(7), result.getInt(8),
-						result.getInt(9));
+						result.getBytes(5), result.getBoolean(6), result.getInt(7), result.getInt(8));
 
 			}
 

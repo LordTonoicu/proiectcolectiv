@@ -1,6 +1,5 @@
 package domain;
 
-
 public class LocDeVeci {
 
 	private int idLoc;
@@ -10,16 +9,7 @@ public class LocDeVeci {
 	private byte[] poza;
 	private boolean isMonument;
 	private int idCimitir;
-	private int nrDecedati;
 	private int nrContractConcesionare;
-	
-	public int getNrDecedati() {
-		return nrDecedati;
-	}
-
-	public void setNrDecedati(int nrDecedati) {
-		this.nrDecedati = nrDecedati;
-	}
 
 	public int getNrContractConcesionare() {
 		return nrContractConcesionare;
@@ -33,8 +23,8 @@ public class LocDeVeci {
 
 	}
 
-	public LocDeVeci(int suprafata, int idParcela, int numar,
-			byte[] poza, boolean isMonument, int idCimitir, int nrDecedati, int nrContractConcesionare) {
+	public LocDeVeci(int suprafata, int idParcela, int numar, byte[] poza,
+			boolean isMonument, int idCimitir, int nrContractConcesionare) {
 
 		this.suprafata = suprafata;
 		this.idParcela = idParcela;
@@ -42,12 +32,12 @@ public class LocDeVeci {
 		this.poza = poza;
 		this.isMonument = isMonument;
 		this.idCimitir = idCimitir;
-		this.nrDecedati = nrDecedati;
 		this.nrContractConcesionare = nrContractConcesionare;
 	}
-	
+
 	public LocDeVeci(int idLoc, int suprafata, int idParcela, int numar,
-			byte[] poza, boolean isMonument, int idCimitir, int nrDecedati, int nrContractConcesionare) {
+			byte[] poza, boolean isMonument, int idCimitir,
+			int nrContractConcesionare) {
 
 		this.idLoc = idLoc;
 		this.suprafata = suprafata;
@@ -56,7 +46,6 @@ public class LocDeVeci {
 		this.poza = poza;
 		this.isMonument = isMonument;
 		this.idCimitir = idCimitir;
-		this.nrDecedati = nrDecedati;
 		this.nrContractConcesionare = nrContractConcesionare;
 	}
 
@@ -121,7 +110,7 @@ public class LocDeVeci {
 		return "LocDeVeci [idLoc=" + idLoc + ", suprafata=" + suprafata
 				+ ", idParcela=" + idParcela + ", numar=" + numar + ", poza="
 				+ poza + ", isMonument=" + isMonument + ", idCimitir="
-				+ idCimitir +", nrDecedati="+ nrDecedati 
-				+ ", nrContractConcesionare =" + nrContractConcesionare + "]";
+				+ idCimitir + ", nrContractConcesionare ="
+				+ nrContractConcesionare + "]";
 	}
 }
