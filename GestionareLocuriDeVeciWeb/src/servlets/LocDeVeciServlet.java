@@ -107,9 +107,9 @@ public class LocDeVeciServlet extends HttpServlet {
    
  private void updateLocDeVeci(HttpServletRequest request ) throws BusinessException, IllegalStateException, IOException, ServletException {
        
-	 	LocDeVeci loc = new LocDeVeci();
+	 	int idLocDeVeci=Integer.parseInt(request.getParameter("idLocDeVeci"));
+	 	LocDeVeci loc = locDeVeciService.getById(idLocDeVeci);
 
-		loc.setIdLoc(Integer.parseInt(request.getParameter("idLocDeVeci")));
 		if(request.getParameter("esteMonument")!=null){
 			loc.setMonument(true);
 		}

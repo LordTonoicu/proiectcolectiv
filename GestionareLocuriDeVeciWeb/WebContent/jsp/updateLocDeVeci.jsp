@@ -74,13 +74,13 @@
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-lg-6">
-                                    <form role="form" action="../locuriDeVeciServlet" method="POST">
+                                    <form role="form" action="../locuriDeVeciServlet" method="POST" enctype="multipart/form-data">
 	                                    <div  class="form-group">
 	     									<input id="idLocDeVeci" name="idLocDeVeci" class="form-control">
 	                                    </div>
 	                                    <div  class="form-group">
 	                                        <label>Numar</label>
-	                                        <input id="numar" name="numar" class="form-control">
+	                                        <input type="hidden" id="numar" name="numar" class="form-control">
 	                                    
 	                                    </div>
 	                                    

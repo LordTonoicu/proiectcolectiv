@@ -65,9 +65,8 @@ public class DAOLocuri implements IDAOLocuri {
 			PSUpdate.setInt(1, locDeVeci.getSuprafata());
 			PSUpdate.setInt(2, locDeVeci.getIdParcela());
 			PSUpdate.setInt(3, locDeVeci.getNumar());
-			Blob b1 = connection.createBlob();
-			b1.setBytes(0, locDeVeci.getPoza());
-			PSInsert.setBlob(4, b1);
+			Blob b1 = new SerialBlob(locDeVeci.getPoza());
+			PSUpdate.setBlob(4, b1);
 			if (locDeVeci.isMonument() == true) {
 				PSUpdate.setInt(5, 1);
 			} else {
