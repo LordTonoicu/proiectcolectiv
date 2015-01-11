@@ -10,9 +10,11 @@ import validators.DecedatValidator;
 import dao.DAODatePersonale;
 import dao.DAODecedati;
 import dao.DAOJurnal;
+import dao.DAOLocuri;
 import dao.IDAODatePersonale;
 import dao.IDAODecedati;
 import dao.IDAOJurnal;
+import dao.IDAOLocuri;
 import domain.DatePersonale;
 import domain.Decedat;
 import dto.DecedatDTO;
@@ -26,6 +28,7 @@ public class ServiceDecedatiImpl implements ServiceDecedati{
 	private DecedatValidator decedatValidator;
 	private DatePersonaleValidator datePersonaleValidator;
 	private IDAOJurnal daoJurnal;
+	private IDAOLocuri daoLocuri;
 	
 	public ServiceDecedatiImpl() {
 		super();
@@ -34,6 +37,7 @@ public class ServiceDecedatiImpl implements ServiceDecedati{
 		this.daoDatePersonale = new DAODatePersonale();
 		this.datePersonaleValidator = new DatePersonaleValidator();
 		this.daoJurnal = new DAOJurnal();
+		this.daoLocuri = new DAOLocuri();
 	}
 	
 	public void setDaoJurnal(DAOJurnal daoJurnal) {
