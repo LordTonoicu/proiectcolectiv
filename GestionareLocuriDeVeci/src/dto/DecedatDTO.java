@@ -7,13 +7,13 @@ public class DecedatDTO {
 	
 	private Decedat decedat;
 	private DatePersonale datePersonale;
-	private Integer numarCimitir;
+	private Integer numarLocDeVeci;
 	
 	public DecedatDTO(Decedat decedat, DatePersonale datePersonale, Integer numarCimitir) {
 		super();
 		this.decedat = decedat;
 		this.datePersonale = datePersonale;
-		this.numarCimitir = numarCimitir;
+		this.numarLocDeVeci = numarCimitir;
 	}
 
 	public DecedatDTO() {
@@ -21,12 +21,12 @@ public class DecedatDTO {
 		datePersonale = new DatePersonale();
 	}
 	
-	public Integer getNumarCimitir() {
-		return numarCimitir;
+	public Integer getNumarLocDeVeci() {
+		return numarLocDeVeci;
 	}
 
-	public void setNumarCimitir(Integer numarCimitir) {
-		this.numarCimitir = numarCimitir;
+	public void setNumarLocDeVeci(Integer numarLocDeVeci) {
+		this.numarLocDeVeci = numarLocDeVeci;
 	}
 
 	public Decedat getDecedat() {

@@ -102,6 +102,7 @@ public class ServiceDecedatiImpl implements ServiceDecedati{
 				decedatDTO.setDecedat(decedat);
 				DatePersonale datePersonale = daoDatePersonale.getDatePersonaleFromCNP(decedat.getCnpDecedat());
 				decedatDTO.setDatePersonale(datePersonale);
+				decedatDTO.setNumarLocDeVeci(daoLocuri.getById(decedat.getIdLocDeVeci()).getNumar());
 				rezultat.add(decedatDTO);
 			}
 		} catch (SQLException sqlException) {
