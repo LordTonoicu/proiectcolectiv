@@ -12,6 +12,7 @@ import dao.DAODecedati;
 import dao.DAOJurnal;
 import dao.IDAODatePersonale;
 import dao.IDAODecedati;
+import dao.IDAOJurnal;
 import domain.DatePersonale;
 import domain.Decedat;
 import dto.DecedatDTO;
@@ -24,7 +25,7 @@ public class ServiceDecedatiImpl implements ServiceDecedati{
 	private IDAODatePersonale daoDatePersonale;
 	private DecedatValidator decedatValidator;
 	private DatePersonaleValidator datePersonaleValidator;
-	private DAOJurnal daoJurnal;
+	private IDAOJurnal daoJurnal;
 	
 	public ServiceDecedatiImpl() {
 		super();

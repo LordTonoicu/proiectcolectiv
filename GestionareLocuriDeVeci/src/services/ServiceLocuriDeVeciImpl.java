@@ -14,6 +14,7 @@ import dao.DAOJurnal;
 import dao.DAOLocuri;
 import dao.DAOParcele;
 import dao.IDAOCimitire;
+import dao.IDAOJurnal;
 import dao.IDAOLocuri;
 import dao.IDAOParcele;
 import domain.LocDeVeci;
@@ -27,7 +28,7 @@ public class ServiceLocuriDeVeciImpl implements ServiceLocuriDeVeci {
 	private IDAOLocuri daoLocuri;
 	private IDAOParcele daoParcele;
 	private LocDeVeciValidator locDeVeciValidator;
-	private DAOJurnal daoJurnal;
+	private IDAOJurnal daoJurnal;
 
 	public void setDaoLocuri(DAOLocuri daoLocuri) {
 		this.daoLocuri = daoLocuri;
