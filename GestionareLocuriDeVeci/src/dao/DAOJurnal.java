@@ -43,7 +43,7 @@ public class DAOJurnal implements IDAOJurnal{
     public void delete(InregistrareJurnal inregistrareJurnal) throws SQLException {
     	
     	try{
-    	 String deleteTable = "DELETE FROM inregistrarijurnal " + "WHERE nrInregistrare = ?";
+    	 String deleteTable = "DELETE FROM InregistrariJurnal " + "WHERE nrInregistrare = ?";
     	 PSDelete = connection.prepareStatement(deleteTable);
     	 PSDelete.setInt(1, inregistrareJurnal.getNrInregistare());
     	 PSDelete.executeUpdate();
@@ -59,7 +59,7 @@ public class DAOJurnal implements IDAOJurnal{
     public void update(InregistrareJurnal inregistrareJurnal) throws SQLException{
     	
     	try{
-    	String updateTable = "UPDATE inregistrarijurnal SET dataOra = ?, detaliiModificare = ? user = ?" + "WHERE nrInregistrare = ?";
+    	String updateTable = "UPDATE InregistrariJurnal SET dataOra = ?, detaliiModificare = ? user = ?" + "WHERE nrInregistrare = ?";
     	PSUpdate = connection.prepareStatement(updateTable);
     	PSUpdate.setTimestamp(1, inregistrareJurnal.getDataOra());
     	PSUpdate.setString(2, inregistrareJurnal.getDetaliiModificare());
@@ -80,7 +80,7 @@ public class DAOJurnal implements IDAOJurnal{
     	List<InregistrareJurnal> inregistrareJurnalList = new ArrayList<InregistrareJurnal>();
     	
     	try{
-    	String selectTable = "SELECT * FROM inregistrarijurnal";
+    	String selectTable = "SELECT * FROM InregistrariJurnal ORDER BY dataOra DESC";
     	PSSelect = connection.prepareStatement(selectTable);
     	ResultSet result = PSSelect.executeQuery(selectTable);
     	InregistrareJurnal inregistrareJurnal;
@@ -91,7 +91,7 @@ public class DAOJurnal implements IDAOJurnal{
     	}
     	
     	}catch(SQLException ex) {
-    		throw new SQLException("Error when trying to retrieve the inregistrariJurnal:" + ex.getMessage());
+    		throw new SQLException("Error when trying to retrieve the InregistrariJurnal:" + ex.getMessage());
     	}finally{
     		if(PSSelect !=null){
                 PSSelect.close();

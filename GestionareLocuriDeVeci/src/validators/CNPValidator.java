@@ -25,7 +25,7 @@ public class CNPValidator {
 		}
 		
 		List <String> list_valid_first_numbers = Arrays.asList(valid_first_numbers);  
-		if(!list_valid_first_numbers.contains(cnp.charAt(0))) {
+		if(!list_valid_first_numbers.contains(String.valueOf(cnp.charAt(0)))) {
 			return 3;
 		}
 		
@@ -74,7 +74,7 @@ public class CNPValidator {
 		test_keys.add(7);
 		test_keys.add(9);
 		int controlSum = 0;
-		for(int i=0; i<=12; i++) {
+		for(int i=0; i<12; i++) {
 			controlSum += Integer.parseInt(String.valueOf(cnp.charAt(i))) * test_keys.get(i);
 		}
 		int rest = controlSum % 11;

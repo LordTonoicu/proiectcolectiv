@@ -64,9 +64,9 @@ public class ContractConcesiune {
 
 	@Override
 	public String toString() {
-		return "ContractConcesiune [nrContract=" + nrContract
-				+ ", dataEliberare=" + dataEliberare + ", cnpConcesionar1="
-				+ cnpConcesionar1 + ", cnpConcesionar2=" + cnpConcesionar2
-				+ "]";
+		return "ContractConcesiune [ nrContract(" + nrContract
+				+ ") dataEliberare(" + dataEliberare + ") cnpConcesionar1("
+				+ cnpConcesionar1 + ") cnpConcesionar2(" + cnpConcesionar2
+				+ ")]";
 	}
 }

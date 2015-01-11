@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import domain.Cimitir;
@@ -25,12 +26,11 @@ public class DAOConcesionari implements IDAOConcesionari {
     public void insert(Concesionar concesionar) throws SQLException{
     	
     	try{
-    	 String insertTable = "INSERT INTO Concesionari" + "(domiciliu, nrChitanta, cnpConcesionar, idLocDeVeci,deleted) VALUES" + "(? , ?, ?, ?,false)";
+    	 String insertTable = "INSERT INTO Concesionari" + "(domiciliu, nrChitanta, cnpConcesionar, deleted) VALUES" + "(? , ?, ?, false)";
     	 PSInsert = connection.prepareStatement(insertTable);
     	 PSInsert.setString(1, concesionar.getDomiciliu());
     	 PSInsert.setInt(2, concesionar.getNrChitanta());
     	 PSInsert.setString(3, concesionar.getCnpConcesionar());
-    	 PSInsert.setInt(4, concesionar.getIdLocDeVeci());
     	 PSInsert.executeUpdate();
     	}catch(SQLException ex){
     		throw new SQLException("Error when trying to insert the: " + concesionar + ":" + ex.getMessage());
@@ -44,13 +44,12 @@ public class DAOConcesionari implements IDAOConcesionari {
 	@Override
 	public void update(Concesionar concesionar) throws SQLException {
 		try{
-			String updateTable = "UPDATE Concesionari SET domiciliu = ?, nrChitanta = ?, cnpConcesionar = ?, idLocDeVeci = ? WHERE idConcesionar = ?";
+			String updateTable = "UPDATE Concesionari SET domiciliu = ?, nrChitanta = ?, cnpConcesionar = ? WHERE idConcesionar = ?";
 			PSUpdate = connection.prepareStatement(updateTable);
-			PSUpdate.setInt(5, concesionar.getIdConcesionar());
+			PSUpdate.setInt(4, concesionar.getIdConcesionar());
 			PSUpdate.setString(1, concesionar.getDomiciliu());
 			PSUpdate.setInt(2, concesionar.getNrChitanta());
 			PSUpdate.setString(3, concesionar.getCnpConcesionar());
-			PSUpdate.setInt(4, concesionar.getIdLocDeVeci());
 			PSUpdate.executeUpdate();
 		}catch(SQLException ex){
 			throw new SQLException("Error when trying to update the: " + concesionar + ":" + ex.getMessage());
@@ -81,8 +80,27 @@ public class DAOConcesionari implements IDAOConcesionari {
 
 	@Override
 	public List<Concesionar> getAll() throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
+		ArrayList<Concesionar> concesionari = new ArrayList<Concesionar>();
+		try{
+			String selectTable = "SELECT * FROM Concesionari WHERE deleted=false";
+			PSSelect = connection.prepareStatement(selectTable);
+
+			ResultSet result = PSSelect.executeQuery(selectTable);
+			Concesionar c;
+
+			while(result.next()) {
+				c = new Concesionar(result.getInt(1),result.getString(2),result.getInt(3),result.getString(4));
+				concesionari.add(c);
+			}
+
+		}catch(SQLException ex) {
+			throw new SQLException("Error in getAll Concesionari:" + ex.getMessage());
+		}finally{
+			if(PSSelect !=null){
+				PSSelect.close();
+			}
+		}
+		return concesionari;
 	}
 
 	@Override
@@ -97,7 +115,7 @@ public class DAOConcesionari implements IDAOConcesionari {
 
 
 			while(result.next()) {
-				concesionar = new Concesionar(result.getInt(1),result.getString(2),result.getInt(3),result.getString(4),result.getInt(5));
+				concesionar = new Concesionar(result.getInt(1),result.getString(2),result.getInt(3),result.getString(4));
 
 			}
 

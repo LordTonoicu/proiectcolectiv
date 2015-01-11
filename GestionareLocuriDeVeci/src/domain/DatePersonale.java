@@ -43,7 +43,7 @@ public class DatePersonale {
 
 	@Override
 	public String toString() {
-		return "DatePersonale [cnp=" + cnp + ", nume=" + nume + ", prenume="
-				+ prenume + "]";
+		return "DatePersonale [cnp(" + cnp + ") nume(" + nume + ") prenume("
+				+ prenume + ")]";
 	}
 }

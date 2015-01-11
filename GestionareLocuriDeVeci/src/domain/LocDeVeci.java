@@ -107,10 +107,11 @@ public class LocDeVeci {
 
 	@Override
 	public String toString() {
-		return "LocDeVeci [idLoc=" + idLoc + ", suprafata=" + suprafata
-				+ ", idParcela=" + idParcela + ", numar=" + numar + ", poza="
-				+ poza + ", isMonument=" + isMonument + ", idCimitir="
-				+ idCimitir + ", nrContractConcesionare ="
-				+ nrContractConcesionare + "]";
+		String hasPoza="fara";
+		if(poza!=null)
+			hasPoza="da";
+		return "LocDeVeci [suprafata(" + suprafata
+				+ ")" + " numar(" + numar + ") cu_poza("
+				+ hasPoza + ") Monument(" + isMonument + ")]";
 	}
 }

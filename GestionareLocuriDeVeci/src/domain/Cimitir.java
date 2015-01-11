@@ -73,8 +73,7 @@ public class Cimitir {
 
 	@Override
 	public String toString() {
-		return "Cimitir [idCimitir=" + idCimitir + ", denumire=" + denumire
-				+ ", adresa=" + adresa + ", nrLocuri=" + nrLocuri
-				+ ", nrParcele=" + nrParcele + "]";
+		return "Cimitir [denumire(" + denumire
+				+ ") adresa(" + adresa + ")]";
 	}
 }

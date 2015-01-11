@@ -6,29 +6,26 @@ public class Concesionar {
 	private String domiciliu;
 	private int nrChitanta;
 	private String cnpConcesionar;
-	private int idLocDeVeci;
 
 	public Concesionar() {
 
 	}
 	
 	public Concesionar(String domiciliu, int nrChitanta,
-			String cnpConcesionar, int idLocDeVeci) {
+			String cnpConcesionar) {
 
 		this.domiciliu = domiciliu;
 		this.nrChitanta = nrChitanta;
 		this.cnpConcesionar = cnpConcesionar;
-		this.idLocDeVeci = idLocDeVeci;
 	}
 	
 	public Concesionar(int idConcesionar, String domiciliu, int nrChitanta,
-			String cnpConcesionar, int idLocDeVeci) {
+			String cnp) {
 
 		this.idConcesionar = idConcesionar;
 		this.domiciliu = domiciliu;
 		this.nrChitanta = nrChitanta;
-		this.cnpConcesionar = cnpConcesionar;
-		this.idLocDeVeci = idLocDeVeci;
+		this.cnpConcesionar = cnp;
 	}
 
 	public int getIdConcesionar() {
@@ -63,19 +60,11 @@ public class Concesionar {
 		this.cnpConcesionar = cnpConcesionar;
 	}
 
-	public int getIdLocDeVeci() {
-		return idLocDeVeci;
-	}
-
-	public void setIdLocDeVeci(int idLocDeVeci) {
-		this.idLocDeVeci = idLocDeVeci;
-	}
 
 	@Override
 	public String toString() {
-		return "Concesionar [idConcesionar=" + idConcesionar + ", domiciliu="
-				+ domiciliu + ", nrChitanta=" + nrChitanta
-				+ ", cnpConcesionar=" + cnpConcesionar + ", idLocDeVeci="
-				+ idLocDeVeci + "]";
+		return "Concesionar [domiciliu("
+				+ domiciliu + ") nrChitanta(" + nrChitanta
+				+ ") cnpConcesionar(" + cnpConcesionar + ")]";
 	}
 }

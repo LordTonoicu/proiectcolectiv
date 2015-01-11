@@ -73,8 +73,7 @@ public class Parcela {
 
 	@Override
 	public String toString() {
-		return "Parcela [idParcela=" + idParcela + ", denumire=" + denumire
-				+ ", nrLocuri=" + nrLocuri + ", idCimitir=" + idCimitir
-				+ ", hasMonument=" + hasMonument + "]";
+		return "Parcela [denumire(" + denumire
+				+ ") Monument(" + hasMonument + ")]";
 	}
 }

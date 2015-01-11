@@ -4,7 +4,7 @@ import exceptions.ValidatorException;
 import domain.Concesionar;
 
 public class ConcesionarValidator {
-	private String message;
+	private String message="";
 	private CNPValidator cnpv;
 	public ConcesionarValidator() {
 		this.cnpv = new CNPValidator();
