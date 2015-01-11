@@ -188,16 +188,17 @@
 												<td>
 													<a href="JavaScript:newPopup('updateCimitir.jsp')">
 														<button class="btn btn-primary" type="button" id="updateCimitir" name="updateCimitir" onclick="setIdRow(<%=i%>)">
-															<img src="css/edit.png" />Actualizeaza
+															<img src="css/edit.png" /> Actualizeaza
 														</button>
 													</a>
 													<button id="stergeCimtir" name="stergeCimitir"
 														class="btn btn-primary" type="submit">
-														<img src="css/delete.png" />Sterge
+														<img src="css/delete.png" /> Sterge
 													</button>
 													
-														<button class="btn btn-primary" type="submit" id="parcele" name="parcele" onclick="setIdRow(<%=i%>)">
-															Parcele
+														<button class="btn btn-primary" type="submit" id="parcele" 
+														name="parcele" onclick="setIdRow(<%=i%>)">
+														<img src="css/glasses.png"/> Parcele
 														</button>
 											
 												</td>

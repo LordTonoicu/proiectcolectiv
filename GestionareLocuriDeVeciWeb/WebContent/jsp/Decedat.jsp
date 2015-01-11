@@ -167,13 +167,12 @@ function newPopup(url) {
                                     <thead>
                                         <tr>
                                             <th style="display:none"> Id Cimitir </th>
-                                            <th>Nume </th>
-                                            <th>Prenume </th>
-                                            <th>CNP Decedat</th>
+                                            <th>Nume Prenume </th>
+                                            <th>CNP</th>
                                             <th>Date Inmormantare </th>
-                                            <th>Numar adeverinta inhumare</th>
-                                           <th>Id loc de veci </th>
-                                            <th>E personalitate</th>
+                                            <th>Nr. adeverinta inhumare</th>
+                                           <th>ID Loc </th>
+                                            <th>Personalitate</th>
                                         
 
                                         </tr>
@@ -194,8 +193,7 @@ function newPopup(url) {
 													value=<%=decedat.getDecedat().getCnpDecedat()%> />
                                          
                                             <td style="display:none"><%=decedat.getDecedat().getIdDecedat() %></td>
-                                            <td><%=decedat.getDatePersonale().getNume() %></td>
-                                            <td><%=decedat.getDatePersonale().getPrenume() %></td>
+                                            <td><%=decedat.getDatePersonale().getNume()+" "+decedat.getDatePersonale().getPrenume() %></td>
                                             <td><%=decedat.getDecedat().getCnpDecedat() %></td>
                                             <td><%=decedat.getDecedat().getDataInmormantare() %></td>
                                             <td><%=decedat.getDecedat().getNrAdeverintaInhumare() %></td>

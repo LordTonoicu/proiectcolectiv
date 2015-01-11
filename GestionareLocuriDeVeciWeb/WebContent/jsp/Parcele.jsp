@@ -212,15 +212,15 @@ function newPopup(url) {
                                               <td>
                                               <a href="JavaScript:newPopup('updateParcela.jsp')">
                                             	<button   name="getInfoParcela"  id="getInfoParcela" class="btn btn-primary" type="button"  onclick="setIdRow(<%=i%>)">
-                                            		<img src="css/edit.png"/>Actualizeaza
+                                            		<img src="css/edit.png"/> Actualizeaza
                                             	</button> 
                                             	</a>
                                             	<button name="stergeParcela" id="stergeParcela" class="btn btn-primary" type="submit">
-                                            		<img src="css/delete.png"/>Sterge
+                                            		<img src="css/delete.png"/> Sterge
                                             	</button>
                                             	
 												<button class="btn btn-primary" type="submit" id="locuriDeVeci" name="locuriDeVeci" onclick="setIdRow(<%=i%>)">
-													Locuri de Veci
+													<img src="css/glasses.png"/> Locuri de Veci
 												</button>
 													                                           
 											 </td>

@@ -11,9 +11,12 @@
     <script type="text/javascript">
 // Popup window code
 function newPopup(url) {
-    popupWindow = window.open(
-        url,'popUpWindow','height=700,width=400,left=10,top=10,resizable=yes,scrollbars=yes,toolbar=yes,menubar=no,location=no,directories=no,status=yes')
-}
+		popupWindow = window
+				.open(
+						url,
+						'popUpWindow',
+						'height=700,width=400,left=10,top=10,resizable=yes,scrollbars=yes,toolbar=yes,menubar=no,location=no,directories=no,status=yes')
+	}
 </script>
 
     <title>Gestionare locuri de veci</title>
@@ -40,7 +43,13 @@ function newPopup(url) {
 </head>
 
 <body>
+<%@ page import="domain.*" %>
+<%@ page import="dto.*" %>
 
+	<%@ page import="java.util.ArrayList" %>
+	<jsp:useBean id="listConcesionari" class="java.util.ArrayList" scope="session"/>
+	<jsp:setProperty name="listConcesionari" property="*"/> 
+	
     <div id="wrapper">
     <!-- Navigation -->
         <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
@@ -150,22 +159,12 @@ function newPopup(url) {
                     <div class="panel panel-default">
                         <div class="panel-heading">
                            Gestioneaza concesionari
-                           <a href="JavaScript:newPopup('addConcesionar.html')"> 
-                            <button class="btn btn-primary" type="button" style="float:right;margin-top:-7px;margin-right:10px">
-                                     <img src="css/plus.png"> Adauga concesionr
 
-                            </button>
                              <a href="JavaScript:newPopup('updateConcesionar.html')"> 
-                            <button class="btn btn-primary" type="button" style="float:right;margin-top:-7px;margin-right:10px">
-                                     <img src="css/plus.png"> Actualizeaza concesionar
-
-                            </button>
+                            
                              </a>
                              
-                            <button class="btn btn-primary" type="button" style="float:right;margin-top:-7px;margin-right:10px">
-                                     <img src="css/plus.png"> Sterge concesionar
-
-                            </button>
+                          
                         
                          
                        
@@ -178,82 +177,52 @@ function newPopup(url) {
                                 <table class="table table-striped table-bordered table-hover" id="dataTables-example">
                                     <thead>
                                         <tr>
-                                         
-                                            <th>Id Concesionar</th>
+                                        	<th>Nume Prenume</th>
+                                        	<th>CNP</th>
                                             <th>Domiciliu</th>
                                             <th>Nr Chitanta</th>
-                                            <th>ID Loc de Veci</th>
-                                           <th>Cnp concesionar</th>
-                                        
+                                        	<th>Actiune</th>
 
                                         </tr>
                                     </thead>
                                     <tbody>
-
+										<% 
+										int i=0;
+										for(Object obj : listConcesionari){
+											i++;
+											 ConcesionarDTO concesionar = (ConcesionarDTO)obj;
+											 DatePersonale dateP = concesionar.getDatePersonale();
+											 Concesionar con = concesionar.getConcesionar();
+											 %>
                                         <tr class="odd gradeX">
+                                          <form role="form" action="../ConcesionarServlet" action="POST">
+                                          <input type="hidden" name="idConcesionar" id="idConcesionar<%=i%>" value=<%=con.getIdConcesionar()%> />
+                                            <td><span id="nume<%=i%>"><%=dateP.getNume()%></span> <span id="prenume<%=i%>"><%=dateP.getPrenume()%></span>
+                                            </td>
+                                            <td>
+                                            	<span id="cnp<%=i%>"><%=dateP.getCnp()%></span>
+                                            </td>
+                                            <td>
+                                            	<span id="addrDomiciliu<%=i%>"><%=con.getDomiciliu()%></span>
+                                            </td>
+                                            <td>
+                                            	<span id="nrChitanta<%=i%>"><%=con.getNrChitanta()%></span>
+                                            </td>
+                                            <td>
+                                            <a href="JavaScript:newPopup('updateConcesionar.jsp')">
+                                            <button class="btn btn-primary" type="button" name="actualizeazaConcesionar" onclick="setIdRow(<%=i%>)">
+                                    			 <img src="css/edit.png"> Actualizeaza
+                           					 </button>
+											</a>
+                                              <button class="btn btn-primary" type="submit" name="stergeConcesionar">
+                                     				<img src="css/delete.png"> Sterge 
+
+                          					  </button>
+                           					</td>
+                                           </form>
                                          
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                           
-                                        </tr>
-                                         <tr class="odd gradeX">
-                                             <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                       
-                                        </tr>
-                                         <tr class="odd gradeX">
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                        
-                                        </tr>
-                                         <tr class="odd gradeX">
-                                           <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                        </tr>
-                                         <tr class="odd gradeX">
-                                         <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                       
-                                        </tr>
-                                         <tr class="odd gradeX">
-                                             <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                          
-                                        </tr>
-                                         <tr class="odd gradeX">
-                                          <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                        </tr>
-                                         <tr class="odd gradeX">
-                                          <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                        </tr>
-                                       
-                                        
+                                        </tr>                                    
+                                          <% } %>
                                     </tbody>
 
                                 </table>
@@ -306,6 +275,14 @@ function newPopup(url) {
     $(document).ready(function() {
         $('#dataTables-example').dataTable();
     });
+    var idV;
+	function getId(){
+		return idV;
+	}
+	function setIdRow(id)
+	{
+		idV=id;
+	}
     </script>
 
 </body>

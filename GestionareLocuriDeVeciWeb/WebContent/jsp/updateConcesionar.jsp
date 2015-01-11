@@ -27,10 +27,28 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-
+	<script>
+	 window.onunload = refreshParent;
+	  	function refreshParent() {
+	        window.opener.location.reload();
+	        this.close();
+	    }
+	  
+	    function loadData(){
+	    	var parentDocument = window.opener.document;
+	    	var parentRowId = window.opener.getId();
+	    	document.getElementById("idConcesionar").value=parentDocument.getElementById("idConcesionar"+parentRowId).value;
+	    	document.getElementById("nume").value = parentDocument.getElementById("nume"+parentRowId).innerHTML;
+	    	document.getElementById("prenume").value = parentDocument.getElementById("prenume"+parentRowId).innerHTML;
+	    	document.getElementById("domiciliu").value = parentDocument.getElementById("addrDomiciliu"+parentRowId).innerHTML;
+	    	document.getElementById("cnp").value = parentDocument.getElementById("cnp"+parentRowId).innerHTML;
+	    	document.getElementById("nrChitanta").value = parentDocument.getElementById("nrChitanta"+parentRowId).innerHTML;
+	    	
+	    }	
+	</script>
 </head>
 
-<body>
+<body onload="loadData()">
 
     <div id="wrapper">
 
@@ -54,31 +72,34 @@
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-lg-6">
-                                    <form role="form">
+                                    <form role="form" action="../ConcesionarServlet">
+                                    <div class="form-group">
+                                    		<input type="hidden" name="idConcesionar" id="idConcesionar"/>
+                                            <label>Nume</label>
+                                            <input id="nume" name="nume" class="form-control">
+                                        
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Prenume</label>
+                                            <input id="prenume" name="prenume" class="form-control">
+                                        
+                                        </div>
                                         <div class="form-group">
                                             <label>Domiciliu</label>
-                                            <input id="Domiciliu" name="Domiciliu" class="form-control">
+                                            <input id="domiciliu" name="domiciliu" class="form-control">
                                         
                                         </div>
                                         <div class="form-group">
-                                            <label>Cnp concesionar</label>
-                                            <input id="Cnp" name="Cnp" class="form-control">
+                                            <label>CNP</label>
+                                            <input id="cnp" name="cnp" class="form-control">
                                           
                                         </div>
                                         <div class="form-group">
-                                            <label>Numar chitanta</label>
-                                            <input id="NumarChitanta" name="NumarChitanta" class="form-control">
+                                            <label>Nr chitanta</label>
+                                            <input id="nrChitanta" name="nrChitanta" class="form-control">
                                        
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Id loc de veci</label>
-                                            <input id="IdLocDeVeci" name="IdLocDeVeci" class="form-control">
-                                          
-                                        </div>
-                                        
-                                        
-                                        
-                                        <button id="updateConcesionar" name="updateConcesionar" type="submit" class="btn btn-primary">Salvare</button>
+                                        </div>                                  
+                                         <button id="updateConcesionar" name="updateConcesionar" type="submit" class="btn btn-primary">Salveaza Modificarile</button>
                                         
                                     </form>
                                 </div>
