@@ -58,6 +58,20 @@ public class ConcesionarServlet extends HttpServlet {
 				ConcesionarDTO cdto = new ConcesionarDTO(c,d);
 				concesionarService.actualizeazaConcesionar(cdto,request.getRemoteHost());
 			}
+			else if(request.getParameter("stergeConcesionar")!=null)
+			{
+				String idConcesionar=request.getParameter("idConcesionar");
+				System.out.println(idConcesionar);
+				String nume = request.getParameter("nume");
+				String prenume = request.getParameter("prenume");
+				String domiciliu = request.getParameter("domiciliu");
+				String cnp = request.getParameter("cnp");
+				String nrChitanta = request.getParameter("nrChitanta");
+				Concesionar c = new Concesionar(Integer.parseInt(idConcesionar),domiciliu,Integer.parseInt(nrChitanta),cnp);
+				DatePersonale d = new DatePersonale(cnp,nume,prenume);
+				ConcesionarDTO cdto = new ConcesionarDTO(c,d);
+				concesionarService.stergeConcesionar(cdto, request.getRemoteHost());
+			}
 			List<ConcesionarDTO> list = concesionarService.getConcesionari();
 
 			request.getSession().setAttribute("listConcesionari", list);
