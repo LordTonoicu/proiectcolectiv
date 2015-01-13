@@ -85,7 +85,7 @@
                                         </div>   
                                          <div  class="form-group"> 
                                            
-                                            <label> Al doilea concesionar </label>
+                                            <label> Al doilea concesionar </label> 
                                             <input id="cnpConcesionar2" name="cnpConcesionar1" class="form-control">
                                         
                                         </div>

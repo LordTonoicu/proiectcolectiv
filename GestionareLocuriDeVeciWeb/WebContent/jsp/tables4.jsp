@@ -79,7 +79,7 @@
                                 <li>
                                     <a href="../ContracteServlet">Contracte</a>
                                 </li>
-
+ 
                             </ul>
                         </li>
                         <li>

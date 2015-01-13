@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -8,6 +10,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
+    <script type="text/javascript">
+// Popup window code
+function newPopup(url) {
+	popupWindow = window
+	.open(
+			url,
+			'popUpWindow',
+			'height=700,width=400,left=10,top=10,resizable=yes,scrollbars=yes,toolbar=yes,menubar=no,location=no,directories=no,status=yes')
+}
+</script>
 
     <title>Gestionare locuri de veci</title>
 
@@ -33,10 +45,15 @@
 </head>
 
 <body>
+	<%@ page import="domain.*" %>
+	<%@ page import="dto.*" %>
+	<%@ page import="java.util.ArrayList" %>
+	<jsp:useBean id="listContracte" class="java.util.ArrayList" scope="session"/>
+	<jsp:setProperty name="listContracte" property="*"/> 
 
     <div id="wrapper">
 
-    <!-- Navigation -->
+         <!-- Navigation -->
         <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -77,13 +94,13 @@
                                     <a href="../DecedatServlet">Decedati</a>
                                 </li>
                                 <li>
-                                    <a href="../ContractServlet">Contracte </a>
+                                    <a href="../ContractServlet">Contracte</a>
                                 </li>
 
                             </ul>
                         </li>
                         <li>
-                            <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Rapoarte <span class="fa arrow"></span></a>
+                            <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Rapoarte<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                
                                 <li>
@@ -128,11 +145,12 @@
             </div>
             <!-- /.navbar-static-side -->
         </nav>
-
+            <!-- /.navbar-static-side -->
+        </nav>
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Registre </h1>
+                    <h1 class="page-header">Gestiune</h1>
 
                 </div>
                 <!-- /.col-lg-12 -->
@@ -142,15 +160,17 @@
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                           Registrul cu evidenta cererilor de atribuire a locurilor de inhumare
+                           Gestioneaza contracte
+                           <a href="JavaScript:newPopup('addContract.jsp')"> 
                             <button class="btn btn-primary" type="button" style="float:right;margin-top:-7px;margin-right:10px">
-                                    Exporta Pdf
+                                     <img src="css/plus.png"> Adauga contract
 
-                            </button>
-                             <button class="btn btn-primary" type="button" style="float:right;margin-top:-7px;margin-right:10px">
-                                    Exporta Excel
-
-                            </button>
+                            </button></a>
+                    
+                        
+                         
+                       
+                            
                         </div>
 
                         <!-- /.panel-heading -->
@@ -159,73 +179,58 @@
                                 <table class="table table-striped table-bordered table-hover" id="dataTables-example">
                                     <thead>
                                         <tr>
-                                            <th>Nr curent</th>
-                                            <th>Data inregistrarii</th>
-                                            <th>Nr infocet</th>
-                                            <th>Stadiu de solutionare</th>
-                                          
+                                         
+                                            
+                                            <th>Nr contract</th>
+                                            <th>Data Eliberare</th>
+                                            <th>Cnp Concesionar 1</th>
+                                           <th>Cnp Concesionar 2</th>
+                                        	<th>Actiune</th>
+
                                         </tr>
                                     </thead>
-                                    <tbody>
+                                     <tbody>
+									<%
+										int i=0;
+  										for (Object contract1:listContracte) {
+  											
+  											ContractConcesiune contract = (ContractConcesiune)contract1;
+  											i++;
+       								 %>
                                         <tr class="odd gradeX">
-                                            <td></td>
-                                            <td></td>
-                                            
-                                            <td class="center"></td>
-                                            <td class="center"></td>
-                                        </tr>
-                                         <tr class="odd gradeX">
-                                            <td></td>
-                                            <td></td>
-                                            
-                                            <td class="center"></td>
-                                            <td class="center"></td>
-                                        </tr>
-                                         <tr class="odd gradeX">
-                                            <td></td>
-                                            <td></td>
+                                         
+                                           <form action="../ContractServlet" method="POST">
+                                           <input type="hidden" name="nrContract" value=<%=contract.getNrContract()%> />
+                                           <td><span id="nrContractV<%=i%>"><%=contract.getNrContract()%></span></td>
+                                           <td><span id="dataEliberareV<%=i%>"><%=contract.getDataEliberare()%></span></td>
+                                          
+                                           <td><span id="cnpConcesionar1V<%=i%>"><%=contract.getCnpConcesionar1() %></span></td>
+                                           <td><span id="cnpConcesionar1V<%=i%>"><%=contract.getCnpConcesionar2() %></span></td>
                                            
-                                            <td class="center"></td>
-                                            <td class="center"></td>
+                                              <td>  
+                                              <a href="JavaScript:newPopup('updateContract.jsp')">
+                                            	<button   name="getInfoContract"  id="getInfoContract" class="btn btn-primary" type="button"  onclick="setIdRow(<%=i%>)">
+                                            		<img src="css/edit.png"/> Actualizeaza
+                                            	</button> 
+                                            	</a>
+                                            	<button name="stergeContract" id="stergeContract" class="btn btn-primary" type="submit">
+                                            		<img src="css/delete.png"/> Sterge
+                                            	</button>
+                                            	
+											
+													                                           
+											 </td>
+                                            </form>
                                         </tr>
-                                         <tr class="odd gradeX">
-                                            <td></td>
-                                            <td></td>
-                                            
-                                            <td class="center"></td>
-                                            <td class="center"></td>
-                                        </tr>
-                                         <tr class="odd gradeX">
-                                           
-                                            <td></td>
-                                            <td></td>
-                                            <td class="center"></td>
-                                            <td class="center"></td>
-                                        </tr>
-                                         <tr class="odd gradeX">
-                                            <td></td>
-                                            <td></td>
-                                            
-                                            <td class="center"></td>
-                                            <td class="center"></td>
-                                        </tr>
-                                         <tr class="odd gradeX">
-                                            <td></td>
-                                            <td></td>
-                                            
-                                            <td class="center"></td>
-                                            <td class="center"></td>
-                                        </tr>
-                                         <tr class="odd gradeX">
-                                            <td></td>
-                                            <td></td>
-                                        
-                                            <td class="center"></td>
-                                            <td class="center"></td>
-                                        </tr>
+                                         
+                                        <%
+                                        }
+									%>
                                         
                                     </tbody>
+
                                 </table>
+                              
                             </div>
                             <!-- /.table-responsive -->
                               
@@ -274,6 +279,14 @@
     $(document).ready(function() {
         $('#dataTables-example').dataTable();
     });
+    var idV;
+	function getId(){
+		return idV;
+	}
+	function setIdRow(id)
+	{
+		idV=id;
+	}
     </script>
 
 </body>

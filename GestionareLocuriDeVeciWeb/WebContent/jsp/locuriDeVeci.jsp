@@ -94,7 +94,7 @@ function newPopup(url) {
                                     <a href="../ContractServlet">Contracte</a>
                                 </li>
 
-                            </ul>
+                            </ul> 
                         </li>
                         <li>
                             <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Rapoarte<span class="fa arrow"></span></a>

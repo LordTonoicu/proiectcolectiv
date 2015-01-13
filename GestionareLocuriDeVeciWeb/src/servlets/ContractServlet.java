@@ -85,7 +85,7 @@ public class ContractServlet extends HttpServlet {
 
 		String nr = request.getParameter("nrContract");
 		ContractConcesiune contract = new ContractConcesiune();
-		contract.setNrContract(Integer.valueOf(nr));
+		contract.setNrContract(Integer.valueOf(nr)); 
 		contractService.stergeContractConcesiune(contract);
 	}
 

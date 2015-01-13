@@ -88,7 +88,7 @@ public class DAOContracteConcesiune implements IDAOContracteConcesiune {
 			PSSelect = connection.prepareStatement(selectTable);
 
 			ResultSet result = PSSelect.executeQuery(selectTable);
-			ContractConcesiune cc;
+			ContractConcesiune cc; 
 
 			while(result.next()) {
 				cc = new ContractConcesiune(result.getInt(1),result.getDate(2),result.getString(3),result.getString(4));
