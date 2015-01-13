@@ -84,7 +84,7 @@ public class DAOContracteConcesiune implements IDAOContracteConcesiune {
 		List<ContractConcesiune> contracteConcesiune = new ArrayList<ContractConcesiune>();
 
 		try{
-			String selectTable = "SELECT * FROM ContrcateConcesiune WHERE deleted=false";
+			String selectTable = "SELECT * FROM ContracteConcesiune WHERE deleted=false";
 			PSSelect = connection.prepareStatement(selectTable);
 
 			ResultSet result = PSSelect.executeQuery(selectTable);

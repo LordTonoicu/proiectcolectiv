@@ -77,7 +77,7 @@
                                     <a href="../DecedatServlet">Decedati</a>
                                 </li>
                                 <li>
-                                    <a href="../CereriServlet">Cereri</a>
+                                    <a href="../ContractServlet">Contracte</a>
                                 </li>
 
                             </ul>
