@@ -54,30 +54,33 @@
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-lg-6">
-                                    <form role="form">
+                                    <form role="form" action="../ConcesionarServlet">
+                                        <div class="form-group">
+                                            <label>Nume</label>
+                                            <input id="nume" name="nume" class="form-control">
+                                        
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Prenume</label>
+                                            <input id="prenume" name="prenume" class="form-control">
+                                        
+                                        </div>
                                         <div class="form-group">
                                             <label>Domiciliu</label>
-                                            <input id="Domiciliu" name="Domiciliu" class="form-control">
+                                            <input id="domiciliu" name="domiciliu" class="form-control">
                                         
                                         </div>
                                         <div class="form-group">
-                                            <label>Cnp concesionar</label>
-                                            <input id="Cnp" name="Cnp" class="form-control">
+                                            <label>CNP</label>
+                                            <input id="cnp" name="cnp" class="form-control">
                                           
                                         </div>
                                         <div class="form-group">
-                                            <label>Numar chitanta</label>
-                                            <input id="NumarChitanta" name="NumarChitanta" class="form-control">
+                                            <label>Nr chitanta</label>
+                                            <input id="nrChitanta" name="nrChitanta" class="form-control">
                                        
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Id loc de veci</label>
-                                            <input id="IdLocDeVeci" name="IdLocDeVeci" class="form-control">
-                                          
-                                        </div>
-                                        
-                                        
-                                        
+                                        </div>                                               
+                                                                 
                                         <button id="adaugaConcesionar" name="adaugaConcesionar" type="submit" class="btn btn-primary">Salvare</button>
                                         
                                     </form>
