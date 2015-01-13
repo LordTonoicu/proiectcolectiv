@@ -19,7 +19,7 @@
   });
   window.onunload = refreshParent;
   function refreshParent() {
-      window.opener.location.reload();
+   //   window.opener.location.reload();
       this.close();
   }
   function getById(){
@@ -82,7 +82,7 @@
                                 <div class="col-lg-6">
                                     <form role="form" action="../DecedatServlet" method="POST">
                                         <div class="form-group">
-                                            <input class="form-control"  id="idLocDeVeci" name="idLocDeVeci">
+                                            <input  type="hidden" class="form-control"  id="idLocDeVeci" name="idLocDeVeci">
                                        
                                         </div>
                                         <div class="form-group">

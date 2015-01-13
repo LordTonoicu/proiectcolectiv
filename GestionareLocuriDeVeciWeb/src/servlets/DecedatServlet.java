@@ -52,16 +52,14 @@ public class DecedatServlet extends HttpServlet {
 			try{
 				if(request.getParameter("adaugaDecedat")!=null)	{
 					adaugaDecedat(request);
+					response.sendRedirect("locuriDeVeciServlet");
+					return;
+					
 				}
 				else if(request.getParameter("stergeDecedat")!=null){
 					stergeDecedat(request);
 				}
-			}
-			catch (BusinessException e){
-				// TODO redirect exception handler
-				System.out.println(e.getMessage());
-			}
-			try {
+			
 				List<LocDeVeci> locuriDeVeci = locuriDeVeciService.getLocuriDeVeci();
 				List<DecedatDTO> decedati = decedatService.getDecedati();
 				h.setAttribute("listLocuriDeVeci", locuriDeVeci);
@@ -75,8 +73,11 @@ public class DecedatServlet extends HttpServlet {
 		}
 		private void adaugaDecedat(HttpServletRequest request) throws BusinessException
 		{
+			System.out.println();
 			DecedatDTO  dec = new DecedatDTO();
-			dec.getDecedat().setCnpDecedat(request.getParameter("CnpDecedat"));
+			System.out.println(request.getParameter("DateInmormantareDecedat"));
+			System.out.println(request.getParameter("CnpDecedat"));
+			dec.getDecedat().setCnpDecedat((String)request.getParameter("CnpDecedat"));
 			dec.getDecedat().setDataInmormantare(Date.valueOf(request.getParameter("DateInmormantareDecedat")));
 			dec.getDecedat().setNrAdeverintaInhumare(Integer.valueOf(request.getParameter("NrAdeverintaInhumareDecedat")));
 			dec.getDecedat().setIdLocDeVeci(Integer.valueOf(request.getParameter("idLocDeVeci")));
@@ -84,6 +85,7 @@ public class DecedatServlet extends HttpServlet {
 			dec.getDatePersonale().setPrenume(request.getParameter("PrenumeDecedat"));
 			dec.getDatePersonale().setCnp(request.getParameter("CnpDecedat"));
 			decedatService.inscrieDecedat(dec,request.getRemoteHost());
+			
 		}
 		private void stergeDecedat(HttpServletRequest request) throws BusinessException
 		{
