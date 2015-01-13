@@ -1,8 +1,8 @@
 $(document).ready(function(){
 	$( "#updateLocDeVeci" ).click(function() {
-		if ($("#numar").val() == "" || $("#suprafata").val() == ""){
+		if ($("#suprafata").val() == "" || $("#numar").val()==""){
 			event.preventDefault();
-			alert("Va rugam sa completati campurile!");
+			alert("Va rugam sa completati toate campurile!");
 		}
 	});
 })

@@ -68,7 +68,8 @@
                                     <form role="form" action="../locuriDeVeciServlet" method="POST" enctype="multipart/form-data">
                                         <div class="form-group">
                                             <label>Suprafata</label>
-                                            <input class="form-control" id="suprafata" name="suprafata">
+                                            <input class="form-control" id="suprafata" name="suprafata" />
+                                            
                                         
                                         </div>
                                         <div class="form-group">
@@ -76,21 +77,19 @@
                                         </div> 
                                         <div class="form-group">
                                             <label>Numar</label>
-                                            <input id="numar" name="numar" class="form-control">
+                                            <input id="numar" name="numar" class="form-control" />
                                        
                                         </div>
-                                        <div class="form-group">
-                                           	
-                                        </div> 
+                                        
                                         
                                         <div class="form-group">
                                             <label>Poza</label>
-                                            <input id="poza" name="poza" type="file">
+                                            <input id="poza" name="poza" type="file" />
                                         </div>
                                        
                                         <div class="checkbox">
                                             <label>
-                                               <input type="checkbox" name="esteMonument">Este Monument
+                                               <input type="checkbox" name="esteMonument" />Este Monument
                                             </label>
                                          </div>
                                         

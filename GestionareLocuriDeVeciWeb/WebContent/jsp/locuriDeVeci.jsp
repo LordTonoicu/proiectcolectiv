@@ -40,7 +40,7 @@ function newPopup(url) {
 
 </head>
 
-<body>
+<body onload="getById()">
 
 	<%@ page import="domain.*" %>
 	<%@ page import="java.util.ArrayList" %>
@@ -194,8 +194,8 @@ function newPopup(url) {
 										
                                         	<tr class="odd gradeX">
                                             
-                                        <form action="../locuriDeVeciServlet" method="POST">    
-                                            <input type="hidden" id="idLocDeVeciV<%=i%>" name="idLocDeVeci" value="<%=locDeVeci.getIdLoc()%>"/>
+                                        <form action="../locuriDeVeciServlet" method="POST">  
+                                            <input type="hidden" id="idLocDeVeciV<%=i%>" name="idLocDeVeci" value=<%=locDeVeci.getIdLoc()%> />
                                             <td><span id="suprafataV<%=i%>"><%=String.valueOf(locDeVeci.getSuprafata())%></span></td>
                                             <td><span id="denumireParcelaV<%=i%>"><%=locDeVeciDTO.getDenumireParcela() %></span></td>
                                             <td><span id="numarV<%=i%>"><%=locDeVeci.getNumar()%></span></td>
@@ -207,7 +207,7 @@ function newPopup(url) {
                                             <td><span id="EsteMonumentV<%=i%>"><%=locDeVeci.isMonument()%></span></td>
                                             <td>
                                                 
-									 				 <a href="JavaScript:newPopup('updateLocDeVeci.jsp')">
+									 				 <a href="JavaScript:newPopup('updateLocDeVeci.jsp')" >
 														<button class="btn btn-primary" type="button" id="updateLocDeVeci" name="updateLocDeVeci" onclick="setIdRow(<%=i%>)">
 															<img src="css/edit.png" /> Actualizeaza
 														</button>
@@ -284,18 +284,14 @@ function newPopup(url) {
         $('#dataTables-example').dataTable();
         
     });
-    
-	$(document).ready(function() {
-		$('#dataTables-example').dataTable();
-	});
-	   var idV;
-    	function getId(){
-    		return idV;
-    	}
-    	function setIdRow(id)
-    	{
-    		idV=id;
-    	}
+	 var idV;
+		function getId(){
+			return idV;
+		}
+		function setIdRow(id)
+		{
+			idV=id;
+		}
 
     </script>
 

@@ -37,10 +37,11 @@
 	    }
 	  
 	    function getById(){
+	    	
 	    	var parentDocument = window.opener.document;
 	    	var parentRowId = window.opener.getId();
 	    	document.getElementById("suprafata").value = parentDocument.getElementById("suprafataV"+parentRowId).innerHTML;
-	    	document.getElementById("idLocDeVeci").value = parentDocument.getElementById("idLocDeVeciV"+parentRowId).innerHTML;
+	    	document.getElementById("idLocDeVeci").value = parentDocument.getElementById("idLocDeVeciV"+parentRowId).value;
 	    	document.getElementById("numar").value = parentDocument.getElementById("numarV"+parentRowId).innerHTML;
 	    	console.log(parentDocument.getElementById("EsteMonumentV"+parentRowId).innerHTML);
 	    	if (parentDocument.getElementById("EsteMonumentV"+parentRowId).innerHTML == "true")
@@ -78,7 +79,7 @@
                                 <div class="col-lg-6">
                                     <form role="form" action="../locuriDeVeciServlet" method="POST" enctype="multipart/form-data">
 	                                    <div  class="form-group">
-	     									<input type="hidden" id="idLocDeVeci" name="idLocDeVeci" class="form-control">
+	     									<input  type="hidden" id="idLocDeVeci" name="idLocDeVeci" class="form-control">
 	                                    </div>
 	                                    <div  class="form-group">
 	                                        <label>Numar</label>
@@ -88,7 +89,7 @@
 	                                    
 	                                    <div  class="form-group">
 	                                        <label>Suprafata</label>
-	                                        <input id="suprafata" name="suprafata" class="form-control" value="">
+	                                        <input id="suprafata" name="suprafata" class="form-control">
 	                                      
 	                                    </div>       
 	                                    <div class="form-group">
@@ -135,7 +136,7 @@
     <script src="js/sb-admin-2.js"></script>
     
     <!-- updateLocDeVeci validator -->
-	<script type="text/javascript" src="js/validations/updateLocDeVeciValidator.js"></script>
+	  <script type="text/javascript" src="js/validations/updateLocDeVeciValidator.js"></script>
 
 </body>
 
