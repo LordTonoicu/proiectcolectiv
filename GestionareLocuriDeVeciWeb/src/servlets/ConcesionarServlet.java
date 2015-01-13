@@ -33,56 +33,86 @@ public class ConcesionarServlet extends HttpServlet {
 	}
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
 		doPost(request, response);
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		try
-		{
-			if(request.getParameter("updateConcesionar")!=null)
-			{
-				String idConcesionar = request.getParameter("idConcesionar");
-				String nume = request.getParameter("nume");
-				String prenume = request.getParameter("prenume");
-				String domiciliu = request.getParameter("domiciliu");
-				String cnp = request.getParameter("cnp");
-				String nrChitanta = request.getParameter("nrChitanta");
-				Concesionar c = new Concesionar(Integer.parseInt(idConcesionar),domiciliu,Integer.parseInt(nrChitanta),cnp);
-				DatePersonale d = new DatePersonale(cnp,nume,prenume);
-				ConcesionarDTO cdto = new ConcesionarDTO(c,d);
-				concesionarService.actualizeazaConcesionar(cdto,request.getRemoteHost());
-			}
-			else if(request.getParameter("stergeConcesionar")!=null)
-			{
-				String idConcesionar=request.getParameter("idConcesionar");
-				System.out.println(idConcesionar);
-				String nume = request.getParameter("nume");
-				String prenume = request.getParameter("prenume");
-				String domiciliu = request.getParameter("domiciliu");
-				String cnp = request.getParameter("cnp");
-				String nrChitanta = request.getParameter("nrChitanta");
-				Concesionar c = new Concesionar(Integer.parseInt(idConcesionar),domiciliu,Integer.parseInt(nrChitanta),cnp);
-				DatePersonale d = new DatePersonale(cnp,nume,prenume);
-				ConcesionarDTO cdto = new ConcesionarDTO(c,d);
-				concesionarService.stergeConcesionar(cdto, request.getRemoteHost());
+	protected void doPost(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
+		try {
+			if (request.getParameter("adaugaConcesionar") != null) {
+				adaugaConcesionar(request);
+			} else if (request.getParameter("updateConcesionar") != null) {
+				updateConcesionar(request);
+			} else if (request.getParameter("stergeConcesionar") != null) {
+				stergeConcesionar(request);
 			}
 			List<ConcesionarDTO> list = concesionarService.getConcesionari();
 
 			request.getSession().setAttribute("listConcesionari", list);
 			response.sendRedirect("jsp/Concesionar.jsp");
-		}
-		catch(BusinessException ex)
-		{
+		} catch (BusinessException ex) {
 			System.out.println(ex.getMessage());
-			request.getSession().setAttribute("exceptie",ex.getMessage());
+			request.getSession().setAttribute("exceptie", ex.getMessage());
 			response.sendRedirect("jsp/exceptionPage.jsp");
 		}
+	}
+
+	private void adaugaConcesionar(HttpServletRequest request) throws BusinessException {
+		String nume = request.getParameter("nume");
+		String prenume = request.getParameter("prenume");
+		String domiciliu = request.getParameter("domiciliu");
+		String cnp = request.getParameter("cnp");
+		String nrChitanta = request.getParameter("nrChitanta");
+		Concesionar c = new Concesionar(domiciliu,
+				Integer.parseInt(nrChitanta), cnp);
+		DatePersonale d = new DatePersonale(cnp, nume, prenume);
+		ConcesionarDTO cdto = new ConcesionarDTO(c, d);
+		concesionarService.adaugaConcesionar(cdto,
+				request.getRemoteHost());
+
+	}
+
+	private void updateConcesionar(HttpServletRequest request)
+			throws BusinessException {
+		String idConcesionar = request.getParameter("idConcesionar");
+		String nume = request.getParameter("nume");
+		String prenume = request.getParameter("prenume");
+		String domiciliu = request.getParameter("domiciliu");
+		String cnp = request.getParameter("cnp");
+		String nrChitanta = request.getParameter("nrChitanta");
+		Concesionar c = new Concesionar(Integer.parseInt(idConcesionar),
+				domiciliu, Integer.parseInt(nrChitanta), cnp);
+		DatePersonale d = new DatePersonale(cnp, nume, prenume);
+		ConcesionarDTO cdto = new ConcesionarDTO(c, d);
+		concesionarService.actualizeazaConcesionar(cdto,
+				request.getRemoteHost());
+
+	}
+
+	private void stergeConcesionar(HttpServletRequest request)
+			throws BusinessException {
+		String idConcesionar = request.getParameter("idConcesionar");
+		System.out.println(idConcesionar);
+		String nume = request.getParameter("nume");
+		String prenume = request.getParameter("prenume");
+		String domiciliu = request.getParameter("domiciliu");
+		String cnp = request.getParameter("cnp");
+		String nrChitanta = request.getParameter("nrChitanta");
+		Concesionar c = new Concesionar(Integer.parseInt(idConcesionar),
+				domiciliu, Integer.parseInt(nrChitanta), cnp);
+		DatePersonale d = new DatePersonale(cnp, nume, prenume);
+		ConcesionarDTO cdto = new ConcesionarDTO(c, d);
+		concesionarService.stergeConcesionar(cdto, request.getRemoteHost());
+
 	}
 
 }
