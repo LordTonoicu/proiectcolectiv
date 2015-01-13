@@ -6,6 +6,7 @@ import java.io.InputStream;
 import java.util.List;
 
 import javax.servlet.ServletException;
+import javax.servlet.ServletOutputStream;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -38,7 +39,7 @@ public class LocDeVeciServlet extends HttpServlet {
 	private ServiceLocuriDeVeci locDeVeciService = new ServiceLocuriDeVeciImpl();
 	private ServiceCimitire cimitirService = new ServiceCimitireImpl();
 	private ServiceParcele parcelaService = new ServiceParceleImpl();
-	
+
 	private InputStream inputStream = null;
 
 	/**
@@ -61,101 +62,116 @@ public class LocDeVeciServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
 		HttpSession h = request.getSession();
-	try {
-		System.out.println("servlet");
-		if (request.getParameter("adaugaLocDeVeci") != null)
+		try {
+
+			if (request.getParameter("adaugaLocDeVeci") != null)
 				adaugaLocDeVeci(request);
-		if (request.getParameter("stergeLocDeVeci")!=null){
-			System.out.println("del");
-			    deleteLocDeVeci(request);
-		}
-		if (request.getParameter("updateLocDeVeci")!=null){
-			    System.out.println("update");
-			    updateLocDeVeci(request);
-		}
-		
-		
-			
-	}catch(BusinessException e){
-		e.printStackTrace();
-	}
-	try {
-		    int idParcela = (Integer)h.getAttribute("idParcela");
-		    System.out.println(idParcela);
-		    int idCimitir = (Integer)h.getAttribute("idCimitir");
-			//List<ParcelaDTO> parcele=parcelaService.getParceleByIdCimitir(idCimitir);
-			List<LocDeVeciDTO> locuriDeVeci=locDeVeciService.getLocuriDeVeciByIdParcela(idParcela);
+			if (request.getParameter("stergeLocDeVeci") != null) 
+				deleteLocDeVeci(request);
+			if (request.getParameter("updateLocDeVeci") != null) 
+				updateLocDeVeci(request);
+			if (request.getParameter("download") != null)
+				downloadPoza(request, response);
+
+			int idParcela = (Integer) h.getAttribute("idParcela");
+			List<LocDeVeciDTO> locuriDeVeci = locDeVeciService
+					.getLocuriDeVeciByIdParcela(idParcela);
 			h.setAttribute("listLocuriDeVeci", locuriDeVeci);
-//			h.setAttribute("listParcele", parcele);
-//			h.setAttribute("listCimitire", cimitire);
+			
 			response.sendRedirect("jsp/locuriDeVeci.jsp");
 		} catch (BusinessException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
-}
-   private void deleteLocDeVeci(HttpServletRequest request ) throws BusinessException, IllegalStateException, IOException, ServletException {
-       
-	    String id = request.getParameter("idLocDeVeci");
+	}
+
+	private void downloadPoza(HttpServletRequest request,
+			HttpServletResponse response) throws IOException, BusinessException {
+
+		int idLocDeVeci = Integer.parseInt(request.getParameter("idLocDeVeci"));
+		LocDeVeci loc = locDeVeciService.getById(idLocDeVeci);
+		byte[] poza = loc.getPoza();
+
+		if (poza.length != 0) {
+			ServletOutputStream outStream = response.getOutputStream();
+			response.setContentType("jpg");
+			response.setContentLength(poza.length);
+			response.setHeader("Content-Disposition", "attachment; filename=\""
+					+ "poza" + "\"");
+
+			outStream.write(poza, 0, poza.length);
+		}
+
+	}
+
+	private void deleteLocDeVeci(HttpServletRequest request)
+			throws BusinessException, IllegalStateException, IOException,
+			ServletException {
+
+		String id = request.getParameter("idLocDeVeci");
 		LocDeVeci loc = new LocDeVeci();
 		loc.setIdLoc(Integer.parseInt(id));
-		locDeVeciService.stergeLocDeVeci(loc,request.getRemoteHost());
-   }
-   
- private void updateLocDeVeci(HttpServletRequest request ) throws BusinessException, IllegalStateException, IOException, ServletException {
-       
-	 	int idLocDeVeci=Integer.parseInt(request.getParameter("idLocDeVeci"));
-	 	LocDeVeci loc = locDeVeciService.getById(idLocDeVeci);
+		locDeVeciService.stergeLocDeVeci(loc, request.getRemoteHost());
+	}
 
-		if(request.getParameter("esteMonument")!=null){
+	private void updateLocDeVeci(HttpServletRequest request)
+			throws BusinessException, IllegalStateException, IOException,
+			ServletException {
+
+		int idLocDeVeci = Integer.parseInt(request.getParameter("idLocDeVeci"));
+		LocDeVeci loc = locDeVeciService.getById(idLocDeVeci);
+
+		if (request.getParameter("esteMonument") != null) {
 			loc.setMonument(true);
-		}
-		else
+		} else
 			loc.setMonument(false);
+		
 		loc.setSuprafata(Integer.parseInt(request.getParameter("suprafata")));
 		loc.setNumar(Integer.parseInt(request.getParameter("numar")));
-		loc.setIdCimitir((Integer)request.getSession().getAttribute("idCimitir"));
-		loc.setIdParcela((Integer)request.getSession().getAttribute("idParcela"));
+		loc.setIdCimitir((Integer) request.getSession().getAttribute(
+				"idCimitir"));
+		loc.setIdParcela((Integer) request.getSession().getAttribute(
+				"idParcela"));
 		Part filePart = request.getPart("poza");
 		inputStream = filePart.getInputStream();
 		if (filePart.getSize() != 0) {
 			loc.setPoza(getBytes(inputStream));
 		}
-	
-		locDeVeciService.actualizeazaLocDeVeci(loc,request.getRemoteHost());
-		
-   }
-   
-   
-	private void adaugaLocDeVeci(HttpServletRequest request) throws BusinessException, IllegalStateException, IOException, ServletException {
-		
-		LocDeVeci locDeVeci=new LocDeVeci();
+
+		locDeVeciService.actualizeazaLocDeVeci(loc, request.getRemoteHost());
+
+	}
+
+	private void adaugaLocDeVeci(HttpServletRequest request)
+			throws BusinessException, IllegalStateException, IOException,
+			ServletException {
+
+		LocDeVeci locDeVeci = new LocDeVeci();
 		HttpSession sesiune = request.getSession();
-		locDeVeci.setSuprafata(Integer.parseInt(request.getParameter("suprafata")));
-		locDeVeci.setIdCimitir((Integer)sesiune.getAttribute("idCimitir"));
-		locDeVeci.setIdParcela((Integer)sesiune.getAttribute("idParcela"));
+		locDeVeci.setSuprafata(Integer.parseInt(request
+				.getParameter("suprafata")));
+		locDeVeci.setIdCimitir((Integer) sesiune.getAttribute("idCimitir"));
+		locDeVeci.setIdParcela((Integer) sesiune.getAttribute("idParcela"));
 		locDeVeci.setNumar(Integer.parseInt(request.getParameter("numar")));
-		if (request.getParameter("esteMonument") != null) 
+		if (request.getParameter("esteMonument") != null)
 			locDeVeci.setMonument(true);
 		else {
 			locDeVeci.setMonument(false);
 		}
-		
+
 		Part filePart = request.getPart("poza");
 		inputStream = filePart.getInputStream();
 		if (filePart.getSize() != 0) {
 			locDeVeci.setPoza(getBytes(inputStream));
-		}
-		else
-		{
-			byte [] poza={0};
+		} else {
+			byte[] poza = { 0 };
 			locDeVeci.setPoza(poza);
 		}
-		locDeVeciService.adaugaLocDeVeci(locDeVeci,request.getRemoteHost());
-		
+		locDeVeciService.adaugaLocDeVeci(locDeVeci, request.getRemoteHost());
 
 	}
 

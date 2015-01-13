@@ -40,11 +40,13 @@
 	    	var parentDocument = window.opener.document;
 	    	var parentRowId = window.opener.getId();
 	    	document.getElementById("suprafata").value = parentDocument.getElementById("suprafataV"+parentRowId).innerHTML;
-	    	document.getElementById("idLocDeVeci").value = parentDocument.getElementById("idLocDeVeciV"+parentRowId).value;
+	    	document.getElementById("idLocDeVeci").value = parentDocument.getElementById("idLocDeVeciV"+parentRowId).innerHTML;
 	    	document.getElementById("numar").value = parentDocument.getElementById("numarV"+parentRowId).innerHTML;
-	    	document.getElementById("poza").value = parentDocument.getElementById("pozaV"+parentRowId).innerHTML;
-	    	document.getElementById("esteMonument").value = parentDocument.getElementById("EsteMonumentV"+parentRowId).innerHTML;
-	    	
+	    	console.log(parentDocument.getElementById("EsteMonumentV"+parentRowId).innerHTML);
+	    	if (parentDocument.getElementById("EsteMonumentV"+parentRowId).innerHTML == "true")
+	    		document.getElementById("esteMonument").checked = true;
+	    	else
+	    		document.getElementById("esteMonument").checked = false;	    	
 	    }	
 	    
 	</script>
@@ -60,7 +62,7 @@
         <div id="page-wrapper" style="position:fixed">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Update locDeVeci</h1>
+                    <h1 class="page-header">Actualizeaza loc de veci</h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -76,11 +78,11 @@
                                 <div class="col-lg-6">
                                     <form role="form" action="../locuriDeVeciServlet" method="POST" enctype="multipart/form-data">
 	                                    <div  class="form-group">
-	     									<input id="idLocDeVeci" name="idLocDeVeci" class="form-control">
+	     									<input type="hidden" id="idLocDeVeci" name="idLocDeVeci" class="form-control">
 	                                    </div>
 	                                    <div  class="form-group">
 	                                        <label>Numar</label>
-	                                        <input type="hidden" id="numar" name="numar" class="form-control">
+	                                        <input id="numar" name="numar" class="form-control">
 	                                    
 	                                    </div>
 	                                    
@@ -95,7 +97,7 @@
                                         </div>
                                         <div class="checkbox">
                                             <label>
-                                               <input type="checkbox" name="esteMonument">Este Monument
+                                               <input type="checkbox" id="esteMonument" name="esteMonument">Este Monument
                                             </label>
                                          </div>                     
 	                                    <button type="submit" id="updateLocDeVeci" name="updateLocDeVeci" class="btn btn-primary" >Salveaza Modificari</button>    
