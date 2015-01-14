@@ -9,6 +9,7 @@ import java.util.List;
 
 import domain.Cimitir;
 import domain.Concesionar;
+import domain.DatePersonale;
 
 public class DAOConcesionari implements IDAOConcesionari {
 
@@ -128,4 +129,27 @@ public class DAOConcesionari implements IDAOConcesionari {
 		}
 		return concesionar;
 	}
+	public Concesionar getConcesionarFromCNP(String CNP) throws SQLException {
+		Concesionar concesionar =null;
+		try{
+			String selectTable = "select * from concesionari where cnpConcesionar=? ";
+			System.out.println("bla");
+			PSSelect = connection.prepareStatement(selectTable);
+			PSSelect.setString(1,CNP);
+			ResultSet result = PSSelect.executeQuery();
+			if(result.next()) {
+				concesionar = new Concesionar(Integer.valueOf(result.getString(1)),result.getString(2),Integer.valueOf(result.getString(3)),result.getString(4));
+                System.out.println("concesionar"+concesionar.getCnpConcesionar());
+			}
+
+		}catch(SQLException ex) {
+			throw new SQLException("Error when trying to retrieve the concesionar:" + ex.getMessage());
+		}finally{
+			if(PSSelect !=null){
+				PSSelect.close();
+			}
+		}
+		return concesionar;
+	}
+
 }

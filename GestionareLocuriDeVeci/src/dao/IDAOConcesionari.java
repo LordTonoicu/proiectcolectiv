@@ -12,4 +12,5 @@ public interface IDAOConcesionari {
 	public void delete(Concesionar concesionar) throws SQLException;
 	public List<Concesionar> getAll () throws SQLException;
 	public Concesionar getConcesionarById(int idConcesionar) throws SQLException;
+	public Concesionar getConcesionarFromCNP(String CNP) throws SQLException;
 }
