@@ -61,7 +61,7 @@ public class CNPValidator {
 	
 	public boolean passControlTest(String cnp){
 		List<Integer> test_keys = new ArrayList<Integer>();
-		test_keys.add(2);
+		test_keys.add(2); /*279146358279 cheie de testare, se inmultesc primele 12 cifre din cnp cu astea */
 		test_keys.add(7);
 		test_keys.add(9);
 		test_keys.add(1);
@@ -75,17 +75,25 @@ public class CNPValidator {
 		test_keys.add(9);
 		int controlSum = 0;
 		for(int i=0; i<12; i++) {
-			controlSum += Integer.parseInt(String.valueOf(cnp.charAt(i))) * test_keys.get(i);
+			int cifraCurenta = Integer.parseInt(String.valueOf(cnp.charAt(i)));
+			controlSum += cifraCurenta * test_keys.get(i);
 		}
-		int rest = controlSum % 11;
-		int controlNr = 1;
+
+		int rest = (int)controlSum % 11;
+		int controlNr=0;
 		if (rest<10){
 			controlNr = rest;
 		}
+		else if(rest==10)
+		{
+			controlNr=1;
+		}
 		
-		if(Integer.parseInt(String.valueOf(cnp.charAt(12))) == controlNr){
+		int controlCnp = Integer.parseInt(String.valueOf(cnp.charAt(12)));
+		if(controlCnp == controlNr){
 			return true;
 		}
-		return false;
+		else
+			return false;
 	}
 }
