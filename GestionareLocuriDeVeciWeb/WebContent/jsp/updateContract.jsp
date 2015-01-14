@@ -89,7 +89,7 @@
                                        
                                          <div  class="form-group">
                                              <label> Data Eliberare </label>
-                                            <input id="dataEliberare" name="dataEliberare" class="form-control" />
+                                            <input type="date" id="dataEliberare" name="dataEliberare" class="form-control" />
                                         
                                         </div>
                                         

@@ -14,9 +14,7 @@
   <script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
   <link rel="stylesheet" href="/resources/demos/style.css">
   <script>
-  //$(function() {
-    //$("#DateInmormantareDecedat").datepicker();
-  //});
+
   window.onunload = refreshParent;
   function refreshParent() {
       window.opener.location.reload();
@@ -113,7 +111,7 @@
                                         </div>
                                         <div class="form-group">
                                             <label>Data inmormantare</label>
-                                            <input type="text"   id="DateInmormantareDecedat" name="DateInmormantareDecedat" class="form-control">
+                                            <input type="date"  id="DateInmormantareDecedat" name="DateInmormantareDecedat" class="form-control">
                                           
                                         </div>
                                        

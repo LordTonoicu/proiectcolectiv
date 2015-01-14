@@ -35,6 +35,7 @@
 	    }
 	  
 	</script>
+	
 </head>
 
 <body>
@@ -76,7 +77,7 @@
                                                                              
                                          <div  class="form-group">
                                              <label> Data Inregistrare </label>
-                                            <input id="dataInregistrare" name="dataInregistrare" class="form-control" />
+                                            <input type="date" id="dataInregistrare" name="dataInregistrare" class="form-control" />
                                         
                                         </div>
                                         
@@ -90,7 +91,7 @@
                                        
                                        <div class="form-group">
                                          <label>Concesionar </label>
-                                         <input id="cnpConcesionar" name="cnpConcesionar" class="form-control" readonly>
+                                         <input type="hidden" cnpConcesionar" name="cnpConcesionar" class="form-control" readonly>
                                                                          
                                          <select onchange="document.getElementById('cnpConcesionar').value = this.value" class="form-control">
                  							 <option value="" class="form-control"></option>

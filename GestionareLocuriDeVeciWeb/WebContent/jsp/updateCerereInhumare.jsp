@@ -87,7 +87,7 @@
                                        
                                          <div  class="form-group">
                                              <label> Data Inregistrare </label>
-                                            <input id="dataInregistrare" name="dataInregistrare" class="form-control" />
+                                            <input type="date" id="dataInregistrare" name="dataInregistrare" class="form-control" />
                                         
                                         </div>
                                         
