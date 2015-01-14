@@ -200,6 +200,7 @@ function newPopup(url) {
                                             
                                         <form action="../locuriDeVeciServlet" method="POST">  
                                             <input type="hidden" id="idLocDeVeciV<%=i%>" name="idLocDeVeci" value=<%=locDeVeci.getIdLoc()%> />
+                                             <input type="hidden" id="nrContractV<%=i%>" name="nrContract" value=<%=locDeVeci.getNrContractConcesionare()%> />
                                             <td><span id="suprafataV<%=i%>"><%=String.valueOf(locDeVeci.getSuprafata())%></span></td>
                                             <td><span id="denumireParcelaV<%=i%>"><%=locDeVeciDTO.getDenumireParcela() %></span></td>
                                             <td><span id="numarV<%=i%>"><%=locDeVeci.getNumar()%></span></td>
@@ -230,11 +231,20 @@ function newPopup(url) {
                                     					 <img src="css/plus.png"> Cerere inhumare
 													</button>                         
                             					 </a> 
+                            					 <%if(locDeVeci.getNrContractConcesionare()==0){ %>
                             					 <a href="JavaScript:newPopup('addContract.jsp')" onclick="setIdRow(<%=i%>)"> 
                             						<button class="btn btn-primary" type="button" >
                                     					 <img src="css/plus.png"> Contract
 													</button>                         
                             					 </a> 
+                            					 <%}else {%>
+                            					 <a href="JavaScript:newPopup('viewContract.jsp')" onclick="setIdRow(<%=i%>)"> 
+                            						<button class="btn btn-primary" type="button" >
+                                    					 <img src="css/plus.png"> Vezi contract
+													</button>                         
+                            					 </a> 
+                            					 <%} %>
+                            					 
 											</td>
 											
                                         	</form>   

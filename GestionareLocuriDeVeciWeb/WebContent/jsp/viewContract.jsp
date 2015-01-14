@@ -1,9 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+<!DOCTYPE html>
+<html lang="en">
+
 <head>
- <meta charset="utf-8">
+
+    <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
@@ -27,8 +27,9 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-    <script>
-	    window.onunload = refreshParent;
+	<script>
+	
+		window.onunload = refreshParent;
 	    function refreshParent() {
 	        window.opener.location.reload();
 	        this.close();
@@ -36,7 +37,9 @@
 	    function getById(){
 	    	var parentDocument = window.opener.document;
 	    	var parentRowId = window.opener.getId();
-	    	document.getElementById("idLocDeVeci").value = parentDocument.getElementById("idLocDeVeciV"+parentRowId).value;
+	    	document.getElementById("nrContract").value=parentDocument.getElementById("nrContractV"+parentRowId).value;
+	    	
+	    	
 	    	
 	    }	
 	</script>
@@ -44,8 +47,8 @@
 
 <body onload="getById()">
 
-	<%@ page import="domain.*" %>
-	<%@ page import="dto.*" %>
+    <%@ page import="domain.*" %>
+    <%@ page import="dto.*" %>
 	<%@ page import="java.util.ArrayList" %>
 	<jsp:useBean id="listConcesionari" class="java.util.ArrayList" scope="session"/>
 	<jsp:setProperty name="listConcesionari" property="*"/> 
@@ -58,7 +61,7 @@
         <div id="page-wrapper" style="position:fixed">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Adaugare contract</h1>
+                    <h1 class="page-header"> Date contract</h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -73,42 +76,25 @@
                             <div class="row">
                                 <div class="col-lg-6">
                                     <form role="form" action="../ContractServlet" method="POST">
-                                         <input type="hidden" id="idLocDeVeci" name="idLocDeVeci" class="form-control" />
                                         <div  class="form-group">
-                                        
-                                            <label> Nr contract </label>
-                                            <input id="nrContract" name="nrContract" class="form-control">
+                                            
+                                            <input  id="nrContract" name="nrContract" class="form-control" readonly/>
                                         
                                         </div>
                                         
                                        
                                          <div  class="form-group">
                                              <label> Data Eliberare </label>
-                                            <input id="dataEliberare" name="dataEliberare" class="form-control">
+                                            <input id="dataEliberare" name="dataEliberare" class="form-control" readonly/>
                                         
                                         </div>
-                                         <div class="form-group">
+                                        
+                                        
+                                       
+                                       <div class="form-group">
                                          <label>Primul concesionar </label>
-                                         <input type="hidden" id="cnpConcesionar1" name="cnpConcesionar1" class="form-control" readonly>
-                                         <select onchange="document.getElementById('cnpConcesionar1').value = this.value" class="form-control">
-                 							 <option value="" class="form-control"></option>
-                                        <% 
-											int i=0;
-                                      		for(Object obj : listConcesionari){
-												i++;	
-												 
-												 ConcesionarDTO concesionar = (ConcesionarDTO)obj;
-												 DatePersonale dateP = concesionar.getDatePersonale();
-												 Concesionar con = concesionar.getConcesionar();
-											      
-											%>
-											 
-											 <option value=<%=con.getCnpConcesionar()%> class="form-control"> <%=dateP.getNume()+" "+dateP.getPrenume()+" ( "+con.getCnpConcesionar()+" )"%></option>
-												
-												<%}
-												 %>
-											 
-											</select>
+                                         <input id="cnpConcesionar1" name="cnpConcesionar1" class="form-control" readonly>
+                                         
                                         
                                         </div>
                                                          
@@ -116,31 +102,12 @@
                                            
                                             <label> Al doilea concesionar </label> 
                                             
-                                            <input type="hidden" id="cnpConcesionar2" name="cnpConcesionar2" class="form-control" readonly>
-	                                        <select onchange="document.getElementById('cnpConcesionar2').value = this.value" class="form-control">
-                 								 <option value="" class="form-control"></option>
-                                        <% 
-											int j=0;
-                                       
-											for(Object obj : listConcesionari){
-												j++;	
-												 
-												 ConcesionarDTO concesionar = (ConcesionarDTO)obj;
-												 DatePersonale dateP = concesionar.getDatePersonale();
-												 Concesionar con = concesionar.getConcesionar();
-											      
-											%>
-											 
-											 <option value=<%=con.getCnpConcesionar()%> class="form-control"> <%=dateP.getNume()+" "+dateP.getPrenume()+" ( "+con.getCnpConcesionar()+" )"%></option>
-												
-												<%}
-												 %>
-											 
-											</select>
-	                                        
+                                            <input id="cnpConcesionar2" name="cnpConcesionar2" class="form-control" readonly>
+	                                       
                                         </div>
+                                     
                                                                        
-                                        <button type="submit" id="adaugaContract" name="adaugaContract" class="btn btn-primary" >Adauga Contract</button>
+                                      
                                         
                                     </form>
                                 </div>
@@ -175,8 +142,8 @@
     <!-- Custom Theme JavaScript -->
     <script src="js/sb-admin-2.js"></script>
     
-    <!-- addParcela validator -->
-	<script type="text/javascript" src="js/validations/addParcelaValidator.js"></script>
+    <!-- addConcesionar validator -->
+	<script type="text/javascript" src="js/validations/addConcesionarValidator.js"></script>
 
 </body>
 
