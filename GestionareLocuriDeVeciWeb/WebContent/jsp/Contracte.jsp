@@ -183,7 +183,11 @@ function newPopup(url) {
                                             
                                             <th>Nr contract</th>
                                             <th>Data Eliberare</th>
+                                            <th>Nume concesionar 1</th>
+                                            <th>Prenume concesionar 1</th>
                                             <th>Cnp Concesionar 1</th>
+                                            <th>Nume concesionar 2</th>
+                                            <th>Prenume concesionar 2</th>
                                            <th>Cnp Concesionar 2</th>
                                         	<th>Actiune</th>
 
@@ -193,8 +197,10 @@ function newPopup(url) {
 									<%
 										int i=0;
   										for (Object contract1:listContracte) {
-  											
-  											ContractConcesiune contract = (ContractConcesiune)contract1;
+  											ContractConcesiuneDTO contractConcesiuneDTO = (ContractConcesiuneDTO)contract1;
+  											ContractConcesiune contract = contractConcesiuneDTO.getContractConcesiune();
+  											ConcesionarDTO concesionarDTO1 = contractConcesiuneDTO.getConcesionar1();
+  											ConcesionarDTO concesionarDTO2 = contractConcesiuneDTO.getConcesionar2();
   											i++;
        								 %>
                                         <tr class="odd gradeX">
@@ -204,8 +210,13 @@ function newPopup(url) {
                                            <td><span id="nrContractV<%=i%>"><%=contract.getNrContract()%></span></td>
                                            <td><span id="dataEliberareV<%=i%>"><%=contract.getDataEliberare()%></span></td>
                                           
-                                           <td><span id="cnpConcesionar1V<%=i%>"><%=contract.getCnpConcesionar1() %></span></td>
-                                           <td><span id="cnpConcesionar1V<%=i%>"><%=contract.getCnpConcesionar2() %></span></td>
+                                           <td><span id="numeConcesionar1V<%=i%>"><%=concesionarDTO1.getDatePersonale().getNume() %></span></td>
+                                            <td><span id="prenumeConcesionar1V<%=i%>"><%=concesionarDTO1.getDatePersonale().getPrenume() %></span></td>
+                                            <td><span id="cnpConcesionar1V<%=i%>"><%=contract.getCnpConcesionar1() %></span></td>
+                                            
+                                             <td><span id="numeConcesionar2V<%=i%>"><%=concesionarDTO2.getDatePersonale().getNume() %></span></td>
+                                            <td><span id="prenumeConcesionar2V<%=i%>"><%=concesionarDTO2.getDatePersonale().getPrenume() %></span></td>
+                                           <td><span id="cnpConcesionar2V<%=i%>"><%=contract.getCnpConcesionar2() %></span></td>
                                            
                                               <td>  
                                               <a href="JavaScript:newPopup('updateContract.jsp')">

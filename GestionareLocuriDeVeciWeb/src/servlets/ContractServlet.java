@@ -2,6 +2,7 @@ package servlets;
 
 import java.io.IOException;
 import java.sql.Date;
+import java.sql.SQLException;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -9,18 +10,24 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import javax.servlet.http.Part;
 
 import domain.Concesionar;
 import domain.ContractConcesiune;
 import domain.DatePersonale;
 import domain.LocDeVeci;
 import dto.ConcesionarDTO;
+import dto.ContractConcesiuneDTO;
 import exceptions.BusinessException;
+import exceptions.ValidatorException;
 import services.ServiceConcesionari;
 import services.ServiceConcesionariImpl;
 import services.ServiceContracteConcesiune;
 import services.ServiceContracteConcesiuneImpl;
+import services.util.UtilInregistrareJurnal;
 import validators.CNPValidator;
+import validators.ContractConcesiuneValidator;
 
 /**
  * Servlet implementation class ConcesionarServlet
@@ -51,6 +58,7 @@ public class ContractServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try
 		{
+			
 			if(request.getParameter("updateContract")!=null)
 			{
 				String nrContract = request.getParameter("nrContract");
@@ -67,7 +75,12 @@ public class ContractServlet extends HttpServlet {
 			{
                       deleteContract(request);
 			}
-			List<ContractConcesiune> list = contractService.getContracteConcesiune();
+			else if(request.getParameter("adaugaContract")!=null){
+				adaugaContract(request);
+			}
+			
+			List<ContractConcesiuneDTO> list = contractService.getContracteConcesiune();
+			System.out.println(list.size());
 
 			request.getSession().setAttribute("listContracte", list);
 			response.sendRedirect("jsp/Contracte.jsp");
@@ -79,6 +92,34 @@ public class ContractServlet extends HttpServlet {
 			response.sendRedirect("jsp/exceptionPage.jsp");
 		}
 	}
+	private void adaugaContract(HttpServletRequest request) throws BusinessException, IllegalStateException, IOException,
+	ServletException{
+//		LocDeVeci locDeVeci = new LocDeVeci();
+//		HttpSession sesiune = request.getSession();
+//		locDeVeci.setSuprafata(Integer.parseInt(request
+//				.getParameter("suprafata")));
+//		locDeVeci.setIdCimitir((Integer) sesiune.getAttribute("idCimitir"));
+//		locDeVeci.setIdParcela((Integer) sesiune.getAttribute("idParcela"));
+//		locDeVeci.setNumar(Integer.parseInt(request.getParameter("numar")));
+//		if (request.getParameter("esteMonument") != null)
+//			locDeVeci.setMonument(true);
+//		else {
+//			locDeVeci.setMonument(false);
+//		}
+//
+//		Part filePart = request.getPart("poza");
+//		inputStream = filePart.getInputStream();
+//		if (filePart.getSize() != 0) {
+//			locDeVeci.setPoza(getBytes(inputStream));
+//		} else {
+//			byte[] poza = { 0 };
+//			locDeVeci.setPoza(poza);
+//		}
+//		locDeVeciService.adaugaLocDeVeci(locDeVeci, request.getRemoteHost());
+		
+		
+	}
+
 	private void deleteContract(HttpServletRequest request)
 			throws BusinessException, IllegalStateException, IOException,
 			ServletException {
@@ -86,7 +127,7 @@ public class ContractServlet extends HttpServlet {
 		String nr = request.getParameter("nrContract");
 		ContractConcesiune contract = new ContractConcesiune();
 		contract.setNrContract(Integer.valueOf(nr)); 
-		contractService.stergeContractConcesiune(contract);
+		contractService.stergeContractConcesiune(contract,request.getRemoteHost());
 	}
 
 
