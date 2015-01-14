@@ -1,6 +1,7 @@
 package servlets;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.Date;
 import java.sql.SQLException;
 import java.util.List;
@@ -77,7 +78,11 @@ public class ContractServlet extends HttpServlet {
 				return;
 				
 			}
-			
+			else if(request.getParameter("getContract")!=null)
+			{
+				getContractDetails(request,response);
+				return;
+			}
 			List<ContractConcesiuneDTO> list = contractService.getContracteConcesiune();
 			List<ConcesionarDTO> listConcesionari = concesionarService.getConcesionari();
 		
@@ -93,6 +98,23 @@ public class ContractServlet extends HttpServlet {
 			response.sendRedirect("jsp/exceptionPage.jsp");
 		}
 	}
+	private void getContractDetails(HttpServletRequest request,
+			HttpServletResponse response) throws BusinessException, IOException{
+		int nr = Integer.parseInt(request.getParameter("nrContract"));
+		ContractConcesiuneDTO contractDTO = contractService.getContractByNr(nr);
+		PrintWriter out = response.getWriter();
+		String contractDTOString = contractDTO.getContractConcesiune().getDataEliberare() +";;;";
+		ConcesionarDTO c1 = contractDTO.getConcesionar1();
+		ConcesionarDTO c2 = contractDTO.getConcesionar2();
+		contractDTOString+= c1.getDatePersonale().getNume() +" " + c1.getDatePersonale().getPrenume() + " ( " + c1.getDatePersonale().getCnp() + " );;;";
+		contractDTOString+= c2.getDatePersonale().getNume() +" " + c2.getDatePersonale().getPrenume() + " ( " + c2.getDatePersonale().getCnp() + " )";
+		out.println(contractDTOString);
+		out.flush();
+		response.flushBuffer();
+		out.close();
+		
+	}
+
 	private void updateContract(HttpServletRequest request) throws BusinessException {
 		
 		String nrContract = request.getParameter("nrContract");

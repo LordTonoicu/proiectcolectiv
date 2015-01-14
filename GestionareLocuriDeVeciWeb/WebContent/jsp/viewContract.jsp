@@ -28,20 +28,50 @@
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 	<script>
-	
+		var idContract;
 		window.onunload = refreshParent;
 	    function refreshParent() {
 	        window.opener.location.reload();
 	        this.close();
 	    }
-	    function getById(){
-	    	var parentDocument = window.opener.document;
-	    	var parentRowId = window.opener.getId();
-	    	document.getElementById("nrContract").value=parentDocument.getElementById("nrContractV"+parentRowId).value;
-	    	
-	    	
-	    	
-	    }	
+	    function setFormsAndParseResponse(response)
+	    {
+	    	var tokens = response.split(";;;");
+	    	document.getElementById("nrContract").value = idContract;
+	    	document.getElementById("dataEliberare").value = tokens[0];
+	    	document.getElementById("cnpConcesionar1").value = tokens[1];
+	    	document.getElementById("cnpConcesionar2").value = tokens[2];
+	    }
+	    function requestContractById(id)
+	    {
+	    	var xmlHttpReq = new XMLHttpRequest();
+			var params = "getContract=true&nrContract="+id;
+			xmlHttpReq.open('POST', '../ContractServlet', true);
+			xmlHttpReq.setRequestHeader('Content-Type',
+					'application/x-www-form-urlencoded');
+			xmlHttpReq.setRequestHeader("Content-length", params.length);
+			xmlHttpReq.setRequestHeader("Connection", "close");
+		
+			xmlHttpReq.onreadystatechange = function() {
+				if (xmlHttpReq.readyState == 4) {
+					setFormsAndParseResponse(xmlHttpReq.responseText);
+				}
+
+			}
+			xmlHttpReq.send(params);
+		}
+		function getById() {
+			var parentDocument = window.opener.document;
+			var parentRowId = window.opener.getId();
+			document.getElementById("nrContract").value = "Se incarca...";
+			document.getElementById("dataEliberare").value ="Se incarca...";
+	    	document.getElementById("cnpConcesionar1").value = "Se incarca...";
+	    	document.getElementById("cnpConcesionar2").value = "Se incarca...";
+	    	idContract = parentDocument.getElementById("nrContractV"
+					+ parentRowId).value;
+			requestContractById(idContract);
+			
+		}
 	</script>
 </head>
 
