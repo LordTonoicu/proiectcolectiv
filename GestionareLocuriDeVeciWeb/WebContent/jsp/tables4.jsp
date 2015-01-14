@@ -79,6 +79,9 @@
                                 <li>
                                     <a href="../ContracteServlet">Contracte</a>
                                 </li>
+                                 <li>
+                                    <a href="../CerereInhumareServlet">Cereri Inhumare</a>
+                                </li>
  
                             </ul>
                         </li>

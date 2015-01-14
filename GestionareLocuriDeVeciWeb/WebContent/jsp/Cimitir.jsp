@@ -93,6 +93,9 @@
 							<li><a href="../ConcesionarServlet">Concesionari</a></li>
 							<li><a href="../DecedatServlet">Decedati</a></li>
 							<li><a href="../ContractServlet">Contracte</a></li>
+							 <li>
+                                    <a href="../CerereInhumareServlet">Cereri Inhumare</a>
+                                </li>
  
 						</ul></li>
 					<li><a href="#"><i class="fa fa-bar-chart-o fa-fw"></i>

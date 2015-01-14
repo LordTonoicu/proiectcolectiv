@@ -79,6 +79,9 @@
                                 <li>
                                     <a href="../CereriServlet">Cereri</a>
                                 </li>
+                                 <li>
+                                    <a href="../CerereInhumareServlet">Cereri Inhumare</a>
+                                </li>
 
                             </ul>
                         </li>

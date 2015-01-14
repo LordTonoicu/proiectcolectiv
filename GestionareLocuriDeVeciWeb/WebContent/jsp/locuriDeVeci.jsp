@@ -93,6 +93,10 @@ function newPopup(url) {
                                 <li>
                                     <a href="../ContractServlet">Contracte</a>
                                 </li>
+                                 <li>
+                                    <a href="../CerereInhumareServlet">Cereri Inhumare</a>
+                                </li>
+                                
 
                             </ul> 
                         </li>
