@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -8,6 +10,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
+    <script type="text/javascript">
+// Popup window code
+function newPopup(url) {
+	popupWindow = window
+	.open(
+			url,
+			'popUpWindow',
+			'height=700,width=400,left=10,top=10,resizable=yes,scrollbars=yes,toolbar=yes,menubar=no,location=no,directories=no,status=yes')
+}
+</script>
 
     <title>Gestionare locuri de veci</title>
 
@@ -33,14 +45,15 @@
 </head>
 
 <body>
-	<%@ page import="domain.*"%>
-	<%@ page import="java.util.ArrayList"%>
-	<%@ page import="java.util.Calendar" %>
-	<jsp:useBean id="inregistrariJurnal" class="java.util.ArrayList" scope="session" />
-	<jsp:setProperty name="inregistrariJurnal" property="*" />
+	<%@ page import="domain.*" %>
+	<%@ page import="dto.*" %>
+	<%@ page import="java.util.ArrayList" %>
+	<jsp:useBean id="listCereri" class="java.util.ArrayList" scope="session"/>
+	<jsp:setProperty name="listCereri" property="*"/> 
 
     <div id="wrapper">
-  <!-- Navigation -->
+
+         <!-- Navigation -->
         <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -79,7 +92,7 @@
                                 </li>
                                 <li>
                                     <a href="../DecedatServlet">Decedati</a>
-                                </li> 
+                                </li>
                                 <li>
                                     <a href="../ContractServlet">Contracte</a>
                                 </li>
@@ -90,7 +103,7 @@
                             </ul>
                         </li>
                         <li>
-                            <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Rapoarte <span class="fa arrow"></span></a>
+                            <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Rapoarte<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                
                                 <li>
@@ -135,11 +148,12 @@
             </div>
             <!-- /.navbar-static-side -->
         </nav>
-
+            <!-- /.navbar-static-side -->
+        </nav>
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Istoric modificari </h1>
+                    <h1 class="page-header">Gestiune</h1>
 
                 </div>
                 <!-- /.col-lg-12 -->
@@ -149,8 +163,17 @@
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            Aici aveti ultimele modificari efectuate
-                           
+                           Gestioneaza contracte
+                           <a href="JavaScript:newPopup('addContract.jsp')"> 
+                            <button class="btn btn-primary" type="button" style="float:right;margin-top:-7px;margin-right:10px">
+                                     <img src="css/plus.png"> Adauga contract
+
+                            </button></a>
+                    
+                        
+                         
+                       
+                            
                         </div>
 
                         <!-- /.panel-heading -->
@@ -159,38 +182,61 @@
                                 <table class="table table-striped table-bordered table-hover" id="dataTables-example">
                                     <thead>
                                         <tr>
-                                            <th>Nume utilizator</th>
-                                            <th>Data</th>
-                                            <th>Ora</th>
-                                            <th>Detalii</th>
+                                         
+                                            
+                                            <th>Nr cerere</th>
+                                            <th>Data Inregistrare</th>
+                                            <th>Stadiu solutionare</th>
+                                            <th>Nume concesionar </th>
+                                            <th>Prenume concesionar </th>
+                                            <th>Cnp Concesionar </th>
+                                        	<th>Actiune</th>
+
                                         </tr>
                                     </thead>
-                                    <tbody>
-                                    	<%
-											int i=0;
-										  	for (Object inregistrareO: inregistrariJurnal) {
-										  	InregistrareJurnal inregJurnal = (InregistrareJurnal)inregistrareO;
-										  	 Calendar cal = Calendar.getInstance();
-	  										 cal.setTime(new java.sql.Date(inregJurnal.getDataOra().getTime()));
-	  										 int year = cal.get(Calendar.YEAR);
-	  										 int month = cal.get(Calendar.MONTH)+1;
-	  										 int day = cal.get(Calendar.DAY_OF_MONTH);
-
-										  	i++;
-										%>
+                                     <tbody>
+									<%
+										int i=0;
+  										for (Object cerereO:listCereri) {
+  											CerereInhumareDTO cerereInhumareDTO = (CerereInhumareDTO)cerereO;
+  											CerereInhumare cerereInhumare = cerereInhumareDTO.getCerereInhumare();
+  											ConcesionarDTO concesionarDTO = cerereInhumareDTO.getConcesionarDTO();
+  											i++;
+       								 %>
                                         <tr class="odd gradeX">
-                                            <td><%=inregJurnal.getUser() %></td>
-                                            <td><%=day+"/"+month+"/"+year %></td>
-                                            <td><%=inregJurnal.getDataOra().getHours()+":"+inregJurnal.getDataOra().getMinutes() %></td>
-                                            <td class="center"><%=inregJurnal.getDetaliiModificare() %></td>
+                                         
+                                          <form action="../CerereInhumareServlet" method="POST">
+                                           <input type="hidden" name="nrCerere" value=<%=cerereInhumare.getNrCerere()%> />
+                                           <td><span id="nrCerereV<%=i%>"><%=cerereInhumare.getNrCerere()%></span></td>
+                                           <td><span id="dataInregistrareV<%=i%>"><%=cerereInhumare.getDataInregistrare()%></span></td>
+                                           <td><span id="statiuSolutionareV<%=i%>"><%=cerereInhumare.getStadiuSolutionare()%></span></td>
+                                           <td><span id="numeConcesionarV<%=i%>"><%=concesionarDTO.getDatePersonale().getNume() %></span></td>
+                                            <td><span id="prenumeConcesionarV<%=i%>"><%=concesionarDTO.getDatePersonale().getPrenume() %></span></td>
+                                            <td><span id="cnpConcesionarV<%=i%>"><%=cerereInhumare.getCnpConcesionar() %></span></td>
+                                            
+                                              <td>  
+                                              <a href="JavaScript:newPopup('updateContract.jsp')">
+                                            	<button   name="getInfoCerere"  id="getInfoCerere" class="btn btn-primary" type="button"  onclick="setIdRow(<%=i%>)">
+                                            		<img src="css/edit.png"/> Actualizeaza
+                                            	</button> 
+                                            	</a>
+                                            	<button name="stergeCerere" id="stergeCerere" class="btn btn-primary" type="submit">
+                                            		<img src="css/delete.png"/> Sterge
+                                            	</button>
+                                            	
+													                                           
+											 </td>
+                                            </form>
                                         </tr>
+                                         
                                         <%
-                                        	}
-										  %>
-                                        
+                                        }
+									%>
                                         
                                     </tbody>
+
                                 </table>
+                              
                             </div>
                             <!-- /.table-responsive -->
                               
@@ -239,6 +285,14 @@
     $(document).ready(function() {
         $('#dataTables-example').dataTable();
     });
+    var idV;
+	function getId(){
+		return idV;
+	}
+	function setIdRow(id)
+	{
+		idV=id;
+	}
     </script>
 
 </body>

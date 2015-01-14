@@ -1,6 +1,6 @@
 package domain;
 
-import java.util.Date;
+import java.sql.Date;
 
 public class CerereInhumare {
 
@@ -61,4 +61,12 @@ public class CerereInhumare {
 	public void setCnpConcesionar(String cnpConcesionar) {
 		this.cnpConcesionar = cnpConcesionar;
 	}
+
+	@Override
+	public String toString() {
+		return "CerereInhumare [nrCerere=" + nrCerere + ", dataInregistrare="
+				+ dataInregistrare + ", stadiuSolutionare=" + stadiuSolutionare
+				+ ", cnpConcesionar=" + cnpConcesionar + "]";
+	}
+	
 }
