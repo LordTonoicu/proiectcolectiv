@@ -161,11 +161,7 @@ function newPopup(url) {
                     <div class="panel panel-default">
                         <div class="panel-heading">
                            Gestioneaza contracte
-                           <a href="JavaScript:newPopup('addContract.jsp')"> 
-                            <button class="btn btn-primary" type="button" style="float:right;margin-top:-7px;margin-right:10px">
-                                     <img src="css/plus.png"> Adauga contract
-
-                            </button></a>
+                          
                     
                         
                          
@@ -207,7 +203,7 @@ function newPopup(url) {
                                          
                                            <form action="../ContractServlet" method="POST">
                                            <input type="hidden" name="nrContract" value=<%=contract.getNrContract()%> />
-                                           <td><span id="nrContractV<%=i%>"><%=contract.getNrContract()%></span></td>
+                                           <td><span id="nrContractV<%=i%>" ><%=contract.getNrContract()%></span></td>
                                            <td><span id="dataEliberareV<%=i%>"><%=contract.getDataEliberare()%></span></td>
                                           
                                            <td><span id="numeConcesionar1V<%=i%>"><%=concesionarDTO1.getDatePersonale().getNume() %></span></td>

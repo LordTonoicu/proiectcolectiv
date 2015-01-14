@@ -37,6 +37,7 @@ public class ContractServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	ServiceContracteConcesiune contractService = new ServiceContracteConcesiuneImpl();
+	ServiceConcesionari  concesionarService  = new ServiceConcesionariImpl();
 
 	/**
 	 * @see HttpServlet#HttpServlet()
@@ -61,15 +62,7 @@ public class ContractServlet extends HttpServlet {
 			
 			if(request.getParameter("updateContract")!=null)
 			{
-				String nrContract = request.getParameter("nrContract");
-				String cnpConcesionar1 = request.getParameter("cnpConcesionar1");
-				String cnpConcesionar2 = request.getParameter("cnpConcesionar2");
-				String  dataEliberare  = request.getParameter("dataEliberare");
-//				
-//				ContractConcesiune c = new ContractConcesiune(Integer.parseInt(nrContract),Date.valueOf(dataEliberare),cnpConcesionar1,cnpConcesionar2);
-//				DatePersonale d = new DatePersonale(cnp,nume,prenume);
-//				ConcesionarDTO cdto = new ConcesionarDTO(c,d);
-//				concesionarService.actualizeazaConcesionar(cdto,request.getRemoteHost());
+				updateContract(request);
 			}
 			else if(request.getParameter("stergeContract")!=null)
 			{
@@ -80,9 +73,12 @@ public class ContractServlet extends HttpServlet {
 			}
 			
 			List<ContractConcesiuneDTO> list = contractService.getContracteConcesiune();
-			System.out.println(list.size());
+			List<ConcesionarDTO> listConcesionari = concesionarService.getConcesionari();
+			
+			System.out.println("servletListaConcesionari"+listConcesionari.size());
 
 			request.getSession().setAttribute("listContracte", list);
+			request.getSession().setAttribute("listConcesionari",listConcesionari);
 			response.sendRedirect("jsp/Contracte.jsp");
 		}
 		catch(BusinessException ex)
@@ -92,30 +88,27 @@ public class ContractServlet extends HttpServlet {
 			response.sendRedirect("jsp/exceptionPage.jsp");
 		}
 	}
+	private void updateContract(HttpServletRequest request) throws BusinessException {
+		System.out.println("updatecontract");
+		String nrContract = request.getParameter("nrContract");
+		String cnpConcesionar1 = request.getParameter("cnpConcesionar1");
+		String cnpConcesionar2 = request.getParameter("cnpConcesionar2");
+		String  dataEliberare  = request.getParameter("dataEliberare");
+		
+		ContractConcesiune c = new ContractConcesiune(Integer.parseInt(nrContract),Date.valueOf(dataEliberare),cnpConcesionar1,cnpConcesionar2);
+		
+		contractService.actualizeazaContractConcesiune(c, request.getRemoteHost());
+		
+	}
+
 	private void adaugaContract(HttpServletRequest request) throws BusinessException, IllegalStateException, IOException,
 	ServletException{
-//		LocDeVeci locDeVeci = new LocDeVeci();
-//		HttpSession sesiune = request.getSession();
-//		locDeVeci.setSuprafata(Integer.parseInt(request
-//				.getParameter("suprafata")));
-//		locDeVeci.setIdCimitir((Integer) sesiune.getAttribute("idCimitir"));
-//		locDeVeci.setIdParcela((Integer) sesiune.getAttribute("idParcela"));
-//		locDeVeci.setNumar(Integer.parseInt(request.getParameter("numar")));
-//		if (request.getParameter("esteMonument") != null)
-//			locDeVeci.setMonument(true);
-//		else {
-//			locDeVeci.setMonument(false);
-//		}
-//
-//		Part filePart = request.getPart("poza");
-//		inputStream = filePart.getInputStream();
-//		if (filePart.getSize() != 0) {
-//			locDeVeci.setPoza(getBytes(inputStream));
-//		} else {
-//			byte[] poza = { 0 };
-//			locDeVeci.setPoza(poza);
-//		}
-//		locDeVeciService.adaugaLocDeVeci(locDeVeci, request.getRemoteHost());
+		ContractConcesiune contractConcesiune = new ContractConcesiune();
+		contractConcesiune.setCnpConcesionar1(request.getParameter("cnpConcesionar1"));
+		contractConcesiune.setCnpConcesionar1(request.getParameter("cnpConcesionar2"));
+		contractConcesiune.setDataEliberare(Date.valueOf(request.getParameter("dataEliberare")));
+		contractConcesiune.setNrContract(Integer.valueOf(request.getParameter("nrContract")));
+		contractService.adaugaContractConcesiune(contractConcesiune,request.getRemoteHost());
 		
 		
 	}

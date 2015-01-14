@@ -64,7 +64,7 @@ public class DAOContracteConcesiune implements IDAOContracteConcesiune {
 		try{
 			String updateTable = "UPDATE ContracteConcesiune SET dataEliberare = ?, cnpConcesionar1 = ?, cnpConcesionar2 = ? WHERE nrContract = ?";
 			PSUpdate = connection.prepareStatement(updateTable);
-			PSUpdate.setInt(5, cc.getNrContract());
+			PSUpdate.setInt(4, cc.getNrContract());
 			PSUpdate.setDate(1, cc.getDataEliberare());
 			PSUpdate.setString(2, cc.getCnpConcesionar1());
 			PSUpdate.setString(3, cc.getCnpConcesionar2());
