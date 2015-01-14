@@ -25,7 +25,7 @@ public class ServiceContracteConcesiuneImpl implements ServiceContracteConcesiun
 	private DAOConcesionari     daoConcesionar;
 	private DAODatePersonale   daoDatePersonale;
 	private DAOJurnal          daoJurnal;
-	
+
 	public ServiceContracteConcesiuneImpl() {
 		this.validator = new ContractConcesiuneValidator();
 		this.daoContracteConcesiune = new DAOContracteConcesiune();
@@ -33,7 +33,7 @@ public class ServiceContracteConcesiuneImpl implements ServiceContracteConcesiun
 		this.daoDatePersonale = new DAODatePersonale();
 		this.daoJurnal = new DAOJurnal();
 	}
-	
+
 	@Override
 	public void adaugaContractConcesiune(ContractConcesiune contractConcesiune,String user)
 			throws BusinessException {
@@ -46,20 +46,20 @@ public class ServiceContracteConcesiuneImpl implements ServiceContracteConcesiun
 		} catch (SQLException sqlException) {
 			throw new BusinessException("Data access exception: " + sqlException.getMessage());
 		}
-			
+
 	}
 
 	@Override
 	public void stergeContractConcesiune(ContractConcesiune contractConcesiune,String user)
 			throws BusinessException {
-		
+
 		try{
 			daoContracteConcesiune.delete(contractConcesiune);
 			daoJurnal.insert(UtilInregistrareJurnal.creeazaInregistrareJurnal(user, "stergere", contractConcesiune.toString()));
 		} catch (SQLException sqlException){
 			throw new BusinessException("Data access exception: " + sqlException.getMessage());
 		}
-		
+
 	}
 
 	@Override
@@ -75,7 +75,7 @@ public class ServiceContracteConcesiuneImpl implements ServiceContracteConcesiun
 		} catch (SQLException sqlException) {
 			throw new BusinessException("Data access exception: " + sqlException.getMessage());
 		}
-		
+
 	}
 
 	@Override
@@ -83,32 +83,51 @@ public class ServiceContracteConcesiuneImpl implements ServiceContracteConcesiun
 			throws BusinessException {
 		List<ContractConcesiuneDTO> result = null;
 		List<ContractConcesiune> listContracte = null;
-		 System.out.println("bla1");
 		try{
-			   listContracte = daoContracteConcesiune.getAll();
-			   
-			
-			   result = new ArrayList<ContractConcesiuneDTO>();
-			   for (ContractConcesiune contract: listContracte){
-				   System.out.println("bla2");
-				   ContractConcesiuneDTO contractConcesiuneDTO = new ContractConcesiuneDTO();
-				   ConcesionarDTO concesionarDTO1 = new ConcesionarDTO();
-				   ConcesionarDTO concesionarDTO2 = new ConcesionarDTO();
-				   
-				   concesionarDTO1.setDatePersonale(daoDatePersonale.getDatePersonaleFromCNP(contract.getCnpConcesionar1()));
-				   concesionarDTO1.setConcesionar(daoConcesionar.getConcesionarFromCNP(contract.getCnpConcesionar1()));
-				   concesionarDTO2.setConcesionar(daoConcesionar.getConcesionarFromCNP(contract.getCnpConcesionar2()));
-				   concesionarDTO2.setDatePersonale(daoDatePersonale.getDatePersonaleFromCNP(contract.getCnpConcesionar2()));
-				   
-				   contractConcesiuneDTO.setContractConcesiune(contract);
-				   contractConcesiuneDTO.setConcesionar1(concesionarDTO1);
-				   contractConcesiuneDTO.setConcesionar2(concesionarDTO2);
-				   result.add(contractConcesiuneDTO);
-			   }
+			listContracte = daoContracteConcesiune.getAll();
+
+
+			result = new ArrayList<ContractConcesiuneDTO>();
+			for (ContractConcesiune contract: listContracte){
+				ContractConcesiuneDTO contractConcesiuneDTO =getContractConcesiuneDTObyContract(contract);
+				result.add(contractConcesiuneDTO);
+			}
 		} catch (SQLException sqlException) {
 			throw new BusinessException("Data access exception: " + sqlException.getMessage());
 		}
 		return result;
+	}
+
+	private ContractConcesiuneDTO getContractConcesiuneDTObyContract(
+			ContractConcesiune contract) throws SQLException {
+	
+		ContractConcesiuneDTO contractConcesiuneDTO = new ContractConcesiuneDTO();
+		ConcesionarDTO concesionarDTO1 = new ConcesionarDTO();
+		ConcesionarDTO concesionarDTO2 = new ConcesionarDTO();
+
+		concesionarDTO1.setDatePersonale(daoDatePersonale.getDatePersonaleFromCNP(contract.getCnpConcesionar1()));
+		concesionarDTO1.setConcesionar(daoConcesionar.getConcesionarFromCNP(contract.getCnpConcesionar1()));
+		concesionarDTO2.setConcesionar(daoConcesionar.getConcesionarFromCNP(contract.getCnpConcesionar2()));
+		concesionarDTO2.setDatePersonale(daoDatePersonale.getDatePersonaleFromCNP(contract.getCnpConcesionar2()));
+
+		contractConcesiuneDTO.setContractConcesiune(contract);
+		contractConcesiuneDTO.setConcesionar1(concesionarDTO1);
+		contractConcesiuneDTO.setConcesionar2(concesionarDTO2);
+		return contractConcesiuneDTO;
+	}
+
+	@Override
+	public ContractConcesiuneDTO getContractByNr(int nr) throws BusinessException {
+		try{
+			ContractConcesiune contract = daoContracteConcesiune.getByNumarContract(nr);
+			ContractConcesiuneDTO contractDTO = getContractConcesiuneDTObyContract(contract);
+			return contractDTO;
+		}
+		catch(SQLException sqlException)
+		{
+
+		}
+		return null;
 	}
 
 }

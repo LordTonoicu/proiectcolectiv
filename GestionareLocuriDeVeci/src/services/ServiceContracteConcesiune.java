@@ -11,4 +11,5 @@ public interface ServiceContracteConcesiune {
 	public void stergeContractConcesiune(ContractConcesiune contractConcesiune,String user) throws BusinessException;
 	public void actualizeazaContractConcesiune(ContractConcesiune contractConcesiune,String user) throws BusinessException;
 	public List<ContractConcesiuneDTO> getContracteConcesiune() throws BusinessException;
+	public ContractConcesiuneDTO getContractByNr(int nr) throws BusinessException;
 }
