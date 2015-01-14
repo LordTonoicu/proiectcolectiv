@@ -13,19 +13,20 @@ public class DatePersonaleValidator {
 	public void validate(DatePersonale dp) throws ValidatorException {
 		message="";
 		
-		if(cnpv.isValid(dp.getCnp()) == 1){
+		int cnpReturnValue = cnpv.isValid(dp.getCnp());
+		if(cnpReturnValue == 1){
 			message += "CNP-ul trebuie sa aiba 13 caractere!";
 		}
-		if(cnpv.isValid(dp.getCnp()) == 2){
+		if(cnpReturnValue == 2){
 			message += "CNP-ul trebuie sa fie format doar din cifre!!";
 		}
-		if(cnpv.isValid(dp.getCnp()) == 3){
+		if(cnpReturnValue == 3){
 			message += "CNP-ul trebuie sa inceapa cu una din cifrele 1, 2, 3, 4, 5, 6 sau 9!";
 		}
-		if(cnpv.isValid(dp.getCnp()) == 4){
+		if(cnpReturnValue == 4){
 			message += "Data calculata din CNP nu este valida!";
 		}
-		if(cnpv.isValid(dp.getCnp()) == 5){
+		if(cnpReturnValue == 5){
 			message += "CNP-ul nu a trecut testul de control!";
 		}
 		
