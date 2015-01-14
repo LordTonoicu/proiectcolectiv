@@ -229,4 +229,19 @@ public class ServiceLocuriDeVeciImpl implements ServiceLocuriDeVeci {
 		}
 		return locDeVeci;
 	}
+
+	@Override
+	public void deleteContractConcesiune(int nrContract,String user) throws BusinessException {
+		LocDeVeci locDeVeci = null;
+		try{
+			locDeVeci = daoLocuri.getByNrContract(nrContract);
+			locDeVeci.setNrContractConcesionare(0);
+			actualizeazaLocDeVeci(locDeVeci, user);
+		} catch (SQLException sqlException){
+			throw new BusinessException(sqlException.getMessage());
+		}
+		
+		
+		
+	}
 }

@@ -75,6 +75,8 @@ public interface ServiceLocuriDeVeci {
 	public List<LocDeVeciDTO> getLocuriDeVeciByIdParcela (int idParcela) throws BusinessException;
 	
 	public LocDeVeci getById (int id) throws BusinessException;
+
+	public void deleteContractConcesiune(int nrContract,String user) throws BusinessException;
 	
 	//+ Export raspuns, de stabilit date membru ale unui obiect incapsulandu-l etc.
 }

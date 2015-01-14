@@ -17,4 +17,6 @@ public interface IDAOLocuri {
 
 	public LocDeVeci getById(int idLoc) throws SQLException;
 
+	LocDeVeci getByNrContract(int nrContract) throws SQLException;
+
 }

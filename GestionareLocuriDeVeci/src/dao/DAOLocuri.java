@@ -153,4 +153,30 @@ public class DAOLocuri implements IDAOLocuri {
 		}
 		return locDeVeci;
 	}
+	@Override
+	public LocDeVeci getByNrContract(int nrContract) throws SQLException {
+		LocDeVeci locDeVeci=null;
+		try{
+
+			String selectTable = "SELECT * FROM LocuriDeVeci WHERE nrContractConcesiune = " + String.valueOf(nrContract);
+			PSSelect = connection.prepareStatement(selectTable);
+
+			ResultSet result = PSSelect.executeQuery(selectTable);
+
+
+			while(result.next()) {
+				locDeVeci = new LocDeVeci(result.getInt(1),result.getInt(2),result.getInt(3),result.getInt(4),
+						result.getBytes(5), result.getBoolean(6), result.getInt(7), result.getInt(8));
+
+			}
+
+		}catch(SQLException ex) {
+			throw new SQLException("Error when trying to retrieve the LocDeVeci:" + ex.getMessage());
+		}finally{
+			if(PSSelect !=null){
+				PSSelect.close();
+			}
+		}
+		return locDeVeci;
+	}
 }

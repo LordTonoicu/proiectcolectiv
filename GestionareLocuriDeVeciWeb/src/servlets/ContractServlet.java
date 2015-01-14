@@ -134,6 +134,7 @@ public class ContractServlet extends HttpServlet {
 		ContractConcesiune contract = new ContractConcesiune();
 		contract.setNrContract(Integer.valueOf(nr)); 
 		contractService.stergeContractConcesiune(contract,request.getRemoteHost());
+		locuriDeVeciService.deleteContractConcesiune(contract.getNrContract(),request.getRemoteHost());
 	}
 
 
