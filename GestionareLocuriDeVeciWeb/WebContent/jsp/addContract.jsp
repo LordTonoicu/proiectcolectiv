@@ -39,6 +39,7 @@
 <body>
 
 	<%@ page import="domain.*" %>
+	<%@ page import="dto.*" %>
 	<%@ page import="java.util.ArrayList" %>
 	<jsp:useBean id="listConcesionari" class="java.util.ArrayList" scope="session"/>
 	<jsp:setProperty name="listConcesionari" property="*"/> 
@@ -78,21 +79,58 @@
                                             <input id="dataEliberare" name="dataEliberare" class="form-control">
                                         
                                         </div>
-                                         <div  class="form-group">
-                                             <label> Primul Concesionar </label>   
-                                            <input id="cnpConcesionar1" name="cnpConcesionar1" class="form-control">
+                                         <div class="form-group">
+                                         <label>Primul concesionar </label>
+                                         <input  id="cnpConcesionar1" name="cnpConcesionar1" class="form-control" readonly>
+                                         <select onchange="document.getElementById('cnpConcesionar1').value = this.value">
+                 
+                                        <% 
+											int i=0;
+                                        System.out.println("listamea"+listConcesionari.size());
+											for(Object obj : listConcesionari){
+												i++;	
+												 
+												 ConcesionarDTO concesionar = (ConcesionarDTO)obj;
+												 DatePersonale dateP = concesionar.getDatePersonale();
+												 Concesionar con = concesionar.getConcesionar();
+											      
+											%>
+											 
+											 <option value=<%=con.getCnpConcesionar()%>> <%=dateP.getNume()+" "+dateP.getPrenume()+" ( "+con.getCnpConcesionar()+" )"%></option>
+												
+												<%}
+												 %>
+											 
+											</select>
                                         
-                                        </div>   
+                                        </div>
+                                                         
                                          <div  class="form-group"> 
                                            
                                             <label> Al doilea concesionar </label> 
                                             
-                                            <input id="cnpConcesionar2" name="cnpConcesionar1" class="form-control">
-	                                        
-	                                        <select>
-		                                   
-											  <option value="volvo">Volvo</option>
+                                            <input  id="cnpConcesionar2" name="cnpConcesionar2" class="form-control" readonly>
+	                                        <select onchange="document.getElementById('cnpConcesionar2').value = this.value">
+                 
+                                        <% 
+											int j=0;
+                                       
+											for(Object obj : listConcesionari){
+												j++;	
+												 
+												 ConcesionarDTO concesionar = (ConcesionarDTO)obj;
+												 DatePersonale dateP = concesionar.getDatePersonale();
+												 Concesionar con = concesionar.getConcesionar();
+											      
+											%>
+											 
+											 <option value=<%=con.getCnpConcesionar()%>> <%=dateP.getNume()+" "+dateP.getPrenume()+" ( "+con.getCnpConcesionar()+" )"%></option>
+												
+												<%}
+												 %>
+											 
 											</select>
+	                                        
                                         </div>
                                                                        
                                         <button type="submit" id="adaugaContract" name="adaugaContract" class="btn btn-primary" >Adauga Contract</button>

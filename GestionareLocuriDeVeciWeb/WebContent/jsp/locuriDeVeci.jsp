@@ -225,6 +225,16 @@ function newPopup(url) {
                                     					 <img src="css/plus.png"> Decedat
 													</button>                         
                             					 </a> 
+                            					 <a href="JavaScript:newPopup('addCerereInhumare.jsp')" onclick="setIdRow(<%=i%>)"> 
+                            						<button class="btn btn-primary" type="button" >
+                                    					 <img src="css/plus.png"> Cerere inhumare
+													</button>                         
+                            					 </a> 
+                            					 <a href="JavaScript:newPopup('addContract.jsp')" onclick="setIdRow(<%=i%>)"> 
+                            						<button class="btn btn-primary" type="button" >
+                                    					 <img src="css/plus.png"> Contract
+													</button>                         
+                            					 </a> 
 											</td>
 											
                                         	</form>   

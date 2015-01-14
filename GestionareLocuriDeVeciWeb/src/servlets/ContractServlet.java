@@ -25,6 +25,8 @@ import services.ServiceConcesionari;
 import services.ServiceConcesionariImpl;
 import services.ServiceContracteConcesiune;
 import services.ServiceContracteConcesiuneImpl;
+import services.ServiceLocuriDeVeci;
+import services.ServiceLocuriDeVeciImpl;
 import services.util.UtilInregistrareJurnal;
 import validators.CNPValidator;
 import validators.ContractConcesiuneValidator;
@@ -38,6 +40,7 @@ public class ContractServlet extends HttpServlet {
 
 	ServiceContracteConcesiune contractService = new ServiceContracteConcesiuneImpl();
 	ServiceConcesionari  concesionarService  = new ServiceConcesionariImpl();
+	ServiceLocuriDeVeci locuriDeVeciService = new ServiceLocuriDeVeciImpl();
 
 	/**
 	 * @see HttpServlet#HttpServlet()
@@ -70,12 +73,14 @@ public class ContractServlet extends HttpServlet {
 			}
 			else if(request.getParameter("adaugaContract")!=null){
 				adaugaContract(request);
+				response.sendRedirect("locuriDeVeciServlet");
+				return;
+				
 			}
 			
 			List<ContractConcesiuneDTO> list = contractService.getContracteConcesiune();
 			List<ConcesionarDTO> listConcesionari = concesionarService.getConcesionari();
-			
-			System.out.println("servletListaConcesionari"+listConcesionari.size());
+		
 
 			request.getSession().setAttribute("listContracte", list);
 			request.getSession().setAttribute("listConcesionari",listConcesionari);
@@ -89,7 +94,7 @@ public class ContractServlet extends HttpServlet {
 		}
 	}
 	private void updateContract(HttpServletRequest request) throws BusinessException {
-		System.out.println("updatecontract");
+		
 		String nrContract = request.getParameter("nrContract");
 		String cnpConcesionar1 = request.getParameter("cnpConcesionar1");
 		String cnpConcesionar2 = request.getParameter("cnpConcesionar2");
@@ -104,11 +109,19 @@ public class ContractServlet extends HttpServlet {
 	private void adaugaContract(HttpServletRequest request) throws BusinessException, IllegalStateException, IOException,
 	ServletException{
 		ContractConcesiune contractConcesiune = new ContractConcesiune();
+
 		contractConcesiune.setCnpConcesionar1(request.getParameter("cnpConcesionar1"));
-		contractConcesiune.setCnpConcesionar1(request.getParameter("cnpConcesionar2"));
+		
+		contractConcesiune.setCnpConcesionar2(request.getParameter("cnpConcesionar2"));
+	
 		contractConcesiune.setDataEliberare(Date.valueOf(request.getParameter("dataEliberare")));
 		contractConcesiune.setNrContract(Integer.valueOf(request.getParameter("nrContract")));
 		contractService.adaugaContractConcesiune(contractConcesiune,request.getRemoteHost());
+	    int id = Integer.valueOf(request.getParameter("idLocDeVeci"));
+	    LocDeVeci loc = locuriDeVeciService.getById(id);
+	    loc.setNrContractConcesionare(contractConcesiune.getNrContract());
+		locuriDeVeciService.actualizeazaLocDeVeci(loc,request.getRemoteHost());
+		
 		
 		
 	}

@@ -26,11 +26,12 @@ public class DAOContracteConcesiune implements IDAOContracteConcesiune {
 	@Override
 	public void insert(ContractConcesiune cc) throws SQLException{
 		try{
-			String insertTable = "INSERT INTO ContracteConcesiune" + "(dataEliberare, cnpConcesionar1, cnpConcesionar2) VALUES" + "(? , ?, ? false)";
+			String insertTable = "INSERT INTO ContracteConcesiune" + "(nrContract, dataEliberare, cnpConcesionar1, cnpConcesionar2,deleted) VALUES" + "(?, ? , ?, ? ,false)";
 			PSInsert = connection.prepareStatement(insertTable);
-			PSInsert.setDate(1, cc.getDataEliberare());
-			PSInsert.setString(2, cc.getCnpConcesionar1());
-			PSInsert.setString(3, cc.getCnpConcesionar2());
+			PSInsert.setInt(1, cc.getNrContract());
+			PSInsert.setDate(2, cc.getDataEliberare());
+			PSInsert.setString(3, cc.getCnpConcesionar1());
+			PSInsert.setString(4, cc.getCnpConcesionar2());
 			PSInsert.executeUpdate();
 		}catch(SQLException ex){
 			throw new SQLException("Error when trying to insert the: " + cc + ":" + ex.getMessage());

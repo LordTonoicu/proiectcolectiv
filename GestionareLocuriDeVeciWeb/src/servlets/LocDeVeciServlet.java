@@ -18,11 +18,14 @@ import javax.servlet.http.Part;
 import domain.Cimitir;
 import domain.LocDeVeci;
 import domain.Parcela;
+import dto.ConcesionarDTO;
 import dto.LocDeVeciDTO;
 import dto.ParcelaDTO;
 import exceptions.BusinessException;
 import services.ServiceCimitire;
 import services.ServiceCimitireImpl;
+import services.ServiceConcesionari;
+import services.ServiceConcesionariImpl;
 import services.ServiceLocuriDeVeci;
 import services.ServiceLocuriDeVeciImpl;
 import services.ServiceParcele;
@@ -39,6 +42,7 @@ public class LocDeVeciServlet extends HttpServlet {
 	private ServiceLocuriDeVeci locDeVeciService = new ServiceLocuriDeVeciImpl();
 	private ServiceCimitire cimitirService = new ServiceCimitireImpl();
 	private ServiceParcele parcelaService = new ServiceParceleImpl();
+	private ServiceConcesionari concesionariService = new ServiceConcesionariImpl();
 
 	private InputStream inputStream = null;
 
@@ -79,7 +83,9 @@ public class LocDeVeciServlet extends HttpServlet {
 			int idParcela = (Integer) h.getAttribute("idParcela");
 			List<LocDeVeciDTO> locuriDeVeci = locDeVeciService
 					.getLocuriDeVeciByIdParcela(idParcela);
+			List<ConcesionarDTO> listConcesionari = concesionariService.getConcesionari();
 			h.setAttribute("listLocuriDeVeci", locuriDeVeci);
+			h.setAttribute("listConcesionari", listConcesionari);
 			
 			response.sendRedirect("jsp/locuriDeVeci.jsp");
 		} catch (BusinessException e) {
