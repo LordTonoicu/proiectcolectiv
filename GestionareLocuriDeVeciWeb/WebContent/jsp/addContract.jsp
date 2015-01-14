@@ -81,13 +81,12 @@
                                         </div>
                                          <div class="form-group">
                                          <label>Primul concesionar </label>
-                                         <input  id="cnpConcesionar1" name="cnpConcesionar1" class="form-control" readonly>
-                                         <select onchange="document.getElementById('cnpConcesionar1').value = this.value">
-                 
+                                         <input type="hidden" id="cnpConcesionar1" name="cnpConcesionar1" class="form-control" readonly>
+                                         <select onchange="document.getElementById('cnpConcesionar1').value = this.value" class="form-control">
+                 							 <option value="" class="form-control"></option>
                                         <% 
 											int i=0;
-                                        System.out.println("listamea"+listConcesionari.size());
-											for(Object obj : listConcesionari){
+                                      		for(Object obj : listConcesionari){
 												i++;	
 												 
 												 ConcesionarDTO concesionar = (ConcesionarDTO)obj;
@@ -96,7 +95,7 @@
 											      
 											%>
 											 
-											 <option value=<%=con.getCnpConcesionar()%>> <%=dateP.getNume()+" "+dateP.getPrenume()+" ( "+con.getCnpConcesionar()+" )"%></option>
+											 <option value=<%=con.getCnpConcesionar()%> class="form-control"> <%=dateP.getNume()+" "+dateP.getPrenume()+" ( "+con.getCnpConcesionar()+" )"%></option>
 												
 												<%}
 												 %>
@@ -109,9 +108,9 @@
                                            
                                             <label> Al doilea concesionar </label> 
                                             
-                                            <input  id="cnpConcesionar2" name="cnpConcesionar2" class="form-control" readonly>
-	                                        <select onchange="document.getElementById('cnpConcesionar2').value = this.value">
-                 
+                                            <input type="hidden" id="cnpConcesionar2" name="cnpConcesionar2" class="form-control" readonly>
+	                                        <select onchange="document.getElementById('cnpConcesionar2').value = this.value" class="form-control">
+                 								 <option value="" class="form-control"></option>
                                         <% 
 											int j=0;
                                        
@@ -124,7 +123,7 @@
 											      
 											%>
 											 
-											 <option value=<%=con.getCnpConcesionar()%>> <%=dateP.getNume()+" "+dateP.getPrenume()+" ( "+con.getCnpConcesionar()+" )"%></option>
+											 <option value=<%=con.getCnpConcesionar()%> class="form-control"> <%=dateP.getNume()+" "+dateP.getPrenume()+" ( "+con.getCnpConcesionar()+" )"%></option>
 												
 												<%}
 												 %>
