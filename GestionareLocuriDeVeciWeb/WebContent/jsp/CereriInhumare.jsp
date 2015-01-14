@@ -164,16 +164,7 @@ function newPopup(url) {
                     <div class="panel panel-default">
                         <div class="panel-heading">
                            Gestioneaza contracte
-                           <a href="JavaScript:newPopup('addContract.jsp')"> 
-                            <button class="btn btn-primary" type="button" style="float:right;margin-top:-7px;margin-right:10px">
-                                     <img src="css/plus.png"> Adauga contract
-
-                            </button></a>
-                    
-                        
-                         
-                       
-                            
+                           
                         </div>
 
                         <!-- /.panel-heading -->
@@ -209,13 +200,13 @@ function newPopup(url) {
                                            <input type="hidden" name="nrCerere" value=<%=cerereInhumare.getNrCerere()%> />
                                            <td><span id="nrCerereV<%=i%>"><%=cerereInhumare.getNrCerere()%></span></td>
                                            <td><span id="dataInregistrareV<%=i%>"><%=cerereInhumare.getDataInregistrare()%></span></td>
-                                           <td><span id="statiuSolutionareV<%=i%>"><%=cerereInhumare.getStadiuSolutionare()%></span></td>
+                                           <td><span id="stadiuSolutionareV<%=i%>"><%=cerereInhumare.getStadiuSolutionare()%></span></td>
                                            <td><span id="numeConcesionarV<%=i%>"><%=concesionarDTO.getDatePersonale().getNume() %></span></td>
                                             <td><span id="prenumeConcesionarV<%=i%>"><%=concesionarDTO.getDatePersonale().getPrenume() %></span></td>
                                             <td><span id="cnpConcesionarV<%=i%>"><%=cerereInhumare.getCnpConcesionar() %></span></td>
                                             
                                               <td>  
-                                              <a href="JavaScript:newPopup('updateContract.jsp')">
+                                              <a href="JavaScript:newPopup('updateCerereInhumare.jsp')">
                                             	<button   name="getInfoCerere"  id="getInfoCerere" class="btn btn-primary" type="button"  onclick="setIdRow(<%=i%>)">
                                             		<img src="css/edit.png"/> Actualizeaza
                                             	</button> 

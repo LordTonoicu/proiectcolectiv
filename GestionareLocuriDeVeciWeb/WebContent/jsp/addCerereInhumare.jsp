@@ -34,22 +34,10 @@
 	        this.close();
 	    }
 	  
-	    function loadData(){
-	    	var parentDocument = window.opener.document;
-	    	var parentRowId = window.opener.getId();
-	    	document.getElementById("nrContract").value=parentDocument.getElementById("nrContractV"+parentRowId).innerHTML;
-	    	console.log(parentDocument.getElementById("cnpConcesionar1V"+parentRowId).innerHTML);
-	    	document.getElementById("cnpConcesionar1").value = parentDocument.getElementById("cnpConcesionar1V"+parentRowId).innerHTML;
-	    	
-	    	document.getElementById("cnpConcesionar2").value = parentDocument.getElementById("cnpConcesionar2V"+parentRowId).innerHTML;
-	    	document.getElementById("dataEliberare").value = parentDocument.getElementById("dataEliberareV"+parentRowId).innerHTML;
-	    	
-	    	
-	    }	
 	</script>
 </head>
 
-<body onload="loadData()">
+<body>
 
     <%@ page import="domain.*" %>
     <%@ page import="dto.*" %>
@@ -65,7 +53,7 @@
         <div id="page-wrapper" style="position:fixed">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Actualizare contract</h1>
+                    <h1 class="page-header">Adauga cerere inhumare</h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -79,30 +67,36 @@
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-lg-6">
-                                    <form role="form" action="../ContractServlet" method="POST">
-                                        <div  class="form-group">
-                                            
-                                            <input type="hidden" id="nrContract" name="nrContract" class="form-control" />
+                                    <form role="form" action="../CerereInhumareServlet" method="POST">
+                                    	<div  class="form-group">
+                                            <label> Nr cerere </label>
+                                            <input id="nrCerere" name="nrCerere" class="form-control">
+                                        
+                                        </div>
+                                                                             
+                                         <div  class="form-group">
+                                             <label> Data Inregistrare </label>
+                                            <input id="dataInregistrare" name="dataInregistrare" class="form-control" />
                                         
                                         </div>
                                         
-                                       
-                                         <div  class="form-group">
-                                             <label> Data Eliberare </label>
-                                            <input id="dataEliberare" name="dataEliberare" class="form-control" />
+                                        <div  class="form-group">
+                                             <label> Stadiu Solutionare </label>
+                                            <input id="stadiuSolutionare" name="stadiuSolutionare" class="form-control" />
                                         
                                         </div>
                                         
                                         
                                        
                                        <div class="form-group">
-                                         <label>Primul concesionar </label>
-                                         <input id="cnpConcesionar1" name="cnpConcesionar1" class="form-control" readonly>
-                                         <select onchange="document.getElementById('cnpConcesionar1').value = this.value" class="form-control">
-                 							<option value="" class="form-control"></option>
+                                         <label>Concesionar </label>
+                                         <input id="cnpConcesionar" name="cnpConcesionar" class="form-control" readonly>
+                                                                         
+                                         <select onchange="document.getElementById('cnpConcesionar').value = this.value" class="form-control">
+                 							 <option value="" class="form-control"></option>
                                         <% 
 											int i=0;
-                                       		for(Object obj : listConcesionari){
+											for(Object obj : listConcesionari){
 												i++;	
 												 
 												 ConcesionarDTO concesionar = (ConcesionarDTO)obj;
@@ -119,36 +113,9 @@
 											</select>
                                         
                                         </div>
-                                                         
-                                         <div  class="form-group"> 
-                                           
-                                            <label> Al doilea concesionar </label> 
-                                            
-                                            <input id="cnpConcesionar2" name="cnpConcesionar2" class="form-control" readonly>
-	                                        <select onchange="document.getElementById('cnpConcesionar2').value = this.value" class="form-control">
-                 								<option value="" class="form-control"></option>
-                                        <% 
-											int j=0;                                      		
-											for(Object obj : listConcesionari){
-												j++;	
-												 
-												 ConcesionarDTO concesionar = (ConcesionarDTO)obj;
-												 DatePersonale dateP = concesionar.getDatePersonale();
-												 Concesionar con = concesionar.getConcesionar();
-											      
-											%>
-											 
-											 <option value=<%=con.getCnpConcesionar()%> class="form-control"> <%=dateP.getNume()+" "+dateP.getPrenume()+" ( "+con.getCnpConcesionar()+" )"%></option>
-												
-												<%}
-												 %>
-											 
-											</select>
-	                                        
-                                        </div>
-                                     
+                                                                                            
                                                                        
-                                        <button type="submit" id="updateContract" name="updateContract" class="btn btn-primary" >Salveaza Modificari</button>
+                                        <button type="submit" id="adaugaCerere" name="adaugaCerere" class="btn btn-primary" >Adauga cerere</button>
                                         
                                     </form>
                                 </div>

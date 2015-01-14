@@ -24,8 +24,8 @@ public class DAOCereriInhumare implements IDAOCereriInhumare {
 	@Override
 	public void insert(CerereInhumare cerereInhumare) throws SQLException {
 		try {
-			String insertTable = "INSERT INTO CereriInhumare (nrCerere, dataInregistrare, stadiuSolutionare, cnpConcesionar) VALUES"
-					+ "(? , ?, ? ,?)";
+			String insertTable = "INSERT INTO CereriInhumare (nrCerere, dataInregistrare, stadiuSolutionare, cnpConcesionar, deleted) VALUES"
+					+ "(? , ?, ? ,?, false)";
 			PSInsert = connection.prepareStatement(insertTable);
 			PSInsert.setInt(1, cerereInhumare.getNrCerere());
 			PSInsert.setDate(2, cerereInhumare.getDataInregistrare());

@@ -63,7 +63,7 @@ public class CimitirServlet extends HttpServlet {
 				response.sendRedirect("ParcelaServlet");
 				return;
 			}
-			System.out.println("pe aici");
+	
 			List<Cimitir> cimitire = cimitirService.getCimitire();
 			h.setAttribute("listCimitire", cimitire);
 			response.sendRedirect("jsp/Cimitir.jsp");
@@ -72,10 +72,8 @@ public class CimitirServlet extends HttpServlet {
 			
 		}catch (BusinessException e){
 			h.setAttribute("exceptie", e.getMessage());
-			System.out.println(e.getMessage());
-			System.out.println("aci");
 			response.sendRedirect("jsp/exceptionPage.jsp");
-			System.out.println("aciiiii");
+		
 		}
 	}
 	private void updateCimitir(HttpServletRequest request) throws BusinessException {
