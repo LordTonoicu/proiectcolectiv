@@ -92,7 +92,7 @@ function newPopup(url) {
                                     <a href="../DecedatServlet">Decedati</a>
                                 </li>
                                 <li>
-                                    <a href="../CereriServlet">Cereri</a>
+                                    <a href="../ContractServlet">Contracte</a>
                                 </li>
 
                             </ul>
@@ -166,43 +166,45 @@ function newPopup(url) {
                                 <table class="table table-striped table-bordered table-hover" id="dataTables-example">
                                     <thead>
                                         <tr>
-                                            <th style="display:none"> Id Cimitir </th>
                                             <th>Nume Prenume </th>
                                             <th>CNP</th>
                                             <th>Date Inmormantare </th>
-                                            <th>Nr. adeverinta inhumare</th>
-                                           <th>ID Loc </th>
+                                            <th>Nr adeverinta inhumare</th>
+                                          	<th>Nr Loc </th>
                                             <th>Personalitate</th>
-                                        
+                                            <th>Actiune</th>                                        
 
                                         </tr>
                                     </thead>
                                     <tbody>
 
                                        <%
-
+										int i=0;
   										for (Object dece:listDecedati) {
   											DecedatDTO decedat = (DecedatDTO) dece;
+  											i++;
        								 %> 
        								  
                                         <tr class="odd gradeX">
                                        <form role="form" action="../DecedatServlet" action="POST">
-                                            <input type="hidden" id="idDecedat" name="idDecedat"
-													value=<%=decedat.getDecedat().getIdDecedat()%> />
-										    <input type="hidden" id="CnpDecedat" name="CnpDecedat"
-													value=<%=decedat.getDecedat().getCnpDecedat()%> />
-                                         
-                                            <td style="display:none"><%=decedat.getDecedat().getIdDecedat() %></td>
-                                            <td><%=decedat.getDatePersonale().getNume()+" "+decedat.getDatePersonale().getPrenume() %></td>
+                                            <input type="hidden" id="idDecedatV<%=i%>" name="idDecedat" value=<%=decedat.getDecedat().getIdDecedat()%> />
+                                            <input type="hidden" id="idLocDeVeciV<%=i%>" name="idLocDeVeci" value=<%=decedat.getDecedat().getIdLocDeVeci()%> />
+										    <input type="hidden" id="cnpDecedatV<%=i%>" name="CnpDecedat" value=<%=decedat.getDecedat().getCnpDecedat()%> />
+                                            <input type="hidden" id="numeDecedatV<%=i%>" name="numeDecedat" value=<%=decedat.getDatePersonale().getNume()%> />
+                                            <input type="hidden" id="prenumeDecedatV<%=i%>" name="prenumeDecedat" value=<%=decedat.getDatePersonale().getPrenume()%> />
+                                                              
+                                            <td><%=decedat.getDatePersonale().getNume()+" "+decedat.getDatePersonale().getPrenume()%></td>
                                             <td><%=decedat.getDecedat().getCnpDecedat() %></td>
-                                            <td><%=decedat.getDecedat().getDataInmormantare() %></td>
-                                            <td><%=decedat.getDecedat().getNrAdeverintaInhumare() %></td>
-                                            <td><%=decedat.getDecedat().getIdLocDeVeci() %></td>
-                                            <td><%=decedat.getDecedat().isePersonalitate() %></td>
+                                            <td><span id="dataInmormantareV<%=i%>"><%=decedat.getDecedat().getDataInmormantare()%></span></td>
+                                            <td><span id="nrAdeverintaV<%=i%>"><%=decedat.getDecedat().getNrAdeverintaInhumare()%></span></td>
+                                            <td><%=decedat.getNumarLocDeVeci() %></td>
+                                            <td><span id="ePersonalitateV<%=i%>"><%=decedat.getDecedat().isePersonalitate()%></span></td>
 											  <td>
-                                            	<button class="btn btn-primary" type="submit" id="getInfoDecedat" name="getInfoDecedat">
+											  <a href="JavaScript:newPopup('updateDecedat.jsp')" >
+                                            	<button class="btn btn-primary" type="button" id="updateDecedat" name="updateDecedat" onclick="setIdRow(<%=i%>)">
                                             		<img src="css/edit.png"/>Actualizeaza
                                             	</button> 
+                                            	</a>
                                             	<button name="stergeDecedat" id="stergeDecedat" class="btn btn-primary" type="submit"  >
                                             	<img src="css/delete.png"/>Sterge</button>
                                             </td>   
@@ -211,7 +213,7 @@ function newPopup(url) {
                                        
                                          
                                         <%
-                                        }
+  										}
 									%>
                                         
                                     </tbody>
@@ -265,7 +267,17 @@ function newPopup(url) {
     <script>
     $(document).ready(function() {
         $('#dataTables-example').dataTable();
+        
     });
+	 var idV;
+		function getId(){
+			return idV;
+		}
+		function setIdRow(id)
+		{
+			idV=id;
+		}
+
     </script>
 
 </body>

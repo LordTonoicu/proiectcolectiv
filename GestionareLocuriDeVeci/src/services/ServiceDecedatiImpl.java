@@ -66,6 +66,7 @@ public class ServiceDecedatiImpl implements ServiceDecedati{
 			decedatValidator.validate(decedatDTO.getDecedat());
 			datePersonaleValidator.validate(decedatDTO.getDatePersonale());
 			Decedat anterior = daoDecedati.getByCNP(decedatDTO.getDecedat().getCnpDecedat());
+			System.out.println(decedatDTO.getDecedat());
 			daoDatePersonale.update(decedatDTO.getDatePersonale());
 			daoDecedati.update(decedatDTO.getDecedat());
 			daoJurnal.insert(UtilInregistrareJurnal.creeazaInregistrareJurnal(user, "actualizare", anterior.toString(), decedatDTO.getDecedat().toString()));

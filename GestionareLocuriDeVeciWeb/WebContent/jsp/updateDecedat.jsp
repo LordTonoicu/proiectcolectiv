@@ -14,18 +14,28 @@
   <script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
   <link rel="stylesheet" href="/resources/demos/style.css">
   <script>
-  $(function() {
-    $("#DateInmormantareDecedat").datepicker();
-  });
+  //$(function() {
+    //$("#DateInmormantareDecedat").datepicker();
+  //});
   window.onunload = refreshParent;
   function refreshParent() {
-   //   window.opener.location.reload();
+      window.opener.location.reload();
       this.close();
   }
   function getById(){
   	var parentDocument = window.opener.document;
   	var parentRowId = window.opener.getId();
   	document.getElementById("idLocDeVeci").value = parentDocument.getElementById("idLocDeVeciV"+parentRowId).value;
+  	document.getElementById("idDecedat").value = parentDocument.getElementById("idDecedatV"+parentRowId).value;
+ 	document.getElementById("CnpDecedat").value = parentDocument.getElementById("cnpDecedatV"+parentRowId).value;
+ 	document.getElementById("NumeDecedat").value = parentDocument.getElementById("numeDecedatV"+parentRowId).value;
+ 	document.getElementById("PrenumeDecedat").value = parentDocument.getElementById("prenumeDecedatV"+parentRowId).value;
+ 	document.getElementById("DateInmormantareDecedat").value = parentDocument.getElementById("dataInmormantareV"+parentRowId).innerHTML;
+ 	document.getElementById("NrAdeverintaInhumareDecedat").value = parentDocument.getElementById("nrAdeverintaV"+parentRowId).innerHTML;
+ 	if (parentDocument.getElementById("ePersonalitateV"+parentRowId).innerHTML == "true")
+		document.getElementById("ePersonalitate").checked = true;
+	else
+		document.getElementById("ePersonalitate").checked = false;	 
   }
 </script>
  
@@ -66,7 +76,7 @@
         <div id="page-wrapper" style="position:fixed">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Adaugare decedat</h1>
+                    <h1 class="page-header">Actualizare decedat</h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -82,8 +92,9 @@
                                 <div class="col-lg-6">
                                     <form role="form" action="../DecedatServlet" method="POST">
                                         <div class="form-group">
-                                            <input  type="hidden" class="form-control"  id="idLocDeVeci" name="idLocDeVeci">
-                                       
+                                            <input type="hidden" class="form-control"  id="idLocDeVeci" name="idLocDeVeci">
+                                       		<input type="hidden" class="form-control" id="idDecedat" name="idDecedat">
+                                       	
                                         </div>
                                         <div class="form-group">
                                             <label>Nume</label>
@@ -114,11 +125,11 @@
                                         
                                         <div class="checkbox">
                                             <label>
-                                               <input type="checkbox" name="ePersonalitate">E personalitate
+                                               <input type="checkbox" id="ePersonalitate" name="ePersonalitate">E personalitate
                                             </label>
                                          </div>
                                         
-                                        <button type="submit" class="btn btn-primary" name="adaugaDecedat" id="adaugaDecedat">Salvare</button>
+                                        <button type="submit" class="btn btn-primary" name="updateDecedat" id="updateDecedat">Salvare</button>
                                         
                                     </form>
                                 </div>
