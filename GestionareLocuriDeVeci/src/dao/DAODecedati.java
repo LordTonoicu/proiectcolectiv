@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import domain.Decedat;
+import domain.registers.InregRegAnualDeProgrInmormantari;
 
 public class DAODecedati implements IDAODecedati {
 
@@ -118,7 +119,7 @@ public class DAODecedati implements IDAODecedati {
 					ePersonalitate = true;
 				}
 				decedat = new Decedat(result.getInt(1), CNP, result.getDate(3),
-						result.getInt(4), result.getInt(5), ePersonalitate, result.getString(7));
+						result.getInt(4), result.getInt(5), ePersonalitate, result.getString(8));
 			}
 
 		} catch (SQLException ex) {
@@ -146,7 +147,7 @@ public class DAODecedati implements IDAODecedati {
 			while (result.next()) {
 				decedat = new Decedat(result.getInt(1), result.getString(2),
 						result.getDate(3), result.getInt(4), result.getInt(5),
-						result.getBoolean(6), result.getString(7));
+						result.getBoolean(6), result.getString(8));
 				decedati.add(decedat);
 			}
 
