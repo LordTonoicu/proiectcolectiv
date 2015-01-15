@@ -168,7 +168,9 @@
                                             <th>Nume</th>
                                             <th>Prenume</th>
                                             <th>Religie</th>
+											<th>Cimitir</th>                                            	
                                             <th>Parcela</th>
+                                            <th>Nr. Loc</th>
                                             <th>Data inmormantarii</th>
                                         </tr>
                                     </thead>
@@ -177,11 +179,6 @@
                                             <td></td>
                                             <td></td>
                                             <td></td>
-                                            <td class="center"></td>
-                                            <td class="center"></td>
-                                        </tr>
-                                         <tr class="odd gradeX">
-                                            <td></td>
                                             <td></td>
                                             <td></td>
                                             <td class="center"></td>
@@ -190,11 +187,6 @@
                                          <tr class="odd gradeX">
                                             <td></td>
                                             <td></td>
-                                            <td></td>
-                                            <td class="center"></td>
-                                            <td class="center"></td>
-                                        </tr>
-                                         <tr class="odd gradeX">
                                             <td></td>
                                             <td></td>
                                             <td></td>
@@ -205,11 +197,6 @@
                                             <td></td>
                                             <td></td>
                                             <td></td>
-                                            <td class="center"></td>
-                                            <td class="center"></td>
-                                        </tr>
-                                         <tr class="odd gradeX">
-                                            <td></td>
                                             <td></td>
                                             <td></td>
                                             <td class="center"></td>
@@ -219,10 +206,41 @@
                                             <td></td>
                                             <td></td>
                                             <td></td>
+                                            <td></td>
+                                            <td></td>
                                             <td class="center"></td>
                                             <td class="center"></td>
                                         </tr>
                                          <tr class="odd gradeX">
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td class="center"></td>
+                                            <td class="center"></td>
+                                        </tr>
+                                         <tr class="odd gradeX">
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td class="center"></td>
+                                            <td class="center"></td>
+                                        </tr>
+                                         <tr class="odd gradeX">
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td class="center"></td>
+                                            <td class="center"></td>
+                                        </tr>
+                                         <tr class="odd gradeX">
+                                            <td></td>
+                                            <td></td>
                                             <td></td>
                                             <td></td>
                                             <td></td>
