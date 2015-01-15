@@ -27,14 +27,16 @@ public class DAODecedati implements IDAODecedati {
 
 		try {
 			String insertTable = "INSERT INTO Decedati"
-					+ "(cnpDecedat, dataInmormantare, nrAdeverintaInhumare, idLocDeVeci, ePersonalitate) VALUES"
-					+ "(? , ?, ?, ?, ?)";
+					+ "(cnpDecedat, dataInmormantare, nrAdeverintaInhumare, idLocDeVeci, ePersonalitate, religie) VALUES"
+					+ "(? ,?, ?, ?, ?, ?)";
 			PSInsert = connection.prepareStatement(insertTable);
 			PSInsert.setString(1, decedat.getCnpDecedat());
 			PSInsert.setDate(2, new Date(decedat.getDataInmormantare()
 					.getTime()));
 			PSInsert.setInt(3, decedat.getNrAdeverintaInhumare());
 			PSInsert.setInt(4, decedat.getIdLocDeVeci());
+			PSInsert.setString(6, decedat.getReligie());
+			
 			if (decedat.isePersonalitate() == true) {
 				PSInsert.setInt(5, 1);
 			} else {
@@ -72,7 +74,7 @@ public class DAODecedati implements IDAODecedati {
 	public void update(Decedat decedat) throws SQLException {
 
 		try {
-			String updateTable = "UPDATE Decedati SET cnpDecedat = ?, dataInmormantare = ?, nrAdeverintaInhumare = ?, idLocDeVeci = ?, ePersonalitate = ? WHERE idDecedat = ?";
+			String updateTable = "UPDATE Decedati SET cnpDecedat = ?, dataInmormantare = ?, nrAdeverintaInhumare = ?, idLocDeVeci = ?, ePersonalitate = ?, religie = ? WHERE idDecedat = ?";
 			PSUpdate = connection.prepareStatement(updateTable);
 			PSUpdate.setInt(6, decedat.getIdDecedat());
 			PSUpdate.setString(1, decedat.getCnpDecedat());
@@ -80,6 +82,8 @@ public class DAODecedati implements IDAODecedati {
 					.getTime()));
 			PSUpdate.setInt(3, decedat.getNrAdeverintaInhumare());
 			PSUpdate.setInt(4, decedat.getIdLocDeVeci());
+			PSUpdate.setString(6, decedat.getReligie());
+			
 			if (decedat.isePersonalitate() == true) {
 				System.out.println("perso");
 				PSUpdate.setInt(5, 1);
@@ -114,7 +118,7 @@ public class DAODecedati implements IDAODecedati {
 					ePersonalitate = true;
 				}
 				decedat = new Decedat(result.getInt(1), CNP, result.getDate(3),
-						result.getInt(4), result.getInt(5), ePersonalitate);
+						result.getInt(4), result.getInt(5), ePersonalitate, result.getString(7));
 			}
 
 		} catch (SQLException ex) {
@@ -142,7 +146,7 @@ public class DAODecedati implements IDAODecedati {
 			while (result.next()) {
 				decedat = new Decedat(result.getInt(1), result.getString(2),
 						result.getDate(3), result.getInt(4), result.getInt(5),
-						result.getBoolean(6));
+						result.getBoolean(6), result.getString(7));
 				decedati.add(decedat);
 			}
 
