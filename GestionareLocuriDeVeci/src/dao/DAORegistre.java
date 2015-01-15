@@ -7,7 +7,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
-
 import domain.registers.InregRegAnualDeProgrInmormantari;
 import domain.registers.InregRegAnualDecedati;
 import domain.registers.InregRegCereriInhumare;
@@ -52,7 +51,13 @@ public class DAORegistre implements IDAORegistre{
 		return registru;
 	}
 
-	
+	/*REGISTRUL DE MORMINTE în care se înscriu toate locurile de morminte din cimitir. În acest
+	registru se va arăta – cimitirul – parcela – numărul mormântului, numele, prenumele şi domiciliul
+	deţinătorului, nr. chitanţei cu care s-a făcut plata locului de mormânt, numele, prenumele celor
+	înmormântaţi, data înmormântării, suprafaţa locului şi o coloană pentru observaţii, în care se va
+	arăta existenţa/inexistenţa construcţiilor funerare şi numărul actului în baza căruia s-au făcut
+	modificări privind schimbarea deţinătorului, fotografia scanată a locului de veci.
+	 */
 	@Override
 	public List<InregRegDeMorminte> getRegDeMorminte() throws SQLException {
 		List<InregRegDeMorminte> registru = null;
@@ -72,7 +77,15 @@ public class DAORegistre implements IDAORegistre{
 		}
 		return registru;
 	}
-
+   
+	/* REGISTRUL DE MORMINTE-MONUMENTE FUNERARE cu valoare istorică, arhitecturală
+ 	sau monumentală şi ale eroilor şi personalităţilor istorice, politice, culturale sau cu alte merite
+	deosebite, de importanţă naţională sau locală în care se va arăta parcela, numărul locului de 
+	înhumare, numele, prenumele şi domiciliul concesionarului locului de înhumare, numărul chitanţei
+	cu care s-a făcut plata concesiunii locului de înhumare, numele, prenumele celui înhumat, data
+	înhumării, suprafaţa locului şi o coloană pentru observaţii, în care se va arăta existenţa/inexistenţa
+	construcţiilor funerare şi numărul actului în baza căruia s-au făcut modificări privind schimbarea
+	concesionarului, fotografia scanată a locului/monumentului.*/
 	@Override
 	public List<InregRegMorminteMonFunerareVal> getRegDeMorminteMonFunerare() throws SQLException {
 		List<InregRegMorminteMonFunerareVal> registru = null;
@@ -93,6 +106,9 @@ public class DAORegistre implements IDAORegistre{
 		return registru;
 	}
 
+	/* REGISTRUL INDEX ANUAL AL DECEDAŢILOR în care se înscriu în ordine alfabetică şi
+    cronologică, toţi morţii trecuţi în registrul morţilor, având următoarele coloane: numele şi
+    prenumele decedatului, cimitirul, parcela şi numărul mormântului în care a fost înmormântat.*/
 	@Override
 	public List<InregRegAnualDecedati> getRegAnualDecedati() throws SQLException {
 		List<InregRegAnualDecedati> registru = null;
@@ -113,6 +129,9 @@ public class DAORegistre implements IDAORegistre{
 		return registru;
 	}
 
+	/*REGISTRUL ANUAL DE EVIDENŢĂ A DECEDAŢILOR FĂRĂ APARŢINĂTORI – având
+      următoarele coloane: adeverinţa de înhumare, solicitarea din partea IML/Asistenţă socială şi harta
+      amplasării locurilor de înhumare.*/
 	@Override
 	public List<InregRegDecedatiFaraApartinatori> getRegAnualDecedatiFaraApartinatori()
 			throws SQLException {
@@ -134,6 +153,8 @@ public class DAORegistre implements IDAORegistre{
 		return registru;
 	}
 
+	/*REGISTRUL CU EVIDENŢA CERERILOR DE ATRIBUIRE A LOCURILOR DE
+    ÎNHUMARE, având următoarele coloane: număr curent, data înregistrării, nr. infocet, stadiu de soluţionare*/
 	@Override
 	public List<InregRegCereriInhumare> getRegCereriInhumare()
 			throws SQLException {
