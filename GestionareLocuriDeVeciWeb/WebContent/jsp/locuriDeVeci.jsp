@@ -228,7 +228,7 @@ function newPopupAlegeDecedat(url) {
 													class="btn btn-primary" type="submit">
 													<img src="css/delete.png" /> Sterge
 												</button>
-												 <a href="JavaScript:newPopupAlegeDecedat('alegeTipDecedat.jsp')" onclick="setIdRow(<%=i%>)"> 
+												 <a href="JavaScript:newPopup('alegeTipDecedat.jsp')" onclick="setIdRow(<%=i%>)"> 
                             						<button class="btn btn-primary" type="button" >
                                     					 <img src="css/plus.png"> Decedat
 													</button>                         

@@ -75,10 +75,10 @@
                         <div class="panel-heading">
                             Completati toate campurile
                         </div>
-                        <div class="panel-body">
+                        <div class="panel-body" style="overflow:scroll;height:500px">
                             <div class="row">
                                 <div class="col-lg-6">
-                                    <form role="form" action="../DecedatServlet" method="POST">
+                                    <form role="form" action="../DecedatFaraApartinatoriServlet" method="POST">
                                         <div class="form-group">
                                             <input  type="hidden" class="form-control"  id="idLocDeVeci" name="idLocDeVeci" value="<%=request.getParameter("idLocDeVeci")%>">
                                        
