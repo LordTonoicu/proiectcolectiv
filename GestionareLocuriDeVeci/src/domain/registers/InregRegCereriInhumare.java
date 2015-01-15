@@ -11,6 +11,9 @@ public class InregRegCereriInhumare {
 		this.nrInfocet = nrInfocet;
 		this.stadiuSolutionare = stadiuSolutionare;
 	}
+	public InregRegCereriInhumare() {
+		// TODO Auto-generated constructor stub
+	}
 	//TODO: generat in DAO. pls, sa nu ne chinuim prea mult
 	private int nrCurent;
 	private Date dataInregistrare;

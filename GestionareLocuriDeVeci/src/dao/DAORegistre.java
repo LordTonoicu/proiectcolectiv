@@ -52,38 +52,107 @@ public class DAORegistre implements IDAORegistre{
 		return registru;
 	}
 
+	
 	@Override
 	public List<InregRegDeMorminte> getRegDeMorminte() throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
+		List<InregRegDeMorminte> registru = null;
+		try{
+			String sqlSelect = ""/*TODO*/;
+			Connection con = ConnectionFactory.getConnection();
+			PreparedStatement pSelect = con.prepareStatement(sqlSelect);
+			ResultSet rs = pSelect.executeQuery();
+			registru = new ArrayList<InregRegDeMorminte>();
+			while(rs.next())
+			{
+				InregRegDeMorminte inregistrare = new InregRegDeMorminte(/*TODO*/);
+				registru.add(inregistrare);
+			}
+		} catch (SQLException ex){
+			throw new SQLException("Exceptie Accesare Date Registru: " + ex.getMessage());
+		}
+		return registru;
 	}
 
 	@Override
-	public List<InregRegMorminteMonFunerareVal> getRegDeMorminteMonFunerare()
-			throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
+	public List<InregRegMorminteMonFunerareVal> getRegDeMorminteMonFunerare() throws SQLException {
+		List<InregRegMorminteMonFunerareVal> registru = null;
+		try{
+			String sqlSelect = ""/*TODO*/;
+			Connection con = ConnectionFactory.getConnection();
+			PreparedStatement pSelect = con.prepareStatement(sqlSelect);
+			ResultSet rs = pSelect.executeQuery();
+			registru = new ArrayList<InregRegMorminteMonFunerareVal>();
+			while(rs.next())
+			{
+				InregRegMorminteMonFunerareVal inregistrare = new InregRegMorminteMonFunerareVal(/*TODO*/);
+				registru.add(inregistrare);
+			}
+		} catch (SQLException ex){
+			throw new SQLException("Exceptie Accesare Date Registru: " + ex.getMessage());
+		}
+		return registru;
 	}
 
 	@Override
-	public List<InregRegAnualDecedati> getRegAnualDecedati()
-			throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
+	public List<InregRegAnualDecedati> getRegAnualDecedati() throws SQLException {
+		List<InregRegAnualDecedati> registru = null;
+		try{
+			String sqlSelect = ""/*TODO*/;
+			Connection con = ConnectionFactory.getConnection();
+			PreparedStatement pSelect = con.prepareStatement(sqlSelect);
+			ResultSet rs = pSelect.executeQuery();
+			registru = new ArrayList<InregRegAnualDecedati>();
+			while(rs.next())
+			{
+				InregRegAnualDecedati inregistrare = new InregRegAnualDecedati(/*TODO*/);
+				registru.add(inregistrare);
+			}
+		} catch (SQLException ex){
+			throw new SQLException("Exceptie Accesare Date Registru: " + ex.getMessage());
+		}
+		return registru;
 	}
 
 	@Override
 	public List<InregRegDecedatiFaraApartinatori> getRegAnualDecedatiFaraApartinatori()
 			throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
+		List<InregRegDecedatiFaraApartinatori> registru = null;
+		try{
+			String sqlSelect = ""/*TODO*/;
+			Connection con = ConnectionFactory.getConnection();
+			PreparedStatement pSelect = con.prepareStatement(sqlSelect);
+			ResultSet rs = pSelect.executeQuery();
+			registru = new ArrayList<InregRegDecedatiFaraApartinatori>();
+			while(rs.next())
+			{
+				InregRegDecedatiFaraApartinatori inregistrare = new InregRegDecedatiFaraApartinatori(/*TODO*/);
+				registru.add(inregistrare);
+			}
+		} catch (SQLException ex){
+			throw new SQLException("Exceptie Accesare Date Registru: " + ex.getMessage());
+		}
+		return registru;
 	}
 
 	@Override
 	public List<InregRegCereriInhumare> getRegCereriInhumare()
 			throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
+		List<InregRegCereriInhumare> registru = null;
+		try{
+			String sqlSelect = ""/*TODO*/;
+			Connection con = ConnectionFactory.getConnection();
+			PreparedStatement pSelect = con.prepareStatement(sqlSelect);
+			ResultSet rs = pSelect.executeQuery();
+			registru = new ArrayList<InregRegCereriInhumare>();
+			while(rs.next())
+			{
+				InregRegCereriInhumare inregistrare = new InregRegCereriInhumare(/*TODO*/);
+				registru.add(inregistrare);
+			}
+		} catch (SQLException ex){
+			throw new SQLException("Exceptie Accesare Date Registru: " + ex.getMessage());
+		}
+		return registru;
 	}
 
 	@Override

@@ -9,6 +9,11 @@ public class InregRegAnualDecedati {
 	private String parcela;
 	private String nrMormant;
 	private Date dataInmormantare;
+	
+	public InregRegAnualDecedati() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 	public InregRegAnualDecedati(String nume, String prenume, String cimitir,
 			String parcela, String nrMormant, Date dataInmormantare) {
 		super();

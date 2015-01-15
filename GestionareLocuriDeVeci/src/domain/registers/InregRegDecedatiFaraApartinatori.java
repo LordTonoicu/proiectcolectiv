@@ -27,6 +27,10 @@ public class InregRegDecedatiFaraApartinatori {
 		this.nrAdeverintaAsistenta = nrAdeverintaAsistenta;
 	}
 
+	public InregRegDecedatiFaraApartinatori() {
+		// TODO Auto-generated constructor stub
+	}
+
 	public String getNume() {
 		return nume;
 	}
