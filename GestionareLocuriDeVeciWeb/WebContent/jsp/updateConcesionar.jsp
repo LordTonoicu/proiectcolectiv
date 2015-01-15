@@ -134,8 +134,8 @@
     <!-- Custom Theme JavaScript -->
     <script src="js/sb-admin-2.js"></script>
     
-    <!-- addConcesionar validator -->
-	<script type="text/javascript" src="js/validations/addConcesionarValidator.js"></script>
+    <!-- updateConcesionar validator -->
+	<script type="text/javascript" src="js/validations/updateConcesionarValidator.js"></script>
 
 </body>
 

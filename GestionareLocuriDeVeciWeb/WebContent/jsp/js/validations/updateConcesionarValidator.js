@@ -1,5 +1,5 @@
 $(document).ready(function(){
-	$( "#adaugaConcesionar" ).click(function() {
+	$( "#updateConcesionar" ).click(function() {
 		if ($("#domiciliu").val() == "" || $("#cnp").val()=="" ||
 				$("#nrChitanta")==val() || $("#prenume").val()=="" || $("nume").val()==""){
 			event.preventDefault();
