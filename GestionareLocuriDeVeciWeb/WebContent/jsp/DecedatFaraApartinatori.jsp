@@ -206,9 +206,9 @@ function newPopup(url) {
                                             <td><span id="nrAdeverintaV<%=i%>"><%=decedat.getDecedat().getNrAdeverintaInhumare()%></span></td>
                                             <td><%=decedat.getNumarLocDeVeci() %></td>
                                            <td><span id="religieV<%=i%>"><%=decedat.getDecedat().getReligie()%></span></td>
-                                           <td><span id="ePersonalitateV<%=i%>"><%=decedat.getDecedat().getNrAdeverintaAsistenta()%></span></td>
+                                           <td><span id="nrAdeverintaAsistentaV<%=i%>"><%=decedat.getDecedat().getNrAdeverintaAsistenta()%></span></td>
 											  <td>
-											  <a href="JavaScript:newPopup('updateDecedat.jsp')" >
+											  <a href="JavaScript:newPopup('updateDecedatFaraApartinatori.jsp')" >
                                             	<button class="btn btn-primary" type="button" id="updateDecedat" name="updateDecedat" onclick="setIdRow(<%=i%>)">
                                             		<img src="css/edit.png"/>Actualizeaza
                                             	</button> 

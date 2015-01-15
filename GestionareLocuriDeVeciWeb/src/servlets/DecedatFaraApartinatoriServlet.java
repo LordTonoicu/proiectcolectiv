@@ -99,7 +99,7 @@ public class DecedatFaraApartinatoriServlet extends HttpServlet {
 		dec.getDecedat().setIdLocDeVeci(
 				Integer.valueOf(request.getParameter("idLocDeVeci")));
 		dec.getDecedat().setReligie(request.getParameter("Religie"));
-		dec.getDecedat().setNrAdeverintaAsistenta(Integer.valueOf(request.getParameter("nrAdeverintaAsistenta")));
+		dec.getDecedat().setNrAdeverintaAsistenta(Integer.valueOf(request.getParameter("NrAdeverintaAsistenta")));
 		
 		dec.getDatePersonale().setNume(request.getParameter("NumeDecedat"));
 		dec.getDatePersonale().setPrenume(

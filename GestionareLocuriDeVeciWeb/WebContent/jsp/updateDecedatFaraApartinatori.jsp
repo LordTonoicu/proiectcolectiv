@@ -10,6 +10,7 @@
     <meta name="author" content="">
   	
   <link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
+
   <script src="//code.jquery.com/jquery-1.10.2.js"></script>
   <script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
   <link rel="stylesheet" href="/resources/demos/style.css">
@@ -59,7 +60,7 @@
 
 </head>
 
-<body style="overflow: hidden" onload="getById()">
+<body  onload="getById()">
     	<%@ page import="domain.*" %>
 	<%@ page import="java.util.ArrayList" %>
 	<jsp:useBean id="listLocuriDeVeci" class="java.util.ArrayList" scope="session"/>
@@ -84,10 +85,10 @@
                         <div class="panel-heading">
                             Completati toate campurile
                         </div>
-                        <div class="panel-body">
+                        <div class="panel-body" style="overflow:scroll;height:500px">
                             <div class="row">
                                 <div class="col-lg-6">
-                                    <form role="form" action="../DecedatServlet" method="POST">
+                                    <form role="form" action="../DecedatFaraApartinatoriServlet" method="POST">
                                         <div class="form-group">
                                             <input type="hidden" class="form-control"  id="idLocDeVeci" name="idLocDeVeci">
                                        		<input type="hidden" class="form-control" id="idDecedat" name="idDecedat">
@@ -132,7 +133,7 @@
                                           
                                         </div>
                                         
-                                        <button type="submit" class="btn btn-primary" name="updateDecedat" id="updateDecedat">Salvare Modificari</button>
+                                        <button type="submit" class="btn btn-primary" name="updateDecedatFaraApartinator" id="updateDecedatFaraApartinator">Salvare Modificari</button>
                                         
                                     </form>
                                 </div>
