@@ -60,13 +60,13 @@ public class DecedatFaraApartinatoriServlet extends HttpServlet {
 			HttpServletResponse response) throws ServletException, IOException {
 		HttpSession h = request.getSession();
 		try {
-			if (request.getParameter("adaugaDecedat") != null) {
+			if (request.getParameter("adaugaDecedatFaraApartinator") != null) {
 				adaugaDecedat(request);
 				response.sendRedirect("locuriDeVeciServlet");
 				return;
-			} else if (request.getParameter("stergeDecedat") != null) {
+			} else if (request.getParameter("stergeDecedatFaraApartinator") != null) {
 				stergeDecedat(request);
-			} else if (request.getParameter("updateDecedat") != null) {
+			} else if (request.getParameter("updateDecedatFaraApartinator") != null) {
 				updateDecedat(request);
 			}
 
