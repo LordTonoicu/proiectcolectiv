@@ -85,6 +85,7 @@ public class DecedatServlet extends HttpServlet {
 			throws BusinessException {
 		DecedatDTO dec = new DecedatDTO();
 
+		dec.getDecedat().setIdDecedat(Integer.parseInt(request.getParameter("idDecedat")));
 		dec.getDecedat().setCnpDecedat(
 				(String) request.getParameter("CnpDecedat"));
 		dec.getDecedat().setDataInmormantare(
@@ -97,7 +98,6 @@ public class DecedatServlet extends HttpServlet {
 		dec.getDecedat().setReligie(request.getParameter("Religie"));
 		
 		if (request.getParameter("ePersonalitate") != null) {
-			System.out.println("E");
 			dec.getDecedat().setePersonalitate(true);
 		} else
 			dec.getDecedat().setePersonalitate(false);

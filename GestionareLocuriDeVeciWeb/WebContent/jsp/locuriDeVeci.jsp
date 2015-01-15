@@ -15,6 +15,10 @@ function newPopup(url) {
     popupWindow = window.open(
         url,'popUpWindow','height=700,width=400,left=10,top=10,resizable=yes,scrollbars=yes,toolbar=yes,menubar=no,location=no,directories=no,status=yes')
 }
+function newPopupAlegeDecedat(url) {
+    popupWindow = window.open(
+        url,'popUpWindow','height=300,width=250,left=500,top=100,resizable=yes,scrollbars=yes,toolbar=yes,menubar=no,location=no,directories=no,status=yes')
+}
 </script>
 
     <title>Gestionare locuri de veci</title>
@@ -89,6 +93,9 @@ function newPopup(url) {
                                 </li>
                                 <li>
                                     <a href="../DecedatServlet">Decedati</a>
+                                </li>
+                                  <li>
+                                	<a href="../DecedatFaraApartinatoriServlet">Decedati fara apartinatori</a>
                                 </li>
                                 <li>
                                     <a href="../ContractServlet">Contracte</a>
@@ -221,7 +228,7 @@ function newPopup(url) {
 													class="btn btn-primary" type="submit">
 													<img src="css/delete.png" /> Sterge
 												</button>
-												 <a href="JavaScript:newPopup('addDecedat.jsp')" onclick="setIdRow(<%=i%>)"> 
+												 <a href="JavaScript:newPopupAlegeDecedat('alegeTipDecedat.jsp')" onclick="setIdRow(<%=i%>)"> 
                             						<button class="btn btn-primary" type="button" >
                                     					 <img src="css/plus.png"> Decedat
 													</button>                         

@@ -99,10 +99,12 @@ public class Decedat {
 
 	@Override
 	public String toString() {
-		return "Decedat [cnp(" + cnpDecedat
-				+ ") dataInmormantare(" + dataInmormantare
-				+ ") nrAdeverintaInhumare(" + nrAdeverintaInhumare
-				+ ") Personalitate("
-				+ ePersonalitate + ")]";
+		return "Decedat [idDecedat=" + idDecedat + ", cnpDecedat=" + cnpDecedat
+				+ ", dataInmormantare=" + dataInmormantare
+				+ ", nrAdeverintaInhumare=" + nrAdeverintaInhumare
+				+ ", idLocDeVeci=" + idLocDeVeci + ", ePersonalitate="
+				+ ePersonalitate + ", religie=" + religie + "]";
 	}
+
+	
 }

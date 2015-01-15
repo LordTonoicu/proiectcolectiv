@@ -88,13 +88,12 @@ public class DAODecedati implements IDAODecedati {
 			PSUpdate.setString(6, decedat.getReligie());
 					
 			if (decedat.isePersonalitate() == true) {
-				System.out.println("perso");
 				PSUpdate.setInt(5, 1);
 			} else {
-				System.out.println("nu");
 				PSUpdate.setInt(5, 0);
 			}
 			PSUpdate.executeUpdate();
+		
 		} catch (SQLException ex) {
 			throw new SQLException("Error when trying to update the: "
 					+ decedat + ":" + ex.getMessage());
