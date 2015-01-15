@@ -89,6 +89,8 @@ public class DecedatFaraApartinatoriServlet extends HttpServlet {
 			throws BusinessException {
 		DecedatFaraApartinatoriDTO dec = new DecedatFaraApartinatoriDTO();
 
+		dec.getDecedat().setIdDecedat(Integer.valueOf(
+				(String) request.getParameter("idDecedat")));
 		dec.getDecedat().setCnpDecedat(
 				(String) request.getParameter("CnpDecedat"));
 		dec.getDecedat().setDataInmormantare(
@@ -113,7 +115,7 @@ public class DecedatFaraApartinatoriServlet extends HttpServlet {
 			throws BusinessException {
 
 		DecedatFaraApartinatoriDTO dec = new DecedatFaraApartinatoriDTO();
-
+       System.out.println("blablalintrubsddd");
 		dec.getDecedat().setCnpDecedat(
 				(String) request.getParameter("CnpDecedat"));
 		dec.getDecedat().setDataInmormantare(

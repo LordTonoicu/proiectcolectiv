@@ -124,7 +124,7 @@
                                         
                                         
                                         
-                                        <button type="submit" class="btn btn-primary" name="adaugaDecedat" id="adaugaDecedat">Salvare</button>
+                                        <button type="submit" class="btn btn-primary" name="adaugaDecedatFaraApartinator" id="adaugaDecedatFaraApartinator">Salvare</button>
                                         
                                     </form>
                                 </div>

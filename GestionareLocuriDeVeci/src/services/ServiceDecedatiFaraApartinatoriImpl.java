@@ -88,9 +88,8 @@ public class ServiceDecedatiFaraApartinatoriImpl implements ServiceDecedatiFaraA
 	@Override
 	public void stergeDecedatFaraApartinator(DecedatFaraApartinatoriDTO decedatDTO, String user) throws BusinessException {
 		try{			
-			
-			daoDecedati.delete(decedatDTO.getDecedat());
 			daoDatePersonale.delete(decedatDTO.getDatePersonale());
+			daoDecedati.delete(decedatDTO.getDecedat());
 			daoJurnal.insert(UtilInregistrareJurnal.creeazaInregistrareJurnal(user, "stergere", decedatDTO.getDecedat().toString()));
 		} catch (SQLException sqlException){
 			throw new BusinessException("Data access exception: " + sqlException.getMessage());
