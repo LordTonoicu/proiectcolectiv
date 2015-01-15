@@ -32,7 +32,7 @@ public interface ServiceLocuriDeVeci {
 	 *     nale ale detinatorului, inmormantatului etc.
 	 * 
 	 */
-	public List<LocDeVeci> getLocuriDeVeciExpirate() throws BusinessException;
+	public List<LocDeVeciDTO> getLocuriDeVeciExpirate() throws BusinessException;
 	
 	
 	/*OBSERVATIE: In eventualitatea in care se retine si adresa de mail pe baza ID-ului

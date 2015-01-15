@@ -4,11 +4,15 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+
 import services.util.UtilInregistrareJurnal;
 import validators.LocDeVeciValidator;
+import dao.DAOCimitire;
+import dao.DAOContracteConcesiune;
 import dao.DAOJurnal;
 import dao.DAOLocuri;
 import dao.DAOParcele;
+import dao.IDAOCimitire;
 import dao.IDAOContracteConcesiune;
 import dao.IDAOJurnal;
 import dao.IDAOLocuri;
@@ -25,6 +29,7 @@ public class ServiceLocuriDeVeciImpl implements ServiceLocuriDeVeci {
 	private LocDeVeciValidator locDeVeciValidator;
 	private IDAOJurnal daoJurnal;
 	private IDAOContracteConcesiune daoContracteConcesiune;
+	private IDAOCimitire daoCimitire;
 
 	public void setDaoLocuri(DAOLocuri daoLocuri) {
 		this.daoLocuri = daoLocuri;
@@ -51,6 +56,8 @@ public class ServiceLocuriDeVeciImpl implements ServiceLocuriDeVeci {
 		this.locDeVeciValidator = new LocDeVeciValidator();
 		this.daoParcele = new DAOParcele();
 		this.daoJurnal = new DAOJurnal();
+		this.daoCimitire = new DAOCimitire();
+		this.daoContracteConcesiune = new DAOContracteConcesiune();
 	}
 
 	@Override
@@ -123,20 +130,27 @@ public class ServiceLocuriDeVeciImpl implements ServiceLocuriDeVeci {
 	}
 
 	@Override
-	public List<LocDeVeci> getLocuriDeVeciExpirate() throws BusinessException{
-		List<LocDeVeci> rezultat = null;
+	public List<LocDeVeciDTO> getLocuriDeVeciExpirate() throws BusinessException{
+		List<LocDeVeciDTO> rezultat = new ArrayList<LocDeVeciDTO>();
 		try{
 			List<LocDeVeci> locuriDeVeci = daoLocuri.getAll();
-			rezultat = new ArrayList<LocDeVeci>();
+			
 			for (LocDeVeci locDeVeci: locuriDeVeci){
+				if(locDeVeci.getNrContractConcesionare()!=0){
 				Date dataConcesionare = daoContracteConcesiune.getByNumarContract(locDeVeci.getNrContractConcesionare()).getDataEliberare();
 			    Calendar dataExpirarii = Calendar.getInstance();
 			    dataExpirarii.setTime(dataConcesionare);
 			    dataExpirarii.add(Calendar.YEAR, 20);
 				Calendar dataCurenta = Calendar.getInstance();
 				if (dataExpirarii.before(dataCurenta)){
-					rezultat.add(locDeVeci);
+					LocDeVeciDTO locDeVeciDTO = new LocDeVeciDTO();
+					locDeVeciDTO.setDenumireCimitir(daoCimitire.getById(locDeVeci.getIdCimitir()).getDenumire());
+					rezultat.add(locDeVeciDTO);
+					locDeVeciDTO.setLocDeVeci(locDeVeci);
+					locDeVeciDTO.setDenumireParcela(daoParcele.getById(locDeVeci.getIdParcela()).getDenumire());
 				}
+				
+			}
 			}
 		} catch (SQLException sqlException){
 			throw new BusinessException(sqlException.getMessage());

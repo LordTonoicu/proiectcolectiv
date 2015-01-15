@@ -1,6 +1,8 @@
 package servlets;
 
 import java.io.IOException;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 import java.sql.Date;
 import java.util.List;
 
@@ -130,6 +132,7 @@ public class DecedatServlet extends HttpServlet {
 		dec.getDatePersonale().setPrenume(
 				request.getParameter("PrenumeDecedat"));
 		dec.getDatePersonale().setCnp(request.getParameter("CnpDecedat"));
+		
 
 		decedatService.inscrieDecedat(dec, request.getRemoteHost());
 

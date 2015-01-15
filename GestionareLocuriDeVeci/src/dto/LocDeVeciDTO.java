@@ -9,11 +9,17 @@ public class LocDeVeciDTO {
 	private String denumireParcela;
 	private DatePersonale datePersonaleDetinator;
 	private DatePersonale datePersonaleInmormantant;
-	//Eventual alte date necesare
+	private String denumireCimitir;
 
 	
 	public LocDeVeci getLocDeVeci() {
 		return locDeVeci;
+	}
+	public String getDenumireCimitir() {
+		return denumireCimitir;
+	}
+	public void setDenumireCimitir(String denumireCimitir) {
+		this.denumireCimitir = denumireCimitir;
 	}
 	public LocDeVeciDTO() {
 		super();
@@ -27,6 +33,17 @@ public class LocDeVeciDTO {
 		this.denumireParcela = denumireParcela;
 		this.datePersonaleDetinator = datePersonaleDetinator;
 		this.datePersonaleInmormantant = datePersonaleInmormantant;
+	}
+	public LocDeVeciDTO(LocDeVeci locDeVeci,
+			String denumireParcela,
+			DatePersonale datePersonaleDetinator,
+			DatePersonale datePersonaleInmormantant,String denumireCimitir) {
+		super();
+		this.locDeVeci = locDeVeci;
+		this.denumireParcela = denumireParcela;
+		this.datePersonaleDetinator = datePersonaleDetinator;
+		this.datePersonaleInmormantant = datePersonaleInmormantant;
+		this.denumireCimitir = denumireCimitir;
 	}
 	public void setLocDeVeci(LocDeVeci locDeVeci) {
 		this.locDeVeci = locDeVeci;
