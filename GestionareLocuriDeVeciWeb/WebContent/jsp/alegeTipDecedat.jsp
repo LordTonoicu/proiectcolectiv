@@ -15,15 +15,17 @@
   <link rel="stylesheet" href="/resources/demos/style.css">
   <script>
 
-  window.onunload = refreshParent;
+  /*window.onunload = refreshParent;
   function refreshParent() {
    //   window.opener.location.reload();
       this.close();
-  }
+  }*/
   function getById(){
   	var parentDocument = window.opener.document;
   	var parentRowId = window.opener.getId();
-  	document.getElementById("idLocDeVeci").value = parentDocument.getElementById("idLocDeVeciV"+parentRowId).value;
+  	//document.getElementById("idLocDeVeci").value = parentDocument.getElementById("idLocDeVeciV"+parentRowId).value;
+  	document.getElementById("idToSend1").value = parentDocument.getElementById("idLocDeVeciV"+parentRowId).value;
+  	document.getElementById("idToSend2").value = parentDocument.getElementById("idLocDeVeciV"+parentRowId).value;
   }
 </script>
  
@@ -78,10 +80,15 @@
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-lg-6">
-                                    <form role="form" action="../DecedatServlet" method="POST">
+                                	
+                                    <form role="form" action="addDecedat.jsp" method="POST">
+                                    <input type="hidden" name="idLocDeVeci" id="idToSend1"/>
                                        <div  class="form-group"> 
                                         <button type="submit" class="btn btn-primary" name="cuApartinatori" id="cuApartinatori">Decedat cu apartinatori</button>
                                        </div>
+                                     </form>
+                                     <form role="form" action="addDecedatFaraApartinatori.jsp" method="POST">
+                                      <input type="hidden" name="idLocDeVeci" id="idToSend2"/>
                                        <div  class="form-group">
                                         <button type="submit" class="btn btn-primary" name="faraApartinatori" id="faraApartinatori">Decedat fara apartinatori</button>
                                     	</div>
