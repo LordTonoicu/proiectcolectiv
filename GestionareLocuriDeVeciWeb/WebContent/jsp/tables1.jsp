@@ -1,4 +1,6 @@
 <!DOCTYPE html>
+<%@page import="java.util.ArrayList"%>
+<%@page import="domain.registers.InregRegAnualDeProgrInmormantari"%>
 <html lang="en">
 
 <head>
@@ -164,6 +166,7 @@
                             <div class="table-responsive">
                                 <table class="table table-striped table-bordered table-hover" id="dataTables-example">
                                     <thead>
+                                    
                                         <tr>
                                             <th>Nume</th>
                                             <th>Prenume</th>
@@ -175,79 +178,23 @@
                                         </tr>
                                     </thead>
                                     <tbody>
+                                    <%
+                                    	ArrayList<InregRegAnualDeProgrInmormantari> registru = (ArrayList<InregRegAnualDeProgrInmormantari>) request.getSession().getAttribute("registru1");
+                                    	
+                                    	for(InregRegAnualDeProgrInmormantari inregistrare : registru)
+                                    	{
+                                    		
+                                    %>
                                         <tr class="odd gradeX">
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td class="center"></td>
-                                            <td class="center"></td>
+                                            <td><%=inregistrare.getNumeDecedat()%></td>
+                                            <td><%=inregistrare.getPrenumeDecedat() %></td>
+                                            <td><%=inregistrare.getReligieDecedat()%></td>
+                                            <td><%=inregistrare.getCimitir()%></td>
+                                            <td><%=inregistrare.getParcela()%></td>
+                                            <td><%=inregistrare.getNrLoc()%></td>
+                                            <td><%=inregistrare.getDataInmormantarii()%></td>
                                         </tr>
-                                         <tr class="odd gradeX">
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td class="center"></td>
-                                            <td class="center"></td>
-                                        </tr>
-                                         <tr class="odd gradeX">
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td class="center"></td>
-                                            <td class="center"></td>
-                                        </tr>
-                                         <tr class="odd gradeX">
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td class="center"></td>
-                                            <td class="center"></td>
-                                        </tr>
-                                         <tr class="odd gradeX">
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td class="center"></td>
-                                            <td class="center"></td>
-                                        </tr>
-                                         <tr class="odd gradeX">
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td class="center"></td>
-                                            <td class="center"></td>
-                                        </tr>
-                                         <tr class="odd gradeX">
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td class="center"></td>
-                                            <td class="center"></td>
-                                        </tr>
-                                         <tr class="odd gradeX">
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td class="center"></td>
-                                            <td class="center"></td>
-                                        </tr>
-                                        
+                                        <%} %>
                                     </tbody>
                                 </table>
                             </div>
