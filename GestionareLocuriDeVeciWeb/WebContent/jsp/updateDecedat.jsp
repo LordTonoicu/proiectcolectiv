@@ -28,6 +28,7 @@
  	document.getElementById("CnpDecedat").value = parentDocument.getElementById("cnpDecedatV"+parentRowId).value;
  	document.getElementById("NumeDecedat").value = parentDocument.getElementById("numeDecedatV"+parentRowId).value;
  	document.getElementById("PrenumeDecedat").value = parentDocument.getElementById("prenumeDecedatV"+parentRowId).value;
+ 	document.getElementById("Religie").value = parentDocument.getElementById("religieV"+parentRowId).innerHTML;
  	document.getElementById("DateInmormantareDecedat").value = parentDocument.getElementById("dataInmormantareV"+parentRowId).innerHTML;
  	document.getElementById("NrAdeverintaInhumareDecedat").value = parentDocument.getElementById("nrAdeverintaV"+parentRowId).innerHTML;
  	if (parentDocument.getElementById("ePersonalitateV"+parentRowId).innerHTML == "true")
@@ -118,6 +119,12 @@
                                         <div class="form-group">
                                             <label>Nr adeverinta inhumare</label>
                                             <input class="form-control"  id="NrAdeverintaInhumareDecedat" name="NrAdeverintaInhumareDecedat">
+                                          
+                                        </div>
+                                        
+                                        <div class="form-group">
+                                            <label>Religie</label>
+                                            <input class="form-control"  id="Religie" name="Religie">
                                           
                                         </div>
                                         

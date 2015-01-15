@@ -8,6 +8,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.sun.xml.internal.ws.policy.PolicySubject;
+
 import domain.Decedat;
 import domain.registers.InregRegAnualDeProgrInmormantari;
 
@@ -77,14 +79,14 @@ public class DAODecedati implements IDAODecedati {
 		try {
 			String updateTable = "UPDATE Decedati SET cnpDecedat = ?, dataInmormantare = ?, nrAdeverintaInhumare = ?, idLocDeVeci = ?, ePersonalitate = ?, religie = ? WHERE idDecedat = ?";
 			PSUpdate = connection.prepareStatement(updateTable);
-			PSUpdate.setInt(6, decedat.getIdDecedat());
+			PSUpdate.setInt(7, decedat.getIdDecedat());
 			PSUpdate.setString(1, decedat.getCnpDecedat());
 			PSUpdate.setDate(2, new Date(decedat.getDataInmormantare()
 					.getTime()));
 			PSUpdate.setInt(3, decedat.getNrAdeverintaInhumare());
 			PSUpdate.setInt(4, decedat.getIdLocDeVeci());
 			PSUpdate.setString(6, decedat.getReligie());
-			
+					
 			if (decedat.isePersonalitate() == true) {
 				System.out.println("perso");
 				PSUpdate.setInt(5, 1);

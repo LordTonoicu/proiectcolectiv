@@ -37,7 +37,6 @@ public class DecedatServlet extends HttpServlet {
 	 */
 	public DecedatServlet() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	/**
@@ -74,7 +73,8 @@ public class DecedatServlet extends HttpServlet {
 			h.setAttribute("listDecedati", decedati);
 			response.sendRedirect("jsp/Decedat.jsp");
 		} catch (BusinessException e) {
-			// TODO redirect exception handler
+			h.setAttribute("exceptie", e.getMessage());
+			response.sendRedirect("jsp/exceptionPage.jsp");
 			e.printStackTrace();
 			System.out.println(e.getMessage());
 		}
@@ -94,6 +94,8 @@ public class DecedatServlet extends HttpServlet {
 						.getParameter("NrAdeverintaInhumareDecedat")));
 		dec.getDecedat().setIdLocDeVeci(
 				Integer.valueOf(request.getParameter("idLocDeVeci")));
+		dec.getDecedat().setReligie(request.getParameter("Religie"));
+		
 		if (request.getParameter("ePersonalitate") != null) {
 			System.out.println("E");
 			dec.getDecedat().setePersonalitate(true);
@@ -122,6 +124,7 @@ public class DecedatServlet extends HttpServlet {
 						.getParameter("NrAdeverintaInhumareDecedat")));
 		dec.getDecedat().setIdLocDeVeci(
 				Integer.valueOf(request.getParameter("idLocDeVeci")));
+		dec.getDecedat().setReligie(request.getParameter("Religie"));
 
 		if (request.getParameter("ePersonalitate") != null) {
 			dec.getDecedat().setePersonalitate(true);

@@ -110,6 +110,12 @@
                                           
                                         </div>
                                         
+                                         <div class="form-group">
+                                            <label>Religie</label>
+                                            <input class="form-control"  id="Religie" name="Religie">
+                                          
+                                        </div>
+                                        
                                         <div class="checkbox">
                                             <label>
                                                <input type="checkbox" name="ePersonalitate">E personalitate

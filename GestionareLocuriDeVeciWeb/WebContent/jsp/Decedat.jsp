@@ -174,6 +174,7 @@ function newPopup(url) {
                                             <th>Date Inmormantare </th>
                                             <th>Nr adeverinta inhumare</th>
                                           	<th>Nr Loc </th>
+                                          	<th>Religie</th>
                                             <th>Personalitate</th>
                                             <th>Actiune</th>                                        
 
@@ -201,7 +202,8 @@ function newPopup(url) {
                                             <td><span id="dataInmormantareV<%=i%>"><%=decedat.getDecedat().getDataInmormantare()%></span></td>
                                             <td><span id="nrAdeverintaV<%=i%>"><%=decedat.getDecedat().getNrAdeverintaInhumare()%></span></td>
                                             <td><%=decedat.getNumarLocDeVeci() %></td>
-                                            <td><span id="ePersonalitateV<%=i%>"><%=decedat.getDecedat().isePersonalitate()%></span></td>
+                                           <td><span id="religieV<%=i%>"><%=decedat.getDecedat().getReligie()%></span></td>
+                                           <td><span id="ePersonalitateV<%=i%>"><%=decedat.getDecedat().isePersonalitate()%></span></td>
 											  <td>
 											  <a href="JavaScript:newPopup('updateDecedat.jsp')" >
                                             	<button class="btn btn-primary" type="button" id="updateDecedat" name="updateDecedat" onclick="setIdRow(<%=i%>)">
