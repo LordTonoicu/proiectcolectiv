@@ -113,14 +113,29 @@ public class DAORegistre implements IDAORegistre{
 	public List<InregRegAnualDecedati> getRegAnualDecedati() throws SQLException {
 		List<InregRegAnualDecedati> registru = null;
 		try{
-			String sqlSelect = ""/*TODO*/;
+			String sqlSelect = "select dp.nume, dp.prenume, l.numar, p.denumire, c.denumire"
+					+ "         from decedati d"
+					+ "         INNER JOIN datepersonale dp"
+					+ "         ON d.cnpDecedat = dp.cnp"
+					+ "         INNER JOIN locurideveci l"
+					+ "         ON d.idLocDeVeci = l.idLoc"
+					+ "         INNER JOIN parcele p"
+					+ "         ON l.idParcela = p.idParcela"
+					+ "         INNER JOIN cimitire"
+					+ "         c ON l.idCimitir = c.idCimitir"
+					+ "         ORDER BY dp.nume, dp.prenume, d.dataInmormantare ";
 			Connection con = ConnectionFactory.getConnection();
 			PreparedStatement pSelect = con.prepareStatement(sqlSelect);
 			ResultSet rs = pSelect.executeQuery();
 			registru = new ArrayList<InregRegAnualDecedati>();
 			while(rs.next())
 			{
-				InregRegAnualDecedati inregistrare = new InregRegAnualDecedati(/*TODO*/);
+				InregRegAnualDecedati inregistrare = new InregRegAnualDecedati();
+				inregistrare.setNume(rs.getString(1));
+				inregistrare.setPrenume(rs.getString(2));
+				inregistrare.setNrMormant(new Integer(rs.getInt(3)).toString());
+				inregistrare.setParcela(rs.getString(4));
+				inregistrare.setCimitir(rs.getString(5));
 				registru.add(inregistrare);
 			}
 		} catch (SQLException ex){
