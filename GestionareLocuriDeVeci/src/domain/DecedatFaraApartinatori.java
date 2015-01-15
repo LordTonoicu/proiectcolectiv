@@ -6,90 +6,126 @@ public class DecedatFaraApartinatori {
 
 	private int idDecedat;
 	private String cnpDecedat;
-	private int nrAdeverintaDeInhumare;
-	private Date dataInmormantarii;
+	private int nrAdeverintaInhumare;
+	private Date dataInmormantare;
 	private int idLocDeVeci;
 	private int nrAdeverintaAsistenta;
-
-	public DecedatFaraApartinatori() {
-
-	}
+	private String religie;
 	
-	public DecedatFaraApartinatori(int idDecedat, String cnpdecedat,
-			int nrAdeverintaDeInhumare, Date dataInmormantarii,
-			int idLocDeVeci, int nrAdeverintaAsistenta) {
-
+	public DecedatFaraApartinatori(int idDecedat, String cnpDecedat,
+			int nrAdeverintaInhumare, Date dataInmormantare, int idLocDeVeci,
+			int nrAdeverintaAsistenta, String religie) {
+		super();
 		this.idDecedat = idDecedat;
-		this.cnpDecedat = cnpdecedat;
-		this.nrAdeverintaDeInhumare = nrAdeverintaDeInhumare;
+		this.cnpDecedat = cnpDecedat;
+		this.nrAdeverintaInhumare = nrAdeverintaInhumare;
+		this.dataInmormantare = dataInmormantare;
 		this.idLocDeVeci = idLocDeVeci;
 		this.nrAdeverintaAsistenta = nrAdeverintaAsistenta;
+		this.religie = religie;
 	}
-	
-	public DecedatFaraApartinatori(String cnpdecedat,
-			int nrAdeverintaDeInhumare, Date dataInmormantarii,
-			int idLocDeVeci, int nrAdeverintaAsistenta) {
 
-		this.cnpDecedat = cnpdecedat;
-		this.nrAdeverintaDeInhumare = nrAdeverintaDeInhumare;
-		this.idLocDeVeci = idLocDeVeci;
-		this.nrAdeverintaAsistenta = nrAdeverintaAsistenta;
-	}
+
+
+	
 
 	public int getIdDecedat() {
 		return idDecedat;
 	}
 
+
+
 	public void setIdDecedat(int idDecedat) {
 		this.idDecedat = idDecedat;
 	}
+
+
 
 	public String getCnpDecedat() {
 		return cnpDecedat;
 	}
 
+
+
 	public void setCnpDecedat(String cnpDecedat) {
 		this.cnpDecedat = cnpDecedat;
 	}
 
-	public int getNrAdeverintaDeInhumare() {
-		return nrAdeverintaDeInhumare;
+
+
+	public int getNrAdeverintaInhumare() {
+		return nrAdeverintaInhumare;
 	}
 
-	public void setNrAdeverintaDeInhumare(int nrAdeverintaDeInhumare) {
-		this.nrAdeverintaDeInhumare = nrAdeverintaDeInhumare;
+
+
+	public void setNrAdeverintaInhumare(int nrAdeverintaDeInhumare) {
+		this.nrAdeverintaInhumare = nrAdeverintaDeInhumare;
 	}
 
-	public Date getDataInmormantarii() {
-		return dataInmormantarii;
+
+
+	public Date getDataInmormantare() {
+		return dataInmormantare;
 	}
 
-	public void setDataInmormantarii(Date dataInmormantarii) {
-		this.dataInmormantarii = dataInmormantarii;
+
+
+	public void setDataInmormantare(Date dataInmormantare) {
+		this.dataInmormantare = dataInmormantare;
 	}
+
+
 
 	public int getIdLocDeVeci() {
 		return idLocDeVeci;
 	}
 
+
+
 	public void setIdLocDeVeci(int idLocDeVeci) {
 		this.idLocDeVeci = idLocDeVeci;
 	}
+
+
 
 	public int getNrAdeverintaAsistenta() {
 		return nrAdeverintaAsistenta;
 	}
 
+
+
 	public void setNrAdeverintaAsistenta(int nrAdeverintaAsistenta) {
 		this.nrAdeverintaAsistenta = nrAdeverintaAsistenta;
 	}
+
+
+
+	public String getReligie() {
+		return religie;
+	}
+
+
+
+	public void setReligie(String religie) {
+		this.religie = religie;
+	}
+
+
+
+	public DecedatFaraApartinatori() {
+
+	}
+	
+	
 
 	@Override
 	public String toString() {
 		return "DecedatFaraApartinatori [idDecedat=" + idDecedat
 				+ ", cnpDecedat=" + cnpDecedat + ", nrAdeverintaDeInhumare="
-				+ nrAdeverintaDeInhumare + ", dataInmormantarii="
-				+ dataInmormantarii + ", idLocDeVeci=" + idLocDeVeci
-				+ ", nrAdeverintaAsistenta=" + nrAdeverintaAsistenta + "]";
-	}
+				+ nrAdeverintaInhumare + ", dataInmormantarii="
+				+ dataInmormantare + ", idLocDeVeci=" + idLocDeVeci
+				+ ", nrAdeverintaAsistenta=" + nrAdeverintaAsistenta + "]"
+				+ ", religie=" + religie+ "]";
+	}   
 }

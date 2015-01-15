@@ -13,7 +13,7 @@ public class DecedatFaraApartinatoriValidator {
 	public void validate(DecedatFaraApartinatori dfa) throws ValidatorException {
 		message="";
 		
-		if(dfa.getNrAdeverintaDeInhumare() < 0 ){
+		if(dfa.getNrAdeverintaInhumare() < 0 ){
 			message += "Nr adeverintei de inhumare nu poate fi negativ!";
 		}
 		if(dfa.getNrAdeverintaAsistenta() < 0) {
