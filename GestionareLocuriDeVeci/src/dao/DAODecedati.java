@@ -59,8 +59,7 @@ public class DAODecedati implements IDAODecedati {
 	public void delete(Decedat decedat) throws SQLException {
 
 		try {
-			String deleteTable = "DELETE FROM Decedati "
-					+ "WHERE idDecedat = ?";
+			String deleteTable = "UPDATE Decedati set deleted=true " + "WHERE idDecedat = ?";
 			PSDelete = connection.prepareStatement(deleteTable);
 			PSDelete.setInt(1, decedat.getIdDecedat());
 			PSDelete.executeUpdate();

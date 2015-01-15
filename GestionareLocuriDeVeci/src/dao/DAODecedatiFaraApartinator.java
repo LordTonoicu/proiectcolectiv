@@ -54,8 +54,7 @@ public class DAODecedatiFaraApartinator implements IDAODecedatiFaraAparatinator 
 	public void delete(DecedatFaraApartinatori decedat) throws SQLException {
 
 		try {
-			String deleteTable = "DELETE FROM DecedatiFaraApartinatori "
-					+ "WHERE idDecedat = ?";
+			String deleteTable = "UPDATE DecedatiFaraApartinatori set deleted=true " + "WHERE idDecedat = ?";
 			PSDelete = connection.prepareStatement(deleteTable);
 			PSDelete.setInt(1, decedat.getIdDecedat());
 			PSDelete.executeUpdate();
