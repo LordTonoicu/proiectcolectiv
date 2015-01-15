@@ -15,12 +15,12 @@
   <link rel="stylesheet" href="/resources/demos/style.css">
   <script>
 
-  /*window.onunload = refreshParent;
+  window.onunload = refreshParent;
   function refreshParent() {
    //   window.opener.location.reload();
       this.close();
   }
-  function getById(){
+/*  function getById(){
   	var parentDocument = window.opener.document;
   	var parentRowId = window.opener.getId();
   	document.getElementById("idLocDeVeci").value = parentDocument.getElementById("idLocDeVeciV"+parentRowId).value;
