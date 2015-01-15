@@ -10,9 +10,19 @@ public class Decedat {
 	private int nrAdeverintaInhumare;
 	private int idLocDeVeci;
 	private boolean ePersonalitate;
+	private String religie;
 
 	public Decedat() {
 
+	}
+
+	public String getReligie() {
+		return religie;
+	}
+
+
+	public void setReligie(String religie) {
+		this.religie = religie;
 	}
 
 	public Decedat(int idDecedat, String cnpDecedat, Date dataInmormantare,
