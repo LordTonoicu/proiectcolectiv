@@ -225,14 +225,27 @@ public class DAORegistre implements IDAORegistre{
 			throws SQLException {
 		List<InregRegDecedatiFaraApartinatori> registru = null;
 		try{
-			String sqlSelect = ""/*TODO*/;
+			String sqlSelect = "SELECT dp.nume, dp.prenume, c.denumire, p.denumire, l.numar, d.dataInmormantare,"+
+							"d.nrAdeverintaInhumare, d.nrAdeverintaAsistenta "+
+							"FROM DecedatiFaraApartinatori d INNER JOIN DatePersonale dp ON d.cnpDecedat=dp.cnp "+
+							"INNER JOIN LocuriDeVeci l ON d.idLocDeVeci = l.idLoc "+
+							"INNER JOIN Parcele p ON l.idParcela = p.idParcela "+
+							"INNER JOIN Cimitire c ON p.idCimitir = c.idCimitir";
 			Connection con = ConnectionFactory.getConnection();
 			PreparedStatement pSelect = con.prepareStatement(sqlSelect);
 			ResultSet rs = pSelect.executeQuery();
 			registru = new ArrayList<InregRegDecedatiFaraApartinatori>();
 			while(rs.next())
 			{
-				InregRegDecedatiFaraApartinatori inregistrare = new InregRegDecedatiFaraApartinatori(/*TODO*/);
+				InregRegDecedatiFaraApartinatori inregistrare = new InregRegDecedatiFaraApartinatori();
+				inregistrare.setNume(rs.getString(1));
+				inregistrare.setPrenume(rs.getString(2));
+				inregistrare.setCimitir(rs.getString(3));
+				inregistrare.setParcela(rs.getString(4));
+				inregistrare.setNrMormant(String.valueOf(rs.getInt(5)));
+				inregistrare.setDataInmormantare(rs.getDate(6));
+				inregistrare.setNrAdeverintaInhumare(rs.getInt(7));
+				inregistrare.setNrAdeverintaAsistenta(rs.getInt(8));
 				registru.add(inregistrare);
 			}
 		} catch (SQLException ex){
@@ -248,14 +261,17 @@ public class DAORegistre implements IDAORegistre{
 			throws SQLException {
 		List<InregRegCereriInhumare> registru = null;
 		try{
-			String sqlSelect = ""/*TODO*/;
+			String sqlSelect = "SELECT nrCerere, dataInregistrare, stadiuSolutionare FROM CereriInhumare";
 			Connection con = ConnectionFactory.getConnection();
 			PreparedStatement pSelect = con.prepareStatement(sqlSelect);
 			ResultSet rs = pSelect.executeQuery();
 			registru = new ArrayList<InregRegCereriInhumare>();
 			while(rs.next())
 			{
-				InregRegCereriInhumare inregistrare = new InregRegCereriInhumare(/*TODO*/);
+				InregRegCereriInhumare inregistrare = new InregRegCereriInhumare();
+				inregistrare.setNrCerere(rs.getInt(1));
+				inregistrare.setDataInregistrare(rs.getDate(2));
+				inregistrare.setStadiuSolutionare(rs.getString(3));
 				registru.add(inregistrare);
 			}
 		} catch (SQLException ex){
