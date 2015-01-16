@@ -24,13 +24,23 @@ public class DAORegistre implements IDAORegistre{
 		try
 		{
 			int year = Calendar.getInstance().get(Calendar.YEAR);
+			// selectez toate dupa decedati reunit cu decedati fara apartinatori
 			String sqlSelect ="SELECT dp.nume, dp.prenume, d.religie, c.denumire, "
 					+"p.denumire, l.numar, d.dataInmormantare FROM Decedati d "
 					+"INNER JOIN DatePersonale dp ON d.cnpDecedat=dp.cnp "
 					+"INNER JOIN LocuriDeVeci l ON d.idLocDeVeci = l.idLoc "
 					+"INNER JOIN Parcele p ON l.idParcela = p.idParcela "
 					+"INNER JOIN Cimitire c ON p.idCimitir = c.idCimitir "
+					+"where YEAR(d.dataInmormantare)>"+String.valueOf(year-1)+ " AND YEAR(d.dataInmormantare)<"+String.valueOf(year+1)
+					+" UNION "
+					+ "SELECT dp.nume, dp.prenume, d.religie, c.denumire, "
+					+"p.denumire, l.numar, d.dataInmormantare FROM DecedatiFaraApartinatori d "
+					+"INNER JOIN DatePersonale dp ON d.cnpDecedat=dp.cnp "
+					+"INNER JOIN LocuriDeVeci l ON d.idLocDeVeci = l.idLoc "
+					+"INNER JOIN Parcele p ON l.idParcela = p.idParcela "
+					+"INNER JOIN Cimitire c ON p.idCimitir = c.idCimitir "
 					+"where YEAR(d.dataInmormantare)>"+String.valueOf(year-1)+ " AND YEAR(d.dataInmormantare)<"+String.valueOf(year+1);
+			
 			Connection con = ConnectionFactory.getConnection();
 			PreparedStatement pSelect = con.prepareStatement(sqlSelect);
 			ResultSet rs = pSelect.executeQuery();
@@ -62,14 +72,76 @@ public class DAORegistre implements IDAORegistre{
 	public List<InregRegDeMorminte> getRegDeMorminte() throws SQLException {
 		List<InregRegDeMorminte> registru = null;
 		try{
-			String sqlSelect = ""/*TODO*/;
+			//toate locurile de veci
+			String sqlSelect = "SELECT idLoc, c.denumire, p.denumire, numar, cc.cnpConcesionar1, cc.cnpConcesionar2, suprafata from LocuriDeVeci "
+					+"INNER JOIN Parcele p ON LocuriDeVeci.idParcela= p.idParcela "
+					+"INNER JOIN Cimitire c ON p.idCimitir= c.idCimitir "
+					+"LEFT JOIN ContracteConcesiune cc on nrContractConcesiune = cc.nrContract where LocuriDeVeci.deleted=false";
 			Connection con = ConnectionFactory.getConnection();
 			PreparedStatement pSelect = con.prepareStatement(sqlSelect);
 			ResultSet rs = pSelect.executeQuery();
 			registru = new ArrayList<InregRegDeMorminte>();
 			while(rs.next())
 			{
-				InregRegDeMorminte inregistrare = new InregRegDeMorminte(/*TODO*/);
+				InregRegDeMorminte inregistrare = new InregRegDeMorminte();
+				inregistrare.setNumarMormant(rs.getInt(4));
+				inregistrare.setCimitir(rs.getString(2));
+				inregistrare.setParcela(rs.getString(3));
+				inregistrare.setSuprafata(rs.getInt(7));
+				//concesionari pentru mormant
+				String sqlSelectDetinatori = "SELECT dp.nume, dp.prenume, c.domiciliu, c.nrChitanta from Concesionari c "
+						+"INNER JOIN DatePersonale dp on c.cnpConcesionar = dp.cnp where dp.cnp in ('"
+						+rs.getString(5)+"','"+rs.getString(6)+"')";
+				PreparedStatement psConcesionar = con.prepareStatement(sqlSelectDetinatori);
+				ResultSet rsDateConcesionari = psConcesionar.executeQuery();
+				String numePrenume="";
+				String domicilii="";
+				String nrChitante="";
+				if(rsDateConcesionari.next())
+				{
+					numePrenume+=rsDateConcesionari.getString(1) +" " + rsDateConcesionari.getString(2) + "<br>";
+					domicilii+=rsDateConcesionari.getString(3)+"<br>";
+					nrChitante+=rsDateConcesionari.getInt(4)+"<br>";
+					if(rsDateConcesionari.next())
+					{
+						numePrenume+=rsDateConcesionari.getString(1) +" " + rsDateConcesionari.getString(2);
+						domicilii+=rsDateConcesionari.getString(3);
+						nrChitante+=rsDateConcesionari.getInt(4)+"<br>";
+					}
+				
+				}
+				else
+				{
+					numePrenume="-";
+					domicilii="-";
+					nrChitante="-";
+				}
+				inregistrare.setNumePrenumeDetinatori(numePrenume);
+				inregistrare.setDomiciliuDetinatori(domicilii);
+				inregistrare.setNumereChitante(nrChitante);
+				//decedati pentru mormant
+				String sqlAllDecedati = "SELECT dp.nume, dp.prenume, d.dataInmormantare from Decedati d "
+						+"INNER JOIN DatePersonale dp ON d.cnpDecedat=dp.cnp WHERE d.idLocDeVeci="+rs.getInt(1)
+						+" UNION "
+						+"SELECT dp.nume, dp.prenume, d.dataInmormantare from DecedatiFaraApartinatori d "
+						+"INNER JOIN DatePersonale dp ON d.cnpDecedat=dp.cnp WHERE d.idLocDeVeci="+rs.getInt(1);
+				PreparedStatement psDecedati = con.prepareStatement(sqlAllDecedati);
+				ResultSet rsDecedati = psDecedati.executeQuery();
+				String numePrenumeDecedati="",dateInmormantari="";
+				int i=1;
+				while(rsDecedati.next())
+				{
+					numePrenumeDecedati+=rsDecedati.getString(1)+" " +rsDecedati.getString(2)+"<br>";
+					dateInmormantari+=rsDecedati.getDate(3).toString()+"<br>";
+					i++;
+				}
+				if(numePrenumeDecedati=="" || dateInmormantari=="")
+				{
+					numePrenumeDecedati="-";
+					dateInmormantari="-";
+				}
+				inregistrare.setNumePrenumeInmormantati(numePrenumeDecedati);
+				inregistrare.setDateInmormantare(dateInmormantari);
 				registru.add(inregistrare);
 			}
 		} catch (SQLException ex){
@@ -113,15 +185,15 @@ public class DAORegistre implements IDAORegistre{
 	public List<InregRegAnualDecedati> getRegAnualDecedati() throws SQLException {
 		List<InregRegAnualDecedati> registru = null;
 		try{
-			String sqlSelect = "select dp.nume, dp.prenume, l.numar, p.denumire, c.denumire"
-					+ "         from decedati d"
-					+ "         INNER JOIN datepersonale dp"
+			String sqlSelect = "select dp.nume, dp.prenume, l.numar, p.denumire, c.denumire, d.dataInmormantare"
+					+ "         from Decedati d"
+					+ "         INNER JOIN DatePersonale dp"
 					+ "         ON d.cnpDecedat = dp.cnp"
-					+ "         INNER JOIN locurideveci l"
+					+ "         INNER JOIN LocuriDeVeci l"
 					+ "         ON d.idLocDeVeci = l.idLoc"
-					+ "         INNER JOIN parcele p"
+					+ "         INNER JOIN Parcele p"
 					+ "         ON l.idParcela = p.idParcela"
-					+ "         INNER JOIN cimitire"
+					+ "         INNER JOIN Cimitire"
 					+ "         c ON l.idCimitir = c.idCimitir"
 					+ "         ORDER BY dp.nume, dp.prenume, d.dataInmormantare ";
 			Connection con = ConnectionFactory.getConnection();
@@ -136,6 +208,7 @@ public class DAORegistre implements IDAORegistre{
 				inregistrare.setNrMormant(new Integer(rs.getInt(3)).toString());
 				inregistrare.setParcela(rs.getString(4));
 				inregistrare.setCimitir(rs.getString(5));
+				inregistrare.setDataInmormantare(rs.getDate(6));
 				registru.add(inregistrare);
 			}
 		} catch (SQLException ex){
@@ -198,7 +271,7 @@ public class DAORegistre implements IDAORegistre{
 		try
 		{
 			int year = Calendar.getInstance().get(Calendar.YEAR);
-			//TODO: needs testing...
+
 			String sqlSelect ="select nrContract, dataEliberare, dp.nume, dp.prenume, c.domiciliu from ContracteConcesiune cc"
 					+"INNER JOIN Concesionari c ON cnpConcesionar1=c.cnpConcesionar "
 					+"INNER JOIN DatePersonale dp ON c.cnpConcesionar=dp.cnp "

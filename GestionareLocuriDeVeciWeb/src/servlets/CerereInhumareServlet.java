@@ -87,6 +87,7 @@ public class CerereInhumareServlet extends HttpServlet {
 	private void adaugaCerere(HttpServletRequest request) throws BusinessException {
 		int nrCerere = Integer.parseInt(request.getParameter("nrCerere"));
 		String cnpConcesionar = request.getParameter("cnpConcesionar");
+		System.out.println("|"+cnpConcesionar+"|");
 		String stadiuSolutionare = request.getParameter("stadiuSolutionare");
 		String dataInregistrare  = request.getParameter("dataInregistrare");
 

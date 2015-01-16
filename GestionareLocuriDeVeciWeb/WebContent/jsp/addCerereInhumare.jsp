@@ -91,7 +91,7 @@
                                        
                                        <div class="form-group">
                                          <label>Concesionar </label>
-                                         <input type="hidden" cnpConcesionar" name="cnpConcesionar" class="form-control" readonly>
+                                         <input type="hidden" id="cnpConcesionar" name="cnpConcesionar" class="form-control" readonly>
                                                                          
                                          <select onchange="document.getElementById('cnpConcesionar').value = this.value" class="form-control">
                  							 <option value="" class="form-control"></option>
