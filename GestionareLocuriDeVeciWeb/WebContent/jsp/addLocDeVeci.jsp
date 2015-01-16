@@ -68,7 +68,7 @@
                                     <form role="form" action="../locuriDeVeciServlet" method="POST" enctype="multipart/form-data">
                                         <div class="form-group">
                                             <label>Suprafata</label>
-                                            <input class="form-control" id="suprafata" name="suprafata" />
+                                            <input type="number" class="form-control" id="suprafata" name="suprafata" />
                                             
                                         
                                         </div>
@@ -77,7 +77,7 @@
                                         </div> 
                                         <div class="form-group">
                                             <label>Numar</label>
-                                            <input id="numar" name="numar" class="form-control" />
+                                            <input type="number" id="numar" name="numar" class="form-control" />
                                        
                                         </div>
                                         

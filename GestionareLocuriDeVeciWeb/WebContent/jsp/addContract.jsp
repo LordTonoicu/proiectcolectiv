@@ -77,7 +77,7 @@
                                         <div  class="form-group">
                                         
                                             <label> Nr contract </label>
-                                            <input id="nrContract" name="nrContract" class="form-control">
+                                            <input type="number" id="nrContract" name="nrContract" class="form-control">
                                         
                                         </div>
                                         

@@ -83,13 +83,13 @@
 	                                    </div>
 	                                    <div  class="form-group">
 	                                        <label>Numar</label>
-	                                        <input id="numar" name="numar" class="form-control">
+	                                        <input type="number" id="numar" name="numar" class="form-control">
 	                                    
 	                                    </div>
 	                                    
 	                                    <div  class="form-group">
 	                                        <label>Suprafata</label>
-	                                        <input id="suprafata" name="suprafata" class="form-control">
+	                                        <input type="number" id="suprafata" name="suprafata" class="form-control">
 	                                      
 	                                    </div>       
 	                                    <div class="form-group">
