@@ -1,4 +1,6 @@
 <!DOCTYPE html>
+<%@page import="java.util.ArrayList"%>
+<%@page import="domain.registers.InregRegAnualDecedati"%>
 <html lang="en">
 
 <head>
@@ -174,71 +176,20 @@
                                         </tr>
                                     </thead>
                                     <tbody>
+                                    <%
+                                    	ArrayList<InregRegAnualDecedati> registru = (ArrayList<InregRegAnualDecedati>) request.getSession().getAttribute("registru4");
+                                    	for(InregRegAnualDecedati inregistrare : registru)
+                                    	{
+                                    %>
                                         <tr class="odd gradeX">
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td class="center"></td>
-                                            <td class="center"></td>
+                                            <td><%=inregistrare.getNume()%></td>
+                                            <td><%=inregistrare.getPrenume()%></td>
+                                            <td><%=inregistrare.getCimitir()%></td>
+                                            <td><%=inregistrare.getParcela()%></td>
+                                            <td><%=inregistrare.getNrMormant()%></td>
+                                            <td><%=inregistrare.getDataInmormantare()%></td>
                                         </tr>
-                                         <tr class="odd gradeX">
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td class="center"></td>
-                                            <td class="center"></td>
-                                        </tr>
-                                         <tr class="odd gradeX">
-                                             <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td class="center"></td>
-                                            <td class="center"></td>
-                                        </tr>
-                                         <tr class="odd gradeX">
-                                              <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td class="center"></td>
-                                            <td class="center"></td>
-                                        </tr>
-                                         <tr class="odd gradeX">
-                                              <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td class="center"></td>
-                                            <td class="center"></td>
-                                        </tr>
-                                         <tr class="odd gradeX">
-                                               <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td class="center"></td>
-                                            <td class="center"></td>
-                                        </tr>
-                                         <tr class="odd gradeX">
-                                               <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td class="center"></td>
-                                            <td class="center"></td>
-                                        </tr>
-                                         <tr class="odd gradeX">
-                                               <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td class="center"></td>
-                                            <td class="center"></td>
-                                        </tr>
-                                        
+                                        <%} %>                          
                                     </tbody>
                                 </table>
                             </div>
