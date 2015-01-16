@@ -176,7 +176,7 @@
     <script src="js/sb-admin-2.js"></script>
     
     <!-- addParcela validator -->
-	<script type="text/javascript" src="js/validations/addParcelaValidator.js"></script>
+	<script type="text/javascript" src="js/validations/addContractValidator.js"></script>
 
 </body>
 

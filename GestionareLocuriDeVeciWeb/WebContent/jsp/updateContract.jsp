@@ -184,7 +184,7 @@
     <script src="js/sb-admin-2.js"></script>
     
     <!-- addConcesionar validator -->
-	<script type="text/javascript" src="js/validations/addConcesionarValidator.js"></script>
+	<script type="text/javascript" src="js/validations/updateContractValidator.js"></script>
 
 </body>
 
