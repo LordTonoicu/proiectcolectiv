@@ -126,7 +126,7 @@ public class DAODecedatiFaraApartinator implements IDAODecedatiFaraAparatinator 
 		List<DecedatFaraApartinatori> decedati = new ArrayList<DecedatFaraApartinatori>();
 
 		try {
-			String selectTable = "SELECT * FROM DecedatiFaraApartinatori";
+			String selectTable = "SELECT * FROM DecedatiFaraApartinatori where deleted=false";
 			PSSelect = connection.prepareStatement(selectTable);
 			ResultSet result = PSSelect.executeQuery(selectTable);
 			DecedatFaraApartinatori decedat;

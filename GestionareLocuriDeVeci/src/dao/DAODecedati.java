@@ -139,7 +139,7 @@ public class DAODecedati implements IDAODecedati {
 		List<Decedat> decedati = new ArrayList<Decedat>();
 
 		try {
-			String selectTable = "SELECT * FROM Decedati";
+			String selectTable = "SELECT * FROM Decedati where deleted=false";
 			PSSelect = connection.prepareStatement(selectTable);
 			ResultSet result = PSSelect.executeQuery(selectTable);
 			Decedat decedat;

@@ -203,16 +203,20 @@ function newPopup(url) {
                                         	<tr class="odd gradeX">
                                             
                                         <form action="../ExpirateServlet" method="POST">  
-                                           
-                                            <td><span id="suprafata"><%=String.valueOf(locDeVeci.getSuprafata())%></span></td>
+                                            <input type="hidden" id="idLocDeVeciV<%=i%>" name="idLocDeVeci" value=<%=locDeVeci.getIdLoc()%> />
                                             <td><span id="denumireParcela"><%=locDeVeciDTO.getDenumireParcela() %></span></td>
+                                            <td><span id="suprafata"><%=String.valueOf(locDeVeci.getSuprafata())%></span></td>
                                             <td><span id="denumireCimitir"><%=locDeVeciDTO.getDenumireCimitir() %></span></td>
                                             <td><span id="numar"><%=locDeVeci.getNumar()%></span></td>
                                             <td>
+                                            <%if(locDeVeci.getPoza().length>10){ %>
                                             <button id="download" name="download"
 													class="btn btn-primary" type="submit">
 												Download
-											</button></td>
+											</button>
+											<%} else{%>
+											<%="Fara poza" %>
+											<%} %>
                                             <td><span id="EsteMonumentV<%=i%>"><%=locDeVeci.isMonument()%></span></td>
                                             
                             					

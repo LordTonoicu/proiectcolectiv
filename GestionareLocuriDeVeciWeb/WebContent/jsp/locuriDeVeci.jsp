@@ -208,9 +208,9 @@ function newPopupAlegeDecedat(url) {
                                         <form action="../locuriDeVeciServlet" method="POST">  
                                             <input type="hidden" id="idLocDeVeciV<%=i%>" name="idLocDeVeci" value=<%=locDeVeci.getIdLoc()%> />
                                              <input type="hidden" id="nrContractV<%=i%>" name="nrContract" value=<%=locDeVeci.getNrContractConcesionare()%> />
-                                            <td><span id="suprafataV<%=i%>"><%=String.valueOf(locDeVeci.getSuprafata())%></span></td>
                                             <td><span id="denumireParcelaV<%=i%>"><%=locDeVeciDTO.getDenumireParcela() %></span></td>
-                                            <td><span id="numarV<%=i%>"><%=locDeVeci.getNumar()%></span></td>
+                                            <td><span id="suprafataV<%=i%>"><%=String.valueOf(locDeVeci.getSuprafata())%></span></td>
+                                           <td><span id="numarV<%=i%>"><%=locDeVeci.getNumar()%></span></td>
                                             <td>
                                             <%if(locDeVeci.getPoza().length>10){ %>
                                             <button id="download" name="download"
