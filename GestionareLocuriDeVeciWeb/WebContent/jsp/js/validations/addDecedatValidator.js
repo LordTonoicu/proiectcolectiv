@@ -4,7 +4,7 @@ $(document).ready(function(){
 				$("#CnpDecedat").val()=="" || $("#DateInmormantareDecedat").val()=="" || 
 				$("#NrAdeverintaInhumareDecedat").val()=="" || $("#Religie").val()=="" ){
 			event.preventDefault();
-			alert("Va rugam sa completati toate campurile!");
+			alert("Va rugam sa introduceti date valide!");
 		}
 	});
 })

@@ -5,7 +5,7 @@ $(document).ready(function(){
 				$("#NrAdeverintaInhumareDecedat").val()=="" || $("#Religie").val()=="" ||
 				$("#NrAdeverintaAsistenta").val()==""){
 			event.preventDefault();
-			alert("Va rugam sa completati toate campurile!");
+			alert("Va rugam sa introduceti date valide!");
 		}
 	});
 })
