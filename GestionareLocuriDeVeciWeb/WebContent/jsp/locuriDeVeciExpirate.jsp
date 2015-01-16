@@ -164,11 +164,7 @@ function newPopup(url) {
                     <div class="panel panel-default">
                         <div class="panel-heading">
                            Gestioneaza locuri de veci
-                           <a href="JavaScript:newPopup('addLocDeVeci.jsp')"> 
-                            <button class="btn btn-primary" type="button" style="float:right;margin-top:-7px;margin-right:10px">
-                                     <img src="css/plus.png"> Adauga loc de veci
-                              </button>
-                              </a>
+                           
                                      
                         </div>
 
