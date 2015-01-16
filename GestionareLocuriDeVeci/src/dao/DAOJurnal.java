@@ -81,6 +81,7 @@ public class DAOJurnal implements IDAOJurnal{
     	
     	try{
     	String selectTable = "SELECT * FROM InregistrariJurnal ORDER BY dataOra DESC";
+    	
     	PSSelect = connection.prepareStatement(selectTable);
     	ResultSet result = PSSelect.executeQuery(selectTable);
     	InregistrareJurnal inregistrareJurnal;

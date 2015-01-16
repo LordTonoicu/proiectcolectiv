@@ -49,7 +49,7 @@ public class Table1Servlet extends HttpServlet {
 		}
 		catch(BusinessException ex)
 		{
-			request.getSession().setAttribute("eroare",ex.getMessage());
+			request.getSession().setAttribute("exceptie",ex.getMessage());
 			response.sendRedirect("jsp/exceptionPage.jsp");
 		}
 	}

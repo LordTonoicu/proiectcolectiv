@@ -30,8 +30,8 @@ public class DAODecedati implements IDAODecedati {
 
 		try {
 			String insertTable = "INSERT INTO Decedati"
-					+ "(cnpDecedat, dataInmormantare, nrAdeverintaInhumare, idLocDeVeci, ePersonalitate, religie) VALUES"
-					+ "(? ,?, ?, ?, ?, ?)";
+					+ "(cnpDecedat, dataInmormantare, nrAdeverintaInhumare, idLocDeVeci, ePersonalitate, religie, deleted) VALUES"
+					+ "(? ,?, ?, ?, ?, ?, false)";
 			PSInsert = connection.prepareStatement(insertTable);
 			PSInsert.setString(1, decedat.getCnpDecedat());
 			PSInsert.setDate(2, new Date(decedat.getDataInmormantare()

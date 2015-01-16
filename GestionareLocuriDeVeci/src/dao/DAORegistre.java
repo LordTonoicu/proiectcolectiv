@@ -31,7 +31,7 @@ public class DAORegistre implements IDAORegistre{
 					+"INNER JOIN LocuriDeVeci l ON d.idLocDeVeci = l.idLoc "
 					+"INNER JOIN Parcele p ON l.idParcela = p.idParcela "
 					+"INNER JOIN Cimitire c ON p.idCimitir = c.idCimitir "
-					+"where d.deleted=false AND YEAR(d.dataInmormantare)>"+String.valueOf(year-1)+ " AND YEAR(d.dataInmormantare)<"+String.valueOf(year+1);
+					+"where YEAR(d.dataInmormantare)>"+String.valueOf(year-1)+ " AND YEAR(d.dataInmormantare)<"+String.valueOf(year+1);
 			Connection con = ConnectionFactory.getConnection();
 			PreparedStatement pSelect = con.prepareStatement(sqlSelect);
 			ResultSet rs = pSelect.executeQuery();
@@ -94,17 +94,17 @@ public class DAORegistre implements IDAORegistre{
 		{
 			int year = Calendar.getInstance().get(Calendar.YEAR);
 			//TODO: needs testing...
-			String sqlSelect ="select cc.nrContract, cc.dataEliberare, dp.nume, dp.prenume, c.domiciliu from ContracteConcesiune cc"
-					+"INNER JOIN Concesionari c ON cc.cnpConcesionar1=c.cnpConcesionar "
+			String sqlSelect ="select nrContract, dataEliberare, dp.nume, dp.prenume, c.domiciliu from ContracteConcesiune cc"
+					+"INNER JOIN Concesionari c ON cnpConcesionar1=c.cnpConcesionar "
 					+"INNER JOIN DatePersonale dp ON c.cnpConcesionar=dp.cnp "
-					+"where d.deleted=false AND YEAR(cc.dataEliberare)>"+String.valueOf(year-1)
-					+" AND YEAR(cc.dataEliberare)<"+String.valueOf(year+1)
+					+"where c.deleted=false AND YEAR(dataEliberare)>"+String.valueOf(year-1)
+					+" AND YEAR(dataEliberare)<"+String.valueOf(year+1)
 					+" UNION "
-					+"select cc.nrContract, cc.dataEliberare, dp.nume, dp.prenume, c.domiciliu from ContracteConcesiune cc"
-					+"INNER JOIN Concesionari c ON cc.cnpConcesionar2=c.cnpConcesionar "
+					+"select nrContract, dataEliberare, dp.nume, dp.prenume, c.domiciliu from ContracteConcesiune cc"
+					+"INNER JOIN Concesionari c ON cnpConcesionar2=c.cnpConcesionar "
 					+"INNER JOIN DatePersonale dp ON c.cnpConcesionar=dp.cnp "
-					+"where d.deleted=false AND YEAR(cc.dataEliberare)>"+String.valueOf(year-1)
-					+" AND YEAR(cc.dataEliberare)<"+String.valueOf(year+1);
+					+"where c.deleted=false AND YEAR(dataEliberare)>"+String.valueOf(year-1)
+					+" AND YEAR(dataEliberare)<"+String.valueOf(year+1);
 			Connection con = ConnectionFactory.getConnection();
 			PreparedStatement pSelect = con.prepareStatement(sqlSelect);
 			ResultSet rs = pSelect.executeQuery();

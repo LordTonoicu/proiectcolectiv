@@ -2,7 +2,8 @@
 <html lang="en">
 
 <head>
-
+<%@page import="domain.registers.InregRegContracteConcesiune"%>
+<%@page import="java.util.ArrayList"%>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -175,71 +176,23 @@
                                         </tr>
                                     </thead>
                                     <tbody>
+                                     <%
+                                    	ArrayList<InregRegContracteConcesiune> registru = (ArrayList<InregRegContracteConcesiune>) request.getSession().getAttribute("registru7");
+                                    	
+                                    	for(InregRegContracteConcesiune inregistrare : registru)
+                                    	{
+                                    		
+                                    %> 
                                         <tr class="odd gradeX">
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                             <td></td>
-                                            <td class="center"></td>
-                                            <td class="center"></td>
-                                        </tr>
-                                         <tr class="odd gradeX">
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                             <td></td>
-                                            <td class="center"></td>
-                                            <td class="center"></td>
-                                        </tr>
-                                         <tr class="odd gradeX">
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                             <td></td>
-                                            <td class="center"></td>
-                                            <td class="center"></td>
-                                        </tr>
-                                         <tr class="odd gradeX">
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                             <td></td>
-                                            <td class="center"></td>
-                                            <td class="center"></td>
-                                        </tr>
-                                         <tr class="odd gradeX">
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                             <td></td>
-                                            <td class="center"></td>
-                                            <td class="center"></td>
-                                        </tr>
-                                         <tr class="odd gradeX">
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                             <td></td>
-                                            <td class="center"></td>
-                                            <td class="center"></td>
-                                        </tr>
-                                         <tr class="odd gradeX">
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                             <td></td>
-                                            <td class="center"></td>
-                                            <td class="center"></td>
-                                        </tr>
-                                         <tr class="odd gradeX">
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                             <td></td>
-                                            <td class="center"></td>
-                                            <td class="center"></td>
+                                            <td><%=inregistrare.getNrCurent()%></td>
+                                            <td><%=inregistrare.getNrContract()%></td>
+                                            <td><%=inregistrare.getDataEliberare() %></td>
+                                             <td><%=inregistrare.getNume() %></td>
+                                            <td ><%=inregistrare.getPrenume() %></td>
+                                            <td><%=inregistrare.getAdresa() %></td>
                                         </tr>
                                         
+                                        <%} %>
                                     </tbody>
                                 </table>
                             </div>

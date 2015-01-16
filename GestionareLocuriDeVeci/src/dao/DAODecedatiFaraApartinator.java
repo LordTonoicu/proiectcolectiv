@@ -29,8 +29,8 @@ public class DAODecedatiFaraApartinator implements IDAODecedatiFaraAparatinator 
 
 		try {
 			String insertTable = "INSERT INTO DecedatiFaraApartinatori"
-					+ "(cnpDecedat, dataInmormantare, nrAdeverintaInhumare, idLocDeVeci, nrAdeverintaAsistenta, religie) VALUES"
-					+ "(? ,?, ?, ?, ?, ?)";
+					+ "(cnpDecedat, dataInmormantare, nrAdeverintaInhumare, idLocDeVeci, nrAdeverintaAsistenta, religie, deleted) VALUES"
+					+ "(? ,?, ?, ?, ?, ?, false)";
 			PSInsert = connection.prepareStatement(insertTable);
 			PSInsert.setString(1, decedat.getCnpDecedat());
 			PSInsert.setDate(2, new Date(decedat.getDataInmormantare()
