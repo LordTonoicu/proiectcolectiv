@@ -86,9 +86,7 @@
                                         <div class="form-group">
                                             <label>Nr chitanta</label>
                                             <input id="nrChitanta" type="number" name="nrChitanta" class="form-control">
-                                       
-                                        </div>                                               
-                                                                 
+                                                                                                        
                                         <button id="adaugaConcesionar" name="adaugaConcesionar" type="submit" class="btn btn-primary">Salvare</button>
                                     </form>
                                 </div>

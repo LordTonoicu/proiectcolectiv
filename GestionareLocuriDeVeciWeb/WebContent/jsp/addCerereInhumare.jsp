@@ -71,7 +71,7 @@
                                     <form role="form" action="../CerereInhumareServlet" method="POST">
                                     	<div  class="form-group">
                                             <label> Nr cerere </label>
-                                            <input id="nrCerere" name="nrCerere" class="form-control">
+                                            <input id="nrCerere" name="nrCerere" type="number" class="form-control">
                                         
                                         </div>
                                                                              

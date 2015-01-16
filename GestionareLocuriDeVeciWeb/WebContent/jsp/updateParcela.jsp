@@ -92,7 +92,6 @@
                                        		 <input type="checkbox" name="areMonument" id="HasMonumentParcela">Are Monument                                        
                                        	</div>                              
                                         <button type="submit" id="updateParcela" name="updateParcela" class="btn btn-primary" >Salvare Modificari</button>
-                                        
                                     </form>
                                 </div>
                                 <!-- /.col-lg-6 (nested) -->
