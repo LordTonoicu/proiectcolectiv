@@ -153,14 +153,16 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="panel panel-default">
+                    <form action="../Table1Servlet" action="POST"> 
                         <div class="panel-heading">
                             Registrul anual de programare a inmormantarilor
                             
-                             <button class="btn btn-primary" type="button" style="float:right;margin-top:-7px;margin-right:10px">
+                              <button class="btn btn-primary" type="submit" name="exportExcel" style="float:right;margin-top:-7px;margin-right:10px">
                                     Exporta Excel
 
                             </button>
                         </div>
+                       </form>
 
                         <!-- /.panel-heading -->
                         <div class="panel-body">
