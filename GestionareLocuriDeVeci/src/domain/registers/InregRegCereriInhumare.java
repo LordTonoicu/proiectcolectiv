@@ -3,45 +3,44 @@ package domain.registers;
 import java.util.Date;
 
 public class InregRegCereriInhumare {
-	public InregRegCereriInhumare(int nrCurent, Date dataInregistrare,
-			int nrInfocet, String stadiuSolutionare) {
+	private Date dataInregistrare;
+	private int nrCerere;
+	private String stadiuSolutionare;
+	
+	public InregRegCereriInhumare( Date dataInregistrare,
+			int nrCerere, String stadiuSolutionare) {
 		super();
-		this.nrCurent = nrCurent;
 		this.dataInregistrare = dataInregistrare;
-		this.nrInfocet = nrInfocet;
+		this.nrCerere = nrCerere;
 		this.stadiuSolutionare = stadiuSolutionare;
 	}
+
 	public InregRegCereriInhumare() {
-		// TODO Auto-generated constructor stub
+
 	}
-	//TODO: generat in DAO. pls, sa nu ne chinuim prea mult
-	private int nrCurent;
-	private Date dataInregistrare;
-	private int nrInfocet;
-	private String stadiuSolutionare;
-	public int getNrCurent() {
-		return nrCurent;
-	}
-	public void setNrCurent(int nrCurent) {
-		this.nrCurent = nrCurent;
-	}
+
 	public Date getDataInregistrare() {
 		return dataInregistrare;
 	}
+
 	public void setDataInregistrare(Date dataInregistrare) {
 		this.dataInregistrare = dataInregistrare;
 	}
-	public int getNrInfocet() {
-		return nrInfocet;
+
+	public int getNrCerere() {
+		return nrCerere;
 	}
-	public void setNrInfocet(int nrInfocet) {
-		this.nrInfocet = nrInfocet;
+
+	public void setNrCerere(int nrCerere) {
+		this.nrCerere = nrCerere;
 	}
+
 	public String getStadiuSolutionare() {
 		return stadiuSolutionare;
 	}
+
 	public void setStadiuSolutionare(String stadiuSolutionare) {
 		this.stadiuSolutionare = stadiuSolutionare;
 	}
-	
+
 }
