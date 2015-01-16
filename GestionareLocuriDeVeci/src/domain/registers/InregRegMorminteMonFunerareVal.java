@@ -3,107 +3,111 @@ package domain.registers;
 import java.sql.Date;
 
 public class InregRegMorminteMonFunerareVal {
-	
+
+	private String cimitir;
 	private String parcela;
 	private Integer numarLoc;
-	private String prenumeConcesionar;
-	private String domiciliuDetinator;
+	private Integer suprafata;
+	private String numePrenumeConcesionar;
 	private String domiciliuConcesionar;
-	private Integer numarChitanta;
-	private String numeInhumat;
-	private String prenumeInhumat;
-	private Date dataInhumarii;
-	private Boolean constructiiFunerare;
-	private Integer nrActSchimbareConcesionar;
-	//fotografia scanata a locului de veci - path?
+	private String numarChitanta;
+	private String numePrenumeInhumat;
+	private String dataInhumarii;
 	
-	
-	public String getParcela() {
-		return parcela;
-	}
-	public void setParcela(String parcela) {
-		this.parcela = parcela;
-	}
-	public Integer getNumarLoc() {
-		return numarLoc;
-	}
-	public void setNumarLoc(Integer numarLoc) {
-		this.numarLoc = numarLoc;
-	}
-	public String getPrenumeConcesionar() {
-		return prenumeConcesionar;
-	}
-	public void setPrenumeConcesionar(String prenumeConcesionar) {
-		this.prenumeConcesionar = prenumeConcesionar;
-	}
-	public String getDomiciliuDetinator() {
-		return domiciliuDetinator;
-	}
-	public void setDomiciliuDetinator(String domiciliuDetinator) {
-		this.domiciliuDetinator = domiciliuDetinator;
-	}
-	public String getDomiciliuConcesionar() {
-		return domiciliuConcesionar;
-	}
-	public void setDomiciliuConcesionar(String domiciliuConcesionar) {
-		this.domiciliuConcesionar = domiciliuConcesionar;
-	}
-	public Integer getNumarChitanta() {
-		return numarChitanta;
-	}
-	public void setNumarChitanta(Integer numarChitanta) {
-		this.numarChitanta = numarChitanta;
-	}
-	public String getNumeInhumat() {
-		return numeInhumat;
-	}
-	public void setNumeInhumat(String numeInhumat) {
-		this.numeInhumat = numeInhumat;
-	}
-	public String getPrenumeInhumat() {
-		return prenumeInhumat;
-	}
-	public void setPrenumeInhumat(String prenumeInhumat) {
-		this.prenumeInhumat = prenumeInhumat;
-	}
-	public Date getDataInhumarii() {
-		return dataInhumarii;
-	}
-	public void setDataInhumarii(Date dataInhumarii) {
-		this.dataInhumarii = dataInhumarii;
-	}
-	public Boolean getConstructiiFunerare() {
-		return constructiiFunerare;
-	}
-	public void setConstructiiFunerare(Boolean constructiiFunerare) {
-		this.constructiiFunerare = constructiiFunerare;
-	}
-	public Integer getNrActSchimbareConcesionar() {
-		return nrActSchimbareConcesionar;
-	}
-	public void setNrActSchimbareConcesionar(Integer nrActSchimbareConcesionar) {
-		this.nrActSchimbareConcesionar = nrActSchimbareConcesionar;
-	}
-	public InregRegMorminteMonFunerareVal(String parcela, Integer numarLoc,
-			String prenumeConcesionar, String domiciliuDetinator,
-			String domiciliuConcesionar, Integer numarChitanta,
-			String numeInhumat, String prenumeInhumat, Date dataInhumarii,
-			Boolean constructiiFunerare, Integer nrActSchimbareConcesionar) {
-		super();
-		this.parcela = parcela;
-		this.numarLoc = numarLoc;
-		this.prenumeConcesionar = prenumeConcesionar;
-		this.domiciliuDetinator = domiciliuDetinator;
-		this.domiciliuConcesionar = domiciliuConcesionar;
-		this.numarChitanta = numarChitanta;
-		this.numeInhumat = numeInhumat;
-		this.prenumeInhumat = prenumeInhumat;
-		this.dataInhumarii = dataInhumarii;
-		this.constructiiFunerare = constructiiFunerare;
-		this.nrActSchimbareConcesionar = nrActSchimbareConcesionar;
-	}
 	public InregRegMorminteMonFunerareVal() {
 		super();
 	}
-	
+
+	public InregRegMorminteMonFunerareVal(String cimitir, String parcela,
+			Integer numarLoc, Integer suprafata, String numePrenumeConcesionar,
+			String domiciliuConcesionar, String numarChitanta,
+			String numePrenumeInhumat, String dataInhumarii) {
+		super();
+		this.cimitir = cimitir;
+		this.parcela = parcela;
+		this.numarLoc = numarLoc;
+		this.suprafata = suprafata;
+		this.numePrenumeConcesionar = numePrenumeConcesionar;
+		this.domiciliuConcesionar = domiciliuConcesionar;
+		this.numarChitanta = numarChitanta;
+		this.numePrenumeInhumat = numePrenumeInhumat;
+		this.dataInhumarii = dataInhumarii;
+	}
+
+
+	public String getCimitir() {
+		return cimitir;
+	}
+
+
+	public void setCimitir(String cimitir) {
+		this.cimitir = cimitir;
+	}
+
+
+	public String getParcela() {
+		return parcela;
+	}
+
+	public void setParcela(String parcela) {
+		this.parcela = parcela;
+	}
+
+	public Integer getNumarLoc() {
+		return numarLoc;
+	}
+
+	public void setNumarLoc(Integer numarLoc) {
+		this.numarLoc = numarLoc;
+	}
+
+	public String getNumePrenumeConcesionar() {
+		return numePrenumeConcesionar;
+	}
+
+	public void setNumePrenumeConcesionar(String numeprenumeConcesionar) {
+		this.numePrenumeConcesionar = numeprenumeConcesionar;
+	}
+
+	public String getDomiciliuConcesionar() {
+		return domiciliuConcesionar;
+	}
+
+	public void setDomiciliuConcesionar(String domiciliuConcesionar) {
+		this.domiciliuConcesionar = domiciliuConcesionar;
+	}
+
+	public String getNumarChitanta() {
+		return numarChitanta;
+	}
+
+	public void setNumarChitanta(String numarChitanta) {
+		this.numarChitanta = numarChitanta;
+	}
+
+	public String getNumePrenumeInhumat() {
+		return numePrenumeInhumat;
+	}
+
+	public void setNumePrenumeInhumat(String numeInhumat) {
+		this.numePrenumeInhumat = numeInhumat;
+	}
+
+	public String getDataInhumarii() {
+		return dataInhumarii;
+	}
+
+	public void setDataInhumarii(String dataInhumarii) {
+		this.dataInhumarii = dataInhumarii;
+	}
+
+	public Integer getSuprafata() {
+		return suprafata;
+	}
+
+	public void setSuprafata(Integer suprafata) {
+		this.suprafata = suprafata;
+	}
+
+
 }

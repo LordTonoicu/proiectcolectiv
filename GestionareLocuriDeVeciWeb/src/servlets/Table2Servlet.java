@@ -20,13 +20,12 @@ import exceptions.BusinessException;
 @WebServlet("/Table2Servlet")
 public class Table2Servlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	ServiceRegistre serviceRegistre = new ServiceRegistreImpl();
+	private ServiceRegistre serviceRegistre = new ServiceRegistreImpl();
     /**
      * @see HttpServlet#HttpServlet()
      */
     public Table2Servlet() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	/**

@@ -193,7 +193,7 @@ function newPopup(url) {
        								 %> 
        								  
                                         <tr class="odd gradeX">
-                                       <form role="form" action="../DecedatServlet" action="POST">
+                                       <form role="form" action="../DecedatFaraApartinatoriServlet" action="POST">
                                             <input type="hidden" id="idDecedatV<%=i%>" name="idDecedat" value=<%=decedat.getDecedat().getIdDecedat()%> />
                                             <input type="hidden" id="idLocDeVeciV<%=i%>" name="idLocDeVeci" value=<%=decedat.getDecedat().getIdLocDeVeci()%> />
 										    <input type="hidden" id="cnpDecedatV<%=i%>" name="CnpDecedat" value=<%=decedat.getDecedat().getCnpDecedat()%> />
@@ -213,7 +213,7 @@ function newPopup(url) {
                                             		<img src="css/edit.png"/>Actualizeaza
                                             	</button> 
                                             	</a>
-                                            	<button name="stergeDecedat" id="stergeDecedat" class="btn btn-primary" type="submit"  >
+                                            	<button name="stergeDecedatFaraApartinator" id="stergeDecedatFaraApartinator" class="btn btn-primary" type="submit"  >
                                             	<img src="css/delete.png"/>Sterge</button>
                                             </td>   
                                              </form>                                    

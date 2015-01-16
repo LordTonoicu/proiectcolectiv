@@ -1,5 +1,8 @@
 <!DOCTYPE html>
+<%@page import="domain.registers.InregRegDeMorminte"%>
 <html lang="en">
+<%@page import="java.util.ArrayList"%>
+<%@page import="domain.registers.InregRegMorminteMonFunerareVal"%>
 
 <head>
 
@@ -167,134 +170,35 @@
                                         <tr>
                                             <th>Cimitir</th>
                                             <th>Parcela</th>
-                                            <th> Nr mormant </th>
-                                            <th>Nume detinator</th>
-                                            <th>Prenume detinator</th>
-                                            <th>Domiciliu</th>
-                                            <th>Nr chitanta</th>
-                                            <th>Nume inmormantati</th>
-                                            <th>Prenume inmormantati</th>
-                                            <th>Suprafata loc</th>
-                                            <th>Data inmormantarii</th>
-                                            <th>Observatii</th>
-
+                                            <th>Nr mormant </th>
+                                            <th>Suprafata</th>
+                                            <th>Nume Prenume detinatori</th>
+                                            <th>Domicilii detinatori</th>
+                                            <th>Nr chitante</th>
+                                            <th>Nume Prenume inmormantati</th>
+                                            <th>Date inmormantari</th>
                                            
                                         </tr>
                                     </thead>
                                     <tbody>
+                                    <%
+                                    ArrayList<InregRegMorminteMonFunerareVal> registru = (ArrayList<InregRegMorminteMonFunerareVal>) request.getSession().getAttribute("registru3");
+                                    
+                                    for(InregRegMorminteMonFunerareVal inregistrare : registru)
+                                    {
+                                    %>
                                         <tr class="odd gradeX">
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                             <td></td>
-                                            <td class="center"></td>
-                                            <td class="center"></td>
-                                        </tr>
-                                         <tr class="odd gradeX">
-                                             <td></td>
-                                              <td></td>
-                                             <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td class="center"></td>
-                                            <td class="center"></td>
-                                        </tr>
-                                         <tr class="odd gradeX">
-                                             <td></td>
-                                            <td></td>
-                                             <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td class="center"></td>
-                                            <td class="center"></td>
-                                        </tr>
-                                         <tr class="odd gradeX">
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                             <td></td>
-                                            <td class="center"></td>
-                                            <td class="center"></td>
-                                        </tr>
-                                         <tr class="odd gradeX">
-                                             <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                             <td></td>
-                                              <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td class="center"></td>
-                                            <td class="center"></td>
-                                        </tr>
-                                         <tr class="odd gradeX">
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td> 
-                                            <td class="center"></td>
-                                            <td class="center"></td>
-                                        </tr>
-                                         <tr class="odd gradeX">
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                             <td></td>
-                                            <td class="center"></td>
-                                            <td class="center"></td>
-                                        </tr>
-                                         <tr class="odd gradeX">
-                                             <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                             <td></td>
-                                            <td></td>
-                                            <td class="center"></td>
-                                            <td class="center"></td>
-                                        </tr>
+                                            <td><%=inregistrare.getCimitir()%></td>
+                                            <td><%=inregistrare.getParcela()%></td>
+                                            <td><%=inregistrare.getNumarLoc() %></td>
+                                            <td><%=inregistrare.getSuprafata()%></td>
+                                            <td><%=inregistrare.getNumePrenumeConcesionar()%></td>
+                                            <td><%=inregistrare.getDomiciliuConcesionar()%></td>
+                                            <td><%=inregistrare.getNumarChitanta()%></td>
+                                            <td><%=inregistrare.getNumePrenumeInhumat() %></td>
+                                            <td><%=inregistrare.getDataInhumarii() %></td>
+                                        </tr>  
+                                        <% } %>    
                                         
                                     </tbody>
                                 </table>
