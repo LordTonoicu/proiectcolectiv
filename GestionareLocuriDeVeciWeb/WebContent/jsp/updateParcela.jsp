@@ -39,7 +39,10 @@
 	    	document.getElementById("idParcela").value = parentDocument.getElementById("idParcelaV"+parentRowId).value;
 	    	document.getElementById("denumireParcela").value = parentDocument.getElementById("denumireV"+parentRowId).innerHTML;
 	    	document.getElementById("idCimitirParcela").value = parentDocument.getElementById("idCimitirV"+parentRowId).innerHTML;
-	    	document.getElementById("HasMonumentParcela").value = parentDocument.getElementById("hasMonumentV"+parentRowId).innerHTML;
+	    	if ( parentDocument.getElementById("hasMonumentV"+parentRowId).innerHTML == "true")
+	    		document.getElementById("HasMonumentParcela").checked = true;
+	    	else
+	    		document.getElementById("HasMonumentParcela").checked = false;
 	    }	
 	</script>
 </head>
