@@ -80,7 +80,7 @@ public class DAOJurnal implements IDAOJurnal{
     	List<InregistrareJurnal> inregistrareJurnalList = new ArrayList<InregistrareJurnal>();
     	
     	try{
-    	String selectTable = "SELECT * FROM InregistrariJurnal ORDER BY dataOra DESC";
+    	String selectTable = "SELECT * FROM InregistrariJurnal ORDER BY nrInregistrare DESC";
     	
     	PSSelect = connection.prepareStatement(selectTable);
     	ResultSet result = PSSelect.executeQuery(selectTable);

@@ -41,7 +41,10 @@
 	<div class="alert alert-info" role="alert">
 	<%=(String)session.getAttribute("exceptie")%>
 	</div>
-	
+	<% if(session.getAttribute("redirected")!=null && session.getAttribute("redirected")!="")
+		session.removeAttribute("exceptie");
+		session.removeAttribute("redirected");
+	%>
 	<div>
 		<button class="btn btn-primary" onclick="goBack()"><i class="fa fa-arrow-left"></i> Pagina anterioara</button>
 	</div>

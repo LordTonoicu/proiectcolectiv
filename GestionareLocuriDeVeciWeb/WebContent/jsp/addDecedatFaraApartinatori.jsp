@@ -17,7 +17,7 @@
 
   window.onunload = refreshParent;
   function refreshParent() {
-   //   window.opener.location.reload();
+      window.opener.location.reload();
       this.close();
   }
   /*function getById(){

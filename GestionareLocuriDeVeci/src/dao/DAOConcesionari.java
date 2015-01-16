@@ -132,7 +132,7 @@ public class DAOConcesionari implements IDAOConcesionari {
 	public Concesionar getConcesionarFromCNP(String CNP) throws SQLException {
 		Concesionar concesionar =null;
 		try{
-			String selectTable = "select * from concesionari where cnpConcesionar=? ";
+			String selectTable = "select * from Concesionari where cnpConcesionar=? ";
 			System.out.println("bla");
 			PSSelect = connection.prepareStatement(selectTable);
 			PSSelect.setString(1,CNP);

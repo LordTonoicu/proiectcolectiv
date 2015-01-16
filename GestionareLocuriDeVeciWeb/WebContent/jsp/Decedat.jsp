@@ -1,3 +1,4 @@
+<%@page import="javax.websocket.SendResult"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
@@ -189,7 +190,14 @@ function newPopup(url) {
                                     </thead>
                                     <tbody>
 
-                                       <%
+                                        <% if(request.getSession().getAttribute("exceptie")!=null && request.getSession().getAttribute("exceptie")!="")
+                                     {
+                                    	   response.sendRedirect("exceptionPage.jsp");
+                                    	   request.getSession().setAttribute("redirected", "true");
+                                     		return;
+                                       }
+                                     %>
+                                     <%
 										int i=0;
   										for (Object dece:listDecedati) {
   											DecedatDTO decedat = (DecedatDTO) dece;

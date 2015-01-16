@@ -64,16 +64,15 @@ public class DAOParcele implements IDAOParcele {
     public void update(Parcela parcela) throws SQLException{
     	
     	try{
-       	 String insertTable = "UPDATE Parcele SET denumire = ?, nrLocuri = ?, idCimitir = ?, hasMonument =? WHERE idParcela = ?";
+       	 String insertTable = "UPDATE Parcele SET denumire = ?, idCimitir = ?, hasMonument =? WHERE idParcela = ?";
        	 PSUpdate = connection.prepareStatement(insertTable);
-       	 PSUpdate.setInt(5, parcela.getIdParcela());
+       	 PSUpdate.setInt(4, parcela.getIdParcela());
        	 PSUpdate.setString(1, parcela.getDenumire());
-       	 PSUpdate.setInt(2, parcela.getNrLocuri());
-       	 PSUpdate.setInt(3, parcela.getIdCimitir());
+       	 PSUpdate.setInt(2, parcela.getIdCimitir());
        	 if(parcela.getHasMonument() == true) {
-       		PSUpdate.setInt(4, 1);
+       		PSUpdate.setInt(3, 1);
        	 }else {
-       		PSUpdate.setInt(4, 0); 
+       		PSUpdate.setInt(3, 0); 
        	 }
        	PSUpdate.executeUpdate();
        	}catch(SQLException ex){

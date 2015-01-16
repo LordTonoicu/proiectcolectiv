@@ -188,8 +188,8 @@ function newPopupAlegeDecedat(url) {
                                         <tr>
                                          
                                            
-                                            <th>Suprafata</th>
                                             <th>Denumire Parcela</th>
+                                            <th>Suprafata</th>
                                             <th>Numar</th>
                                             <th>Poza</th>
                                             <th>Este monument</th>
@@ -199,6 +199,13 @@ function newPopupAlegeDecedat(url) {
                                         </tr>
                                     </thead>
                                     <tbody>
+                                     <% if(request.getSession().getAttribute("exceptie")!=null && request.getSession().getAttribute("exceptie")!="")
+                                     {
+                                    	   response.sendRedirect("exceptionPage.jsp");
+                                    	   request.getSession().setAttribute("redirected", "true");
+                                     		return;
+                                       }
+                                     %>
                                     <%
                                         int i=0;
   										for (Object lvObject:listLocuriDeVeci) {
