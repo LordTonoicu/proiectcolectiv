@@ -108,4 +108,16 @@ public class ServiceRegistreImpl implements ServiceRegistre{
 		return registru;
 	}
 
+	@Override
+	public List<InregRegDeMorminte> getByParcelaAndNrLoc(String parcela,int nrLocDeVeci)
+			throws BusinessException {
+		List<InregRegDeMorminte> registru = null;
+		try{
+			registru = DAORegistre.getByParcelaAndNrLoc(parcela, nrLocDeVeci);
+		} catch (SQLException sqlException){
+			throw new BusinessException("Data access exception: " + sqlException.getMessage());
+		}
+		return registru;
+	}
+
 }

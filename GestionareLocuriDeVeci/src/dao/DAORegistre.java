@@ -165,7 +165,7 @@ public class DAORegistre implements IDAORegistre{
 			String sqlSelect = "SELECT idLoc, c.denumire, p.denumire, numar, cc.cnpConcesionar1, cc.cnpConcesionar2, suprafata from LocuriDeVeci "
 					+"INNER JOIN Parcele p ON LocuriDeVeci.idParcela= p.idParcela "
 					+"INNER JOIN Cimitire c ON p.idCimitir= c.idCimitir "
-					+"LEFT JOIN ContracteConcesiune cc on nrContractConcesiune = cc.nrContract where LocuriDeVeci.deleted=false AND Parcele.denumire = "+parcela+" AND LocDeVeci.numar=" +String.valueOf(nrLocDeVeci);
+					+"LEFT JOIN ContracteConcesiune cc on nrContractConcesiune = cc.nrContract where LocuriDeVeci.deleted=false AND p.denumire = '"+parcela+"' AND LocuriDeVeci.numar=" +String.valueOf(nrLocDeVeci);
 			Connection con = ConnectionFactory.getConnection();
 			PreparedStatement pSelect = con.prepareStatement(sqlSelect);
 			ResultSet rs = pSelect.executeQuery();

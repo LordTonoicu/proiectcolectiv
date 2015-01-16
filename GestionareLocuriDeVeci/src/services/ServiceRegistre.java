@@ -20,5 +20,6 @@ public interface ServiceRegistre {
 	public List<InregRegDecedatiFaraApartinatori> getRegAnualDecedatiFaraApartinatori()  throws BusinessException;
 	public List<InregRegCereriInhumare> getRegCereriInhumare()  throws BusinessException;
 	public List<InregRegContracteConcesiune> getRegContracteConcesiune()  throws BusinessException;
+	public List<InregRegDeMorminte> getByParcelaAndNrLoc(String parcela,int nrLocDeVeci) throws BusinessException;
 	
 }
