@@ -85,7 +85,7 @@
                                         </div>
                                         <div class="form-group">
                                             <label>Nr chitanta</label>
-                                            <input id="nrChitanta" name="nrChitanta" class="form-control">
+                                            <input id="nrChitanta" type="number" name="nrChitanta" class="form-control">
                                        
                                         </div>                                               
                                                                  
