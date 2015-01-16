@@ -40,8 +40,6 @@ public class LocDeVeciServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	private ServiceLocuriDeVeci locDeVeciService = new ServiceLocuriDeVeciImpl();
-	private ServiceCimitire cimitirService = new ServiceCimitireImpl();
-	private ServiceParcele parcelaService = new ServiceParceleImpl();
 	private ServiceConcesionari concesionariService = new ServiceConcesionariImpl();
 
 	private InputStream inputStream = null;
