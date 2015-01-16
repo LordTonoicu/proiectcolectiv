@@ -41,6 +41,11 @@
 	<div class="alert alert-info" role="alert">
 	<%=(String)session.getAttribute("exceptie")%>
 	</div>
+	
+	<div>
+		<button class="btn btn-primary" onclick="goBack()"><i class="fa fa-arrow-left"></i> Pagina anterioara</button>
+	</div>
+	
 
 
 	<!-- jQuery -->
@@ -54,6 +59,13 @@
 
     <!-- Custom Theme JavaScript -->
     <script src="js/sb-admin-2.js"></script>
+    
+    <!-- Go back button script -->
+    <script>
+		function goBack() {
+   			 window.history.back();
+		}
+	</script>
 
 </body>
 

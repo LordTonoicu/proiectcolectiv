@@ -73,10 +73,12 @@ public class DecedatServlet extends HttpServlet {
 			h.setAttribute("listDecedati", decedati);
 			response.sendRedirect("jsp/Decedat.jsp");
 		} catch (BusinessException e) {
-			h.setAttribute("exceptie", e.getMessage());
-			response.sendRedirect("jsp/exceptionPage.jsp");
 			e.printStackTrace();
 			System.out.println(e.getMessage());
+
+			h.setAttribute("exceptie", e.getMessage());
+			response.sendRedirect("jsp/exceptionPage.jsp");
+			return;
 		}
 
 	}

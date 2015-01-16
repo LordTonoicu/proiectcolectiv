@@ -63,6 +63,7 @@ public class ConcesionarServlet extends HttpServlet {
 			System.out.println(ex.getMessage());
 			request.getSession().setAttribute("exceptie", ex.getMessage());
 			response.sendRedirect("jsp/exceptionPage.jsp");
+			return;
 		}
 	}
 

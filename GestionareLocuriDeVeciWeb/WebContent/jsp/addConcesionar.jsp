@@ -27,6 +27,14 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+    
+    <script>
+    window.onunload = refreshParent;
+    function refreshParent() {
+        window.opener.location.reload();
+        this.close();
+    }
+    </script>
 
 </head>
 
@@ -82,7 +90,6 @@
                                         </div>                                               
                                                                  
                                         <button id="adaugaConcesionar" name="adaugaConcesionar" type="submit" class="btn btn-primary">Salvare</button>
-                                        
                                     </form>
                                 </div>
                                 <!-- /.col-lg-6 (nested) -->

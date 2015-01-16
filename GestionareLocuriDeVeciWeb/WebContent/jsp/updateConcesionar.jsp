@@ -30,8 +30,8 @@
 	<script>
 	 window.onunload = refreshParent;
 	  	function refreshParent() {
-	        window.opener.location.reload();
-	        this.close();
+	       // window.opener.location.reload();
+	       // this.close();
 	    }
 	  
 	    function loadData(){
