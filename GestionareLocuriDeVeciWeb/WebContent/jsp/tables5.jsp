@@ -1,4 +1,6 @@
 <!DOCTYPE html>
+<%@page import="java.util.ArrayList"%>
+<%@page import="domain.registers.InregRegDecedatiFaraApartinatori"%>
 <html lang="en">
 
 <head>
@@ -170,101 +172,32 @@
                                             <th>Parcela</th>
                                             <th>Nr mormant</th>
                                             <th>Data inmormantarii</th>
-                                            <th>Adeverinta de inhumare </th>
-                                            <th>Solicitarea din partea IML</th>
-                                            <th>Harta amplasarii locului de inhumare</th>
-
+                                            <th>Nr Adeverinta Inhumare </th>
+                                            <th>Nr Adeverinta Asistenta</th>
+                                           
                                         </tr>
                                     </thead>
                                     <tbody>
+                                    <%
+                                    	ArrayList<InregRegDecedatiFaraApartinatori> registru = (ArrayList<InregRegDecedatiFaraApartinatori>) request.getSession().getAttribute("registru5");
+                                    	
+                                    	for(InregRegDecedatiFaraApartinatori inregistrare : registru)
+                                    	{
+                                    		
+                                    %>
                                         <tr class="odd gradeX">
-                                         <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td> </td>
-                                            <td class="center"></td>
-                                            <td class="center"></td>
+                                            <td><%=inregistrare.getNume() %></td>
+                                            <td><%=inregistrare.getPrenume() %></td>
+                                            <td><%=inregistrare.getCimitir() %></td>
+                                            <td><%=inregistrare.getParcela() %></td>
+                                            <td><%=inregistrare.getNrMormant() %></td>
+                                            <td><%=inregistrare.getDataInmormantare() %></td>
+                                            <td><%=inregistrare.getNrAdeverintaInhumare() %></td>
+                                            <td><%=inregistrare.getNrAdeverintaAsistenta() %></td>
+                                            
                                         </tr>
-                                         <tr class="odd gradeX">
-                                          <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td> </td>
-                                            <td class="center"></td>
-                                            <td class="center"></td>
-                                        </tr>
-                                         <tr class="odd gradeX">
-                                          <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td> </td>
-                                            <td class="center"></td>
-                                            <td class="center"></td>
-                                        </tr>
-                                         <tr class="odd gradeX">
-                                           <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td> </td>
-                                            <td class="center"></td>
-                                            <td class="center"></td>
-                                        </tr>
-                                         <tr class="odd gradeX">
-                                         <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td> </td>
-                                            <td class="center"></td>
-                                            <td class="center"></td>
-                                        </tr>
-                                         <tr class="odd gradeX">
-                                          <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td> </td>
-                                            <td class="center"></td>
-                                            <td class="center"></td>
-                                        </tr>
-                                         <tr class="odd gradeX">
-                                          <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td> </td>
-                                            <td class="center"></td>
-                                            <td class="center"></td>
-                                        </tr>
-                                         <tr class="odd gradeX">
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td> </td>
-                                            <td class="center"></td>
-                                            <td class="center"></td>
-                                        </tr>
+                                        <% } %>
+                                      
                                         
                                     </tbody>
                                 </table>
