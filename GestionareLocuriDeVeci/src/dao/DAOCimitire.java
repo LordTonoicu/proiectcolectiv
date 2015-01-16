@@ -60,13 +60,11 @@ public class DAOCimitire implements IDAOCimitire{
 	public void update(Cimitir cimitir) throws SQLException{
 
 		try{
-			String updateTable = "UPDATE Cimitire SET denumire = ?, adresa = ?, nrLocuri = ?, nrParcele = ? WHERE idCimitir = ?";
+			String updateTable = "UPDATE Cimitire SET denumire = ?, adresa = ? WHERE idCimitir = ?";
 			PSUpdate = connection.prepareStatement(updateTable);
-			PSUpdate.setInt(5, cimitir.getIdCimitir());
+			PSUpdate.setInt(3, cimitir.getIdCimitir());
 			PSUpdate.setString(1, cimitir.getDenumire());
 			PSUpdate.setString(2, cimitir.getAdresa());
-			PSUpdate.setInt(3, cimitir.getNrLocuri());
-			PSUpdate.setInt(4, cimitir.getNrParcele());
 			PSUpdate.executeUpdate();
 		}catch(SQLException ex){
 			throw new SQLException("Error when trying to update the: " + cimitir + ":" + ex.getMessage());
