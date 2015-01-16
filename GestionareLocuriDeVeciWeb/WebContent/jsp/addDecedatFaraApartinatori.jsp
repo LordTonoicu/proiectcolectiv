@@ -106,7 +106,7 @@
                                        
                                         <div class="form-group">
                                             <label>Nr adeverinta inhumare</label>
-                                            <input class="form-control"  id="NrAdeverintaInhumareDecedat" name="NrAdeverintaInhumareDecedat">
+                                            <input class="form-control" type="number" id="NrAdeverintaInhumareDecedat" name="NrAdeverintaInhumareDecedat">
                                           
                                         </div>
                                         
@@ -118,7 +118,7 @@
                                         
                                         <div class="form-group">
                                             <label>Nr Adeverinta Asistenta</label>
-                                            <input class="form-control"  id="nrAdeverintaAsistenta" name="nrAdeverintaAsistenta">
+                                            <input class="form-control"  type="number" id="nrAdeverintaAsistenta" name="nrAdeverintaAsistenta">
                                           
                                         </div>
                                         

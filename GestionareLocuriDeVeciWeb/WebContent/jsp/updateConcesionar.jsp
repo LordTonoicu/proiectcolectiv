@@ -96,7 +96,7 @@
                                         </div>
                                         <div class="form-group">
                                             <label>Nr chitanta</label>
-                                            <input id="nrChitanta" name="nrChitanta" class="form-control">
+                                            <input type="number" id="nrChitanta" name="nrChitanta" class="form-control">
                                        
                                         </div>                                  
                                          <button id="updateConcesionar" name="updateConcesionar" type="submit" class="btn btn-primary">Salveaza Modificarile</button>
