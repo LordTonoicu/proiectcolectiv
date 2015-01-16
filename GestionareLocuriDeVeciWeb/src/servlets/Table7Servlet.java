@@ -16,9 +16,9 @@ import domain.registers.InregRegContracteConcesiune;
 import exceptions.BusinessException;
 
 /**
- * Servlet implementation class Tables7Servlet
+ * Servlet implementation class Table7Servlet
  */
-@WebServlet("/Tables7Servlet")
+@WebServlet("/Table7Servlet")
 public class Table7Servlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	ServiceRegistre serviceRegistre = new ServiceRegistreImpl();

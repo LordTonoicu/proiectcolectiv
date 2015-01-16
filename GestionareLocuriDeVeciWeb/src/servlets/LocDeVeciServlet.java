@@ -78,8 +78,10 @@ public class LocDeVeciServlet extends HttpServlet {
 			if (request.getParameter("updateLocDeVeci") != null) 
 				updateLocDeVeci(request);
 			if (request.getParameter("download") != null)
+			{
 				downloadPoza(request, response);
-
+				return;
+			}
 			int idParcela = (Integer) h.getAttribute("idParcela");
 			List<LocDeVeciDTO> locuriDeVeci = locDeVeciService
 					.getLocuriDeVeciByIdParcela(idParcela);

@@ -212,10 +212,16 @@ function newPopupAlegeDecedat(url) {
                                             <td><span id="denumireParcelaV<%=i%>"><%=locDeVeciDTO.getDenumireParcela() %></span></td>
                                             <td><span id="numarV<%=i%>"><%=locDeVeci.getNumar()%></span></td>
                                             <td>
+                                            <%if(locDeVeci.getPoza().length>10){ %>
                                             <button id="download" name="download"
 													class="btn btn-primary" type="submit">
 												Download
-											</button></td>
+											</button>
+											<%} else{%>
+											<%="Fara poza" %>
+											<%} %>
+											</td>
+											
                                             <td><span id="EsteMonumentV<%=i%>"><%=locDeVeci.isMonument()%></span></td>
                                             <td>
                                                 
