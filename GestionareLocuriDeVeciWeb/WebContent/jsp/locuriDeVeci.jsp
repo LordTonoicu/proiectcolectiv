@@ -71,15 +71,19 @@ function newPopupAlegeDecedat(url) {
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
                         <li class="sidebar-search">
+                           <form action="../GetByParcelaLocDeVeciServlet" method="POST">
                             <div class="input-group custom-search-form">
-                                <input type="text" class="form-control" placeholder="Parcela" style="width:90px; margin-right: 5px">
-                                <input type="text" class="form-control" placeholder="Nr loc" style="width:80px">
+                                <input type="text" name="DenParcela" class="form-control" placeholder="Parcela" style="width:90px; margin-right: 5px">
+                                <input type="text" name="nrLoc" class="form-control" placeholder="Nr loc" style="width:80px">
                                 <span class="input-group-btn">
-                                    <button class="btn btn-default" type="button">
+                    
+                                    <button class="btn btn-default" type="submit">
                                         <i class="fa fa-search"></i>
+                                        
                                     </button>
                                 </span>
                             </div>
+                            </form>
                             <!-- /input-group -->
                         </li>
                         <li>
@@ -230,10 +234,21 @@ function newPopupAlegeDecedat(url) {
 															<img src="css/edit.png" /> Actualizeaza
 														</button>
 													 </a>
+											   <% 
+											    if(locDeVeci.getNrContractConcesionare() == 0 )  {%>
 												<button id="stergeLocDeVeci" name="stergeLocDeVeci"
 													class="btn btn-primary" type="submit">
 													<img src="css/delete.png" /> Sterge
 												</button>
+												<%}else{
+													%>
+													<button id="stergeLocDeVeci" name="stergeLocDeVeci"
+													class="btn btn-primary" type="submit" disabled>
+													<img src="css/delete.png" /> Sterge
+												</button>
+												<%} %>
+													
+												
 												 <a href="JavaScript:newPopup('alegeTipDecedat.jsp')" onclick="setIdRow(<%=i%>)"> 
                             						<button class="btn btn-primary" type="button" >
                                     					 <img src="css/plus.png"> Decedat

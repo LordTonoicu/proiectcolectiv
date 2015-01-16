@@ -70,15 +70,19 @@ function newPopup(url) {
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
                         <li class="sidebar-search">
+                            <form action="../GetByParcelaLocDeVeciServlet" method="POST">
                             <div class="input-group custom-search-form">
-                                <input type="text" class="form-control" placeholder="Parcela" style="width:90px; margin-right: 5px">
-                                <input type="text" class="form-control" placeholder="Nr loc" style="width:80px">
+                                <input type="text" name="DenParcela" class="form-control" placeholder="Parcela" style="width:90px; margin-right: 5px">
+                                <input type="text" name="nrLoc" class="form-control" placeholder="Nr loc" style="width:80px">
                                 <span class="input-group-btn">
-                                    <button class="btn btn-default" type="button">
+                    
+                                    <button class="btn btn-default" type="submit">
                                         <i class="fa fa-search"></i>
+                                        
                                     </button>
                                 </span>
                             </div>
+                            </form>
                             <!-- /input-group -->
                         </li>
                         <li>
@@ -221,9 +225,16 @@ function newPopup(url) {
                                             		<img src="css/edit.png"/> Actualizeaza
                                             	</button> 
                                             	</a>
+                                            	<% 
+                                            	if(parcela.getNrLocuri()==0)   { %>
                                             	<button name="stergeParcela" id="stergeParcela" class="btn btn-primary" type="submit">
                                             		<img src="css/delete.png"/> Sterge
                                             	</button>
+                                            	<%}else{%>
+                                            	<button name="stergeParcela" id="stergeParcela" class="btn btn-primary" type="submit" disabled>
+                                            		<img src="css/delete.png"/> Sterge
+                                            	</button>
+                                            	<% }%>
                                             	
 												<button class="btn btn-primary" type="submit" id="locuriDeVeci" name="locuriDeVeci" onclick="setIdRow(<%=i%>)">
 													<img src="css/glasses.png"/> Locuri de Veci

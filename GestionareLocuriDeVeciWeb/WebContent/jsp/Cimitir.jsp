@@ -75,16 +75,19 @@
 			<div class="sidebar-nav navbar-collapse">
 				<ul class="nav" id="side-menu">
 					<li class="sidebar-search">
-						<div class="input-group custom-search-form">
-							<input type="text" class="form-control" placeholder="Parcela"
-								style="width: 90px; margin-right: 5px"> <input
-								type="text" class="form-control" placeholder="Nr loc"
-								style="width: 80px"> <span class="input-group-btn">
-								<button class="btn btn-default" type="button">
-									<i class="fa fa-search"></i>
-								</button>
-							</span>
-						</div> <!-- /input-group -->
+						<form action="../GetByParcelaLocDeVeciServlet" method="POST">
+                            <div class="input-group custom-search-form">
+                                <input type="text" name="DenParcela" class="form-control" placeholder="Parcela" style="width:90px; margin-right: 5px">
+                                <input type="text" name="nrLoc" class="form-control" placeholder="Nr loc" style="width:80px">
+                                <span class="input-group-btn">
+                    
+                                    <button class="btn btn-default" type="submit">
+                                        <i class="fa fa-search"></i>
+                                        
+                                    </button>
+                                </span>
+                            </div>
+                            </form>
 					</li>
 					<li><a href="#"><i class="fa fa-bar-chart-o fa-fw"></i>
 							Gestiune<span class="fa arrow"></span></a>
@@ -205,10 +208,21 @@
 															<img src="css/edit.png" /> Actualizeaza
 														</button>
 													</a>
+													<% 
+													if(cimitir.getNrParcele() == 0){
+												    %>
 													<button id="stergeCimtir" name="stergeCimitir"
 														class="btn btn-primary" type="submit">
 														<img src="css/delete.png" /> Sterge
 													</button>
+													<% } 
+													else{%>
+													
+													<button id="stergeCimtir" name="stergeCimitir"
+														class="btn btn-primary" type="submit" disabled>
+														<img src="css/delete.png" /> Sterge
+													</button>
+													<% }%>
 													
 														<button class="btn btn-primary" type="submit" id="parcele" 
 														name="parcele" onclick="setIdRow(<%=i%>)">

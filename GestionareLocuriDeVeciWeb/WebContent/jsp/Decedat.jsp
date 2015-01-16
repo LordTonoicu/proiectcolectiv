@@ -67,15 +67,19 @@ function newPopup(url) {
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
                         <li class="sidebar-search">
+                            <form action="../GetByParcelaLocDeVeciServlet" method="POST">
                             <div class="input-group custom-search-form">
-                                <input type="text" class="form-control" placeholder="Parcela" style="width:90px; margin-right: 5px">
-                                <input type="text" class="form-control" placeholder="Nr loc" style="width:80px">
+                                <input type="text" name="DenParcela" class="form-control" placeholder="Parcela" style="width:90px; margin-right: 5px">
+                                <input type="text" name="nrLoc" class="form-control" placeholder="Nr loc" style="width:80px">
                                 <span class="input-group-btn">
-                                    <button class="btn btn-default" type="button">
+                    
+                                    <button class="btn btn-default" type="submit">
                                         <i class="fa fa-search"></i>
+                                        
                                     </button>
                                 </span>
                             </div>
+                            </form>
                             <!-- /input-group -->
                         </li>
                         <li>
