@@ -149,6 +149,95 @@ public class DAORegistre implements IDAORegistre{
 		}
 		return registru;
 	}
+
+	/*REGISTRUL DE MORMINTE în care se înscriu toate locurile de morminte din cimitir. În acest
+	registru se va arăta – cimitirul – parcela – numărul mormântului, numele, prenumele şi domiciliul
+	deţinătorului, nr. chitanţei cu care s-a făcut plata locului de mormânt, numele, prenumele celor
+	înmormântaţi, data înmormântării, suprafaţa locului şi o coloană pentru observaţii, în care se va
+	arăta existenţa/inexistenţa construcţiilor funerare şi numărul actului în baza căruia s-au făcut
+	modificări privind schimbarea deţinătorului, fotografia scanată a locului de veci.
+	 */
+	@Override
+	public List<InregRegDeMorminte> getByParcelaAndNrLoc(String parcela,int nrLocDeVeci) throws SQLException {
+		List<InregRegDeMorminte> registru = null;
+		try{
+			//toate locurile de veci
+			String sqlSelect = "SELECT idLoc, c.denumire, p.denumire, numar, cc.cnpConcesionar1, cc.cnpConcesionar2, suprafata from LocuriDeVeci "
+					+"INNER JOIN Parcele p ON LocuriDeVeci.idParcela= p.idParcela "
+					+"INNER JOIN Cimitire c ON p.idCimitir= c.idCimitir "
+					+"LEFT JOIN ContracteConcesiune cc on nrContractConcesiune = cc.nrContract where LocuriDeVeci.deleted=false AND Parcele.denumire = "+parcela+" AND LocDeVeci.numar=" +String.valueOf(nrLocDeVeci);
+			Connection con = ConnectionFactory.getConnection();
+			PreparedStatement pSelect = con.prepareStatement(sqlSelect);
+			ResultSet rs = pSelect.executeQuery();
+			registru = new ArrayList<InregRegDeMorminte>();
+			while(rs.next())
+			{
+				InregRegDeMorminte inregistrare = new InregRegDeMorminte();
+				inregistrare.setNumarMormant(rs.getInt(4));
+				inregistrare.setCimitir(rs.getString(2));
+				inregistrare.setParcela(rs.getString(3));
+				inregistrare.setSuprafata(rs.getInt(7));
+				//concesionari pentru mormant
+				String sqlSelectDetinatori = "SELECT dp.nume, dp.prenume, c.domiciliu, c.nrChitanta from Concesionari c "
+						+"INNER JOIN DatePersonale dp on c.cnpConcesionar = dp.cnp where dp.cnp in ('"
+						+rs.getString(5)+"','"+rs.getString(6)+"')";
+				PreparedStatement psConcesionar = con.prepareStatement(sqlSelectDetinatori);
+				ResultSet rsDateConcesionari = psConcesionar.executeQuery();
+				String numePrenume="";
+				String domicilii="";
+				String nrChitante="";
+				if(rsDateConcesionari.next())
+				{
+					numePrenume+=rsDateConcesionari.getString(1) +" " + rsDateConcesionari.getString(2) + "<br>";
+					domicilii+=rsDateConcesionari.getString(3)+"<br>";
+					nrChitante+=rsDateConcesionari.getInt(4)+"<br>";
+					if(rsDateConcesionari.next())
+					{
+						numePrenume+=rsDateConcesionari.getString(1) +" " + rsDateConcesionari.getString(2);
+						domicilii+=rsDateConcesionari.getString(3);
+						nrChitante+=rsDateConcesionari.getInt(4)+"<br>";
+					}
+				
+				}
+				else
+				{
+					numePrenume="-";
+					domicilii="-";
+					nrChitante="-";
+				}
+				inregistrare.setNumePrenumeDetinatori(numePrenume);
+				inregistrare.setDomiciliuDetinatori(domicilii);
+				inregistrare.setNumereChitante(nrChitante);
+				//decedati pentru mormant
+				String sqlAllDecedati = "SELECT dp.nume, dp.prenume, d.dataInmormantare from Decedati d "
+						+"INNER JOIN DatePersonale dp ON d.cnpDecedat=dp.cnp WHERE d.idLocDeVeci="+rs.getInt(1)
+						+" UNION "
+						+"SELECT dp.nume, dp.prenume, d.dataInmormantare from DecedatiFaraApartinatori d "
+						+"INNER JOIN DatePersonale dp ON d.cnpDecedat=dp.cnp WHERE d.idLocDeVeci="+rs.getInt(1);
+				PreparedStatement psDecedati = con.prepareStatement(sqlAllDecedati);
+				ResultSet rsDecedati = psDecedati.executeQuery();
+				String numePrenumeDecedati="",dateInmormantari="";
+				int i=1;
+				while(rsDecedati.next())
+				{
+					numePrenumeDecedati+=rsDecedati.getString(1)+" " +rsDecedati.getString(2)+"<br>";
+					dateInmormantari+=rsDecedati.getDate(3).toString()+"<br>";
+					i++;
+				}
+				if(numePrenumeDecedati=="" || dateInmormantari=="")
+				{
+					numePrenumeDecedati="-";
+					dateInmormantari="-";
+				}
+				inregistrare.setNumePrenumeInmormantati(numePrenumeDecedati);
+				inregistrare.setDateInmormantare(dateInmormantari);
+				registru.add(inregistrare);
+			}
+		} catch (SQLException ex){
+			throw new SQLException("Exceptie Accesare Date Registru: " + ex.getMessage());
+		}
+		return registru;
+	}
    
 	/* REGISTRUL DE MORMINTE-MONUMENTE FUNERARE cu valoare istorică, arhitecturală
  	sau monumentală şi ale eroilor şi personalităţilor istorice, politice, culturale sau cu alte merite

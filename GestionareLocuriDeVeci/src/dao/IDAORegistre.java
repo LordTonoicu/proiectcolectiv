@@ -14,5 +14,6 @@ public interface IDAORegistre {
 	public List<InregRegDecedatiFaraApartinatori> getRegAnualDecedatiFaraApartinatori() throws SQLException;
 	public List<InregRegCereriInhumare> getRegCereriInhumare() throws SQLException;
 	public List<InregRegContracteConcesiune> getRegContracteConcesiune() throws SQLException;
+	List<InregRegDeMorminte> getByParcelaAndNrLoc(String parcela,int nrLocDeVeci) throws SQLException;
 	
 }
