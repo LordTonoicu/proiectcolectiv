@@ -14,12 +14,7 @@ public class ConnectionFactory {
 			connection.close();
 		super.finalize();
 	}
-
-	public static final String URL = "jdbc:mysql://127.0.0.1:3306/mydb";
-    public static final String USER = "root";
-    public static final String PASSWORD = "";
     public static final String DRIVER_CLASS = "com.mysql.jdbc.Driver"; 
-     
     private ConnectionFactory() {
         try {
             Class.forName(DRIVER_CLASS);
@@ -30,8 +25,13 @@ public class ConnectionFactory {
      
     private Connection createConnection() {
         try {
-        	if(connection==null)
-        		connection = DriverManager.getConnection(URL, USER, PASSWORD);
+        	if(connection==null || connection.isClosed())
+        	{
+        		 String URL = "jdbc:mysql://"+System.getenv("OPENSHIFT_MYSQL_DB_HOST")+":"+System.getenv("OPENSHIFT_MYSQL_DB_PORT")+"/mydb";
+        		 String USER = "adminzpwDCy9";
+        		 String PASSWORD = "e-sVHJXFVThg";
+        		 connection = DriverManager.getConnection(URL, USER, PASSWORD);
+        	}
         } catch (SQLException e) {
             System.out.println("ERROR: Unable to Connect to Database.");
         }

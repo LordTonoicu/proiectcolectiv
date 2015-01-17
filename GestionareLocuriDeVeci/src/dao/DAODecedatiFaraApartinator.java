@@ -73,7 +73,7 @@ public class DAODecedatiFaraApartinator implements IDAODecedatiFaraAparatinator 
 		try {
 			String updateTable = "UPDATE DecedatiFaraApartinatori SET cnpDecedat = ?, dataInmormantare = ?, nrAdeverintaInhumare = ?, idLocDeVeci = ?, nrAdeverintaAsistenta = ?, religie = ? WHERE idDecedat = ?";
 			PSUpdate = connection.prepareStatement(updateTable);
-			PSUpdate.setInt(6, decedat.getIdDecedat());
+			PSUpdate.setInt(7, decedat.getIdDecedat());
 			PSUpdate.setString(1, decedat.getCnpDecedat());
 			PSUpdate.setDate(2, new Date(decedat.getDataInmormantare()
 					.getTime()));
